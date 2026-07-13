@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import dataset from "@/data/processed/projects.json";
+import InteractiveMap from "./InteractiveMap";
 
 type PriceSummary = {
   median: number;
@@ -34,6 +35,8 @@ type Project = {
   qualityStatus: string;
   amenityStatus: string;
   dataCompleteness: number;
+  mapX: number;
+  mapY: number;
 };
 
 type ViewMode = "map" | "list";
@@ -50,14 +53,6 @@ function priceText(project: Project) {
   return project.price ? `${project.price.median} 萬／坪` : "價格待補";
 }
 
-function mapEmbed(project: Project, zoom = 16) {
-  const address = project.address
-    .replace("交岔路口", "交叉口")
-    .replace(/(?:附近|對面工地|對面|號旁|旁|等)$/u, "");
-  const query = `${project.city}${project.district}${address}`;
-  return `https://www.google.com/maps?q=${encodeURIComponent(query)}&z=${Math.min(20, Math.max(11, zoom))}&output=embed`;
-}
-
 function locationLabel(project: Project) {
   if (/交叉|路口|與/u.test(project.address)) return "官方路口附近";
   if (/號/u.test(project.address)) return "官方門牌附近";
@@ -72,7 +67,6 @@ export default function Home() {
   const [sortBy, setSortBy] = useState<SortKey>("newest");
   const [viewMode, setViewMode] = useState<ViewMode>("map");
   const [selectedId, setSelectedId] = useState(projects[0].id);
-  const [mapZoom, setMapZoom] = useState(16);
   const [detailOpen, setDetailOpen] = useState(false);
   const [detailTab, setDetailTab] = useState<DetailTab>("summary");
   const [compareIds, setCompareIds] = useState<string[]>([]);
@@ -111,10 +105,6 @@ export default function Home() {
     .filter(Boolean) as Project[];
   const pricedCount = filtered.filter((project) => project.price).length;
   const hasFilters = query || region !== "全部" || priceOnly || minHouseholds > 0 || sortBy !== "newest";
-
-  useEffect(() => {
-    setMapZoom(16);
-  }, [active.id]);
 
   function selectProject(project: Project, openDetail = false) {
     setSelectedId(project.id);
@@ -207,13 +197,16 @@ export default function Home() {
           </aside>
 
           <section className="map-stage" aria-label={`${active.name} 站內地圖`}>
-            <iframe key={`${active.id}-${mapZoom}`} src={mapEmbed(active, mapZoom)} title={`${active.name} 地圖`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
+            <InteractiveMap
+              projects={filtered.length ? filtered : [active]}
+              activeId={active.id}
+              onSelect={(id) => {
+                const project = projects.find((item) => item.id === id);
+                if (project) selectProject(project);
+              }}
+            />
             <div className="map-caption"><span>目前顯示所選建案位置</span><strong>{locationLabel(active)}</strong><small>官方資料可能只提供道路或路口，非精確基地界址</small></div>
-            <div className="map-zoom" aria-label="地圖縮放控制">
-              <button type="button" onClick={() => setMapZoom((zoom) => Math.min(20, zoom + 1))} disabled={mapZoom >= 20} aria-label="放大地圖">＋</button>
-              <span>縮放 {mapZoom}</span>
-              <button type="button" onClick={() => setMapZoom((zoom) => Math.max(11, zoom - 1))} disabled={mapZoom <= 11} aria-label="縮小地圖">−</button>
-            </div>
+            <div className="map-gesture-hint">滾輪縮放 · 拖曳移動</div>
             <article className="map-project-card">
               <div className="map-card-heading"><span>{active.region}</span><div><h2>{active.name}</h2><p>{active.builder}</p></div></div>
               <div className="map-card-data"><div><span>中位單價</span><strong>{active.price ? active.price.median : "—"}</strong><small>{active.price ? "萬／坪" : "待補"}</small></div><div><span>申報戶數</span><strong>{active.households}</strong><small>戶</small></div><div><span>資料完整</span><strong>{active.dataCompleteness}</strong><small>%</small></div></div>
@@ -251,7 +244,7 @@ export default function Home() {
             {detailTab === "summary" && <section><h3>官方基本資料</h3><div className="drawer-facts"><div><span>申報備查</span><strong>{formatDate(active.declaredDate)}</strong></div><div><span>建照日期</span><strong>{formatDate(active.permitDate)}</strong></div><div><span>首次登記</span><strong>{formatDate(active.firstRegistrationDate)}</strong></div><div><span>主要建材</span><strong>{active.material}</strong></div><div><span>主要用途</span><strong>{active.mainUse}</strong></div><div><span>使用分區</span><strong>{active.zoning}</strong></div></div><div className="drawer-address"><span>坐落街道</span><strong>{active.city}{active.district}{active.address}</strong><span>坐落基地</span><strong>{active.buildingLand}</strong><small>{locationLabel(active)}，非精確基地界址。</small></div><details><summary>建照與官方資料編號</summary><p>{active.permitNo}</p><p>{active.registryNumber}</p></details></section>}
             {detailTab === "price" && <section><h3>成交行情</h3>{active.price ? <><div className="drawer-price"><span>中位單價</span><strong>{active.price.median}</strong><small>萬／坪</small><p>{active.price.low}–{active.price.high} 萬／坪</p></div><div className="drawer-facts two"><div><span>有效樣本</span><strong>{active.price.count} 筆</strong></div><div><span>最新交易</span><strong>{formatDate(active.price.latestDate)}</strong></div></div><p className="drawer-note">來源：{active.price.source}。成交價不是目前開價，也不是估價結果。</p></> : <div className="drawer-empty"><strong>成交資料尚待補齊</strong><p>目前批次未成功配對，不代表沒有交易。</p></div>}</section>}
             {detailTab === "quality" && <section><h3>漏水與施工品質</h3><div className="quality-pending"><span>待查</span><strong>目前沒有足夠證據可下結論</strong><p>裁判書、公開住戶證據、新聞與建商回應完成交叉核對後，才會建立品質事件。</p></div><ol><li>確認事件與建案配對</li><li>區分單一個案與重複問題</li><li>保留建商修繕與回應</li></ol></section>}
-            {detailTab === "amenity" && <section><h3>生活機能</h3><div className="drawer-amenities"><div><span>便利商店</span><strong>距離待算</strong></div><div><span>全聯</span><strong>距離待算</strong></div><div><span>好市多</span><strong>距離待算</strong></div><div><span>捷運／車站</span><strong>距離待算</strong></div></div><div className="drawer-map"><iframe key={active.id} src={mapEmbed(active)} title={`${active.name} 生活機能地圖`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div><small className="drawer-map-note">地圖依官方地址文字定位，非精確基地界址。</small></section>}
+            {detailTab === "amenity" && <section><h3>生活機能</h3><div className="drawer-amenities"><div><span>便利商店</span><strong>距離待算</strong></div><div><span>全聯</span><strong>距離待算</strong></div><div><span>好市多</span><strong>距離待算</strong></div><div><span>捷運／車站</span><strong>距離待算</strong></div></div><div className="drawer-map"><InteractiveMap projects={[active]} activeId={active.id} compact /></div><small className="drawer-map-note">地圖為官方地址附近示意，非精確基地界址。</small></section>}
           </div>
         </aside>
       )}

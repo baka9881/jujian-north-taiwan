@@ -28,9 +28,9 @@ test("server-renders the verified Linkou and A7 catalogue", async () => {
   assert.match(html, /有成交資料/);
   assert.match(html, /點選建案切換地圖/);
   assert.match(html, /目前顯示所選建案位置/);
-  assert.match(html, /<iframe[^>]+title="[^"]+ 地圖"/);
-  assert.match(html, /aria-label="放大地圖"/);
-  assert.match(html, /aria-label="縮小地圖"/);
+  assert.match(html, /data-map-engine="leaflet"/);
+  assert.match(html, /滾輪縮放 · 拖曳移動/);
+  assert.doesNotMatch(html, /<iframe/);
   assert.doesNotMatch(html, /maps\/search\/|target="_blank"[^>]*>[^<]*(?:地圖|放大)/);
   assert.doesNotMatch(html, /匿名示範資料|綜合表現/);
 });

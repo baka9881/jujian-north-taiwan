@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
 
 :root { --orange:#ed6a34; --orange-dark:#d95220; --navy:#253747; --ink:#27323a; --muted:#78838a; --line:#dfe3e5; --paper:#fff; --soft:#f5f6f6; --green:#287b68; --shadow:0 12px 32px rgba(30,48,60,.14); }
 * { box-sizing:border-box; }
@@ -66,17 +67,18 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
 .empty-results button,.list-empty button { padding:8px 12px; border:0; border-radius:4px; background:var(--orange); color:white; cursor:pointer; font-size:9px; }
 
 .map-stage { position:relative; min-width:0; overflow:hidden; background:#e6e8e5; }
-.map-stage > iframe { width:100%; height:100%; border:0; filter:saturate(.85) contrast(.98); }
-.map-caption { position:absolute; top:12px; left:12px; display:flex; align-items:center; gap:8px; padding:8px 10px; border:1px solid rgba(45,57,63,.12); border-radius:5px; background:rgba(255,255,255,.93); box-shadow:0 4px 14px rgba(30,48,58,.12); }
+.interactive-map { width:100%; height:100%; min-height:260px; background:#dfe6e2; cursor:grab; }
+.interactive-map:active { cursor:grabbing; }
+.interactive-map .leaflet-control-zoom { margin-top:12px; margin-right:12px; border:1px solid rgba(45,57,63,.18); box-shadow:0 5px 18px rgba(30,48,58,.16); }
+.interactive-map .leaflet-control-zoom a { width:38px; height:38px; color:var(--navy); font-size:22px; line-height:38px; }
+.interactive-map .leaflet-control-attribution { color:#6d797e; font-size:8px; }
+.interactive-map .leaflet-tooltip { border:0; border-radius:5px; color:var(--navy); font-size:10px; box-shadow:0 5px 18px rgba(30,48,58,.18); }
+.map-caption { position:absolute; z-index:500; top:12px; left:12px; display:flex; align-items:center; gap:8px; padding:8px 10px; border:1px solid rgba(45,57,63,.12); border-radius:5px; background:rgba(255,255,255,.93); box-shadow:0 4px 14px rgba(30,48,58,.12); }
 .map-caption span { color:var(--muted); font-size:8px; }
 .map-caption strong { color:var(--navy); font-size:9px; }
 .map-caption small { padding-left:8px; border-left:1px solid var(--line); color:#929ca1; font-size:8px; }
-.map-zoom { position:absolute; z-index:5; top:12px; right:12px; display:grid; width:42px; overflow:hidden; border:1px solid rgba(45,57,63,.18); border-radius:6px; background:rgba(255,255,255,.96); box-shadow:0 5px 18px rgba(30,48,58,.16); }
-.map-zoom button { width:40px; height:40px; border:0; background:white; color:var(--navy); cursor:pointer; font-size:22px; line-height:1; }
-.map-zoom button:hover:not(:disabled) { background:#edf5f2; color:#123f39; }
-.map-zoom button:disabled { color:#bac2c5; cursor:not-allowed; }
-.map-zoom span { padding:5px 2px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted); font-size:7px; text-align:center; white-space:nowrap; }
-.map-project-card { position:absolute; left:18px; bottom:18px; width:min(500px,calc(100% - 36px)); border-radius:8px; background:rgba(255,255,255,.96); box-shadow:0 16px 45px rgba(24,42,54,.24); overflow:hidden; backdrop-filter:blur(10px); }
+.map-gesture-hint { position:absolute; z-index:500; right:12px; bottom:12px; padding:7px 9px; border-radius:4px; background:rgba(37,55,71,.88); color:white; font-size:8px; pointer-events:none; }
+.map-project-card { position:absolute; z-index:500; left:18px; bottom:18px; width:min(500px,calc(100% - 36px)); border-radius:8px; background:rgba(255,255,255,.96); box-shadow:0 16px 45px rgba(24,42,54,.24); overflow:hidden; backdrop-filter:blur(10px); }
 .map-card-heading { display:flex; align-items:center; gap:12px; padding:15px 17px 11px; }
 .map-card-heading > span { min-width:38px; padding:5px 7px; border-radius:4px; background:var(--orange); color:white; font-size:8px; font-weight:800; text-align:center; }
 .map-card-heading h2 { margin:0; font-size:19px; }
@@ -169,7 +171,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
 .drawer-amenities span { margin-bottom:6px; color:var(--muted); font-size:8px; }
 .drawer-amenities strong { font-size:10px; }
 .drawer-map { height:260px; margin-top:10px; border-radius:6px; overflow:hidden; }
-.drawer-map iframe { width:100%; height:100%; border:0; }
+.drawer-map .interactive-map { min-height:260px; }
 .drawer-map-note { display:block; margin-top:7px; color:var(--muted); font-size:8px; }
 
 .compare-bar { position:fixed; z-index:60; left:50%; bottom:14px; width:min(720px,calc(100% - 28px)); min-height:58px; transform:translateX(-50%); display:flex; align-items:center; gap:8px; padding:8px; border-radius:7px; background:rgba(37,55,71,.97); color:white; box-shadow:0 14px 40px rgba(24,39,49,.28); }
