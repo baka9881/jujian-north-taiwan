@@ -43,6 +43,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
   );
   const onSelectRef = useRef(onSelect);
   const [ready, setReady] = useState(false);
+  const [mapMoved, setMapMoved] = useState(false);
 
   onSelectRef.current = onSelect;
 
@@ -80,6 +81,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
       maplibreRef.current = maplibre;
       mapRef.current = map;
       map.scrollZoom.enable();
+      map.on("dragstart", () => setMapMoved(true));
       map.once("load", () => {
         if (cancelled) return;
         const chineseName: import("maplibre-gl").ExpressionSpecification = [
@@ -134,7 +136,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
         .addTo(map);
       markersRef.current.set(project.id, { marker, element });
     });
-  }, [activeId, projects, ready]);
+  }, [projects, ready]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -148,16 +150,27 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
     });
     const point = projectPoint(active);
     map.flyTo({ center: [point[1], point[0]], zoom: Math.max(map.getZoom(), compact ? 15 : 14), duration: 350 });
+    setMapMoved(false);
   }, [activeId, compact, projects, ready]);
 
+  function recenterActive() {
+    const map = mapRef.current;
+    const active = projects.find((project) => project.id === activeId);
+    if (!map || !active) return;
+    const point = projectPoint(active);
+    map.easeTo({ center: [point[1], point[0]], zoom: Math.max(map.getZoom(), compact ? 15 : 14), duration: 300 });
+    setMapMoved(false);
+  }
+
   return (
-    <div
-      className={`interactive-map ${compact ? "compact" : ""}`}
-      ref={containerRef}
-      data-map-engine="maplibre"
-      lang="zh-Hant-TW"
-      role="application"
-      aria-label="可用滑鼠滾輪縮放、拖曳移動的建案地圖"
-    />
+    <div className={`interactive-map ${compact ? "compact" : ""}`} data-map-engine="maplibre" lang="zh-Hant-TW">
+      <div
+        className="interactive-map-canvas"
+        ref={containerRef}
+        role="application"
+        aria-label="可用滑鼠滾輪縮放、拖曳移動的建案地圖"
+      />
+      {mapMoved && !compact && <button className="map-recenter" type="button" onClick={recenterActive}>⌖ 回到所選建案</button>}
+    </div>
   );
 }

@@ -27,7 +27,7 @@ test("server-renders the verified Linkou and A7 catalogue", async () => {
   assert.match(html, /品質查核/);
   assert.match(html, /有成交資料/);
   assert.match(html, /點選建案切換地圖/);
-  assert.match(html, /目前顯示所選建案位置/);
+  assert.match(html, /依官方地址顯示附近位置/);
   assert.match(html, /data-map-engine="maplibre"/);
   assert.match(html, /lang="zh-Hant-TW"/);
   assert.match(html, /滾輪縮放 · 拖曳移動/);

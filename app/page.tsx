@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import dataset from "@/data/processed/projects.json";
 import InteractiveMap from "./InteractiveMap";
 
@@ -106,6 +106,16 @@ export default function Home() {
   const pricedCount = filtered.filter((project) => project.price).length;
   const hasFilters = query || region !== "全部" || priceOnly || minHouseholds > 0 || sortBy !== "newest";
 
+  useEffect(() => {
+    const card = document.querySelector<HTMLElement>(`[data-result-id="${active.id}"]`);
+    const list = document.querySelector<HTMLElement>(".result-list");
+    if (!card || !list) return;
+    const cardRect = card.getBoundingClientRect();
+    const listRect = list.getBoundingClientRect();
+    if (cardRect.top < listRect.top) list.scrollTop -= listRect.top - cardRect.top + 8;
+    if (cardRect.bottom > listRect.bottom) list.scrollTop += cardRect.bottom - listRect.bottom + 8;
+  }, [active.id]);
+
   function selectProject(project: Project, openDetail = false) {
     setSelectedId(project.id);
     setDetailTab("summary");
@@ -180,7 +190,7 @@ export default function Home() {
               {filtered.length === 0 ? (
                 <div className="empty-results"><strong>沒有符合的建案</strong><button type="button" onClick={clearFilters}>清除條件</button></div>
               ) : filtered.map((project) => (
-                <article className={`map-result-card ${active.id === project.id ? "selected" : ""}`} key={project.id}>
+                <article className={`map-result-card ${active.id === project.id ? "selected" : ""}`} data-result-id={project.id} key={project.id}>
                   <button className="result-main" type="button" onClick={() => selectProject(project)}>
                     <div className="result-title"><span>{project.region}</span><h2>{project.name}</h2></div>
                     <p>{project.builder}</p>
@@ -205,7 +215,7 @@ export default function Home() {
                 if (project) selectProject(project);
               }}
             />
-            <div className="map-caption"><span>目前顯示所選建案位置</span><strong>{locationLabel(active)}</strong><small>官方資料可能只提供道路或路口，非精確基地界址</small></div>
+            <div className="map-caption"><span>依官方地址顯示附近位置</span><strong>{locationLabel(active)}</strong><small>非精確基地界址，可拖曳探索周邊</small></div>
             <div className="map-gesture-hint">滾輪縮放 · 拖曳移動</div>
             <article className="map-project-card">
               <div className="map-card-heading"><span>{active.region}</span><div><h2>{active.name}</h2><p>{active.builder}</p></div></div>
