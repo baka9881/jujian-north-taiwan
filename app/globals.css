@@ -150,7 +150,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
 .grid-compare:hover,.grid-compare.checked { background:#fff4ef; color:var(--orange); }
 .list-empty { min-height:340px; display:grid; place-content:center; justify-items:center; gap:14px; border:1px dashed #c8d0d4; background:white; }
 
-.detail-drawer { position:fixed; z-index:45; top:132px; right:0; width:min(470px,100%); height:calc(100vh - 132px); border-left:1px solid #cfd6d9; background:white; box-shadow:-12px 0 35px rgba(25,43,54,.22); overflow-y:auto; }
+.detail-drawer { position:fixed; z-index:1500; top:132px; right:0; width:min(470px,100%); height:calc(100vh - 132px); border-left:1px solid #cfd6d9; background:white; box-shadow:-12px 0 35px rgba(25,43,54,.22); overflow-y:auto; }
 .detail-drawer > header { position:relative; padding:22px 24px 18px; background:var(--navy); color:white; }
 .detail-drawer > header button { position:absolute; top:14px; right:14px; width:31px; height:31px; border:0; border-radius:50%; background:rgba(255,255,255,.12); color:white; cursor:pointer; font-size:20px; }
 .detail-drawer > header > span { color:#b9c7d0; font-size:9px; }
@@ -205,7 +205,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
 .drawer-map .interactive-map { min-height:260px; }
 .drawer-map-note { display:block; margin-top:7px; color:var(--muted); font-size:8px; }
 
-.compare-bar { position:fixed; z-index:60; left:50%; bottom:14px; width:min(720px,calc(100% - 28px)); min-height:58px; transform:translateX(-50%); display:flex; align-items:center; gap:8px; padding:8px; border-radius:7px; background:rgba(37,55,71,.97); color:white; box-shadow:0 14px 40px rgba(24,39,49,.28); }
+.compare-bar { position:fixed; z-index:1600; left:50%; bottom:14px; width:min(720px,calc(100% - 28px)); min-height:58px; transform:translateX(-50%); display:flex; align-items:center; gap:8px; padding:8px; border-radius:7px; background:rgba(37,55,71,.97); color:white; box-shadow:0 14px 40px rgba(24,39,49,.28); }
 .compare-bar > div { min-width:0; flex:1; display:flex; gap:6px; overflow-x:auto; }
 .compare-bar > div button { padding:8px; border:1px solid rgba(255,255,255,.15); border-radius:4px; background:rgba(255,255,255,.07); color:white; cursor:pointer; font-size:8px; white-space:nowrap; }
 .compare-bar > div span { margin-left:6px; color:#cbd4d8; }
@@ -213,7 +213,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
 .compare-bar > button { padding:11px 15px; border:0; border-radius:4px; background:var(--orange); color:white; cursor:pointer; font-size:9px; font-weight:800; white-space:nowrap; }
 .compare-bar em { position:absolute; right:8px; top:-22px; padding:4px 7px; border-radius:3px; background:#c64e35; font-size:8px; font-style:normal; }
 
-.modal-layer { position:fixed; z-index:100; inset:0; display:grid; place-items:center; padding:20px; background:rgba(27,40,49,.62); backdrop-filter:blur(5px); }
+.modal-layer { position:fixed; z-index:2000; inset:0; display:grid; place-items:center; padding:20px; background:rgba(27,40,49,.62); backdrop-filter:blur(5px); }
 .compare-modal,.method-modal { position:relative; width:min(880px,100%); max-height:calc(100vh - 40px); padding:28px; border-radius:8px; background:white; box-shadow:0 30px 90px rgba(0,0,0,.3); overflow:auto; }
 .method-modal { width:min(580px,100%); }
 .compare-modal h2,.method-modal h2 { margin:0 0 9px; font-size:25px; }
@@ -234,6 +234,80 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
 .method-modal article p { margin:0; color:var(--muted); font-size:8px; }
 .method-modal footer { display:flex; flex-wrap:wrap; gap:8px 14px; margin-top:18px; padding-top:14px; border-top:1px solid var(--line); }
 .method-modal footer a { color:var(--navy); font-size:8px; }
+
+/* Readability: keep supporting text comfortably legible on desktop and mobile. */
+:root { --ink:#18262e; --muted:#56656d; --line:#d3dadd; }
+html,body { font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+.site-brand small { font-size:11px; }
+.site-header nav button { font-size:14px; }
+.header-tools span,.header-tools button { font-size:12px; }
+.global-search input { font-size:14px; }
+.filter-select { font-size:12px; }
+.filter-select select,.filter-chip,.clear-filters,.view-switch button { font-size:13px; }
+.result-summary strong { font-size:16px; }
+.result-summary span,.result-summary small { color:#63727a; font-size:12px; }
+.result-title > span { font-size:11px; }
+.result-title h2 { font-size:18px; }
+.result-main > p { color:#5b6a72; font-size:13px; }
+.result-data strong { font-size:15px; }
+.result-data span { color:#53636c; font-size:12px; }
+.result-main > small { color:#66757d; font-size:12px; line-height:1.45; }
+.result-actions button { font-size:12px; }
+.empty-results,.list-empty { font-size:13px; }
+.empty-results button,.list-empty button { font-size:12px; }
+.interactive-map .leaflet-control-attribution { font-size:10px; }
+.marker-price { font-size:11px; }
+.project-cluster-marker { font-size:13px; }
+.panel-toggle { font-size:13px; }
+.map-recenter { font-size:12px; }
+.map-caption span,.map-caption small { font-size:11px; }
+.map-caption strong { font-size:13px; }
+.map-legend { width:190px; }
+.map-legend strong { font-size:13px; }
+.map-legend span,.map-legend b { font-size:11px; }
+.map-gesture-hint { font-size:11px; }
+.map-card-heading > span { font-size:11px; }
+.map-card-heading h2 { font-size:21px; }
+.map-card-heading p { font-size:13px; }
+.map-card-data span,.map-card-data small { font-size:11px; }
+.map-card-data strong { font-size:24px; }
+.map-card-actions button { font-size:13px; }
+.list-heading p { font-size:11px; }
+.list-heading > span { font-size:13px; }
+.project-placeholder span,.project-placeholder small { font-size:11px; }
+.grid-card-copy > div:first-child,.grid-card-copy i { font-size:11px; }
+.grid-card-copy h2 { font-size:20px; }
+.grid-card-copy p { font-size:13px; }
+.grid-card-copy dt { font-size:11px; }
+.grid-card-copy dd { font-size:13px; }
+.grid-compare { font-size:12px; }
+.detail-drawer > header > span,.detail-drawer > header p { font-size:12px; }
+.drawer-metrics span,.drawer-metrics small { font-size:11px; }
+.drawer-metrics strong { font-size:23px; }
+.detail-drawer > nav button { font-size:13px; }
+.drawer-content h3 { font-size:20px; }
+.drawer-facts span,.drawer-address span { font-size:12px; }
+.drawer-facts strong,.drawer-address strong { font-size:14px; }
+.drawer-address small { color:#66757d; font-size:12px; }
+.drawer-content summary { font-size:13px; }
+.drawer-content details p { color:#56656d; font-size:12px; }
+.drawer-price span { font-size:12px; }
+.drawer-price small,.drawer-price p { font-size:13px; }
+.drawer-note { color:#53636c; font-size:12px; }
+.quality-pending span { font-size:11px; }
+.quality-pending strong { font-size:14px; }
+.quality-pending p { color:#53636c; font-size:13px; }
+.drawer-content ol { color:#4f6069; font-size:13px; }
+.drawer-amenities span { font-size:12px; }
+.drawer-amenities strong { font-size:14px; }
+.drawer-map-note { font-size:12px; }
+.compare-bar > div button,.compare-bar > small,.compare-bar > button,.compare-bar em { font-size:12px; }
+.compare-modal > p { font-size:13px; }
+.table-scroll th,.table-scroll td { font-size:13px; }
+.table-scroll thead small { font-size:11px; }
+.method-modal article span { font-size:11px; }
+.method-modal article strong { font-size:14px; }
+.method-modal article p,.method-modal footer a { font-size:12px; }
 
 @media (max-width:1050px) {
   .site-header { grid-template-columns:220px 1fr auto; }
@@ -270,7 +344,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
   .map-project-card { left:10px; bottom:10px; width:calc(100% - 20px); }
   .map-workspace:not(.panel-collapsed) .map-project-card { display:none; }
   .marker-building { width:25px; height:32px; }
-  .marker-price { min-width:43px; padding:3px 6px 4px; font-size:9px; }
+  .marker-price { min-width:43px; padding:3px 6px 4px; font-size:11px; }
   .map-card-heading { padding:11px 12px 8px; }
   .map-card-data { margin:0 12px 9px; }
   .map-card-actions button { padding:10px; }
@@ -289,7 +363,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
   .view-switch button { padding:8px; }
   .map-stage { min-height:430px; }
   .map-card-heading p { max-width:220px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .map-card-data strong { font-size:17px; }
+  .map-card-data strong { font-size:20px; }
   .map-card-actions { grid-template-columns:1fr 1fr; }
   .drawer-facts,.drawer-amenities { grid-template-columns:1fr; }
   .compare-modal,.method-modal { padding:23px 14px; }
