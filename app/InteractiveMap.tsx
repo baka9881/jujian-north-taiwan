@@ -67,9 +67,12 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
         scrollWheelZoom: true,
         dragging: true,
         inertia: false,
-        zoomAnimation: false,
-        fadeAnimation: false,
-        markerZoomAnimation: false,
+        zoomAnimation: true,
+        fadeAnimation: true,
+        markerZoomAnimation: true,
+        zoomAnimationThreshold: 4,
+        wheelDebounceTime: 80,
+        wheelPxPerZoomLevel: 140,
         minZoom: 11,
         maxZoom: 19,
       });
@@ -77,6 +80,9 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
       leaflet.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         minZoom: 11,
         maxZoom: 19,
+        updateWhenZooming: false,
+        updateWhenIdle: true,
+        keepBuffer: 3,
         attribution: "© OpenStreetMap contributors",
       }).addTo(map);
       leaflet.control.zoom({ position: "topright", zoomInTitle: "放大", zoomOutTitle: "縮小" }).addTo(map);
@@ -111,16 +117,11 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
 
     let disposed = false;
 
-    function clearMarkers() {
-      markersRef.current.forEach(({ marker }) => marker.remove());
-      markersRef.current.clear();
-    }
-
     function renderMarkers() {
       if (disposed) return;
-      clearMarkers();
 
       const placed: Array<{ projects: MapProject[]; x: number; y: number }> = [];
+      const nextMarkerIds = new Set<string>();
       const clusterDistance = compact ? 34 : 62;
       const ordered = [...projects].sort((project) => project.id === activeId ? -1 : 1);
 
@@ -144,11 +145,19 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
         }
       });
 
-      placed.forEach((group, groupIndex) => {
+      placed.forEach((group) => {
         const latitude = group.projects.reduce((sum, project) => sum + projectPoint(project)[0], 0) / group.projects.length;
         const longitude = group.projects.reduce((sum, project) => sum + projectPoint(project)[1], 0) / group.projects.length;
 
         if (group.projects.length > 1) {
+          const markerId = `cluster-${group.projects.map((project) => project.id).sort().join("-")}`;
+          nextMarkerIds.add(markerId);
+          const existing = markersRef.current.get(markerId);
+          if (existing) {
+            existing.marker.setLatLng([latitude, longitude]);
+            return;
+          }
+
           const label = `${group.projects.length} 個建案，點擊放大地圖`;
           const icon = leaflet.divIcon({
             className: "project-cluster-host",
@@ -170,12 +179,21 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
           host?.setAttribute("aria-label", label);
           host?.setAttribute("title", label);
           const element = host?.querySelector<HTMLElement>(".project-cluster-marker") ?? null;
-          markersRef.current.set(`cluster-${groupIndex}`, { marker, element });
+          markersRef.current.set(markerId, { marker, element });
           return;
         }
 
         const project = group.projects[0];
         const active = project.id === activeId;
+        nextMarkerIds.add(project.id);
+        const existing = markersRef.current.get(project.id);
+        if (existing) {
+          existing.marker.setLatLng([latitude, longitude]);
+          existing.marker.setZIndexOffset(active ? 1000 : 0);
+          existing.element?.classList.toggle("active", active);
+          return;
+        }
+
         const priceText = project.price ? `${project.price.median} 萬` : "價格待補";
         const description = `${project.name}｜${project.price ? `${project.price.median} 萬／坪` : "成交價待補"}`;
         const icon = leaflet.divIcon({
@@ -196,6 +214,12 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
         const element = host?.querySelector<HTMLElement>(".project-map-marker") ?? null;
         markersRef.current.set(project.id, { marker, element });
       });
+
+      markersRef.current.forEach(({ marker }, markerId) => {
+        if (nextMarkerIds.has(markerId)) return;
+        marker.remove();
+        markersRef.current.delete(markerId);
+      });
     }
 
     renderMarkers();
@@ -204,7 +228,6 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
     return () => {
       disposed = true;
       map.off("zoomend", renderMarkers);
-      clearMarkers();
     };
   }, [activeId, compact, projects, ready]);
 
