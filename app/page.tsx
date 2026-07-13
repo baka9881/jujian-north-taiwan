@@ -72,6 +72,7 @@ export default function Home() {
   const [compareIds, setCompareIds] = useState<string[]>([]);
   const [compareOpen, setCompareOpen] = useState(false);
   const [methodOpen, setMethodOpen] = useState(false);
+  const [panelOpen, setPanelOpen] = useState(true);
   const [notice, setNotice] = useState("");
 
   const filtered = useMemo(() => {
@@ -114,7 +115,7 @@ export default function Home() {
     const listRect = list.getBoundingClientRect();
     if (cardRect.top < listRect.top) list.scrollTop -= listRect.top - cardRect.top + 8;
     if (cardRect.bottom > listRect.bottom) list.scrollTop += cardRect.bottom - listRect.bottom + 8;
-  }, [active.id]);
+  }, [active.id, panelOpen]);
 
   function selectProject(project: Project, openDetail = false) {
     setSelectedId(project.id);
@@ -180,7 +181,7 @@ export default function Home() {
       </section>
 
       {viewMode === "map" ? (
-        <section className="map-workspace">
+        <section className={`map-workspace ${panelOpen ? "" : "panel-collapsed"}`}>
           <aside className="result-sidebar">
             <div className="result-summary">
               <div><strong>{filtered.length} 個建案</strong><span>{pricedCount} 案有成交資料</span></div>
@@ -207,6 +208,14 @@ export default function Home() {
           </aside>
 
           <section className="map-stage" aria-label={`${active.name} 站內地圖`}>
+            <button
+              className="panel-toggle"
+              type="button"
+              aria-expanded={panelOpen}
+              onClick={() => setPanelOpen((value) => !value)}
+            >
+              {panelOpen ? "‹ 收合建案" : "☰ 展開建案"}
+            </button>
             <InteractiveMap
               projects={filtered.length ? filtered : [active]}
               activeId={active.id}
@@ -216,6 +225,12 @@ export default function Home() {
               }}
             />
             <div className="map-caption"><span>依官方地址顯示附近位置</span><strong>{locationLabel(active)}</strong><small>非精確基地界址，可拖曳探索周邊</small></div>
+            <aside className="map-legend" aria-label="地圖標記說明">
+              <strong>地圖標記</strong>
+              <span><i className="priced" /> 有成交資料 <b>{pricedCount}</b></span>
+              <span><i className="pending" /> 價格待補 <b>{filtered.length - pricedCount}</b></span>
+              <span><i className="cluster" /> 數字為重疊建案</span>
+            </aside>
             <div className="map-gesture-hint">滾輪縮放 · 拖曳移動</div>
             <article className="map-project-card">
               <div className="map-card-heading"><span>{active.region}</span><div><h2>{active.name}</h2><p>{active.builder}</p></div></div>

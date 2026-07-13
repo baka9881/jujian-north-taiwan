@@ -49,6 +49,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
 
   useEffect(() => {
     let cancelled = false;
+    let resizeObserver: ResizeObserver | null = null;
 
     void import("maplibre-gl").then((maplibre) => {
       if (cancelled || !containerRef.current) return;
@@ -82,6 +83,8 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
 
       maplibreRef.current = maplibre;
       mapRef.current = map;
+      resizeObserver = new ResizeObserver(() => map.resize());
+      resizeObserver.observe(containerRef.current);
       map.scrollZoom.enable();
       map.on("dragstart", () => containerRef.current?.classList.add("is-dragging"));
       map.on("dragend", () => {
@@ -113,6 +116,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
 
     return () => {
       cancelled = true;
+      resizeObserver?.disconnect();
       markersRef.current.clear();
       mapRef.current?.remove();
       mapRef.current = null;
@@ -125,24 +129,100 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
     const map = mapRef.current;
     if (!ready || !maplibre || !map) return;
 
-    markersRef.current.forEach(({ marker }) => marker.remove());
-    markersRef.current.clear();
+    let disposed = false;
 
-    projects.forEach((project) => {
-      const active = project.id === activeId;
-      const element = document.createElement("button");
-      element.type = "button";
-      element.className = `project-map-marker ${active ? "active" : ""}`;
-      element.title = `${project.name}｜${project.price ? `${project.price.median} 萬／坪` : "成交價待補"}`;
-      element.setAttribute("aria-label", `查看 ${project.name}`);
-      element.addEventListener("click", () => onSelectRef.current?.(project.id));
-      const point = projectPoint(project);
-      const marker = new maplibre.Marker({ element, anchor: "center" })
-        .setLngLat([point[1], point[0]])
-        .addTo(map);
-      markersRef.current.set(project.id, { marker, element });
-    });
-  }, [projects, ready]);
+    function clearMarkers() {
+      markersRef.current.forEach(({ marker }) => marker.remove());
+      markersRef.current.clear();
+    }
+
+    function renderMarkers() {
+      if (disposed) return;
+      clearMarkers();
+
+      const placed: Array<{ projects: MapProject[]; x: number; y: number }> = [];
+      const clusterDistance = compact ? 34 : 62;
+      const ordered = [...projects].sort((project) => project.id === activeId ? -1 : 1);
+
+      ordered.forEach((project) => {
+        const point = projectPoint(project);
+        const screen = map.project([point[1], point[0]]);
+        const nearby = project.id === activeId
+          ? undefined
+          : placed.find((group) =>
+              !group.projects.some((item) => item.id === activeId) &&
+              Math.hypot(group.x - screen.x, group.y - screen.y) < clusterDistance,
+            );
+
+        if (nearby) {
+          const size = nearby.projects.length;
+          nearby.x = (nearby.x * size + screen.x) / (size + 1);
+          nearby.y = (nearby.y * size + screen.y) / (size + 1);
+          nearby.projects.push(project);
+        } else {
+          placed.push({ projects: [project], x: screen.x, y: screen.y });
+        }
+      });
+
+      placed.forEach((group, groupIndex) => {
+        const latitude = group.projects.reduce((sum, project) => sum + projectPoint(project)[0], 0) / group.projects.length;
+        const longitude = group.projects.reduce((sum, project) => sum + projectPoint(project)[1], 0) / group.projects.length;
+
+        if (group.projects.length > 1) {
+          const element = document.createElement("button");
+          element.type = "button";
+          element.className = "project-cluster-marker";
+          element.textContent = String(group.projects.length);
+          element.title = `${group.projects.length} 個建案，點擊放大`;
+          element.setAttribute("aria-label", `${group.projects.length} 個建案，點擊放大地圖`);
+          element.addEventListener("click", () => {
+            const bounds = new maplibre.LngLatBounds();
+            group.projects.forEach((project) => {
+              const point = projectPoint(project);
+              bounds.extend([point[1], point[0]]);
+            });
+            map.fitBounds(bounds, { padding: compact ? 34 : 90, maxZoom: 17, duration: 0 });
+          });
+          const marker = new maplibre.Marker({ element, anchor: "center" })
+            .setLngLat([longitude, latitude])
+            .addTo(map);
+          markersRef.current.set(`cluster-${groupIndex}`, { marker, element });
+          return;
+        }
+
+        const project = group.projects[0];
+        const active = project.id === activeId;
+        const element = document.createElement("button");
+        const building = document.createElement("span");
+        const windows = document.createElement("span");
+        const price = document.createElement("span");
+        element.type = "button";
+        element.className = `project-map-marker ${active ? "active" : ""} ${project.price ? "has-price" : "price-pending"}`;
+        building.className = "marker-building";
+        windows.className = "marker-windows";
+        price.className = "marker-price";
+        price.textContent = project.price ? `${project.price.median} 萬` : "價格待補";
+        building.appendChild(windows);
+        element.append(building, price);
+        element.title = `${project.name}｜${project.price ? `${project.price.median} 萬／坪` : "成交價待補"}`;
+        element.setAttribute("aria-label", `查看 ${project.name}，${project.price ? `每坪 ${project.price.median} 萬` : "成交價待補"}`);
+        element.addEventListener("click", () => onSelectRef.current?.(project.id));
+        const marker = new maplibre.Marker({ element, anchor: "bottom" })
+          .setLngLat([longitude, latitude])
+          .addTo(map);
+        markersRef.current.set(project.id, { marker, element });
+      });
+    }
+
+    renderMarkers();
+    map.on("zoomend", renderMarkers);
+
+    return () => {
+      disposed = true;
+      map.off("zoomend", renderMarkers);
+      clearMarkers();
+    };
+  }, [activeId, compact, projects, ready]);
 
   useEffect(() => {
     const map = mapRef.current;
