@@ -36,80 +36,60 @@ function projectPoint(project: MapProject): [number, number] {
 
 export default function InteractiveMap({ projects, activeId, onSelect, compact = false }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const maplibreRef = useRef<typeof import("maplibre-gl") | null>(null);
-  const mapRef = useRef<import("maplibre-gl").Map | null>(null);
+  const leafletRef = useRef<typeof import("leaflet") | null>(null);
+  const mapRef = useRef<import("leaflet").Map | null>(null);
   const markersRef = useRef(
-    new Map<string, { marker: import("maplibre-gl").Marker; element: HTMLButtonElement }>(),
+    new Map<string, { marker: import("leaflet").Marker; element: HTMLElement | null }>(),
   );
   const onSelectRef = useRef(onSelect);
+  const initialProjectsRef = useRef(projects);
+  const initialActiveIdRef = useRef(activeId);
   const [ready, setReady] = useState(false);
   const [mapMoved, setMapMoved] = useState(false);
 
-  onSelectRef.current = onSelect;
+  useEffect(() => {
+    onSelectRef.current = onSelect;
+  }, [onSelect]);
 
   useEffect(() => {
     let cancelled = false;
     let resizeObserver: ResizeObserver | null = null;
+    const markers = markersRef.current;
 
-    void import("maplibre-gl").then((maplibre) => {
+    void import("leaflet").then((leaflet) => {
       if (cancelled || !containerRef.current) return;
-      const initial = projectPoint(projects.find((project) => project.id === activeId) || projects[0]);
-      const map = new maplibre.Map({
-        container: containerRef.current,
-        style: "https://tiles.openfreemap.org/styles/bright",
-        center: [initial[1], initial[0]],
-        zoom: compact ? 15 : 14,
+      const initialProjects = initialProjectsRef.current;
+      const initialActiveId = initialActiveIdRef.current;
+      const initial = projectPoint(initialProjects.find((project) => project.id === initialActiveId) || initialProjects[0]);
+      const map = leaflet.map(containerRef.current, {
+        zoomControl: false,
+        attributionControl: false,
+        scrollWheelZoom: true,
+        dragging: true,
+        inertia: false,
+        zoomAnimation: false,
+        fadeAnimation: false,
+        markerZoomAnimation: false,
         minZoom: 11,
         maxZoom: 19,
-        attributionControl: false,
-        cooperativeGestures: false,
-        reduceMotion: true,
-        dragPan: { linearity: 0 },
-        dragRotate: false,
-        pitchWithRotate: false,
-        touchPitch: false,
-        locale: {
-          "NavigationControl.ZoomIn": "放大",
-          "NavigationControl.ZoomOut": "縮小",
-          "NavigationControl.ResetBearing": "重設方向",
-        },
       });
+      map.setView(initial, compact ? 15 : 14, { animate: false });
+      leaflet.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        minZoom: 11,
+        maxZoom: 19,
+        attribution: "© OpenStreetMap contributors",
+      }).addTo(map);
+      leaflet.control.zoom({ position: "topright", zoomInTitle: "放大", zoomOutTitle: "縮小" }).addTo(map);
+      leaflet.control.attribution({ position: "bottomright", prefix: false }).addTo(map);
 
-      map.addControl(new maplibre.NavigationControl({ showCompass: false }), "top-right");
-      map.addControl(
-        new maplibre.AttributionControl({ compact: true, customAttribution: "OpenFreeMap" }),
-        "bottom-right",
-      );
-
-      maplibreRef.current = maplibre;
+      leafletRef.current = leaflet;
       mapRef.current = map;
-      resizeObserver = new ResizeObserver(() => map.resize());
+      resizeObserver = new ResizeObserver(() => map.invalidateSize({ animate: false, pan: false }));
       resizeObserver.observe(containerRef.current);
-      map.scrollZoom.enable();
-      map.on("dragstart", () => containerRef.current?.classList.add("is-dragging"));
-      map.on("dragend", () => {
-        containerRef.current?.classList.remove("is-dragging");
-        setMapMoved(true);
-      });
-      map.once("load", () => {
+      map.on("dragend", () => setMapMoved(true));
+      map.whenReady(() => {
         if (cancelled) return;
-        const chineseName: import("maplibre-gl").ExpressionSpecification = [
-          "coalesce",
-          ["get", "name:zh-Hant"],
-          ["get", "name:zh"],
-          ["get", "name_zh"],
-          ["get", "name:nonlatin"],
-          ["get", "name"],
-          ["get", "name_en"],
-        ];
-
-        map.getStyle().layers?.forEach((layer) => {
-          if (layer.type !== "symbol") return;
-          const current = map.getLayoutProperty(layer.id, "text-field");
-          if (!current || !JSON.stringify(current).includes("name")) return;
-          map.setLayoutProperty(layer.id, "text-field", chineseName);
-        });
-        map.resize();
+        map.invalidateSize({ animate: false, pan: false });
         setReady(true);
       });
     });
@@ -117,17 +97,17 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
     return () => {
       cancelled = true;
       resizeObserver?.disconnect();
-      markersRef.current.clear();
+      markers.clear();
       mapRef.current?.remove();
       mapRef.current = null;
-      maplibreRef.current = null;
+      leafletRef.current = null;
     };
   }, [compact]);
 
   useEffect(() => {
-    const maplibre = maplibreRef.current;
+    const leaflet = leafletRef.current;
     const map = mapRef.current;
-    if (!ready || !maplibre || !map) return;
+    if (!ready || !leaflet || !map) return;
 
     let disposed = false;
 
@@ -146,7 +126,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
 
       ordered.forEach((project) => {
         const point = projectPoint(project);
-        const screen = map.project([point[1], point[0]]);
+        const screen = map.latLngToContainerPoint(point);
         const nearby = project.id === activeId
           ? undefined
           : placed.find((group) =>
@@ -169,47 +149,51 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
         const longitude = group.projects.reduce((sum, project) => sum + projectPoint(project)[1], 0) / group.projects.length;
 
         if (group.projects.length > 1) {
-          const element = document.createElement("button");
-          element.type = "button";
-          element.className = "project-cluster-marker";
-          element.textContent = String(group.projects.length);
-          element.title = `${group.projects.length} 個建案，點擊放大`;
-          element.setAttribute("aria-label", `${group.projects.length} 個建案，點擊放大地圖`);
-          element.addEventListener("click", () => {
-            const bounds = new maplibre.LngLatBounds();
-            group.projects.forEach((project) => {
-              const point = projectPoint(project);
-              bounds.extend([point[1], point[0]]);
-            });
-            map.fitBounds(bounds, { padding: compact ? 34 : 90, maxZoom: 17, duration: 0 });
+          const label = `${group.projects.length} 個建案，點擊放大地圖`;
+          const icon = leaflet.divIcon({
+            className: "project-cluster-host",
+            html: `<span class="project-cluster-marker">${group.projects.length}</span>`,
+            iconSize: [38, 38],
+            iconAnchor: [19, 19],
           });
-          const marker = new maplibre.Marker({ element, anchor: "center" })
-            .setLngLat([longitude, latitude])
-            .addTo(map);
+          const marker = leaflet.marker([latitude, longitude], {
+            icon,
+            keyboard: true,
+            zIndexOffset: 200,
+          }).addTo(map);
+          marker.on("click", () => {
+            const bounds = leaflet.latLngBounds(group.projects.map((project) => projectPoint(project)));
+            const padding = compact ? 34 : 90;
+            map.fitBounds(bounds, { padding: [padding, padding], maxZoom: 17, animate: false });
+          });
+          const host = marker.getElement();
+          host?.setAttribute("aria-label", label);
+          host?.setAttribute("title", label);
+          const element = host?.querySelector<HTMLElement>(".project-cluster-marker") ?? null;
           markersRef.current.set(`cluster-${groupIndex}`, { marker, element });
           return;
         }
 
         const project = group.projects[0];
         const active = project.id === activeId;
-        const element = document.createElement("button");
-        const building = document.createElement("span");
-        const windows = document.createElement("span");
-        const price = document.createElement("span");
-        element.type = "button";
-        element.className = `project-map-marker ${active ? "active" : ""} ${project.price ? "has-price" : "price-pending"}`;
-        building.className = "marker-building";
-        windows.className = "marker-windows";
-        price.className = "marker-price";
-        price.textContent = project.price ? `${project.price.median} 萬` : "價格待補";
-        building.appendChild(windows);
-        element.append(building, price);
-        element.title = `${project.name}｜${project.price ? `${project.price.median} 萬／坪` : "成交價待補"}`;
-        element.setAttribute("aria-label", `查看 ${project.name}，${project.price ? `每坪 ${project.price.median} 萬` : "成交價待補"}`);
-        element.addEventListener("click", () => onSelectRef.current?.(project.id));
-        const marker = new maplibre.Marker({ element, anchor: "bottom" })
-          .setLngLat([longitude, latitude])
-          .addTo(map);
+        const priceText = project.price ? `${project.price.median} 萬` : "價格待補";
+        const description = `${project.name}｜${project.price ? `${project.price.median} 萬／坪` : "成交價待補"}`;
+        const icon = leaflet.divIcon({
+          className: "project-map-marker-host",
+          html: `<span class="project-map-marker ${active ? "active" : ""} ${project.price ? "has-price" : "price-pending"}"><span class="marker-building"><span class="marker-windows"></span></span><span class="marker-price">${priceText}</span></span>`,
+          iconSize: [74, 64],
+          iconAnchor: [37, 62],
+        });
+        const marker = leaflet.marker([latitude, longitude], {
+          icon,
+          keyboard: true,
+          zIndexOffset: active ? 1000 : 0,
+        }).addTo(map);
+        marker.on("click", () => onSelectRef.current?.(project.id));
+        const host = marker.getElement();
+        host?.setAttribute("aria-label", `查看 ${description}`);
+        host?.setAttribute("title", description);
+        const element = host?.querySelector<HTMLElement>(".project-map-marker") ?? null;
         markersRef.current.set(project.id, { marker, element });
       });
     }
@@ -232,12 +216,13 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
 
     markersRef.current.forEach(({ element }, id) => {
       const selected = id === activeId;
-      element.classList.toggle("active", selected);
+      element?.classList.toggle("active", selected);
     });
     const point = projectPoint(active);
     map.stop();
-    map.jumpTo({ center: [point[1], point[0]], zoom: Math.max(map.getZoom(), compact ? 15 : 14) });
-    setMapMoved(false);
+    map.setView(point, Math.max(map.getZoom(), compact ? 15 : 14), { animate: false });
+    const resetFrame = requestAnimationFrame(() => setMapMoved(false));
+    return () => cancelAnimationFrame(resetFrame);
   }, [activeId, compact, projects, ready]);
 
   function recenterActive() {
@@ -246,12 +231,12 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
     if (!map || !active) return;
     const point = projectPoint(active);
     map.stop();
-    map.jumpTo({ center: [point[1], point[0]], zoom: Math.max(map.getZoom(), compact ? 15 : 14) });
+    map.setView(point, Math.max(map.getZoom(), compact ? 15 : 14), { animate: false });
     setMapMoved(false);
   }
 
   return (
-    <div className={`interactive-map ${compact ? "compact" : ""}`} data-map-engine="maplibre" lang="zh-Hant-TW">
+    <div className={`interactive-map ${compact ? "compact" : ""}`} data-map-engine="leaflet" lang="zh-Hant-TW">
       <div
         className="interactive-map-canvas"
         ref={containerRef}
