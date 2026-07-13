@@ -628,6 +628,10 @@ a {
   font-weight: 800;
 }
 
+.map-marker.unpriced {
+  background: var(--amber);
+}
+
 .map-marker:hover,
 .map-marker.active {
   z-index: 4;
@@ -824,6 +828,16 @@ a {
 .evidence-badge.official {
   background: #dbe9e2;
   color: #28674f;
+}
+
+.evidence-badge.market {
+  background: #fae6df;
+  color: #a84b38;
+}
+
+.evidence-badge.pending {
+  background: #e7e4ef;
+  color: #655984;
 }
 
 .evidence-badge.resident {
