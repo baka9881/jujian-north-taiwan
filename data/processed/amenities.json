@@ -1,0 +1,5066 @@
+{
+  "generatedAt": "2026-07-13",
+  "source": {
+    "name": "OpenStreetMap contributors",
+    "url": "https://www.openstreetmap.org/copyright",
+    "license": "ODbL",
+    "service": "Nominatim 與 Overpass API"
+  },
+  "methodology": {
+    "distance": "兩點間直線距離",
+    "walkingMetersPerMinute": 80,
+    "disclaimer": "距離與步行時間為直線距離換算，未考慮實際道路、坡度、圍牆、紅綠燈與出入口，不可當作導航時間。",
+    "locationDisclaimer": "建案位置依官方申報地址查找；地址僅到道路或路口時，位置會標示為估算，不代表精確基地界址。",
+    "scoreRules": [
+      {
+        "category": "convenience",
+        "label": "便利商店",
+        "maxScore": 20,
+        "bands": [
+          [
+            300,
+            20
+          ],
+          [
+            500,
+            15
+          ],
+          [
+            800,
+            8
+          ]
+        ]
+      },
+      {
+        "category": "pxmart",
+        "label": "全聯",
+        "maxScore": 20,
+        "bands": [
+          [
+            800,
+            20
+          ],
+          [
+            1500,
+            12
+          ],
+          [
+            2500,
+            6
+          ]
+        ]
+      },
+      {
+        "category": "costco",
+        "label": "好市多",
+        "maxScore": 15,
+        "bands": [
+          [
+            5000,
+            15
+          ],
+          [
+            10000,
+            10
+          ],
+          [
+            15000,
+            5
+          ]
+        ]
+      },
+      {
+        "category": "station",
+        "label": "捷運／車站",
+        "maxScore": 25,
+        "bands": [
+          [
+            800,
+            25
+          ],
+          [
+            1200,
+            18
+          ],
+          [
+            2000,
+            10
+          ]
+        ]
+      },
+      {
+        "category": "school",
+        "label": "學校",
+        "maxScore": 10,
+        "bands": [
+          [
+            800,
+            10
+          ],
+          [
+            1500,
+            6
+          ]
+        ]
+      },
+      {
+        "category": "medical",
+        "label": "醫療",
+        "maxScore": 10,
+        "bands": [
+          [
+            1200,
+            10
+          ],
+          [
+            2500,
+            6
+          ]
+        ]
+      }
+    ]
+  },
+  "categories": {
+    "convenience": {
+      "label": "便利商店",
+      "symbol": "商"
+    },
+    "pxmart": {
+      "label": "全聯",
+      "symbol": "全"
+    },
+    "costco": {
+      "label": "好市多",
+      "symbol": "好"
+    },
+    "station": {
+      "label": "捷運／車站",
+      "symbol": "站"
+    },
+    "school": {
+      "label": "學校",
+      "symbol": "學"
+    },
+    "medical": {
+      "label": "醫療",
+      "symbol": "醫"
+    }
+  },
+  "poiCount": 244,
+  "pois": [
+    {
+      "id": "node-1930430974",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.078004,
+      "longitude": 121.3754432,
+      "address": null
+    },
+    {
+      "id": "node-1933670146",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0763023,
+      "longitude": 121.3577303,
+      "address": null
+    },
+    {
+      "id": "node-2282052722",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0773405,
+      "longitude": 121.3742507,
+      "address": null
+    },
+    {
+      "id": "node-2467431094",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0542883,
+      "longitude": 121.3763795,
+      "address": "桃園市龜山區文化一路86-6"
+    },
+    {
+      "id": "node-2632608893",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0709106,
+      "longitude": 121.3695994,
+      "address": null
+    },
+    {
+      "id": "node-3384220898",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0720263,
+      "longitude": 121.3645181,
+      "address": null
+    },
+    {
+      "id": "node-3423121544",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0594867,
+      "longitude": 121.3683477,
+      "address": "桃園市龜山區復興一路86"
+    },
+    {
+      "id": "node-3423152878",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.059849,
+      "longitude": 121.3689659,
+      "address": "桃園市龜山區復興北路62"
+    },
+    {
+      "id": "node-3684910666",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0735372,
+      "longitude": 121.3711617,
+      "address": null
+    },
+    {
+      "id": "node-3684910667",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0763971,
+      "longitude": 121.3742667,
+      "address": null
+    },
+    {
+      "id": "node-3685930114",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0823713,
+      "longitude": 121.3797693,
+      "address": null
+    },
+    {
+      "id": "node-3685930115",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0843137,
+      "longitude": 121.3777885,
+      "address": null
+    },
+    {
+      "id": "node-3686386772",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0567338,
+      "longitude": 121.3641598,
+      "address": "桃園市龜山區復興一路264"
+    },
+    {
+      "id": "node-3716458588",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0745262,
+      "longitude": 121.3823323,
+      "address": null
+    },
+    {
+      "id": "node-3792881063",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0527897,
+      "longitude": 121.381036,
+      "address": "桃園市龜山區文明路131"
+    },
+    {
+      "id": "node-4524864085",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0696976,
+      "longitude": 121.370952,
+      "address": null
+    },
+    {
+      "id": "node-4580619493",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0898242,
+      "longitude": 121.3755465,
+      "address": null
+    },
+    {
+      "id": "node-4599188232",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0325752,
+      "longitude": 121.3908589,
+      "address": null
+    },
+    {
+      "id": "node-4614176061",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0580574,
+      "longitude": 121.3847297,
+      "address": "桃園市龜山區長庚一街126"
+    },
+    {
+      "id": "node-4699309217",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0399057,
+      "longitude": 121.3885451,
+      "address": "桃園市龜山區文青路206;208;210"
+    },
+    {
+      "id": "node-4774202182",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0559334,
+      "longitude": 121.3791494,
+      "address": "桃園市龜山區文明路43"
+    },
+    {
+      "id": "node-4829052246",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0583723,
+      "longitude": 121.3665558,
+      "address": "桃園市龜山區復興一路150"
+    },
+    {
+      "id": "node-4883736628",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0571544,
+      "longitude": 121.3813412,
+      "address": "桃園市龜山區文德路80;82"
+    },
+    {
+      "id": "node-4937826853",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0499526,
+      "longitude": 121.3815778,
+      "address": "桃園市龜山區文化一路86-55"
+    },
+    {
+      "id": "node-4943895723",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0569131,
+      "longitude": 121.3739919,
+      "address": "桃園市龜山區文化一路42"
+    },
+    {
+      "id": "node-4961039544",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0710327,
+      "longitude": 121.3769597,
+      "address": null
+    },
+    {
+      "id": "node-4971936858",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0605246,
+      "longitude": 121.3642926,
+      "address": "桃園市龜山區文化二路28-1;28-2;28-3"
+    },
+    {
+      "id": "node-5005107485",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0405384,
+      "longitude": 121.3892598,
+      "address": "桃園市龜山區文學路250"
+    },
+    {
+      "id": "node-5306663612",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0311103,
+      "longitude": 121.3864769,
+      "address": null
+    },
+    {
+      "id": "node-5336379761",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0604933,
+      "longitude": 121.3621354,
+      "address": "桃園市龜山區文化三路1之1"
+    },
+    {
+      "id": "node-6154687164",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.051561,
+      "longitude": 121.3637595,
+      "address": "桃園市龜山區文化七路85"
+    },
+    {
+      "id": "node-6501834165",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.091608,
+      "longitude": 121.3832383,
+      "address": null
+    },
+    {
+      "id": "node-6697694494",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0734472,
+      "longitude": 121.3606507,
+      "address": null
+    },
+    {
+      "id": "node-6702091886",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0470881,
+      "longitude": 121.393173,
+      "address": "桃園市龜山區文桃路426"
+    },
+    {
+      "id": "node-6769785040",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0591732,
+      "longitude": 121.3647247,
+      "address": "桃園市龜山區文化二路34巷14弄12;14"
+    },
+    {
+      "id": "node-7996547179",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0561422,
+      "longitude": 121.3577615,
+      "address": "桃園市龜山區忠義路二段630"
+    },
+    {
+      "id": "node-7996570412",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0543384,
+      "longitude": 121.3604144,
+      "address": "桃園市龜山區復興一路392-1"
+    },
+    {
+      "id": "node-8118206957",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0773491,
+      "longitude": 121.3942724,
+      "address": null
+    },
+    {
+      "id": "node-8118206958",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0788202,
+      "longitude": 121.3736721,
+      "address": null
+    },
+    {
+      "id": "node-8118206959",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0688187,
+      "longitude": 121.3567429,
+      "address": null
+    },
+    {
+      "id": "node-8118206960",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0706466,
+      "longitude": 121.3681408,
+      "address": null
+    },
+    {
+      "id": "node-8118206961",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0675474,
+      "longitude": 121.3666205,
+      "address": null
+    },
+    {
+      "id": "node-8118206962",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0673894,
+      "longitude": 121.3649439,
+      "address": null
+    },
+    {
+      "id": "node-8118206963",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0462826,
+      "longitude": 121.3560508,
+      "address": "桃園市龜山區新興街242;244;246"
+    },
+    {
+      "id": "node-8118206964",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0523514,
+      "longitude": 121.3719058,
+      "address": "桃園市龜山區文化二路183"
+    },
+    {
+      "id": "node-8118206965",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0494858,
+      "longitude": 121.3704085,
+      "address": null
+    },
+    {
+      "id": "node-8118206966",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0496802,
+      "longitude": 121.3754296,
+      "address": null
+    },
+    {
+      "id": "node-8118206967",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0469003,
+      "longitude": 121.3737774,
+      "address": null
+    },
+    {
+      "id": "node-8118206968",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0383935,
+      "longitude": 121.3743814,
+      "address": null
+    },
+    {
+      "id": "node-8118206969",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0336066,
+      "longitude": 121.3795915,
+      "address": null
+    },
+    {
+      "id": "node-8118206970",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0358503,
+      "longitude": 121.3752917,
+      "address": "桃園市龜山區華亞五路2"
+    },
+    {
+      "id": "node-8305912215",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0518802,
+      "longitude": 121.3673764,
+      "address": "桃園市林口區文化七路179"
+    },
+    {
+      "id": "node-9007365377",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0593679,
+      "longitude": 121.3655806,
+      "address": "桃園市龜山區文化二路11-5"
+    },
+    {
+      "id": "node-9007416594",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0585454,
+      "longitude": 121.3633637,
+      "address": "桃園市龜山區文化三路81巷1"
+    },
+    {
+      "id": "node-9460500449",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0300468,
+      "longitude": 121.4131679,
+      "address": null
+    },
+    {
+      "id": "node-9497174650",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0262678,
+      "longitude": 121.4184812,
+      "address": "新北市新莊區富國路20"
+    },
+    {
+      "id": "node-9603606493",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0774061,
+      "longitude": 121.3701799,
+      "address": null
+    },
+    {
+      "id": "node-9826875684",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.057804,
+      "longitude": 121.3542979,
+      "address": "桃園市龜山區41之2"
+    },
+    {
+      "id": "node-9826924829",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0542345,
+      "longitude": 121.3665616,
+      "address": "桃園市龜山區文化三路386"
+    },
+    {
+      "id": "node-9830052895",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0561769,
+      "longitude": 121.3661684,
+      "address": "桃園市龜山區文化二路52巷53"
+    },
+    {
+      "id": "node-9830052896",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0571501,
+      "longitude": 121.3670925,
+      "address": "桃園市龜山區文化二路43"
+    },
+    {
+      "id": "node-9832074194",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0392088,
+      "longitude": 121.3533817,
+      "address": "桃園市龜山區忠義路二段13"
+    },
+    {
+      "id": "node-9832209852",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0519477,
+      "longitude": 121.3838955,
+      "address": "桃園市龜山區樂學三路83"
+    },
+    {
+      "id": "node-9832209859",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0402364,
+      "longitude": 121.3893529,
+      "address": "桃園市龜山區文學路219"
+    },
+    {
+      "id": "node-10038392121",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0395381,
+      "longitude": 121.3910161,
+      "address": "桃園市龜山區文青路331;333"
+    },
+    {
+      "id": "node-10038392122",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0473844,
+      "longitude": 121.3793628,
+      "address": "桃園市龜山區華亞三路195;197"
+    },
+    {
+      "id": "node-10271571678",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0629566,
+      "longitude": 121.3668922,
+      "address": null
+    },
+    {
+      "id": "node-10677727865",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0555889,
+      "longitude": 121.3846968,
+      "address": "桃園市龜山區長慶三街68;78;82"
+    },
+    {
+      "id": "node-10677727866",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0461493,
+      "longitude": 121.3918375,
+      "address": "桃園市龜山區樂善二路505"
+    },
+    {
+      "id": "node-11238066272",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0759441,
+      "longitude": 121.3944971,
+      "address": "新北市林口區仁愛路一段"
+    },
+    {
+      "id": "node-11361235507",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.051182,
+      "longitude": 121.3860562,
+      "address": "桃園市龜山區樂學路111-113"
+    },
+    {
+      "id": "node-11709490462",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0475014,
+      "longitude": 121.3825963,
+      "address": "桃園市龜山區樂善三路112"
+    },
+    {
+      "id": "node-13300979013",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0271215,
+      "longitude": 121.4158711,
+      "address": "新北市新莊區雙鳳路49;51"
+    },
+    {
+      "id": "node-13301334731",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0848347,
+      "longitude": 121.3849021,
+      "address": "新北市林口區文化一路二段269"
+    },
+    {
+      "id": "node-13614909657",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0458341,
+      "longitude": 121.3896219,
+      "address": "桃園市龜山區樂善二路652"
+    },
+    {
+      "id": "node-13912416753",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0753931,
+      "longitude": 121.3791152,
+      "address": null
+    },
+    {
+      "id": "way-259017515",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0808621,
+      "longitude": 121.389208,
+      "address": null
+    },
+    {
+      "id": "way-259017531",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0824746,
+      "longitude": 121.3875463,
+      "address": null
+    },
+    {
+      "id": "way-259047718",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0775877,
+      "longitude": 121.3871645,
+      "address": null
+    },
+    {
+      "id": "way-259047719",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0795492,
+      "longitude": 121.3862185,
+      "address": null
+    },
+    {
+      "id": "way-431505940",
+      "name": "7-Eleven",
+      "category": "convenience",
+      "latitude": 25.0250833,
+      "longitude": 121.3680263,
+      "address": null
+    },
+    {
+      "id": "node-2632578635",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0760909,
+      "longitude": 121.3700374,
+      "address": "新北市林口區文化三路一段557"
+    },
+    {
+      "id": "node-3423121543",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.059689,
+      "longitude": 121.3686477,
+      "address": "桃園市龜山區復興一路74"
+    },
+    {
+      "id": "node-3685909067",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.074169,
+      "longitude": 121.3681635,
+      "address": null
+    },
+    {
+      "id": "node-3685909068",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0816529,
+      "longitude": 121.3810009,
+      "address": null
+    },
+    {
+      "id": "node-3685909069",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.083126,
+      "longitude": 121.3792788,
+      "address": null
+    },
+    {
+      "id": "node-3685909070",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0834863,
+      "longitude": 121.3787008,
+      "address": null
+    },
+    {
+      "id": "node-3685970540",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0666565,
+      "longitude": 121.3609021,
+      "address": null
+    },
+    {
+      "id": "node-3716458526",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0741954,
+      "longitude": 121.3816468,
+      "address": null
+    },
+    {
+      "id": "node-4162523369",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0300193,
+      "longitude": 121.4136702,
+      "address": null
+    },
+    {
+      "id": "node-4699287517",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0358572,
+      "longitude": 121.3900806,
+      "address": null
+    },
+    {
+      "id": "node-4796668651",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.060483,
+      "longitude": 121.3582637,
+      "address": "桃園市龜山區復興街302"
+    },
+    {
+      "id": "node-4800877812",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0351033,
+      "longitude": 121.3890594,
+      "address": null
+    },
+    {
+      "id": "node-4954024051",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0342336,
+      "longitude": 121.3917972,
+      "address": null
+    },
+    {
+      "id": "node-4971949183",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0402024,
+      "longitude": 121.3892412,
+      "address": "桃園市龜山區文青路217"
+    },
+    {
+      "id": "node-5005107800",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0662704,
+      "longitude": 121.3615564,
+      "address": "新北市林口區文化三路一段2"
+    },
+    {
+      "id": "node-5074889504",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0707701,
+      "longitude": 121.3625975,
+      "address": null
+    },
+    {
+      "id": "node-5304272536",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0310636,
+      "longitude": 121.3922954,
+      "address": null
+    },
+    {
+      "id": "node-5305778386",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.058525,
+      "longitude": 121.3668189,
+      "address": "桃園市龜山區復興一路144"
+    },
+    {
+      "id": "node-6769785039",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0595244,
+      "longitude": 121.3649204,
+      "address": "桃園市龜山區文化二路32之22"
+    },
+    {
+      "id": "node-7111258246",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0395226,
+      "longitude": 121.3916658,
+      "address": "桃園市龜山區文青路357"
+    },
+    {
+      "id": "node-8305912212",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0516985,
+      "longitude": 121.3676874,
+      "address": "桃園市龜山區文化七路186"
+    },
+    {
+      "id": "node-8305912216",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0516326,
+      "longitude": 121.3643772,
+      "address": "桃園市龜山區文化七路97"
+    },
+    {
+      "id": "node-8504836940",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0688284,
+      "longitude": 121.3614801,
+      "address": "新北市林口區文化三路一段121"
+    },
+    {
+      "id": "node-9062866729",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0559137,
+      "longitude": 121.3579121,
+      "address": "桃園市龜山區忠義路二段626"
+    },
+    {
+      "id": "node-9497174639",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0266399,
+      "longitude": 121.4180942,
+      "address": "新北市新莊區富國路1"
+    },
+    {
+      "id": "node-9610321143",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0572049,
+      "longitude": 121.3608264,
+      "address": "桃園市龜山區文化三路78巷43"
+    },
+    {
+      "id": "node-9826875683",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0641788,
+      "longitude": 121.3546259,
+      "address": "桃園市龜山區忠義路三段1-1"
+    },
+    {
+      "id": "node-9826924828",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0547171,
+      "longitude": 121.366735,
+      "address": "桃園市龜山區文化三路399"
+    },
+    {
+      "id": "node-9832209845",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0570859,
+      "longitude": 121.3810543,
+      "address": "桃園市龜山區文德路76"
+    },
+    {
+      "id": "node-9832209854",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.048196,
+      "longitude": 121.3851594,
+      "address": "桃園市龜山區文化一路302"
+    },
+    {
+      "id": "node-9832209855",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.050121,
+      "longitude": 121.388845,
+      "address": "桃園市龜山區文茂路86"
+    },
+    {
+      "id": "node-9832209856",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0446357,
+      "longitude": 121.3884023,
+      "address": "桃園市龜山區牛角坡路252"
+    },
+    {
+      "id": "node-10677727863",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0491092,
+      "longitude": 121.3812073,
+      "address": "桃園市龜山區華亞三路39巷2"
+    },
+    {
+      "id": "node-10677727864",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0485936,
+      "longitude": 121.3846982,
+      "address": "桃園市龜山區文化一路218"
+    },
+    {
+      "id": "node-10773680194",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0727295,
+      "longitude": 121.372986,
+      "address": null
+    },
+    {
+      "id": "node-11238066271",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0762677,
+      "longitude": 121.392667,
+      "address": "新北市林口區仁愛路一段"
+    },
+    {
+      "id": "node-12128808059",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0385139,
+      "longitude": 121.3903019,
+      "address": "桃園市龜山區文青二路188"
+    },
+    {
+      "id": "node-12128808060",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0472544,
+      "longitude": 121.3790327,
+      "address": "桃園市龜山區華亞三路201"
+    },
+    {
+      "id": "node-12345189411",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0708891,
+      "longitude": 121.3673991,
+      "address": null
+    },
+    {
+      "id": "node-13670383961",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0288134,
+      "longitude": 121.4169047,
+      "address": null
+    },
+    {
+      "id": "node-13737262531",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0268843,
+      "longitude": 121.4172603,
+      "address": "新北市新莊區雙鳳路2"
+    },
+    {
+      "id": "node-13928375251",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0757936,
+      "longitude": 121.3764157,
+      "address": null
+    },
+    {
+      "id": "way-259017514",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0817083,
+      "longitude": 121.3885453,
+      "address": null
+    },
+    {
+      "id": "way-259017727",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.078719,
+      "longitude": 121.3971916,
+      "address": null
+    },
+    {
+      "id": "way-259042275",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0773359,
+      "longitude": 121.3952154,
+      "address": null
+    },
+    {
+      "id": "way-259043606",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0774781,
+      "longitude": 121.3923763,
+      "address": null
+    },
+    {
+      "id": "way-289989674",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0778035,
+      "longitude": 121.389404,
+      "address": null
+    },
+    {
+      "id": "way-1100762644",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0689219,
+      "longitude": 121.3662195,
+      "address": "新北市林口區文化二路一段68"
+    },
+    {
+      "id": "way-1422773163",
+      "name": "全家便利商店",
+      "category": "convenience",
+      "latitude": 25.0511207,
+      "longitude": 121.3836541,
+      "address": "桃園市龜山區樂學三路90"
+    },
+    {
+      "id": "way-1086760570",
+      "name": "便利商店",
+      "category": "convenience",
+      "latitude": 25.070682,
+      "longitude": 121.3681407,
+      "address": null
+    },
+    {
+      "id": "node-3686386770",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0578142,
+      "longitude": 121.3638383,
+      "address": "桃園市龜山區文化三路97"
+    },
+    {
+      "id": "node-3686386771",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0593973,
+      "longitude": 121.3622537,
+      "address": "桃園市龜山區文化三路48;50"
+    },
+    {
+      "id": "node-3686395467",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.069585,
+      "longitude": 121.37152,
+      "address": null
+    },
+    {
+      "id": "node-3716561193",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0773297,
+      "longitude": 121.3939723,
+      "address": "新北市林口區中正路100"
+    },
+    {
+      "id": "node-5070513121",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0530626,
+      "longitude": 121.3709984,
+      "address": "桃園市龜山區復興二路155"
+    },
+    {
+      "id": "node-5305769098",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0587925,
+      "longitude": 121.3698129,
+      "address": "桃園市龜山區復興北路43"
+    },
+    {
+      "id": "node-6697694496",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0758934,
+      "longitude": 121.3644531,
+      "address": null
+    },
+    {
+      "id": "node-6697694499",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0716397,
+      "longitude": 121.3593064,
+      "address": null
+    },
+    {
+      "id": "node-6881380666",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0754671,
+      "longitude": 121.3767884,
+      "address": null
+    },
+    {
+      "id": "node-8711951147",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0687279,
+      "longitude": 121.3560555,
+      "address": "新北市林口區文化北路一段123"
+    },
+    {
+      "id": "node-9062866728",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0479369,
+      "longitude": 121.3598844,
+      "address": "桃園市龜山區頂湖路1"
+    },
+    {
+      "id": "node-9340934984",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0271398,
+      "longitude": 121.4157378,
+      "address": "新北市新莊區雙鳳路53"
+    },
+    {
+      "id": "node-9594402107",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0442922,
+      "longitude": 121.3612438,
+      "address": "桃園市龜山區頂湖路23"
+    },
+    {
+      "id": "node-9603606492",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0771767,
+      "longitude": 121.371423,
+      "address": null
+    },
+    {
+      "id": "node-9826875685",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.045788,
+      "longitude": 121.3560383,
+      "address": "桃園市龜山區新興街255"
+    },
+    {
+      "id": "node-9832161603",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0526489,
+      "longitude": 121.3733844,
+      "address": "桃園市龜山區復興三路71"
+    },
+    {
+      "id": "node-9832209857",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0404412,
+      "longitude": 121.3866765,
+      "address": "桃園市龜山區文青路139"
+    },
+    {
+      "id": "node-9852725946",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.052925,
+      "longitude": 121.3834553,
+      "address": "桃園市龜山區樂學路470"
+    },
+    {
+      "id": "node-9852725947",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0467943,
+      "longitude": 121.3839813,
+      "address": "桃園市龜山區樂善二路181;183"
+    },
+    {
+      "id": "node-13423767490",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0681693,
+      "longitude": 121.3608521,
+      "address": "新北市林口區文化三路一段39巷297"
+    },
+    {
+      "id": "node-13423767491",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0784097,
+      "longitude": 121.3974425,
+      "address": "新北市林口區自強二街8"
+    },
+    {
+      "id": "way-442790111",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0517175,
+      "longitude": 121.3799934,
+      "address": "桃園市龜山區文化一路73"
+    },
+    {
+      "id": "way-1213001354",
+      "name": "萊爾富",
+      "category": "convenience",
+      "latitude": 25.0764142,
+      "longitude": 121.3898959,
+      "address": "新北市林口區仁愛路一段"
+    },
+    {
+      "id": "node-3685930106",
+      "name": "義美食品",
+      "category": "convenience",
+      "latitude": 25.0746993,
+      "longitude": 121.3689338,
+      "address": "新北市林口區文化三路一段"
+    },
+    {
+      "id": "node-3198271141",
+      "name": "福利社",
+      "category": "convenience",
+      "latitude": 25.0687034,
+      "longitude": 121.4014442,
+      "address": null
+    },
+    {
+      "id": "node-9279726961",
+      "name": "蝦皮店到店",
+      "category": "convenience",
+      "latitude": 25.0550554,
+      "longitude": 121.3837961,
+      "address": "桃園市龜山區長慶三街40"
+    },
+    {
+      "id": "node-9279741121",
+      "name": "蝦皮店到店",
+      "category": "convenience",
+      "latitude": 25.0412978,
+      "longitude": 121.3885268,
+      "address": "桃園市龜山區文學路228"
+    },
+    {
+      "id": "node-9321252498",
+      "name": "蝦皮店到店",
+      "category": "convenience",
+      "latitude": 25.0774339,
+      "longitude": 121.3948529,
+      "address": "新北市林口區中正路70"
+    },
+    {
+      "id": "node-9321252499",
+      "name": "蝦皮店到店",
+      "category": "convenience",
+      "latitude": 25.0741112,
+      "longitude": 121.364333,
+      "address": "新北市林口區民族路28"
+    },
+    {
+      "id": "node-9321252500",
+      "name": "蝦皮店到店",
+      "category": "convenience",
+      "latitude": 25.0704266,
+      "longitude": 121.3701614,
+      "address": "新北市林口區忠孝路480"
+    },
+    {
+      "id": "node-9321252501",
+      "name": "蝦皮店到店",
+      "category": "convenience",
+      "latitude": 25.0834874,
+      "longitude": 121.3800418,
+      "address": "新北市林口區文化二路二段153"
+    },
+    {
+      "id": "node-9340934978",
+      "name": "蝦皮店到店",
+      "category": "convenience",
+      "latitude": 25.0594947,
+      "longitude": 121.3643056,
+      "address": "桃園市龜山區文化二路34巷14弄21"
+    },
+    {
+      "id": "node-9340934983",
+      "name": "蝦皮店到店",
+      "category": "convenience",
+      "latitude": 25.0271293,
+      "longitude": 121.4165229,
+      "address": "新北市新莊區雙鳳路34"
+    },
+    {
+      "id": "node-9414479523",
+      "name": "蝦皮店到店",
+      "category": "convenience",
+      "latitude": 25.0554943,
+      "longitude": 121.3725182,
+      "address": "桃園市龜山區復興二路76"
+    },
+    {
+      "id": "node-9491209687",
+      "name": "蝦皮店到店",
+      "category": "convenience",
+      "latitude": 25.0765313,
+      "longitude": 121.3730747,
+      "address": "新北市林口區民有街88"
+    },
+    {
+      "id": "node-9588074549",
+      "name": "蝦皮店到店",
+      "category": "convenience",
+      "latitude": 25.0519918,
+      "longitude": 121.3623157,
+      "address": "桃園市龜山區文化七路61"
+    },
+    {
+      "id": "node-10975810661",
+      "name": "蝦皮店到店",
+      "category": "convenience",
+      "latitude": 25.0794504,
+      "longitude": 121.3713468,
+      "address": "新北市林口區仁愛路二段628"
+    },
+    {
+      "id": "node-4774202181",
+      "name": "OK超商",
+      "category": "convenience",
+      "latitude": 25.0547328,
+      "longitude": 121.3797593,
+      "address": "桃園市龜山區文明路71-2"
+    },
+    {
+      "id": "way-259017725",
+      "name": "OK超商",
+      "category": "convenience",
+      "latitude": 25.0783887,
+      "longitude": 121.3966123,
+      "address": null
+    },
+    {
+      "id": "node-7047292762",
+      "name": "rumahku marcys II",
+      "category": "convenience",
+      "latitude": 25.0793416,
+      "longitude": 121.3855822,
+      "address": "新北市林口區中山路253"
+    },
+    {
+      "id": "node-6839870010",
+      "name": "中壢好市多",
+      "category": "costco",
+      "latitude": 24.9627797,
+      "longitude": 121.1558291,
+      "address": null
+    },
+    {
+      "id": "node-6839870011",
+      "name": "中壢好市多",
+      "category": "costco",
+      "latitude": 24.9629912,
+      "longitude": 121.1557326,
+      "address": null
+    },
+    {
+      "id": "node-2962019604",
+      "name": "台亞加油站 汐止好市多站",
+      "category": "costco",
+      "latitude": 25.055709,
+      "longitude": 121.632241,
+      "address": "新北市汐止區大同路一段154"
+    },
+    {
+      "id": "way-183547237",
+      "name": "好市多",
+      "category": "costco",
+      "latitude": 25.0542781,
+      "longitude": 121.2819513,
+      "address": null
+    },
+    {
+      "id": "way-253497020",
+      "name": "好市多",
+      "category": "costco",
+      "latitude": 25.0016349,
+      "longitude": 121.4924233,
+      "address": "新北市中和區中山路二段347"
+    },
+    {
+      "id": "way-264407782",
+      "name": "好市多",
+      "category": "costco",
+      "latitude": 25.0558127,
+      "longitude": 121.6337211,
+      "address": null
+    },
+    {
+      "id": "way-367111543",
+      "name": "好市多",
+      "category": "costco",
+      "latitude": 24.9640484,
+      "longitude": 121.1555381,
+      "address": "桃園市中壢區民族路六段508"
+    },
+    {
+      "id": "way-431645594",
+      "name": "好市多",
+      "category": "costco",
+      "latitude": 25.0269539,
+      "longitude": 121.4339712,
+      "address": "新北市新莊區建國一路138"
+    },
+    {
+      "id": "way-546761340",
+      "name": "好市多",
+      "category": "costco",
+      "latitude": 25.1275627,
+      "longitude": 121.4700355,
+      "address": "臺北市北投區立德路117"
+    },
+    {
+      "id": "way-715042318",
+      "name": "好市多中壢加油站",
+      "category": "costco",
+      "latitude": 24.9649907,
+      "longitude": 121.1559884,
+      "address": null
+    },
+    {
+      "id": "way-345186878",
+      "name": "好市多內湖店停車場",
+      "category": "costco",
+      "latitude": 25.0645634,
+      "longitude": 121.5753673,
+      "address": null
+    },
+    {
+      "id": "way-1012380934",
+      "name": "好市多加油站",
+      "category": "costco",
+      "latitude": 25.0263964,
+      "longitude": 121.4344837,
+      "address": null
+    },
+    {
+      "id": "node-13607291816",
+      "name": "好市多北投店",
+      "category": "costco",
+      "latitude": 25.12782,
+      "longitude": 121.46948,
+      "address": null
+    },
+    {
+      "id": "node-6232760031",
+      "name": "好市多南崁店",
+      "category": "costco",
+      "latitude": 25.054957,
+      "longitude": 121.282179,
+      "address": null
+    },
+    {
+      "id": "way-1297659872",
+      "name": "汐止好市多",
+      "category": "costco",
+      "latitude": 25.0565741,
+      "longitude": 121.6333148,
+      "address": null
+    },
+    {
+      "id": "way-1317809814",
+      "name": "汐止好市多",
+      "category": "costco",
+      "latitude": 25.0563911,
+      "longitude": 121.6331511,
+      "address": null
+    },
+    {
+      "id": "way-1324387143",
+      "name": "汐止好市多",
+      "category": "costco",
+      "latitude": 25.0561636,
+      "longitude": 121.6334334,
+      "address": null
+    },
+    {
+      "id": "way-1324387145",
+      "name": "汐止好市多",
+      "category": "costco",
+      "latitude": 25.0558456,
+      "longitude": 121.6332122,
+      "address": null
+    },
+    {
+      "id": "way-1324387146",
+      "name": "汐止好市多",
+      "category": "costco",
+      "latitude": 25.0556992,
+      "longitude": 121.633335,
+      "address": null
+    },
+    {
+      "id": "way-1324387147",
+      "name": "汐止好市多",
+      "category": "costco",
+      "latitude": 25.0557075,
+      "longitude": 121.6334558,
+      "address": null
+    },
+    {
+      "id": "node-2948068969",
+      "name": "南亞(好市多)",
+      "category": "costco",
+      "latitude": 25.054355,
+      "longitude": 121.2831374,
+      "address": null
+    },
+    {
+      "id": "node-3789089879",
+      "name": "南亞(好市多)",
+      "category": "costco",
+      "latitude": 25.0543702,
+      "longitude": 121.2834914,
+      "address": null
+    },
+    {
+      "id": "way-173002028",
+      "name": "Costco",
+      "category": "costco",
+      "latitude": 25.063828,
+      "longitude": 121.5758627,
+      "address": "臺北市內湖區舊宗路一段268"
+    },
+    {
+      "id": "node-7170215600",
+      "name": "Costco西式餐飲部",
+      "category": "costco",
+      "latitude": 25.064053,
+      "longitude": 121.5758429,
+      "address": null
+    },
+    {
+      "id": "way-347871695",
+      "name": "costco停車場通道",
+      "category": "costco",
+      "latitude": 25.00256,
+      "longitude": 121.4918728,
+      "address": null
+    },
+    {
+      "id": "node-3685970539",
+      "name": "中醫診所",
+      "category": "medical",
+      "latitude": 25.0729174,
+      "longitude": 121.3659281,
+      "address": null
+    },
+    {
+      "id": "node-5916558935",
+      "name": "日安親子診所",
+      "category": "medical",
+      "latitude": 25.058973,
+      "longitude": 121.3700135,
+      "address": null
+    },
+    {
+      "id": "node-3716532366",
+      "name": "未來婦產科、小兒科",
+      "category": "medical",
+      "latitude": 25.0783419,
+      "longitude": 121.3756939,
+      "address": null
+    },
+    {
+      "id": "way-447950993",
+      "name": "永慶尖端醫療園區",
+      "category": "medical",
+      "latitude": 25.0630194,
+      "longitude": 121.3707653,
+      "address": null
+    },
+    {
+      "id": "node-2643732432",
+      "name": "全英眼科",
+      "category": "medical",
+      "latitude": 25.0791007,
+      "longitude": 121.3887824,
+      "address": null
+    },
+    {
+      "id": "node-4961039463",
+      "name": "妙吉祥中醫診所",
+      "category": "medical",
+      "latitude": 25.0742304,
+      "longitude": 121.3817837,
+      "address": null
+    },
+    {
+      "id": "node-2643610996",
+      "name": "宏愛診所",
+      "category": "medical",
+      "latitude": 25.079246,
+      "longitude": 121.3900689,
+      "address": null
+    },
+    {
+      "id": "node-5308330818",
+      "name": "佳恩中醫",
+      "category": "medical",
+      "latitude": 25.0780898,
+      "longitude": 121.3875544,
+      "address": null
+    },
+    {
+      "id": "node-3716534626",
+      "name": "忠孝復健科",
+      "category": "medical",
+      "latitude": 25.0716311,
+      "longitude": 121.3699512,
+      "address": null
+    },
+    {
+      "id": "node-2643732433",
+      "name": "明陽診所",
+      "category": "medical",
+      "latitude": 25.0791153,
+      "longitude": 121.3888521,
+      "address": null
+    },
+    {
+      "id": "node-9955245396",
+      "name": "林口忠孝復健專科診所",
+      "category": "medical",
+      "latitude": 25.0761573,
+      "longitude": 121.3734333,
+      "address": null
+    },
+    {
+      "id": "way-182680760",
+      "name": "林口長庚紀念醫院",
+      "category": "medical",
+      "latitude": 25.0607996,
+      "longitude": 121.3672792,
+      "address": "桃園市龜山區復興街5"
+    },
+    {
+      "id": "node-4724187694",
+      "name": "保健中心",
+      "category": "medical",
+      "latitude": 25.0324177,
+      "longitude": 121.3911096,
+      "address": null
+    },
+    {
+      "id": "node-5916559200",
+      "name": "悅兒親子中醫診所",
+      "category": "medical",
+      "latitude": 25.059221,
+      "longitude": 121.3703533,
+      "address": null
+    },
+    {
+      "id": "way-405635610",
+      "name": "桃園長庚紀念醫院",
+      "category": "medical",
+      "latitude": 25.0295436,
+      "longitude": 121.3664407,
+      "address": "桃園市龜山區頂湖路123"
+    },
+    {
+      "id": "node-2643732431",
+      "name": "健雄診所",
+      "category": "medical",
+      "latitude": 25.0791104,
+      "longitude": 121.3886966,
+      "address": null
+    },
+    {
+      "id": "node-2643730289",
+      "name": "勝康骨科",
+      "category": "medical",
+      "latitude": 25.0790189,
+      "longitude": 121.3874293,
+      "address": null
+    },
+    {
+      "id": "node-12181719803",
+      "name": "無尾熊診所",
+      "category": "medical",
+      "latitude": 25.0410825,
+      "longitude": 121.3897195,
+      "address": "桃園市龜山區文學路259"
+    },
+    {
+      "id": "node-3716532369",
+      "name": "黃紹基診所",
+      "category": "medical",
+      "latitude": 25.0759908,
+      "longitude": 121.3724819,
+      "address": null
+    },
+    {
+      "id": "node-5908064548",
+      "name": "新北市林口區衛生所",
+      "category": "medical",
+      "latitude": 25.0696612,
+      "longitude": 121.3641751,
+      "address": "新北市林口區忠孝二路55"
+    },
+    {
+      "id": "node-3716532370",
+      "name": "鼎豐中醫診所",
+      "category": "medical",
+      "latitude": 25.0765475,
+      "longitude": 121.3743856,
+      "address": null
+    },
+    {
+      "id": "node-10095015074",
+      "name": "嘉德中醫診所",
+      "category": "medical",
+      "latitude": 25.0665475,
+      "longitude": 121.3583704,
+      "address": "新北市林口區三民路15"
+    },
+    {
+      "id": "node-10076733742",
+      "name": "聚英眼科",
+      "category": "medical",
+      "latitude": 25.0567292,
+      "longitude": 121.3641127,
+      "address": null
+    },
+    {
+      "id": "node-8000247921",
+      "name": "劉建宏診所",
+      "category": "medical",
+      "latitude": 25.0534259,
+      "longitude": 121.3611012,
+      "address": "桃園市龜山區文化七路31"
+    },
+    {
+      "id": "node-11633946406",
+      "name": "廣欣中醫診所",
+      "category": "medical",
+      "latitude": 25.0585824,
+      "longitude": 121.3628551,
+      "address": "桃園市龜山區文化三路68"
+    },
+    {
+      "id": "node-2643718548",
+      "name": "德林診所",
+      "category": "medical",
+      "latitude": 25.0796389,
+      "longitude": 121.3886895,
+      "address": null
+    },
+    {
+      "id": "node-5542942109",
+      "name": "德馨診所",
+      "category": "medical",
+      "latitude": 25.0547093,
+      "longitude": 121.375995,
+      "address": null
+    },
+    {
+      "id": "way-259017508",
+      "name": "醫療",
+      "category": "medical",
+      "latitude": 25.0793693,
+      "longitude": 121.3902944,
+      "address": null
+    },
+    {
+      "id": "node-4405864638",
+      "name": "全聯福利中心",
+      "category": "pxmart",
+      "latitude": 25.0600886,
+      "longitude": 121.3695612,
+      "address": "桃園市龜山區復興一路2"
+    },
+    {
+      "id": "node-5070513022",
+      "name": "全聯福利中心",
+      "category": "pxmart",
+      "latitude": 25.0529977,
+      "longitude": 121.3711235,
+      "address": "桃園市龜山區復興二路3"
+    },
+    {
+      "id": "node-5304276426",
+      "name": "全聯福利中心",
+      "category": "pxmart",
+      "latitude": 25.0689231,
+      "longitude": 121.3676175,
+      "address": "新北市林口區公園路59"
+    },
+    {
+      "id": "node-6697694493",
+      "name": "全聯福利中心",
+      "category": "pxmart",
+      "latitude": 25.0752154,
+      "longitude": 121.364584,
+      "address": null
+    },
+    {
+      "id": "node-6788702427",
+      "name": "全聯福利中心",
+      "category": "pxmart",
+      "latitude": 25.0556532,
+      "longitude": 121.3653042,
+      "address": "桃園市龜山區文化三路316"
+    },
+    {
+      "id": "node-8842233808",
+      "name": "全聯福利中心",
+      "category": "pxmart",
+      "latitude": 25.0551572,
+      "longitude": 121.3811074,
+      "address": "桃園市龜山區文德二路123"
+    },
+    {
+      "id": "node-9741273233",
+      "name": "全聯福利中心",
+      "category": "pxmart",
+      "latitude": 25.0400013,
+      "longitude": 121.3875762,
+      "address": "桃園市龜山區文青路198"
+    },
+    {
+      "id": "way-259017529",
+      "name": "全聯福利中心",
+      "category": "pxmart",
+      "latitude": 25.0772212,
+      "longitude": 121.3871184,
+      "address": null
+    },
+    {
+      "id": "way-443055874",
+      "name": "全聯福利中心",
+      "category": "pxmart",
+      "latitude": 25.0701698,
+      "longitude": 121.367344,
+      "address": "新北市林口區文化二路一段106;108"
+    },
+    {
+      "id": "way-983084658",
+      "name": "全聯福利中心",
+      "category": "pxmart",
+      "latitude": 25.0557682,
+      "longitude": 121.3842557,
+      "address": "桃園市龜山區長慶三街81"
+    },
+    {
+      "id": "way-1082654749",
+      "name": "全聯福利中心",
+      "category": "pxmart",
+      "latitude": 25.0763269,
+      "longitude": 121.3726625,
+      "address": null
+    },
+    {
+      "id": "way-1455711473",
+      "name": "全聯福利中心",
+      "category": "pxmart",
+      "latitude": 25.0486753,
+      "longitude": 121.38109,
+      "address": null
+    },
+    {
+      "id": "way-1489379270",
+      "name": "全聯福利中心",
+      "category": "pxmart",
+      "latitude": 25.0704702,
+      "longitude": 121.3569435,
+      "address": null
+    },
+    {
+      "id": "way-1310794583",
+      "name": "文青國中小",
+      "category": "school",
+      "latitude": 25.0449991,
+      "longitude": 121.391021,
+      "address": "桃園市龜山區樂善二路778號"
+    },
+    {
+      "id": "way-183001662",
+      "name": "林口國中",
+      "category": "school",
+      "latitude": 25.0770334,
+      "longitude": 121.3771228,
+      "address": "新北市林口區民治路25號"
+    },
+    {
+      "id": "node-9741206307",
+      "name": "樂善國小",
+      "category": "school",
+      "latitude": 25.0519917,
+      "longitude": 121.3843066,
+      "address": "桃園市龜山區樂學三路"
+    },
+    {
+      "id": "way-182688791",
+      "name": "麗林國小",
+      "category": "school",
+      "latitude": 25.0683973,
+      "longitude": 121.3685137,
+      "address": "新北市林口區公園路46號"
+    },
+    {
+      "id": "node-4653352242",
+      "name": "A7 體育大學站",
+      "category": "station",
+      "latitude": 25.0413317,
+      "longitude": 121.3854083,
+      "address": "桃園市龜山區"
+    },
+    {
+      "id": "node-4653352241",
+      "name": "A8 長庚醫院站",
+      "category": "station",
+      "latitude": 25.0604744,
+      "longitude": 121.3707965,
+      "address": "桃園市龜山區"
+    },
+    {
+      "id": "node-4456093778",
+      "name": "A9 林口站",
+      "category": "station",
+      "latitude": 25.0657846,
+      "longitude": 121.3614372,
+      "address": "新北市林口區八德路"
+    }
+  ],
+  "projects": {
+    "林口-01-097315": {
+      "location": {
+        "latitude": 25.077738,
+        "longitude": 121.3973739,
+        "confidence": "low",
+        "method": "nominatim-road",
+        "label": "道路中心附近",
+        "queryAddress": "新北市林口區中山路"
+      },
+      "score": 52,
+      "grade": "基本足夠",
+      "nearest": {
+        "convenience": {
+          "id": "node-13423767491",
+          "name": "萊爾富",
+          "category": "convenience",
+          "latitude": 25.0784097,
+          "longitude": 121.3974425,
+          "address": "新北市林口區自強二街8",
+          "distanceMeters": 75,
+          "walkMinutes": 1
+        },
+        "pxmart": {
+          "id": "way-259017529",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0772212,
+          "longitude": 121.3871184,
+          "address": null,
+          "distanceMeters": 1034,
+          "walkMinutes": 13
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 6744,
+          "walkMinutes": 85
+        },
+        "station": {
+          "id": "node-4653352241",
+          "name": "A8 長庚醫院站",
+          "category": "station",
+          "latitude": 25.0604744,
+          "longitude": 121.3707965,
+          "address": "桃園市龜山區",
+          "distanceMeters": 3294,
+          "walkMinutes": 42
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 2041,
+          "walkMinutes": 26
+        },
+        "medical": {
+          "id": "way-259017508",
+          "name": "醫療",
+          "category": "medical",
+          "latitude": 25.0793693,
+          "longitude": 121.3902944,
+          "address": null,
+          "distanceMeters": 736,
+          "walkMinutes": 10
+        }
+      }
+    },
+    "林口-02-d292ac": {
+      "location": {
+        "latitude": 25.0803348,
+        "longitude": 121.3760712,
+        "confidence": "low",
+        "method": "nominatim-road",
+        "label": "道路中心附近",
+        "queryAddress": "新北市林口區吉祥路"
+      },
+      "score": 70,
+      "grade": "便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-1930430974",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.078004,
+          "longitude": 121.3754432,
+          "address": null,
+          "distanceMeters": 267,
+          "walkMinutes": 4
+        },
+        "pxmart": {
+          "id": "way-1082654749",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0763269,
+          "longitude": 121.3726625,
+          "address": null,
+          "distanceMeters": 563,
+          "walkMinutes": 8
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 8322,
+          "walkMinutes": 105
+        },
+        "station": {
+          "id": "node-4456093778",
+          "name": "A9 林口站",
+          "category": "station",
+          "latitude": 25.0657846,
+          "longitude": 121.3614372,
+          "address": "新北市林口區八德路",
+          "distanceMeters": 2189,
+          "walkMinutes": 28
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 382,
+          "walkMinutes": 5
+        },
+        "medical": {
+          "id": "node-3716532366",
+          "name": "未來婦產科、小兒科",
+          "category": "medical",
+          "latitude": 25.0783419,
+          "longitude": 121.3756939,
+          "address": null,
+          "distanceMeters": 225,
+          "walkMinutes": 3
+        }
+      }
+    },
+    "林口-03-217128": {
+      "location": {
+        "latitude": 25.071940588235293,
+        "longitude": 121.38187789473685,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "新北市林口區文化二路二段與吉祥路交叉口"
+      },
+      "score": 80,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-3716458526",
+          "name": "全家便利商店",
+          "category": "convenience",
+          "latitude": 25.0741954,
+          "longitude": 121.3816468,
+          "address": null,
+          "distanceMeters": 252,
+          "walkMinutes": 4
+        },
+        "pxmart": {
+          "id": "way-259017529",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0772212,
+          "longitude": 121.3871184,
+          "address": null,
+          "distanceMeters": 790,
+          "walkMinutes": 10
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 7250,
+          "walkMinutes": 91
+        },
+        "station": {
+          "id": "node-4653352241",
+          "name": "A8 長庚醫院站",
+          "category": "station",
+          "latitude": 25.0604744,
+          "longitude": 121.3707965,
+          "address": "桃園市龜山區",
+          "distanceMeters": 1695,
+          "walkMinutes": 22
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 742,
+          "walkMinutes": 10
+        },
+        "medical": {
+          "id": "node-4961039463",
+          "name": "妙吉祥中醫診所",
+          "category": "medical",
+          "latitude": 25.0742304,
+          "longitude": 121.3817837,
+          "address": null,
+          "distanceMeters": 255,
+          "walkMinutes": 4
+        }
+      }
+    },
+    "林口-04-65c21d": {
+      "location": {
+        "latitude": 25.0668173,
+        "longitude": 121.3580434,
+        "confidence": "low",
+        "method": "nominatim-road",
+        "label": "道路中心附近",
+        "queryAddress": "新北市林口區惠民街30巷"
+      },
+      "score": 91,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-8118206959",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.0688187,
+          "longitude": 121.3567429,
+          "address": null,
+          "distanceMeters": 258,
+          "walkMinutes": 4
+        },
+        "pxmart": {
+          "id": "way-1489379270",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0704702,
+          "longitude": 121.3569435,
+          "address": null,
+          "distanceMeters": 421,
+          "walkMinutes": 6
+        },
+        "costco": {
+          "id": "node-3789089879",
+          "name": "南亞(好市多)",
+          "category": "costco",
+          "latitude": 25.0543702,
+          "longitude": 121.2834914,
+          "address": null,
+          "distanceMeters": 7636,
+          "walkMinutes": 96
+        },
+        "station": {
+          "id": "node-4456093778",
+          "name": "A9 林口站",
+          "category": "station",
+          "latitude": 25.0657846,
+          "longitude": 121.3614372,
+          "address": "新北市林口區八德路",
+          "distanceMeters": 361,
+          "walkMinutes": 5
+        },
+        "school": {
+          "id": "way-182688791",
+          "name": "麗林國小",
+          "category": "school",
+          "latitude": 25.0683973,
+          "longitude": 121.3685137,
+          "address": "新北市林口區公園路46號",
+          "distanceMeters": 1069,
+          "walkMinutes": 14
+        },
+        "medical": {
+          "id": "node-10095015074",
+          "name": "嘉德中醫診所",
+          "category": "medical",
+          "latitude": 25.0665475,
+          "longitude": 121.3583704,
+          "address": "新北市林口區三民路15",
+          "distanceMeters": 45,
+          "walkMinutes": 1
+        }
+      }
+    },
+    "林口-05-6701e3": {
+      "location": {
+        "latitude": 25.073566470588233,
+        "longitude": 121.37866631578947,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "新北市林口區仁愛路一段與新生街路口"
+      },
+      "score": 80,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-13912416753",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.0753931,
+          "longitude": 121.3791152,
+          "address": null,
+          "distanceMeters": 208,
+          "walkMinutes": 3
+        },
+        "pxmart": {
+          "id": "way-1082654749",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0763269,
+          "longitude": 121.3726625,
+          "address": null,
+          "distanceMeters": 678,
+          "walkMinutes": 9
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 7609,
+          "walkMinutes": 96
+        },
+        "station": {
+          "id": "node-4653352241",
+          "name": "A8 長庚醫院站",
+          "category": "station",
+          "latitude": 25.0604744,
+          "longitude": 121.3707965,
+          "address": "桃園市龜山區",
+          "distanceMeters": 1658,
+          "walkMinutes": 21
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 416,
+          "walkMinutes": 6
+        },
+        "medical": {
+          "id": "node-4961039463",
+          "name": "妙吉祥中醫診所",
+          "category": "medical",
+          "latitude": 25.0742304,
+          "longitude": 121.3817837,
+          "address": null,
+          "distanceMeters": 323,
+          "walkMinutes": 5
+        }
+      }
+    },
+    "林口-06-d0c30b": {
+      "location": {
+        "latitude": 25.08843,
+        "longitude": 121.38450894736843,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "新北市林口區文化二路二段與中華路交叉口"
+      },
+      "score": 53,
+      "grade": "基本足夠",
+      "nearest": {
+        "convenience": {
+          "id": "node-6501834165",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.091608,
+          "longitude": 121.3832383,
+          "address": null,
+          "distanceMeters": 376,
+          "walkMinutes": 5
+        },
+        "pxmart": {
+          "id": "way-259017529",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0772212,
+          "longitude": 121.3871184,
+          "address": null,
+          "distanceMeters": 1274,
+          "walkMinutes": 16
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 8459,
+          "walkMinutes": 106
+        },
+        "station": {
+          "id": "node-4653352241",
+          "name": "A8 長庚醫院站",
+          "category": "station",
+          "latitude": 25.0604744,
+          "longitude": 121.3707965,
+          "address": "桃園市龜山區",
+          "distanceMeters": 3402,
+          "walkMinutes": 43
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 1469,
+          "walkMinutes": 19
+        },
+        "medical": {
+          "id": "node-2643718548",
+          "name": "德林診所",
+          "category": "medical",
+          "latitude": 25.0796389,
+          "longitude": 121.3886895,
+          "address": null,
+          "distanceMeters": 1064,
+          "walkMinutes": 14
+        }
+      }
+    },
+    "林口-07-636c51": {
+      "location": {
+        "latitude": 25.081255,
+        "longitude": 121.3886623,
+        "confidence": "low",
+        "method": "nominatim-road",
+        "label": "道路中心附近",
+        "queryAddress": "新北市林口區林口路"
+      },
+      "score": 66,
+      "grade": "便利",
+      "nearest": {
+        "convenience": {
+          "id": "way-259017514",
+          "name": "全家便利商店",
+          "category": "convenience",
+          "latitude": 25.0817083,
+          "longitude": 121.3885453,
+          "address": null,
+          "distanceMeters": 52,
+          "walkMinutes": 1
+        },
+        "pxmart": {
+          "id": "way-259017529",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0772212,
+          "longitude": 121.3871184,
+          "address": null,
+          "distanceMeters": 475,
+          "walkMinutes": 6
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 7569,
+          "walkMinutes": 95
+        },
+        "station": {
+          "id": "node-4653352241",
+          "name": "A8 長庚醫院站",
+          "category": "station",
+          "latitude": 25.0604744,
+          "longitude": 121.3707965,
+          "address": "桃園市龜山區",
+          "distanceMeters": 2929,
+          "walkMinutes": 37
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 1253,
+          "walkMinutes": 16
+        },
+        "medical": {
+          "id": "node-2643718548",
+          "name": "德林診所",
+          "category": "medical",
+          "latitude": 25.0796389,
+          "longitude": 121.3886895,
+          "address": null,
+          "distanceMeters": 180,
+          "walkMinutes": 3
+        }
+      }
+    },
+    "林口-08-021d6c": {
+      "location": {
+        "latitude": 25.08019882352941,
+        "longitude": 121.37140315789475,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "新北市林口區過崙街82號對面"
+      },
+      "score": 80,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-10975810661",
+          "name": "蝦皮店到店",
+          "category": "convenience",
+          "latitude": 25.0794504,
+          "longitude": 121.3713468,
+          "address": "新北市林口區仁愛路二段628",
+          "distanceMeters": 83,
+          "walkMinutes": 2
+        },
+        "pxmart": {
+          "id": "way-1082654749",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0763269,
+          "longitude": 121.3726625,
+          "address": null,
+          "distanceMeters": 449,
+          "walkMinutes": 6
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 8647,
+          "walkMinutes": 109
+        },
+        "station": {
+          "id": "node-4456093778",
+          "name": "A9 林口站",
+          "category": "station",
+          "latitude": 25.0657846,
+          "longitude": 121.3614372,
+          "address": "新北市林口區八德路",
+          "distanceMeters": 1891,
+          "walkMinutes": 24
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 675,
+          "walkMinutes": 9
+        },
+        "medical": {
+          "id": "node-3716532366",
+          "name": "未來婦產科、小兒科",
+          "category": "medical",
+          "latitude": 25.0783419,
+          "longitude": 121.3756939,
+          "address": null,
+          "distanceMeters": 479,
+          "walkMinutes": 6
+        }
+      }
+    },
+    "林口-09-69e9f6": {
+      "location": {
+        "latitude": 25.083143529411764,
+        "longitude": 121.38243789473685,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "新北市林口區文化三路二段與中山路口"
+      },
+      "score": 58,
+      "grade": "基本足夠",
+      "nearest": {
+        "convenience": {
+          "id": "node-3685909068",
+          "name": "全家便利商店",
+          "category": "convenience",
+          "latitude": 25.0816529,
+          "longitude": 121.3810009,
+          "address": null,
+          "distanceMeters": 220,
+          "walkMinutes": 3
+        },
+        "pxmart": {
+          "id": "way-259017529",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0772212,
+          "longitude": 121.3871184,
+          "address": null,
+          "distanceMeters": 810,
+          "walkMinutes": 11
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 8123,
+          "walkMinutes": 102
+        },
+        "station": {
+          "id": "node-4653352241",
+          "name": "A8 長庚醫院站",
+          "category": "station",
+          "latitude": 25.0604744,
+          "longitude": 121.3707965,
+          "address": "桃園市龜山區",
+          "distanceMeters": 2780,
+          "walkMinutes": 35
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 865,
+          "walkMinutes": 11
+        },
+        "medical": {
+          "id": "node-2643730289",
+          "name": "勝康骨科",
+          "category": "medical",
+          "latitude": 25.0790189,
+          "longitude": 121.3874293,
+          "address": null,
+          "distanceMeters": 680,
+          "walkMinutes": 9
+        }
+      }
+    },
+    "林口-10-0d70e1": {
+      "location": {
+        "latitude": 25.0649728,
+        "longitude": 121.3611577,
+        "confidence": "low",
+        "method": "nominatim-road",
+        "label": "道路中心附近",
+        "queryAddress": "新北市林口區文化三路"
+      },
+      "score": 91,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-5005107800",
+          "name": "全家便利商店",
+          "category": "convenience",
+          "latitude": 25.0662704,
+          "longitude": 121.3615564,
+          "address": "新北市林口區文化三路一段2",
+          "distanceMeters": 150,
+          "walkMinutes": 2
+        },
+        "pxmart": {
+          "id": "way-1489379270",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0704702,
+          "longitude": 121.3569435,
+          "address": null,
+          "distanceMeters": 744,
+          "walkMinutes": 10
+        },
+        "costco": {
+          "id": "node-3789089879",
+          "name": "南亞(好市多)",
+          "category": "costco",
+          "latitude": 25.0543702,
+          "longitude": 121.2834914,
+          "address": null,
+          "distanceMeters": 7911,
+          "walkMinutes": 99
+        },
+        "station": {
+          "id": "node-4456093778",
+          "name": "A9 林口站",
+          "category": "station",
+          "latitude": 25.0657846,
+          "longitude": 121.3614372,
+          "address": "新北市林口區八德路",
+          "distanceMeters": 95,
+          "walkMinutes": 2
+        },
+        "school": {
+          "id": "way-182688791",
+          "name": "麗林國小",
+          "category": "school",
+          "latitude": 25.0683973,
+          "longitude": 121.3685137,
+          "address": "新北市林口區公園路46號",
+          "distanceMeters": 833,
+          "walkMinutes": 11
+        },
+        "medical": {
+          "id": "node-10095015074",
+          "name": "嘉德中醫診所",
+          "category": "medical",
+          "latitude": 25.0665475,
+          "longitude": 121.3583704,
+          "address": "新北市林口區三民路15",
+          "distanceMeters": 331,
+          "walkMinutes": 5
+        }
+      }
+    },
+    "林口-11-c4a9a4": {
+      "location": {
+        "latitude": 25.077738,
+        "longitude": 121.3973739,
+        "confidence": "low",
+        "method": "nominatim-road",
+        "label": "道路中心附近",
+        "queryAddress": "新北市林口區中山路"
+      },
+      "score": 52,
+      "grade": "基本足夠",
+      "nearest": {
+        "convenience": {
+          "id": "node-13423767491",
+          "name": "萊爾富",
+          "category": "convenience",
+          "latitude": 25.0784097,
+          "longitude": 121.3974425,
+          "address": "新北市林口區自強二街8",
+          "distanceMeters": 75,
+          "walkMinutes": 1
+        },
+        "pxmart": {
+          "id": "way-259017529",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0772212,
+          "longitude": 121.3871184,
+          "address": null,
+          "distanceMeters": 1034,
+          "walkMinutes": 13
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 6744,
+          "walkMinutes": 85
+        },
+        "station": {
+          "id": "node-4653352241",
+          "name": "A8 長庚醫院站",
+          "category": "station",
+          "latitude": 25.0604744,
+          "longitude": 121.3707965,
+          "address": "桃園市龜山區",
+          "distanceMeters": 3294,
+          "walkMinutes": 42
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 2041,
+          "walkMinutes": 26
+        },
+        "medical": {
+          "id": "way-259017508",
+          "name": "醫療",
+          "category": "medical",
+          "latitude": 25.0793693,
+          "longitude": 121.3902944,
+          "address": null,
+          "distanceMeters": 736,
+          "walkMinutes": 10
+        }
+      }
+    },
+    "林口-12-838c61": {
+      "location": {
+        "latitude": 25.073889411764707,
+        "longitude": 121.3749647368421,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "新北市林口區八德路500巷"
+      },
+      "score": 80,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-10773680194",
+          "name": "全家便利商店",
+          "category": "convenience",
+          "latitude": 25.0727295,
+          "longitude": 121.372986,
+          "address": null,
+          "distanceMeters": 237,
+          "walkMinutes": 3
+        },
+        "pxmart": {
+          "id": "way-1082654749",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0763269,
+          "longitude": 121.3726625,
+          "address": null,
+          "distanceMeters": 357,
+          "walkMinutes": 5
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 7910,
+          "walkMinutes": 99
+        },
+        "station": {
+          "id": "node-4653352241",
+          "name": "A8 長庚醫院站",
+          "category": "station",
+          "latitude": 25.0604744,
+          "longitude": 121.3707965,
+          "address": "桃園市龜山區",
+          "distanceMeters": 1550,
+          "walkMinutes": 20
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 412,
+          "walkMinutes": 6
+        },
+        "medical": {
+          "id": "node-9955245396",
+          "name": "林口忠孝復健專科診所",
+          "category": "medical",
+          "latitude": 25.0761573,
+          "longitude": 121.3734333,
+          "address": null,
+          "distanceMeters": 296,
+          "walkMinutes": 4
+        }
+      }
+    },
+    "林口-13-8bd55c": {
+      "location": {
+        "latitude": 25.0832114,
+        "longitude": 121.3752865,
+        "confidence": "low",
+        "method": "nominatim-road",
+        "label": "道路中心附近",
+        "queryAddress": "新北市林口區文化三路二段211巷"
+      },
+      "score": 62,
+      "grade": "基本足夠",
+      "nearest": {
+        "convenience": {
+          "id": "node-3685930115",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.0843137,
+          "longitude": 121.3777885,
+          "address": null,
+          "distanceMeters": 280,
+          "walkMinutes": 4
+        },
+        "pxmart": {
+          "id": "way-1082654749",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0763269,
+          "longitude": 121.3726625,
+          "address": null,
+          "distanceMeters": 810,
+          "walkMinutes": 11
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 8607,
+          "walkMinutes": 108
+        },
+        "station": {
+          "id": "node-4456093778",
+          "name": "A9 林口站",
+          "category": "station",
+          "latitude": 25.0657846,
+          "longitude": 121.3614372,
+          "address": "新北市林口區八德路",
+          "distanceMeters": 2388,
+          "walkMinutes": 30
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 711,
+          "walkMinutes": 9
+        },
+        "medical": {
+          "id": "node-3716532366",
+          "name": "未來婦產科、小兒科",
+          "category": "medical",
+          "latitude": 25.0783419,
+          "longitude": 121.3756939,
+          "address": null,
+          "distanceMeters": 543,
+          "walkMinutes": 7
+        }
+      }
+    },
+    "林口-14-4070bd": {
+      "location": {
+        "latitude": 25.073426470588235,
+        "longitude": 121.3650005263158,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "新北市林口區文化三路617巷"
+      },
+      "score": 88,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-9321252499",
+          "name": "蝦皮店到店",
+          "category": "convenience",
+          "latitude": 25.0741112,
+          "longitude": 121.364333,
+          "address": "新北市林口區民族路28",
+          "distanceMeters": 102,
+          "walkMinutes": 2
+        },
+        "pxmart": {
+          "id": "node-6697694493",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0752154,
+          "longitude": 121.364584,
+          "address": null,
+          "distanceMeters": 203,
+          "walkMinutes": 3
+        },
+        "costco": {
+          "id": "node-3789089879",
+          "name": "南亞(好市多)",
+          "category": "costco",
+          "latitude": 25.0543702,
+          "longitude": 121.2834914,
+          "address": null,
+          "distanceMeters": 8479,
+          "walkMinutes": 106
+        },
+        "station": {
+          "id": "node-4456093778",
+          "name": "A9 林口站",
+          "category": "station",
+          "latitude": 25.0657846,
+          "longitude": 121.3614372,
+          "address": "新北市林口區八德路",
+          "distanceMeters": 922,
+          "walkMinutes": 12
+        },
+        "school": {
+          "id": "way-182688791",
+          "name": "麗林國小",
+          "category": "school",
+          "latitude": 25.0683973,
+          "longitude": 121.3685137,
+          "address": "新北市林口區公園路46號",
+          "distanceMeters": 662,
+          "walkMinutes": 9
+        },
+        "medical": {
+          "id": "node-3685970539",
+          "name": "中醫診所",
+          "category": "medical",
+          "latitude": 25.0729174,
+          "longitude": 121.3659281,
+          "address": null,
+          "distanceMeters": 109,
+          "walkMinutes": 2
+        }
+      }
+    },
+    "林口-15-d3eece": {
+      "location": {
+        "latitude": 25.06920588235294,
+        "longitude": 121.36379000000001,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "新北市林口區松柏路78號旁"
+      },
+      "score": 95,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-5074889504",
+          "name": "全家便利商店",
+          "category": "convenience",
+          "latitude": 25.0707701,
+          "longitude": 121.3625975,
+          "address": null,
+          "distanceMeters": 211,
+          "walkMinutes": 3
+        },
+        "pxmart": {
+          "id": "way-443055874",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0701698,
+          "longitude": 121.367344,
+          "address": "新北市林口區文化二路一段106;108",
+          "distanceMeters": 374,
+          "walkMinutes": 5
+        },
+        "costco": {
+          "id": "node-3789089879",
+          "name": "南亞(好市多)",
+          "category": "costco",
+          "latitude": 25.0543702,
+          "longitude": 121.2834914,
+          "address": null,
+          "distanceMeters": 8255,
+          "walkMinutes": 104
+        },
+        "station": {
+          "id": "node-4456093778",
+          "name": "A9 林口站",
+          "category": "station",
+          "latitude": 25.0657846,
+          "longitude": 121.3614372,
+          "address": "新北市林口區八德路",
+          "distanceMeters": 448,
+          "walkMinutes": 6
+        },
+        "school": {
+          "id": "way-182688791",
+          "name": "麗林國小",
+          "category": "school",
+          "latitude": 25.0683973,
+          "longitude": 121.3685137,
+          "address": "新北市林口區公園路46號",
+          "distanceMeters": 484,
+          "walkMinutes": 7
+        },
+        "medical": {
+          "id": "node-5908064548",
+          "name": "新北市林口區衛生所",
+          "category": "medical",
+          "latitude": 25.0696612,
+          "longitude": 121.3641751,
+          "address": "新北市林口區忠孝二路55",
+          "distanceMeters": 64,
+          "walkMinutes": 1
+        }
+      }
+    },
+    "林口-16-187dad": {
+      "location": {
+        "latitude": 25.086368235294117,
+        "longitude": 121.38564947368421,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "新北市林口區八德路與三民路口"
+      },
+      "score": 58,
+      "grade": "基本足夠",
+      "nearest": {
+        "convenience": {
+          "id": "node-13301334731",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.0848347,
+          "longitude": 121.3849021,
+          "address": "新北市林口區文化一路二段269",
+          "distanceMeters": 186,
+          "walkMinutes": 3
+        },
+        "pxmart": {
+          "id": "way-259017529",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0772212,
+          "longitude": 121.3871184,
+          "address": null,
+          "distanceMeters": 1028,
+          "walkMinutes": 13
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 8206,
+          "walkMinutes": 103
+        },
+        "station": {
+          "id": "node-4653352241",
+          "name": "A8 長庚醫院站",
+          "category": "station",
+          "latitude": 25.0604744,
+          "longitude": 121.3707965,
+          "address": "桃園市龜山區",
+          "distanceMeters": 3245,
+          "walkMinutes": 41
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 1347,
+          "walkMinutes": 17
+        },
+        "medical": {
+          "id": "node-2643718548",
+          "name": "德林診所",
+          "category": "medical",
+          "latitude": 25.0796389,
+          "longitude": 121.3886895,
+          "address": null,
+          "distanceMeters": 808,
+          "walkMinutes": 11
+        }
+      }
+    },
+    "林口-17-2b7cd2": {
+      "location": {
+        "latitude": 25.08729411764706,
+        "longitude": 121.38315842105264,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "新北市林口區民享路6號"
+      },
+      "score": 53,
+      "grade": "基本足夠",
+      "nearest": {
+        "convenience": {
+          "id": "node-13301334731",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.0848347,
+          "longitude": 121.3849021,
+          "address": "新北市林口區文化一路二段269",
+          "distanceMeters": 325,
+          "walkMinutes": 5
+        },
+        "pxmart": {
+          "id": "way-259017529",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0772212,
+          "longitude": 121.3871184,
+          "address": null,
+          "distanceMeters": 1189,
+          "walkMinutes": 15
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 8439,
+          "walkMinutes": 106
+        },
+        "station": {
+          "id": "node-4653352241",
+          "name": "A8 長庚醫院站",
+          "category": "station",
+          "latitude": 25.0604744,
+          "longitude": 121.3707965,
+          "address": "桃園市龜山區",
+          "distanceMeters": 3232,
+          "walkMinutes": 41
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 1293,
+          "walkMinutes": 17
+        },
+        "medical": {
+          "id": "node-2643730289",
+          "name": "勝康骨科",
+          "category": "medical",
+          "latitude": 25.0790189,
+          "longitude": 121.3874293,
+          "address": null,
+          "distanceMeters": 1016,
+          "walkMinutes": 13
+        }
+      }
+    },
+    "林口-18-553cd8": {
+      "location": {
+        "latitude": 25.083466470588235,
+        "longitude": 121.38721,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "新北市林口區竹林一路與民享路路口"
+      },
+      "score": 66,
+      "grade": "便利",
+      "nearest": {
+        "convenience": {
+          "id": "way-259017531",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.0824746,
+          "longitude": 121.3875463,
+          "address": null,
+          "distanceMeters": 115,
+          "walkMinutes": 2
+        },
+        "pxmart": {
+          "id": "way-259017529",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0772212,
+          "longitude": 121.3871184,
+          "address": null,
+          "distanceMeters": 695,
+          "walkMinutes": 9
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 7853,
+          "walkMinutes": 99
+        },
+        "station": {
+          "id": "node-4653352241",
+          "name": "A8 長庚醫院站",
+          "category": "station",
+          "latitude": 25.0604744,
+          "longitude": 121.3707965,
+          "address": "桃園市龜山區",
+          "distanceMeters": 3045,
+          "walkMinutes": 39
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 1242,
+          "walkMinutes": 16
+        },
+        "medical": {
+          "id": "node-2643718548",
+          "name": "德林診所",
+          "category": "medical",
+          "latitude": 25.0796389,
+          "longitude": 121.3886895,
+          "address": null,
+          "distanceMeters": 451,
+          "walkMinutes": 6
+        }
+      }
+    },
+    "林口-19-25afb7": {
+      "location": {
+        "latitude": 25.082190588235292,
+        "longitude": 121.37703578947368,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "新北市林口區源泉街56號對面"
+      },
+      "score": 70,
+      "grade": "便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-3685909070",
+          "name": "全家便利商店",
+          "category": "convenience",
+          "latitude": 25.0834863,
+          "longitude": 121.3787008,
+          "address": null,
+          "distanceMeters": 221,
+          "walkMinutes": 3
+        },
+        "pxmart": {
+          "id": "way-1082654749",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0763269,
+          "longitude": 121.3726625,
+          "address": null,
+          "distanceMeters": 787,
+          "walkMinutes": 10
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 8403,
+          "walkMinutes": 106
+        },
+        "station": {
+          "id": "node-4456093778",
+          "name": "A9 林口站",
+          "category": "station",
+          "latitude": 25.0657846,
+          "longitude": 121.3614372,
+          "address": "新北市林口區八德路",
+          "distanceMeters": 2408,
+          "walkMinutes": 31
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 574,
+          "walkMinutes": 8
+        },
+        "medical": {
+          "id": "node-3716532366",
+          "name": "未來婦產科、小兒科",
+          "category": "medical",
+          "latitude": 25.0783419,
+          "longitude": 121.3756939,
+          "address": null,
+          "distanceMeters": 449,
+          "walkMinutes": 6
+        }
+      }
+    },
+    "林口-20-1aa799": {
+      "location": {
+        "latitude": 25.073959411764704,
+        "longitude": 121.38693,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "新北市林口區南勢三街及南勢三街138巷交叉路口"
+      },
+      "score": 61,
+      "grade": "基本足夠",
+      "nearest": {
+        "convenience": {
+          "id": "way-259047718",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.0775877,
+          "longitude": 121.3871645,
+          "address": null,
+          "distanceMeters": 404,
+          "walkMinutes": 6
+        },
+        "pxmart": {
+          "id": "way-259017529",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0772212,
+          "longitude": 121.3871184,
+          "address": null,
+          "distanceMeters": 363,
+          "walkMinutes": 5
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 7055,
+          "walkMinutes": 89
+        },
+        "station": {
+          "id": "node-4653352241",
+          "name": "A8 長庚醫院站",
+          "category": "station",
+          "latitude": 25.0604744,
+          "longitude": 121.3707965,
+          "address": "桃園市龜山區",
+          "distanceMeters": 2211,
+          "walkMinutes": 28
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 1045,
+          "walkMinutes": 14
+        },
+        "medical": {
+          "id": "node-5308330818",
+          "name": "佳恩中醫",
+          "category": "medical",
+          "latitude": 25.0780898,
+          "longitude": 121.3875544,
+          "address": null,
+          "distanceMeters": 464,
+          "walkMinutes": 6
+        }
+      }
+    },
+    "a7-01-cd4424": {
+      "location": {
+        "latitude": 25.0483804,
+        "longitude": 121.3865012,
+        "confidence": "low",
+        "method": "nominatim-road",
+        "label": "道路中心附近",
+        "queryAddress": "桃園市龜山區文桃路附近"
+      },
+      "score": 95,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-9832209854",
+          "name": "全家便利商店",
+          "category": "convenience",
+          "latitude": 25.048196,
+          "longitude": 121.3851594,
+          "address": "桃園市龜山區文化一路302",
+          "distanceMeters": 137,
+          "walkMinutes": 2
+        },
+        "pxmart": {
+          "id": "way-1455711473",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0486753,
+          "longitude": 121.38109,
+          "address": null,
+          "distanceMeters": 546,
+          "walkMinutes": 7
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 5343,
+          "walkMinutes": 67
+        },
+        "station": {
+          "id": "node-4653352242",
+          "name": "A7 體育大學站",
+          "category": "station",
+          "latitude": 25.0413317,
+          "longitude": 121.3854083,
+          "address": "桃園市龜山區",
+          "distanceMeters": 791,
+          "walkMinutes": 10
+        },
+        "school": {
+          "id": "node-9741206307",
+          "name": "樂善國小",
+          "category": "school",
+          "latitude": 25.0519917,
+          "longitude": 121.3843066,
+          "address": "桃園市龜山區樂學三路",
+          "distanceMeters": 458,
+          "walkMinutes": 6
+        },
+        "medical": {
+          "id": "node-12181719803",
+          "name": "無尾熊診所",
+          "category": "medical",
+          "latitude": 25.0410825,
+          "longitude": 121.3897195,
+          "address": "桃園市龜山區文學路259",
+          "distanceMeters": 874,
+          "walkMinutes": 11
+        }
+      }
+    },
+    "a7-02-234762": {
+      "location": {
+        "latitude": 25.038999999999998,
+        "longitude": 121.38759,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "桃園市龜山區樂學路與長慶三街交叉口附近"
+      },
+      "score": 100,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-4699309217",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.0399057,
+          "longitude": 121.3885451,
+          "address": "桃園市龜山區文青路206;208;210",
+          "distanceMeters": 139,
+          "walkMinutes": 2
+        },
+        "pxmart": {
+          "id": "node-9741273233",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0400013,
+          "longitude": 121.3875762,
+          "address": "桃園市龜山區文青路198",
+          "distanceMeters": 111,
+          "walkMinutes": 2
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 4861,
+          "walkMinutes": 61
+        },
+        "station": {
+          "id": "node-4653352242",
+          "name": "A7 體育大學站",
+          "category": "station",
+          "latitude": 25.0413317,
+          "longitude": 121.3854083,
+          "address": "桃園市龜山區",
+          "distanceMeters": 340,
+          "walkMinutes": 5
+        },
+        "school": {
+          "id": "way-1310794583",
+          "name": "文青國中小",
+          "category": "school",
+          "latitude": 25.0449991,
+          "longitude": 121.391021,
+          "address": "桃園市龜山區樂善二路778號",
+          "distanceMeters": 751,
+          "walkMinutes": 10
+        },
+        "medical": {
+          "id": "node-12181719803",
+          "name": "無尾熊診所",
+          "category": "medical",
+          "latitude": 25.0410825,
+          "longitude": 121.3897195,
+          "address": "桃園市龜山區文學路259",
+          "distanceMeters": 316,
+          "walkMinutes": 4
+        }
+      }
+    },
+    "a7-03-7b25a4": {
+      "location": {
+        "latitude": 25.04588,
+        "longitude": 121.39559333333334,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "桃園市龜山區樂善二路526號旁"
+      },
+      "score": 85,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-6702091886",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.0470881,
+          "longitude": 121.393173,
+          "address": "桃園市龜山區文桃路426",
+          "distanceMeters": 278,
+          "walkMinutes": 4
+        },
+        "pxmart": {
+          "id": "node-9741273233",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0400013,
+          "longitude": 121.3875762,
+          "address": "桃園市龜山區文青路198",
+          "distanceMeters": 1039,
+          "walkMinutes": 13
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 4402,
+          "walkMinutes": 56
+        },
+        "station": {
+          "id": "node-4653352242",
+          "name": "A7 體育大學站",
+          "category": "station",
+          "latitude": 25.0413317,
+          "longitude": 121.3854083,
+          "address": "桃園市龜山區",
+          "distanceMeters": 1144,
+          "walkMinutes": 15
+        },
+        "school": {
+          "id": "way-1310794583",
+          "name": "文青國中小",
+          "category": "school",
+          "latitude": 25.0449991,
+          "longitude": 121.391021,
+          "address": "桃園市龜山區樂善二路778號",
+          "distanceMeters": 471,
+          "walkMinutes": 6
+        },
+        "medical": {
+          "id": "node-12181719803",
+          "name": "無尾熊診所",
+          "category": "medical",
+          "latitude": 25.0410825,
+          "longitude": 121.3897195,
+          "address": "桃園市龜山區文學路259",
+          "distanceMeters": 797,
+          "walkMinutes": 10
+        }
+      }
+    },
+    "a7-04-acfee0": {
+      "location": {
+        "latitude": 25.041079999999997,
+        "longitude": 121.38086,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "桃園市龜山區樂學路與長慶一街口"
+      },
+      "score": 79,
+      "grade": "便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-9832209857",
+          "name": "萊爾富",
+          "category": "convenience",
+          "latitude": 25.0404412,
+          "longitude": 121.3866765,
+          "address": "桃園市龜山區文青路139",
+          "distanceMeters": 590,
+          "walkMinutes": 8
+        },
+        "pxmart": {
+          "id": "node-9741273233",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0400013,
+          "longitude": 121.3875762,
+          "address": "桃園市龜山區文青路198",
+          "distanceMeters": 687,
+          "walkMinutes": 9
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 5577,
+          "walkMinutes": 70
+        },
+        "station": {
+          "id": "node-4653352242",
+          "name": "A7 體育大學站",
+          "category": "station",
+          "latitude": 25.0413317,
+          "longitude": 121.3854083,
+          "address": "桃園市龜山區",
+          "distanceMeters": 459,
+          "walkMinutes": 6
+        },
+        "school": {
+          "id": "way-1310794583",
+          "name": "文青國中小",
+          "category": "school",
+          "latitude": 25.0449991,
+          "longitude": 121.391021,
+          "address": "桃園市龜山區樂善二路778號",
+          "distanceMeters": 1113,
+          "walkMinutes": 14
+        },
+        "medical": {
+          "id": "node-12181719803",
+          "name": "無尾熊診所",
+          "category": "medical",
+          "latitude": 25.0410825,
+          "longitude": 121.3897195,
+          "address": "桃園市龜山區文學路259",
+          "distanceMeters": 893,
+          "walkMinutes": 12
+        }
+      }
+    },
+    "a7-05-4a513b": {
+      "location": {
+        "latitude": 25.0477832,
+        "longitude": 121.3925262,
+        "confidence": "low",
+        "method": "nominatim-road",
+        "label": "道路中心附近",
+        "queryAddress": "桃園市龜山區文桃路476巷附近"
+      },
+      "score": 85,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-6702091886",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.0470881,
+          "longitude": 121.393173,
+          "address": "桃園市龜山區文桃路426",
+          "distanceMeters": 101,
+          "walkMinutes": 2
+        },
+        "pxmart": {
+          "id": "node-9741273233",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0400013,
+          "longitude": 121.3875762,
+          "address": "桃園市龜山區文青路198",
+          "distanceMeters": 999,
+          "walkMinutes": 13
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 4775,
+          "walkMinutes": 60
+        },
+        "station": {
+          "id": "node-4653352242",
+          "name": "A7 體育大學站",
+          "category": "station",
+          "latitude": 25.0413317,
+          "longitude": 121.3854083,
+          "address": "桃園市龜山區",
+          "distanceMeters": 1014,
+          "walkMinutes": 13
+        },
+        "school": {
+          "id": "way-1310794583",
+          "name": "文青國中小",
+          "category": "school",
+          "latitude": 25.0449991,
+          "longitude": 121.391021,
+          "address": "桃園市龜山區樂善二路778號",
+          "distanceMeters": 345,
+          "walkMinutes": 5
+        },
+        "medical": {
+          "id": "node-12181719803",
+          "name": "無尾熊診所",
+          "category": "medical",
+          "latitude": 25.0410825,
+          "longitude": 121.3897195,
+          "address": "桃園市龜山區文學路259",
+          "distanceMeters": 797,
+          "walkMinutes": 10
+        }
+      }
+    },
+    "a7-06-08ce9d": {
+      "location": {
+        "latitude": 25.0461022,
+        "longitude": 121.3873219,
+        "confidence": "low",
+        "method": "nominatim-road",
+        "label": "道路中心附近",
+        "queryAddress": "桃園市龜山區樂善一路旁"
+      },
+      "score": 95,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-9832209856",
+          "name": "全家便利商店",
+          "category": "convenience",
+          "latitude": 25.0446357,
+          "longitude": 121.3884023,
+          "address": "桃園市龜山區牛角坡路252",
+          "distanceMeters": 196,
+          "walkMinutes": 3
+        },
+        "pxmart": {
+          "id": "node-9741273233",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0400013,
+          "longitude": 121.3875762,
+          "address": "桃園市龜山區文青路198",
+          "distanceMeters": 679,
+          "walkMinutes": 9
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 5160,
+          "walkMinutes": 65
+        },
+        "station": {
+          "id": "node-4653352242",
+          "name": "A7 體育大學站",
+          "category": "station",
+          "latitude": 25.0413317,
+          "longitude": 121.3854083,
+          "address": "桃園市龜山區",
+          "distanceMeters": 564,
+          "walkMinutes": 8
+        },
+        "school": {
+          "id": "way-1310794583",
+          "name": "文青國中小",
+          "category": "school",
+          "latitude": 25.0449991,
+          "longitude": 121.391021,
+          "address": "桃園市龜山區樂善二路778號",
+          "distanceMeters": 392,
+          "walkMinutes": 5
+        },
+        "medical": {
+          "id": "node-12181719803",
+          "name": "無尾熊診所",
+          "category": "medical",
+          "latitude": 25.0410825,
+          "longitude": 121.3897195,
+          "address": "桃園市龜山區文學路259",
+          "distanceMeters": 608,
+          "walkMinutes": 8
+        }
+      }
+    },
+    "a7-07-cd952c": {
+      "location": {
+        "latitude": 25.03886,
+        "longitude": 121.38786999999999,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "桃園市龜山區樂善二路與文化二路口附近"
+      },
+      "score": 100,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-4699309217",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.0399057,
+          "longitude": 121.3885451,
+          "address": "桃園市龜山區文青路206;208;210",
+          "distanceMeters": 135,
+          "walkMinutes": 2
+        },
+        "pxmart": {
+          "id": "node-9741273233",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0400013,
+          "longitude": 121.3875762,
+          "address": "桃園市龜山區文青路198",
+          "distanceMeters": 130,
+          "walkMinutes": 2
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 4830,
+          "walkMinutes": 61
+        },
+        "station": {
+          "id": "node-4653352242",
+          "name": "A7 體育大學站",
+          "category": "station",
+          "latitude": 25.0413317,
+          "longitude": 121.3854083,
+          "address": "桃園市龜山區",
+          "distanceMeters": 370,
+          "walkMinutes": 5
+        },
+        "school": {
+          "id": "way-1310794583",
+          "name": "文青國中小",
+          "category": "school",
+          "latitude": 25.0449991,
+          "longitude": 121.391021,
+          "address": "桃園市龜山區樂善二路778號",
+          "distanceMeters": 753,
+          "walkMinutes": 10
+        },
+        "medical": {
+          "id": "node-12181719803",
+          "name": "無尾熊診所",
+          "category": "medical",
+          "latitude": 25.0410825,
+          "longitude": 121.3897195,
+          "address": "桃園市龜山區文學路259",
+          "distanceMeters": 310,
+          "walkMinutes": 4
+        }
+      }
+    },
+    "a7-08-0362a4": {
+      "location": {
+        "latitude": 25.05527,
+        "longitude": 121.38241333333333,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "桃園市龜山區樂善二路與牛角坡路交叉口附近"
+      },
+      "score": 80,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-9279726961",
+          "name": "蝦皮店到店",
+          "category": "convenience",
+          "latitude": 25.0550554,
+          "longitude": 121.3837961,
+          "address": "桃園市龜山區長慶三街40",
+          "distanceMeters": 141,
+          "walkMinutes": 2
+        },
+        "pxmart": {
+          "id": "node-8842233808",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0551572,
+          "longitude": 121.3811074,
+          "address": "桃園市龜山區文德二路123",
+          "distanceMeters": 132,
+          "walkMinutes": 2
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 6074,
+          "walkMinutes": 76
+        },
+        "station": {
+          "id": "node-4653352241",
+          "name": "A8 長庚醫院站",
+          "category": "station",
+          "latitude": 25.0604744,
+          "longitude": 121.3707965,
+          "address": "桃園市龜山區",
+          "distanceMeters": 1305,
+          "walkMinutes": 17
+        },
+        "school": {
+          "id": "node-9741206307",
+          "name": "樂善國小",
+          "category": "school",
+          "latitude": 25.0519917,
+          "longitude": 121.3843066,
+          "address": "桃園市龜山區樂學三路",
+          "distanceMeters": 411,
+          "walkMinutes": 6
+        },
+        "medical": {
+          "id": "node-5542942109",
+          "name": "德馨診所",
+          "category": "medical",
+          "latitude": 25.0547093,
+          "longitude": 121.375995,
+          "address": null,
+          "distanceMeters": 650,
+          "walkMinutes": 9
+        }
+      }
+    },
+    "a7-09-9e9aa8": {
+      "location": {
+        "latitude": 25.04306,
+        "longitude": 121.38107,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "桃園市龜山區長慶一街與長慶二街交叉口附近"
+      },
+      "score": 79,
+      "grade": "便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-9852725947",
+          "name": "萊爾富",
+          "category": "convenience",
+          "latitude": 25.0467943,
+          "longitude": 121.3839813,
+          "address": "桃園市龜山區樂善二路181;183",
+          "distanceMeters": 508,
+          "walkMinutes": 7
+        },
+        "pxmart": {
+          "id": "way-1455711473",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0486753,
+          "longitude": 121.38109,
+          "address": null,
+          "distanceMeters": 624,
+          "walkMinutes": 8
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 5623,
+          "walkMinutes": 71
+        },
+        "station": {
+          "id": "node-4653352242",
+          "name": "A7 體育大學站",
+          "category": "station",
+          "latitude": 25.0413317,
+          "longitude": 121.3854083,
+          "address": "桃園市龜山區",
+          "distanceMeters": 477,
+          "walkMinutes": 6
+        },
+        "school": {
+          "id": "way-1310794583",
+          "name": "文青國中小",
+          "category": "school",
+          "latitude": 25.0449991,
+          "longitude": 121.391021,
+          "address": "桃園市龜山區樂善二路778號",
+          "distanceMeters": 1025,
+          "walkMinutes": 13
+        },
+        "medical": {
+          "id": "node-12181719803",
+          "name": "無尾熊診所",
+          "category": "medical",
+          "latitude": 25.0410825,
+          "longitude": 121.3897195,
+          "address": "桃園市龜山區文學路259",
+          "distanceMeters": 899,
+          "walkMinutes": 12
+        }
+      }
+    },
+    "a7-10-e86850": {
+      "location": {
+        "latitude": 25.05587,
+        "longitude": 121.38128,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "桃園市龜山區文桃路跟牛角坡路交叉路口附近"
+      },
+      "score": 88,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-9832209845",
+          "name": "全家便利商店",
+          "category": "convenience",
+          "latitude": 25.0570859,
+          "longitude": 121.3810543,
+          "address": "桃園市龜山區文德路76",
+          "distanceMeters": 137,
+          "walkMinutes": 2
+        },
+        "pxmart": {
+          "id": "node-8842233808",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0551572,
+          "longitude": 121.3811074,
+          "address": "桃園市龜山區文德二路123",
+          "distanceMeters": 81,
+          "walkMinutes": 2
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 6206,
+          "walkMinutes": 78
+        },
+        "station": {
+          "id": "node-4653352241",
+          "name": "A8 長庚醫院站",
+          "category": "station",
+          "latitude": 25.0604744,
+          "longitude": 121.3707965,
+          "address": "桃園市龜山區",
+          "distanceMeters": 1174,
+          "walkMinutes": 15
+        },
+        "school": {
+          "id": "node-9741206307",
+          "name": "樂善國小",
+          "category": "school",
+          "latitude": 25.0519917,
+          "longitude": 121.3843066,
+          "address": "桃園市龜山區樂學三路",
+          "distanceMeters": 528,
+          "walkMinutes": 7
+        },
+        "medical": {
+          "id": "node-5542942109",
+          "name": "德馨診所",
+          "category": "medical",
+          "latitude": 25.0547093,
+          "longitude": 121.375995,
+          "address": null,
+          "distanceMeters": 548,
+          "walkMinutes": 7
+        }
+      }
+    },
+    "a7-11-7cbc96": {
+      "location": {
+        "latitude": 25.0460622,
+        "longitude": 121.3896159,
+        "confidence": "medium",
+        "method": "nominatim-intersection",
+        "label": "路口附近",
+        "queryAddress": "桃園市龜山區樂善二路、牛角坡路交叉口附近"
+      },
+      "score": 100,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-13614909657",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.0458341,
+          "longitude": 121.3896219,
+          "address": "桃園市龜山區樂善二路652",
+          "distanceMeters": 25,
+          "walkMinutes": 1
+        },
+        "pxmart": {
+          "id": "node-9741273233",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0400013,
+          "longitude": 121.3875762,
+          "address": "桃園市龜山區文青路198",
+          "distanceMeters": 705,
+          "walkMinutes": 9
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 4948,
+          "walkMinutes": 62
+        },
+        "station": {
+          "id": "node-4653352242",
+          "name": "A7 體育大學站",
+          "category": "station",
+          "latitude": 25.0413317,
+          "longitude": 121.3854083,
+          "address": "桃園市龜山區",
+          "distanceMeters": 676,
+          "walkMinutes": 9
+        },
+        "school": {
+          "id": "way-1310794583",
+          "name": "文青國中小",
+          "category": "school",
+          "latitude": 25.0449991,
+          "longitude": 121.391021,
+          "address": "桃園市龜山區樂善二路778號",
+          "distanceMeters": 184,
+          "walkMinutes": 3
+        },
+        "medical": {
+          "id": "node-12181719803",
+          "name": "無尾熊診所",
+          "category": "medical",
+          "latitude": 25.0410825,
+          "longitude": 121.3897195,
+          "address": "桃園市龜山區文學路259",
+          "distanceMeters": 554,
+          "walkMinutes": 7
+        }
+      }
+    },
+    "a7-12-ae84ab": {
+      "location": {
+        "latitude": 25.0518362,
+        "longitude": 121.3884382,
+        "confidence": "low",
+        "method": "nominatim-road",
+        "label": "道路中心附近",
+        "queryAddress": "桃園市龜山區文禾路等"
+      },
+      "score": 76,
+      "grade": "便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-9832209855",
+          "name": "全家便利商店",
+          "category": "convenience",
+          "latitude": 25.050121,
+          "longitude": 121.388845,
+          "address": "桃園市龜山區文茂路86",
+          "distanceMeters": 195,
+          "walkMinutes": 3
+        },
+        "pxmart": {
+          "id": "way-983084658",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0557682,
+          "longitude": 121.3842557,
+          "address": "桃園市龜山區長慶三街81",
+          "distanceMeters": 607,
+          "walkMinutes": 8
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 5357,
+          "walkMinutes": 67
+        },
+        "station": {
+          "id": "node-4653352242",
+          "name": "A7 體育大學站",
+          "category": "station",
+          "latitude": 25.0413317,
+          "longitude": 121.3854083,
+          "address": "桃園市龜山區",
+          "distanceMeters": 1207,
+          "walkMinutes": 16
+        },
+        "school": {
+          "id": "node-9741206307",
+          "name": "樂善國小",
+          "category": "school",
+          "latitude": 25.0519917,
+          "longitude": 121.3843066,
+          "address": "桃園市龜山區樂學三路",
+          "distanceMeters": 417,
+          "walkMinutes": 6
+        },
+        "medical": {
+          "id": "node-12181719803",
+          "name": "無尾熊診所",
+          "category": "medical",
+          "latitude": 25.0410825,
+          "longitude": 121.3897195,
+          "address": "桃園市龜山區文學路259",
+          "distanceMeters": 1203,
+          "walkMinutes": 16
+        }
+      }
+    },
+    "a7-13-437eb6": {
+      "location": {
+        "latitude": 25.051739999999995,
+        "longitude": 121.39474,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "桃園市龜山區文德路與樂學路間"
+      },
+      "score": 57,
+      "grade": "基本足夠",
+      "nearest": {
+        "convenience": {
+          "id": "node-6702091886",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.0470881,
+          "longitude": 121.393173,
+          "address": "桃園市龜山區文桃路426",
+          "distanceMeters": 541,
+          "walkMinutes": 7
+        },
+        "pxmart": {
+          "id": "way-983084658",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0557682,
+          "longitude": 121.3842557,
+          "address": "桃園市龜山區長慶三街81",
+          "distanceMeters": 1147,
+          "walkMinutes": 15
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 4818,
+          "walkMinutes": 61
+        },
+        "station": {
+          "id": "node-4653352242",
+          "name": "A7 體育大學站",
+          "category": "station",
+          "latitude": 25.0413317,
+          "longitude": 121.3854083,
+          "address": "桃園市龜山區",
+          "distanceMeters": 1491,
+          "walkMinutes": 19
+        },
+        "school": {
+          "id": "way-1310794583",
+          "name": "文青國中小",
+          "category": "school",
+          "latitude": 25.0449991,
+          "longitude": 121.391021,
+          "address": "桃園市龜山區樂善二路778號",
+          "distanceMeters": 838,
+          "walkMinutes": 11
+        },
+        "medical": {
+          "id": "node-12181719803",
+          "name": "無尾熊診所",
+          "category": "medical",
+          "latitude": 25.0410825,
+          "longitude": 121.3897195,
+          "address": "桃園市龜山區文學路259",
+          "distanceMeters": 1288,
+          "walkMinutes": 17
+        }
+      }
+    },
+    "a7-14-0959e3": {
+      "location": {
+        "latitude": 25.056079999999998,
+        "longitude": 121.39332666666667,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "桃園市龜山區文達路276號對面工地"
+      },
+      "score": 44,
+      "grade": "機能較少",
+      "nearest": {
+        "convenience": {
+          "id": "node-9832209855",
+          "name": "全家便利商店",
+          "category": "convenience",
+          "latitude": 25.050121,
+          "longitude": 121.388845,
+          "address": "桃園市龜山區文茂路86",
+          "distanceMeters": 802,
+          "walkMinutes": 11
+        },
+        "pxmart": {
+          "id": "way-983084658",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0557682,
+          "longitude": 121.3842557,
+          "address": "桃園市龜山區長慶三街81",
+          "distanceMeters": 914,
+          "walkMinutes": 12
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 5221,
+          "walkMinutes": 66
+        },
+        "station": {
+          "id": "node-4653352242",
+          "name": "A7 體育大學站",
+          "category": "station",
+          "latitude": 25.0413317,
+          "longitude": 121.3854083,
+          "address": "桃園市龜山區",
+          "distanceMeters": 1824,
+          "walkMinutes": 23
+        },
+        "school": {
+          "id": "node-9741206307",
+          "name": "樂善國小",
+          "category": "school",
+          "latitude": 25.0519917,
+          "longitude": 121.3843066,
+          "address": "桃園市龜山區樂學三路",
+          "distanceMeters": 1016,
+          "walkMinutes": 13
+        },
+        "medical": {
+          "id": "node-12181719803",
+          "name": "無尾熊診所",
+          "category": "medical",
+          "latitude": 25.0410825,
+          "longitude": 121.3897195,
+          "address": "桃園市龜山區文學路259",
+          "distanceMeters": 1707,
+          "walkMinutes": 22
+        }
+      }
+    },
+    "a7-15-979ff3": {
+      "location": {
+        "latitude": 25.0523234,
+        "longitude": 121.3814212,
+        "confidence": "low",
+        "method": "nominatim-road",
+        "label": "道路中心附近",
+        "queryAddress": "桃園市龜山區樂安街附近"
+      },
+      "score": 80,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-3792881063",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.0527897,
+          "longitude": 121.381036,
+          "address": "桃園市龜山區文明路131",
+          "distanceMeters": 65,
+          "walkMinutes": 1
+        },
+        "pxmart": {
+          "id": "node-8842233808",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0551572,
+          "longitude": 121.3811074,
+          "address": "桃園市龜山區文德二路123",
+          "distanceMeters": 317,
+          "walkMinutes": 4
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 5999,
+          "walkMinutes": 75
+        },
+        "station": {
+          "id": "node-4653352242",
+          "name": "A7 體育大學站",
+          "category": "station",
+          "latitude": 25.0413317,
+          "longitude": 121.3854083,
+          "address": "桃園市龜山區",
+          "distanceMeters": 1287,
+          "walkMinutes": 17
+        },
+        "school": {
+          "id": "node-9741206307",
+          "name": "樂善國小",
+          "category": "school",
+          "latitude": 25.0519917,
+          "longitude": 121.3843066,
+          "address": "桃園市龜山區樂學三路",
+          "distanceMeters": 293,
+          "walkMinutes": 4
+        },
+        "medical": {
+          "id": "node-5542942109",
+          "name": "德馨診所",
+          "category": "medical",
+          "latitude": 25.0547093,
+          "longitude": 121.375995,
+          "address": null,
+          "distanceMeters": 608,
+          "walkMinutes": 8
+        }
+      }
+    },
+    "a7-16-694770": {
+      "location": {
+        "latitude": 25.0577983,
+        "longitude": 121.3737527,
+        "confidence": "low",
+        "method": "nominatim-road",
+        "label": "道路中心附近",
+        "queryAddress": "桃園市龜山區文化一路附近"
+      },
+      "score": 91,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-4943895723",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.0569131,
+          "longitude": 121.3739919,
+          "address": "桃園市龜山區文化一路42",
+          "distanceMeters": 101,
+          "walkMinutes": 2
+        },
+        "pxmart": {
+          "id": "node-4405864638",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0600886,
+          "longitude": 121.3695612,
+          "address": "桃園市龜山區復興一路2",
+          "distanceMeters": 493,
+          "walkMinutes": 7
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 6969,
+          "walkMinutes": 88
+        },
+        "station": {
+          "id": "node-4653352241",
+          "name": "A8 長庚醫院站",
+          "category": "station",
+          "latitude": 25.0604744,
+          "longitude": 121.3707965,
+          "address": "桃園市龜山區",
+          "distanceMeters": 421,
+          "walkMinutes": 6
+        },
+        "school": {
+          "id": "node-9741206307",
+          "name": "樂善國小",
+          "category": "school",
+          "latitude": 25.0519917,
+          "longitude": 121.3843066,
+          "address": "桃園市龜山區樂學三路",
+          "distanceMeters": 1244,
+          "walkMinutes": 16
+        },
+        "medical": {
+          "id": "node-5916559200",
+          "name": "悅兒親子中醫診所",
+          "category": "medical",
+          "latitude": 25.059221,
+          "longitude": 121.3703533,
+          "address": null,
+          "distanceMeters": 377,
+          "walkMinutes": 5
+        }
+      }
+    },
+    "a7-17-803131": {
+      "location": {
+        "latitude": 25.04486,
+        "longitude": 121.38333666666666,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "桃園市龜山區樂善二路與文化二路交叉口"
+      },
+      "score": 95,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-9852725947",
+          "name": "萊爾富",
+          "category": "convenience",
+          "latitude": 25.0467943,
+          "longitude": 121.3839813,
+          "address": "桃園市龜山區樂善二路181;183",
+          "distanceMeters": 225,
+          "walkMinutes": 3
+        },
+        "pxmart": {
+          "id": "way-1455711473",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0486753,
+          "longitude": 121.38109,
+          "address": null,
+          "distanceMeters": 481,
+          "walkMinutes": 7
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 5476,
+          "walkMinutes": 69
+        },
+        "station": {
+          "id": "node-4653352242",
+          "name": "A7 體育大學站",
+          "category": "station",
+          "latitude": 25.0413317,
+          "longitude": 121.3854083,
+          "address": "桃園市龜山區",
+          "distanceMeters": 444,
+          "walkMinutes": 6
+        },
+        "school": {
+          "id": "way-1310794583",
+          "name": "文青國中小",
+          "category": "school",
+          "latitude": 25.0449991,
+          "longitude": 121.391021,
+          "address": "桃園市龜山區樂善二路778號",
+          "distanceMeters": 774,
+          "walkMinutes": 10
+        },
+        "medical": {
+          "id": "node-12181719803",
+          "name": "無尾熊診所",
+          "category": "medical",
+          "latitude": 25.0410825,
+          "longitude": 121.3897195,
+          "address": "桃園市龜山區文學路259",
+          "distanceMeters": 768,
+          "walkMinutes": 10
+        }
+      }
+    },
+    "a7-18-78daaa": {
+      "location": {
+        "latitude": 25.0461022,
+        "longitude": 121.3873219,
+        "confidence": "medium",
+        "method": "nominatim-intersection",
+        "label": "路口附近",
+        "queryAddress": "桃園市龜山區樂善一路、牛角坡路交叉口附近"
+      },
+      "score": 95,
+      "grade": "非常便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-9832209856",
+          "name": "全家便利商店",
+          "category": "convenience",
+          "latitude": 25.0446357,
+          "longitude": 121.3884023,
+          "address": "桃園市龜山區牛角坡路252",
+          "distanceMeters": 196,
+          "walkMinutes": 3
+        },
+        "pxmart": {
+          "id": "node-9741273233",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0400013,
+          "longitude": 121.3875762,
+          "address": "桃園市龜山區文青路198",
+          "distanceMeters": 679,
+          "walkMinutes": 9
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 5160,
+          "walkMinutes": 65
+        },
+        "station": {
+          "id": "node-4653352242",
+          "name": "A7 體育大學站",
+          "category": "station",
+          "latitude": 25.0413317,
+          "longitude": 121.3854083,
+          "address": "桃園市龜山區",
+          "distanceMeters": 564,
+          "walkMinutes": 8
+        },
+        "school": {
+          "id": "way-1310794583",
+          "name": "文青國中小",
+          "category": "school",
+          "latitude": 25.0449991,
+          "longitude": 121.391021,
+          "address": "桃園市龜山區樂善二路778號",
+          "distanceMeters": 392,
+          "walkMinutes": 5
+        },
+        "medical": {
+          "id": "node-12181719803",
+          "name": "無尾熊診所",
+          "category": "medical",
+          "latitude": 25.0410825,
+          "longitude": 121.3897195,
+          "address": "桃園市龜山區文學路259",
+          "distanceMeters": 608,
+          "walkMinutes": 8
+        }
+      }
+    },
+    "a7-19-f52012": {
+      "location": {
+        "latitude": 25.043409999999998,
+        "longitude": 121.39686666666667,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "桃園市龜山區文化二路與樂善二路附近"
+      },
+      "score": 73,
+      "grade": "便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-6702091886",
+          "name": "7-Eleven",
+          "category": "convenience",
+          "latitude": 25.0470881,
+          "longitude": 121.393173,
+          "address": "桃園市龜山區文桃路426",
+          "distanceMeters": 553,
+          "walkMinutes": 7
+        },
+        "pxmart": {
+          "id": "node-9741273233",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0400013,
+          "longitude": 121.3875762,
+          "address": "桃園市龜山區文青路198",
+          "distanceMeters": 1010,
+          "walkMinutes": 13
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 4162,
+          "walkMinutes": 53
+        },
+        "station": {
+          "id": "node-4653352242",
+          "name": "A7 體育大學站",
+          "category": "station",
+          "latitude": 25.0413317,
+          "longitude": 121.3854083,
+          "address": "桃園市龜山區",
+          "distanceMeters": 1177,
+          "walkMinutes": 15
+        },
+        "school": {
+          "id": "way-1310794583",
+          "name": "文青國中小",
+          "category": "school",
+          "latitude": 25.0449991,
+          "longitude": 121.391021,
+          "address": "桃園市龜山區樂善二路778號",
+          "distanceMeters": 615,
+          "walkMinutes": 8
+        },
+        "medical": {
+          "id": "node-12181719803",
+          "name": "無尾熊診所",
+          "category": "medical",
+          "latitude": 25.0410825,
+          "longitude": 121.3897195,
+          "address": "桃園市龜山區文學路259",
+          "distanceMeters": 765,
+          "walkMinutes": 10
+        }
+      }
+    },
+    "a7-20-e374fc": {
+      "location": {
+        "latitude": 25.042279999999998,
+        "longitude": 121.39786,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "桃園市龜山區文桃路與南林路交岔路口對面"
+      },
+      "score": 65,
+      "grade": "便利",
+      "nearest": {
+        "convenience": {
+          "id": "node-7111258246",
+          "name": "全家便利商店",
+          "category": "convenience",
+          "latitude": 25.0395226,
+          "longitude": 121.3916658,
+          "address": "桃園市龜山區文青路357",
+          "distanceMeters": 695,
+          "walkMinutes": 9
+        },
+        "pxmart": {
+          "id": "node-9741273233",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0400013,
+          "longitude": 121.3875762,
+          "address": "桃園市龜山區文青路198",
+          "distanceMeters": 1067,
+          "walkMinutes": 14
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 4018,
+          "walkMinutes": 51
+        },
+        "station": {
+          "id": "node-4653352242",
+          "name": "A7 體育大學站",
+          "category": "station",
+          "latitude": 25.0413317,
+          "longitude": 121.3854083,
+          "address": "桃園市龜山區",
+          "distanceMeters": 1259,
+          "walkMinutes": 16
+        },
+        "school": {
+          "id": "way-1310794583",
+          "name": "文青國中小",
+          "category": "school",
+          "latitude": 25.0449991,
+          "longitude": 121.391021,
+          "address": "桃園市龜山區樂善二路778號",
+          "distanceMeters": 752,
+          "walkMinutes": 10
+        },
+        "medical": {
+          "id": "node-12181719803",
+          "name": "無尾熊診所",
+          "category": "medical",
+          "latitude": 25.0410825,
+          "longitude": 121.3897195,
+          "address": "桃園市龜山區文學路259",
+          "distanceMeters": 831,
+          "walkMinutes": 11
+        }
+      }
+    }
+  }
+}

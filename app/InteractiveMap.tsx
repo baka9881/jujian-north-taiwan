@@ -10,6 +10,18 @@ type MapProject = {
   mapY: number;
   price: { median: number } | null;
   firstRegistrationDate: string | null;
+  latitude?: number;
+  longitude?: number;
+};
+
+type AmenityCategory = "convenience" | "pxmart" | "costco" | "station" | "school" | "medical";
+
+type AmenityPoi = {
+  id: string;
+  name: string;
+  category: AmenityCategory;
+  latitude: number;
+  longitude: number;
 };
 
 type Props = {
@@ -17,9 +29,14 @@ type Props = {
   activeId: string;
   onSelect?: (id: string) => void;
   compact?: boolean;
+  pois?: AmenityPoi[];
+  visibleAmenityCategories?: AmenityCategory[];
 };
 
 function projectPoint(project: MapProject): [number, number] {
+  if (Number.isFinite(project.latitude) && Number.isFinite(project.longitude)) {
+    return [project.latitude as number, project.longitude as number];
+  }
   const seed = [...project.id].reduce((total, character) => total + character.charCodeAt(0), 0);
   const latitudeJitter = ((seed % 9) - 4) * 0.00007;
   const longitudeJitter = (((seed * 7) % 9) - 4) * 0.00007;
@@ -39,13 +56,23 @@ function projectStage(project: MapProject) {
   return project.firstRegistrationDate ? "completed" : "presale";
 }
 
-export default function InteractiveMap({ projects, activeId, onSelect, compact = false }: Props) {
+const amenitySymbols: Record<AmenityCategory, string> = {
+  convenience: "商",
+  pxmart: "全",
+  costco: "好",
+  station: "站",
+  school: "學",
+  medical: "醫",
+};
+
+export default function InteractiveMap({ projects, activeId, onSelect, compact = false, pois = [], visibleAmenityCategories = [] }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const leafletRef = useRef<typeof import("leaflet") | null>(null);
   const mapRef = useRef<import("leaflet").Map | null>(null);
   const markersRef = useRef(
     new Map<string, { marker: import("leaflet").Marker; element: HTMLElement | null }>(),
   );
+  const poiMarkersRef = useRef(new Map<string, import("leaflet").Marker>());
   const onSelectRef = useRef(onSelect);
   const initialProjectsRef = useRef(projects);
   const initialActiveIdRef = useRef(activeId);
@@ -60,6 +87,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
     let cancelled = false;
     let resizeObserver: ResizeObserver | null = null;
     const markers = markersRef.current;
+    const poiMarkers = poiMarkersRef.current;
 
     void import("leaflet").then((leaflet) => {
       if (cancelled || !containerRef.current) return;
@@ -109,6 +137,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
       cancelled = true;
       resizeObserver?.disconnect();
       markers.clear();
+      poiMarkers.clear();
       mapRef.current?.remove();
       mapRef.current = null;
       leafletRef.current = null;
@@ -245,6 +274,40 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
       map.off("zoomend", renderMarkers);
     };
   }, [activeId, compact, projects, ready]);
+
+  useEffect(() => {
+    const leaflet = leafletRef.current;
+    const map = mapRef.current;
+    if (!ready || !leaflet || !map) return;
+    const visible = new Set(visibleAmenityCategories);
+    const nextIds = new Set<string>();
+
+    for (const poi of pois) {
+      if (!visible.has(poi.category)) continue;
+      nextIds.add(poi.id);
+      const existing = poiMarkersRef.current.get(poi.id);
+      if (existing) {
+        existing.setLatLng([poi.latitude, poi.longitude]);
+        continue;
+      }
+      const label = `${poi.name}（${amenitySymbols[poi.category]}）`;
+      const icon = leaflet.divIcon({
+        className: "amenity-poi-host",
+        html: `<span class="amenity-poi-marker poi-${poi.category}">${amenitySymbols[poi.category]}</span>`,
+        iconSize: [30, 30],
+        iconAnchor: [15, 15],
+      });
+      const marker = leaflet.marker([poi.latitude, poi.longitude], { icon, keyboard: false, zIndexOffset: -200 }).addTo(map);
+      marker.getElement()?.setAttribute("title", label);
+      poiMarkersRef.current.set(poi.id, marker);
+    }
+
+    poiMarkersRef.current.forEach((marker, id) => {
+      if (nextIds.has(id)) return;
+      marker.remove();
+      poiMarkersRef.current.delete(id);
+    });
+  }, [pois, ready, visibleAmenityCategories]);
 
   function recenterActive() {
     const map = mapRef.current;
