@@ -62,6 +62,8 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
         maxZoom: 19,
         attributionControl: false,
         cooperativeGestures: false,
+        reduceMotion: true,
+        dragPan: { linearity: 0 },
         dragRotate: false,
         pitchWithRotate: false,
         touchPitch: false,
@@ -81,7 +83,11 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
       maplibreRef.current = maplibre;
       mapRef.current = map;
       map.scrollZoom.enable();
-      map.on("dragend", () => setMapMoved(true));
+      map.on("dragstart", () => containerRef.current?.classList.add("is-dragging"));
+      map.on("dragend", () => {
+        containerRef.current?.classList.remove("is-dragging");
+        setMapMoved(true);
+      });
       map.once("load", () => {
         if (cancelled) return;
         const chineseName: import("maplibre-gl").ExpressionSpecification = [
@@ -150,7 +156,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
     });
     const point = projectPoint(active);
     map.stop();
-    map.flyTo({ center: [point[1], point[0]], zoom: Math.max(map.getZoom(), compact ? 15 : 14), duration: 350 });
+    map.jumpTo({ center: [point[1], point[0]], zoom: Math.max(map.getZoom(), compact ? 15 : 14) });
     setMapMoved(false);
   }, [activeId, compact, projects, ready]);
 
