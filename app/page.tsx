@@ -105,6 +105,8 @@ export default function Home() {
     .map((id) => projects.find((project) => project.id === id))
     .filter(Boolean) as Project[];
   const pricedCount = filtered.filter((project) => project.price).length;
+  const completedCount = filtered.filter((project) => project.firstRegistrationDate).length;
+  const presaleCount = filtered.length - completedCount;
   const hasFilters = query || region !== "全部" || priceOnly || minHouseholds > 0 || sortBy !== "newest";
 
   useEffect(() => {
@@ -227,9 +229,9 @@ export default function Home() {
             <div className="map-caption"><span>依官方地址顯示附近位置</span><strong>{locationLabel(active)}</strong><small>非精確基地界址，可拖曳探索周邊</small></div>
             <aside className="map-legend" aria-label="地圖標記說明">
               <strong>地圖標記</strong>
-              <span><i className="priced" /> 有成交資料 <b>{pricedCount}</b></span>
-              <span><i className="pending" /> 價格待補 <b>{filtered.length - pricedCount}</b></span>
-              <span><i className="cluster" /> 數字為重疊建案</span>
+              <span title="尚未有首次登記日期"><i className="presale" /> 預售屋 <b>{presaleCount}</b></span>
+              <span title="已有首次登記日期"><i className="completed" /> 成屋 <b>{completedCount}</b></span>
+              <span><i className="cluster" /> 橘藍群組為兩者重疊</span>
             </aside>
             <div className="map-gesture-hint">滾輪縮放 · 拖曳移動</div>
             <article className="map-project-card">

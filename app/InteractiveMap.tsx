@@ -9,6 +9,7 @@ type MapProject = {
   mapX: number;
   mapY: number;
   price: { median: number } | null;
+  firstRegistrationDate: string | null;
 };
 
 type Props = {
@@ -32,6 +33,10 @@ function projectPoint(project: MapProject): [number, number] {
   const x = (project.mapX - 57) / 15;
   const y = (project.mapY - 42) / 30;
   return [25.057 - y * 0.018 + latitudeJitter, 121.381 + x * 0.017 + longitudeJitter];
+}
+
+function projectStage(project: MapProject) {
+  return project.firstRegistrationDate ? "completed" : "presale";
 }
 
 export default function InteractiveMap({ projects, activeId, onSelect, compact = false }: Props) {
@@ -159,9 +164,15 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
           }
 
           const label = `${group.projects.length} 個建案，點擊放大地圖`;
+          const presaleCount = group.projects.filter((project) => projectStage(project) === "presale").length;
+          const clusterStage = presaleCount === group.projects.length
+            ? "presale"
+            : presaleCount === 0
+              ? "completed"
+              : "mixed";
           const icon = leaflet.divIcon({
             className: "project-cluster-host",
-            html: `<span class="project-cluster-marker">${group.projects.length}</span>`,
+            html: `<span class="project-cluster-marker cluster-${clusterStage}">${group.projects.length}</span>`,
             iconSize: [38, 38],
             iconAnchor: [19, 19],
           });
@@ -185,20 +196,24 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
 
         const project = group.projects[0];
         const active = project.id === activeId;
+        const stage = projectStage(project);
+        const stageText = stage === "presale" ? "預售屋" : "成屋";
         nextMarkerIds.add(project.id);
         const existing = markersRef.current.get(project.id);
         if (existing) {
           existing.marker.setLatLng([latitude, longitude]);
           existing.marker.setZIndexOffset(active ? 1000 : 0);
           existing.element?.classList.toggle("active", active);
+          existing.element?.classList.toggle("stage-presale", stage === "presale");
+          existing.element?.classList.toggle("stage-completed", stage === "completed");
           return;
         }
 
         const priceText = project.price ? `${project.price.median} 萬` : "價格待補";
-        const description = `${project.name}｜${project.price ? `${project.price.median} 萬／坪` : "成交價待補"}`;
+        const description = `${project.name}｜${stageText}｜${project.price ? `${project.price.median} 萬／坪` : "成交價待補"}`;
         const icon = leaflet.divIcon({
           className: "project-map-marker-host",
-          html: `<span class="project-map-marker ${active ? "active" : ""} ${project.price ? "has-price" : "price-pending"}"><span class="marker-building"><span class="marker-windows"></span></span><span class="marker-price">${priceText}</span></span>`,
+          html: `<span class="project-map-marker stage-${stage} ${active ? "active" : ""} ${project.price ? "has-price" : "price-pending"}"><span class="marker-building" aria-hidden="true"><span class="marker-building-roof"></span><span class="marker-building-side"><span class="marker-side-windows"></span></span><span class="marker-building-front"><span class="marker-windows"></span></span></span><span class="marker-price">${priceText}</span></span>`,
           iconSize: [74, 64],
           iconAnchor: [37, 62],
         });
