@@ -149,6 +149,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
       element.classList.toggle("active", selected);
     });
     const point = projectPoint(active);
+    map.stop();
     map.flyTo({ center: [point[1], point[0]], zoom: Math.max(map.getZoom(), compact ? 15 : 14), duration: 350 });
     setMapMoved(false);
   }, [activeId, compact, projects, ready]);
@@ -158,6 +159,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
     const active = projects.find((project) => project.id === activeId);
     if (!map || !active) return;
     const point = projectPoint(active);
+    map.stop();
     map.easeTo({ center: [point[1], point[0]], zoom: Math.max(map.getZoom(), compact ? 15 : 14), duration: 300 });
     setMapMoved(false);
   }
