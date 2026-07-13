@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type CSSProperties } from "react";
+import { useMemo, useRef, useState } from "react";
 import dataset from "@/data/processed/projects.json";
 
 type PriceSummary = {
@@ -34,166 +34,153 @@ type Project = {
   qualityStatus: string;
   amenityStatus: string;
   dataCompleteness: number;
-  mapX: number;
-  mapY: number;
 };
 
-type EvidenceKind = "official" | "market" | "pending";
+type DetailTab = "overview" | "price" | "quality" | "amenity";
+type SortKey = "newest" | "priceLow" | "priceHigh" | "households";
 
 const projects = dataset.projects as Project[];
-const regions = ["全部", "林口", "A7"];
+const regions = ["全部", "林口", "A7"] as const;
+const tabs: { id: DetailTab; label: string; short: string }[] = [
+  { id: "overview", label: "基本資料", short: "基本" },
+  { id: "price", label: "成交價格", short: "價格" },
+  { id: "quality", label: "品質查核", short: "品質" },
+  { id: "amenity", label: "生活機能", short: "機能" },
+];
 
 function formatDate(date: string | null) {
-  if (!date) return "尚未登錄";
-  return date.replaceAll("-", ".");
+  return date ? date.replaceAll("-", ".") : "尚未登錄";
 }
 
-function priceLabel(project: Project) {
-  return project.price ? `${project.price.median} 萬／坪` : "尚待補齊";
+function priceText(project: Project) {
+  return project.price ? `${project.price.median} 萬／坪` : "尚無配對資料";
 }
 
-function EvidenceBadge({ kind }: { kind: EvidenceKind }) {
-  const labels = { official: "官方", market: "成交", pending: "待查" };
-  return <span className={`evidence-badge ${kind}`}>{labels[kind]}</span>;
+function googleMapUrls(project: Project) {
+  const address = project.address
+    .replace("交岔路口", "交叉口")
+    .replace(/(?:附近|對面工地|對面|號旁|旁|等)$/u, "");
+  const query = `${project.city}${project.district}${address}`;
+  return {
+    embed: `https://www.google.com/maps?q=${encodeURIComponent(query)}&z=16&output=embed`,
+    open: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`,
+  };
+}
+
+function locationPrecision(project: Project) {
+  if (/交叉|路口|與/u.test(project.address)) return "依官方路口文字定位";
+  if (/號/u.test(project.address)) return "依官方門牌附近定位";
+  return "依官方道路文字定位";
 }
 
 export default function Home() {
   const [query, setQuery] = useState("");
-  const [region, setRegion] = useState("全部");
+  const [region, setRegion] = useState<(typeof regions)[number]>("全部");
+  const [sortBy, setSortBy] = useState<SortKey>("newest");
+  const [priceOnly, setPriceOnly] = useState(false);
   const [selectedId, setSelectedId] = useState(projects[0].id);
+  const [activeTab, setActiveTab] = useState<DetailTab>("overview");
   const [compareIds, setCompareIds] = useState<string[]>([]);
+  const [compareOpen, setCompareOpen] = useState(false);
   const [methodOpen, setMethodOpen] = useState(false);
-  const [compareNotice, setCompareNotice] = useState("");
+  const [notice, setNotice] = useState("");
+  const detailRef = useRef<HTMLElement>(null);
 
   const filtered = useMemo(() => {
     const needle = query.trim().toLowerCase();
-    return projects.filter((project) => {
+    const matches = projects.filter((project) => {
       const regionMatch = region === "全部" || project.region === region;
+      const priceMatch = !priceOnly || Boolean(project.price);
       const queryMatch =
         !needle ||
-        [project.name, project.region, project.city, project.district, project.builder, project.address]
+        [project.name, project.region, project.city, project.builder, project.address]
           .join(" ")
           .toLowerCase()
           .includes(needle);
-      return regionMatch && queryMatch;
+      return regionMatch && priceMatch && queryMatch;
     });
-  }, [query, region]);
 
-  const active = projects.find((project) => project.id === selectedId) || projects[0];
+    return [...matches].sort((a, b) => {
+      if (sortBy === "households") return b.households - a.households;
+      if (sortBy === "priceLow") return (a.price?.median ?? Infinity) - (b.price?.median ?? Infinity);
+      if (sortBy === "priceHigh") return (b.price?.median ?? -1) - (a.price?.median ?? -1);
+      return (b.declaredDate || "").localeCompare(a.declaredDate || "");
+    });
+  }, [priceOnly, query, region, sortBy]);
+
+  const active = filtered.find((project) => project.id === selectedId) || filtered[0] || projects[0];
   const compareProjects = compareIds
     .map((id) => projects.find((project) => project.id === id))
     .filter(Boolean) as Project[];
-  const builders = new Set(projects.map((project) => project.builder)).size;
-  const pricedProjects = projects.filter((project) => project.price).length;
-  const mapAddress = active.address
-    .replace("交岔路口", "交叉口")
-    .replace(/(?:附近|對面工地|對面|號旁|旁|等)$/u, "");
-  const mapQuery = `${active.city}${active.district}${mapAddress}`;
-  const mapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=16&output=embed`;
-  const mapOpenUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
-  const locationNote = /交叉|路口|與/u.test(active.address)
-    ? "依官方路口文字定位，非基地界址"
-    : /號/u.test(active.address)
-      ? "依官方門牌附近定位，非基地界址"
-      : "依官方道路文字定位，非基地界址";
+  const pricedCount = filtered.filter((project) => project.price).length;
+  const mapUrls = googleMapUrls(active);
+  const hasFilters = query !== "" || region !== "全部" || priceOnly || sortBy !== "newest";
 
   function selectProject(id: string) {
     setSelectedId(id);
+    setActiveTab("overview");
+    if (typeof window !== "undefined" && window.matchMedia("(max-width: 900px)").matches) {
+      requestAnimationFrame(() => detailRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
+    }
   }
 
   function toggleCompare(id: string) {
-    setCompareNotice("");
+    setNotice("");
     setCompareIds((current) => {
       if (current.includes(id)) return current.filter((item) => item !== id);
       if (current.length >= 3) {
-        setCompareNotice("一次最多比較 3 個建案");
+        setNotice("一次最多比較 3 個建案");
         return current;
       }
       return [...current, id];
     });
   }
 
+  function clearFilters() {
+    setQuery("");
+    setRegion("全部");
+    setPriceOnly(false);
+    setSortBy("newest");
+  }
+
   return (
-    <main>
-      <header className="topbar">
+    <main id="top">
+      <header className="app-header">
         <a className="brand" href="#top" aria-label="居鑑首頁">
           <span className="brand-mark">居</span>
-          <span>
-            <strong>居鑑</strong>
-            <small>北台灣建案履歷</small>
-          </span>
+          <span><strong>居鑑</strong><small>建案資料查詢</small></span>
         </a>
-        <nav aria-label="主要導覽">
-          <a href="#explore">探索建案</a>
-          <a href="#compare">比較</a>
-          <button type="button" onClick={() => setMethodOpen(true)}>資料方法</button>
-        </nav>
-        <div className="data-status">
-          <span className="status-dot" />
-          {projects.length} 筆官方建案
+        <div className="header-actions">
+          <span className="data-live"><i />官方資料 40 案</span>
+          <button type="button" className="text-button" onClick={() => setMethodOpen(true)}>資料怎麼看？</button>
         </div>
       </header>
 
-      <section className="hero" id="top">
-        <div className="hero-copy">
-          <p className="eyebrow">LINKOU · AIRPORT MRT A7</p>
-          <h1>第一批真實建案，<br />先把來源攤開來。</h1>
-          <p className="hero-intro">
-            已匯入林口與 A7 的官方預售屋備查資料，並核對可取得的實價登錄。
-            品質與漏水證據還沒完成查核的案子，一律不先下結論。
-          </p>
-          <label className="hero-search">
-            <span aria-hidden="true">⌕</span>
-            <input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="搜尋建案、建商或地址…"
-              aria-label="搜尋建案、建商或地址"
-            />
-            <kbd>{filtered.length} 案</kbd>
-          </label>
-          <div className="hero-notes">
-            <span>✓ 官方建案 {projects.length} 筆</span>
-            <span>✓ 建商 {builders} 家</span>
-            <span>✓ 成交資料 {pricedProjects} 案</span>
-          </div>
+      <section className="catalog-intro">
+        <div>
+          <p className="eyebrow">林口＋A7 第一批</p>
+          <h1>先找到建案，再看證據。</h1>
+          <p>用建案名稱、建商或地址快速篩選；官方資料、成交價格與待查項目分開呈現。</p>
         </div>
-        <div className="hero-proof">
-          <div className="proof-heading">
-            <span>目前選取建案</span>
-            <span className="live-label">OFFICIAL DATA</span>
-          </div>
-          <div className="proof-score">
-            <div className="score-ring" style={{ "--score": active.dataCompleteness } as CSSProperties}>
-              <span>{active.dataCompleteness}%</span>
-              <small>資料完整度</small>
-            </div>
-            <div>
-              <p>{active.region} · {active.city}</p>
-              <h2>{active.name}</h2>
-              <span>{active.builder}</span>
-            </div>
-          </div>
-          <div className="proof-grid">
-            <div><span>戶數</span><strong>{active.households}</strong></div>
-            <div><span>中位單價</span><strong>{active.price ? active.price.median : "—"}</strong></div>
-            <div><span>品質狀態</span><strong>待查</strong></div>
-            <div><span>生活機能</span><strong>待串</strong></div>
-          </div>
-          <p className="demo-caption">資料完整度只表示欄位覆蓋，不代表建案品質高低。</p>
+        <div className="intro-note">
+          <strong>目前不做品質排名</strong>
+          <span>漏水與施工品質尚未完成證據查核，不會用「沒看到資料」代表「沒有問題」。</span>
         </div>
       </section>
 
-      <section className="workspace" id="explore">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">VERIFIED PROJECT EXPLORER</p>
-            <h2>林口＋A7 官方建案第一版</h2>
-          </div>
-          <p>先查基本身分與成交，再逐步補齊漏水、售後與生活圈證據。</p>
-        </div>
+      <section className="search-panel" aria-label="建案搜尋與篩選">
+        <label className="search-input">
+          <span aria-hidden="true">⌕</span>
+          <input
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="搜尋建案、建商或地址"
+            aria-label="搜尋建案、建商或地址"
+          />
+          {query && <button type="button" onClick={() => setQuery("")} aria-label="清除搜尋">×</button>}
+        </label>
 
-        <div className="filter-row" aria-label="地區篩選">
+        <div className="region-switch" aria-label="區域篩選">
           {regions.map((item) => (
             <button
               type="button"
@@ -204,240 +191,258 @@ export default function Home() {
               {item}
             </button>
           ))}
-          <span className="result-count">顯示 {filtered.length} 個真實建案</span>
         </div>
 
-        <div className="explorer-grid">
+        <label className={`data-toggle ${priceOnly ? "checked" : ""}`}>
+          <input type="checkbox" checked={priceOnly} onChange={(event) => setPriceOnly(event.target.checked)} />
+          <span>只看有成交資料</span>
+        </label>
+
+        <label className="sort-select">
+          <span>排序</span>
+          <select value={sortBy} onChange={(event) => setSortBy(event.target.value as SortKey)}>
+            <option value="newest">最新備查</option>
+            <option value="priceLow">單價低到高</option>
+            <option value="priceHigh">單價高到低</option>
+            <option value="households">戶數多到少</option>
+          </select>
+        </label>
+
+        {hasFilters && <button type="button" className="clear-filter" onClick={clearFilters}>清除篩選</button>}
+      </section>
+
+      <section className="catalog-summary" aria-live="polite">
+        <span>找到 <strong>{filtered.length}</strong> 個建案</span>
+        <span><strong>{pricedCount}</strong> 案有成交資料</span>
+        <span>最多可選 3 案比較</span>
+      </section>
+
+      <section className="catalog-layout">
+        <aside className="results-pane" aria-label="建案搜尋結果">
+          <div className="results-heading">
+            <div><strong>建案清單</strong><span>點選一案查看完整資料</span></div>
+            <span>{filtered.length} 案</span>
+          </div>
+
           <div className="project-list">
             {filtered.length === 0 ? (
-              <div className="empty-state">
+              <div className="no-results">
+                <span>⌕</span>
                 <strong>找不到符合的建案</strong>
-                <span>換一個關鍵字，或切回「全部」。</span>
+                <p>試試看縮短關鍵字或清除篩選。</p>
+                <button type="button" onClick={clearFilters}>查看全部建案</button>
               </div>
             ) : (
-              filtered.map((project) => (
-                <article
-                  className={`project-card ${selectedId === project.id ? "selected" : ""}`}
-                  key={project.id}
-                >
-                  <button className="project-select" type="button" onClick={() => selectProject(project.id)}>
-                    <div className="project-card-top">
-                      <span>{project.region} · {project.city}</span>
-                      <span className="issue-pill unknown">品質尚未查核</span>
-                    </div>
-                    <h3>{project.name}</h3>
-                    <p>{project.builder}</p>
-                    <div className="project-metrics">
-                      <span><strong>{project.dataCompleteness}%</strong> 資料</span>
-                      <span><strong>{project.price ? project.price.median : "—"}</strong> 萬／坪</span>
-                      <span><strong>{project.households}</strong> 戶</span>
-                    </div>
-                  </button>
-                  <button
-                    type="button"
-                    className={`compare-toggle ${compareIds.includes(project.id) ? "checked" : ""}`}
-                    onClick={() => toggleCompare(project.id)}
-                    aria-pressed={compareIds.includes(project.id)}
-                  >
-                    {compareIds.includes(project.id) ? "✓ 已加入比較" : "＋ 加入比較"}
-                  </button>
-                </article>
-              ))
+              filtered.map((project) => {
+                const selected = active.id === project.id;
+                const comparing = compareIds.includes(project.id);
+                return (
+                  <article className={`project-row ${selected ? "selected" : ""}`} key={project.id}>
+                    <button type="button" className="project-row-main" onClick={() => selectProject(project.id)}>
+                      <div className="row-topline">
+                        <span className="region-tag">{project.region}</span>
+                        <span className="pending-tag">品質待查</span>
+                      </div>
+                      <h2>{project.name}</h2>
+                      <p>{project.builder}</p>
+                      <div className="row-metrics">
+                        <span><small>中位單價</small><strong>{project.price ? `${project.price.median} 萬` : "待補"}</strong></span>
+                        <span><small>申報戶數</small><strong>{project.households} 戶</strong></span>
+                        <span><small>資料</small><strong>{project.dataCompleteness}%</strong></span>
+                      </div>
+                    </button>
+                    <button
+                      type="button"
+                      className={`row-compare ${comparing ? "active" : ""}`}
+                      onClick={() => toggleCompare(project.id)}
+                      aria-label={`${comparing ? "移除" : "加入"}${project.name}比較`}
+                    >
+                      {comparing ? "✓ 已選" : "＋ 比較"}
+                    </button>
+                  </article>
+                );
+              })
             )}
           </div>
+        </aside>
 
-          <div className="map-panel real-map-panel" aria-label={`${active.name} 真實街道地圖`}>
-            <iframe
-              key={active.id}
-              src={mapEmbedUrl}
-              title={`${active.name} Google 地圖`}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-            <div className="real-map-card">
-              <span>{active.region} · 目前選取</span>
-              <strong>{active.name}</strong>
-              <small>{active.city}{active.district}{active.address}</small>
-              <p>{locationNote}</p>
-              <a href={mapOpenUrl} target="_blank" rel="noreferrer">在 Google 地圖開啟 ↗</a>
+        <article className="detail-pane" ref={detailRef} aria-live="polite">
+          <div className="detail-head">
+            <div className="detail-title">
+              <div><span className="region-tag">{active.region}</span><span>{active.city} · {active.district}</span></div>
+              <h2>{active.name}</h2>
+              <p>起造人：{active.builder}</p>
+            </div>
+            <div className="detail-actions">
+              <a href={mapUrls.open} target="_blank" rel="noreferrer" className="secondary-action">查看地圖 ↗</a>
+              <button
+                type="button"
+                className={compareIds.includes(active.id) ? "primary-action added" : "primary-action"}
+                onClick={() => toggleCompare(active.id)}
+              >
+                {compareIds.includes(active.id) ? "✓ 已加入比較" : "＋ 加入比較"}
+              </button>
             </div>
           </div>
 
-          <aside className="detail-panel" aria-live="polite">
-            <div className="detail-kicker">
-              <span>{active.region} · 官方備查</span>
-              <span>資料完整度 {active.dataCompleteness}%</span>
-            </div>
-            <h2>{active.name}</h2>
-            <p className="builder-line">起造人：{active.builder}</p>
+          <div className="headline-metrics">
+            <div><span>中位成交單價</span><strong>{active.price ? active.price.median : "—"}</strong><small>{active.price ? "萬／坪" : "尚待補齊"}</small></div>
+            <div><span>申報戶數</span><strong>{active.households}</strong><small>戶</small></div>
+            <div><span>資料完整度</span><strong>{active.dataCompleteness}</strong><small>%（非品質分數）</small></div>
+          </div>
 
-            <div className="detail-summary">
-              <div className="mini-score">
-                <strong>{active.dataCompleteness}%</strong>
-                <span>欄位覆蓋</span>
-              </div>
-              <p>已核對官方建案基本資料。漏水、施工與售後仍在查核；「沒有已收錄紀錄」不能解讀為「沒有問題」。</p>
-            </div>
+          <nav className="detail-tabs" aria-label="建案資料分類">
+            {tabs.map((tab) => (
+              <button
+                type="button"
+                key={tab.id}
+                className={activeTab === tab.id ? "active" : ""}
+                onClick={() => setActiveTab(tab.id)}
+                aria-current={activeTab === tab.id ? "page" : undefined}
+              >
+                <span className="tab-full">{tab.label}</span><span className="tab-short">{tab.short}</span>
+                {(tab.id === "quality" || tab.id === "amenity") && <i />}
+              </button>
+            ))}
+          </nav>
 
-            <h3 className="subheading">官方基本資料</h3>
-            <div className="amenity-grid">
-              <div><span>申報戶數</span><strong>{active.households} 戶</strong></div>
-              <div><span>中位成交單價</span><strong>{priceLabel(active)}</strong></div>
-              <div><span>申報備查</span><strong>{formatDate(active.declaredDate)}</strong></div>
-              <div><span>首次登記</span><strong>{formatDate(active.firstRegistrationDate)}</strong></div>
-            </div>
-
-            <h3 className="subheading">證據與查核狀態</h3>
-            <div className="evidence-list">
-              <div className="evidence-item">
-                <EvidenceBadge kind="official" />
-                <div>
-                  <strong>建照與基地已核對</strong>
-                  <p>{active.permitNo}<br />{active.address} · {active.buildingLand}</p>
-                  <small>建照日期 {formatDate(active.permitDate)}</small>
+          <div className="detail-content">
+            {activeTab === "overview" && (
+              <section className="tab-section">
+                <div className="section-title"><div><span>OFFICIAL RECORD</span><h3>官方基本資料</h3></div><span className="verified-label">已核對</span></div>
+                <div className="fact-grid">
+                  <div><span>申報備查日</span><strong>{formatDate(active.declaredDate)}</strong></div>
+                  <div><span>建照核發日</span><strong>{formatDate(active.permitDate)}</strong></div>
+                  <div><span>首次登記日</span><strong>{formatDate(active.firstRegistrationDate)}</strong></div>
+                  <div><span>主要建材</span><strong>{active.material}</strong></div>
+                  <div><span>主要用途</span><strong>{active.mainUse}</strong></div>
+                  <div><span>使用分區</span><strong>{active.zoning}</strong></div>
                 </div>
-              </div>
-              <div className="evidence-item">
-                <EvidenceBadge kind={active.price ? "market" : "pending"} />
-                <div>
-                  <strong>{active.price ? `${active.price.count} 筆成交資料` : "成交資料尚待補齊"}</strong>
-                  <p>{active.price ? `區間 ${active.price.low}–${active.price.high} 萬／坪，中位數 ${active.price.median} 萬／坪。` : "目前批次未配對到有效成交，不代表沒有交易。"}</p>
-                  <small>{active.price ? `${active.price.source} · 最新 ${formatDate(active.price.latestDate)}` : "下一階段補歷史批次"}</small>
+                <div className="address-block">
+                  <div><span>官方坐落街道</span><strong>{active.city}{active.district}{active.address}</strong></div>
+                  <div><span>坐落基地</span><strong>{active.buildingLand}</strong></div>
+                  <a href={mapUrls.open} target="_blank" rel="noreferrer">用 Google 地圖查看 ↗</a>
+                  <small>{locationPrecision(active)}，僅供位置參考，不代表精確基地界址。</small>
                 </div>
-              </div>
-              <div className="evidence-item">
-                <EvidenceBadge kind="pending" />
-                <div>
-                  <strong>漏水與施工品質：尚未查核</strong>
-                  <p>需交叉核對裁判書、公開住戶證據、新聞與建商回應，達到門檻後才會顯示結論。</p>
-                  <small>目前不做品質排名</small>
+                <details className="permit-details">
+                  <summary>查看建照與資料編號</summary>
+                  <dl><div><dt>建造執照</dt><dd>{active.permitNo}</dd></div><div><dt>官方資料編號</dt><dd>{active.registryNumber}</dd></div></dl>
+                </details>
+              </section>
+            )}
+
+            {activeTab === "price" && (
+              <section className="tab-section">
+                <div className="section-title"><div><span>PRICE RECORD</span><h3>成交價格</h3></div><span className={active.price ? "verified-label" : "pending-label"}>{active.price ? "已配對" : "待補資料"}</span></div>
+                {active.price ? (
+                  <>
+                    <div className="price-hero">
+                      <div><span>中位單價</span><strong>{active.price.median}</strong><small>萬／坪</small></div>
+                      <p>中位數比平均數較不容易受到極端交易影響，但仍要搭配樓層、坪數與車位判讀。</p>
+                    </div>
+                    <div className="fact-grid three">
+                      <div><span>成交區間</span><strong>{active.price.low}–{active.price.high} 萬／坪</strong></div>
+                      <div><span>有效樣本</span><strong>{active.price.count} 筆</strong></div>
+                      <div><span>最新交易</span><strong>{formatDate(active.price.latestDate)}</strong></div>
+                    </div>
+                    <div className="data-caveat"><strong>來源：{active.price.source}</strong><p>此處是已成功配對的官方交易樣本，不等於目前開價，也不是估價結果。</p></div>
+                  </>
+                ) : (
+                  <div className="empty-evidence"><span>成交</span><strong>目前批次尚未配對到資料</strong><p>這不代表沒有交易；A7 歷史批次仍在補齊中。</p></div>
+                )}
+              </section>
+            )}
+
+            {activeTab === "quality" && (
+              <section className="tab-section">
+                <div className="section-title"><div><span>QUALITY REVIEW</span><h3>漏水與施工品質</h3></div><span className="pending-label">尚未查核</span></div>
+                <div className="pending-hero">
+                  <div className="pending-symbol">待</div>
+                  <div><strong>目前沒有足夠證據可以下結論</strong><p>找不到已收錄紀錄，不代表沒有問題；在完成裁判書、公開住戶證據、新聞與建商回應的交叉核對前，不顯示好壞評分。</p></div>
                 </div>
-              </div>
-            </div>
+                <div className="review-steps">
+                  <div><span>1</span><strong>確認事件</strong><p>來源、日期與建案名稱必須能核對。</p></div>
+                  <div><span>2</span><strong>判斷重複性</strong><p>單一個案與多戶共同問題分開處理。</p></div>
+                  <div><span>3</span><strong>收錄回應</strong><p>同步保留建商修繕與說明。</p></div>
+                </div>
+              </section>
+            )}
 
-            <h3 className="subheading">生活機能距離</h3>
-            <div className="amenity-grid">
-              <div><span>便利商店</span><strong>待串接</strong></div>
-              <div><span>全聯</span><strong>待串接</strong></div>
-              <div><span>好市多</span><strong>待串接</strong></div>
-              <div><span>捷運／車站</span><strong>待串接</strong></div>
-            </div>
-
-            <button
-              type="button"
-              className={`detail-compare ${compareIds.includes(active.id) ? "added" : ""}`}
-              onClick={() => toggleCompare(active.id)}
-            >
-              {compareIds.includes(active.id) ? "已加入比較，點擊移除" : "加入建案比較"}
-            </button>
-            {compareNotice && <p className="compare-notice">{compareNotice}</p>}
-          </aside>
-        </div>
-      </section>
-
-      <section className="compare-section" id="compare">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">SIDE BY SIDE</p>
-            <h2>先比較已確認的事實</h2>
+            {activeTab === "amenity" && (
+              <section className="tab-section">
+                <div className="section-title"><div><span>NEARBY AMENITIES</span><h3>生活機能</h3></div><span className="pending-label">串接中</span></div>
+                <div className="amenity-grid">
+                  {[
+                    ["便利商店", "待計算步行距離"],
+                    ["全聯", "待計算步行距離"],
+                    ["好市多", "待計算駕車距離"],
+                    ["捷運／車站", "待計算步行距離"],
+                  ].map(([name, state]) => <div key={name}><span>{name}</span><strong>{state}</strong></div>)}
+                </div>
+                <div className="map-box">
+                  <iframe key={active.id} src={mapUrls.embed} title={`${active.name} Google 地圖`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+                  <div><strong>{active.name}</strong><span>{active.city}{active.district}{active.address}</span><a href={mapUrls.open} target="_blank" rel="noreferrer">放大查看 ↗</a></div>
+                </div>
+                <p className="map-disclaimer">地圖依官方街道／路口文字定位，並非精確基地界址。</p>
+              </section>
+            )}
           </div>
-          <p>{compareProjects.length ? `已選擇 ${compareProjects.length} 個建案` : "從上方加入 2–3 個建案開始比較"}</p>
-        </div>
-
-        {compareProjects.length === 0 ? (
-          <div className="compare-empty">
-            <div className="empty-illustration" aria-hidden="true"><span /><span /><span /></div>
-            <strong>還沒有加入比較</strong>
-            <p>可以先挑兩個同區域建案，比較戶數、建照、成交與資料完整度。</p>
-            <a href="#explore">回到建案清單</a>
-          </div>
-        ) : (
-          <div className="compare-table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>比較項目</th>
-                  {compareProjects.map((project) => (
-                    <th key={project.id}>
-                      <span>{project.region}</span>
-                      {project.name}
-                      <button type="button" onClick={() => toggleCompare(project.id)} aria-label={`移除 ${project.name}`}>×</button>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                <tr><th>起造人</th>{compareProjects.map((p) => <td key={p.id}>{p.builder}</td>)}</tr>
-                <tr><th>申報戶數</th>{compareProjects.map((p) => <td key={p.id}><strong>{p.households}</strong> 戶</td>)}</tr>
-                <tr><th>中位成交單價</th>{compareProjects.map((p) => <td key={p.id}>{priceLabel(p)}</td>)}</tr>
-                <tr><th>成交樣本</th>{compareProjects.map((p) => <td key={p.id}>{p.price ? `${p.price.count} 筆` : "待補"}</td>)}</tr>
-                <tr><th>申報備查日</th>{compareProjects.map((p) => <td key={p.id}>{formatDate(p.declaredDate)}</td>)}</tr>
-                <tr><th>建材</th>{compareProjects.map((p) => <td key={p.id}>{p.material}</td>)}</tr>
-                <tr><th>品質／漏水</th>{compareProjects.map((p) => <td key={p.id}>{p.qualityStatus}</td>)}</tr>
-                <tr><th>生活機能</th>{compareProjects.map((p) => <td key={p.id}>{p.amenityStatus}</td>)}</tr>
-                <tr><th>資料完整度</th>{compareProjects.map((p) => <td key={p.id}><span className="confidence-cell">{p.dataCompleteness}%</span></td>)}</tr>
-              </tbody>
-            </table>
-          </div>
-        )}
-      </section>
-
-      <section className="principles">
-        <div>
-          <p className="eyebrow">HOW WE READ THE DATA</p>
-          <h2>沒有證據，就不先評分。</h2>
-        </div>
-        <div className="principle-grid">
-          <article>
-            <span>01</span>
-            <h3>官方身分先對齊</h3>
-            <p>建案名稱、起造人、戶數、基地與建照先以政府備查資料為準。</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>價格看樣本，不看話術</h3>
-            <p>顯示實價登錄筆數、區間與中位數；樣本不足時直接標記。</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>未知就是未知</h3>
-            <p>漏水與品質尚未完成查核，就維持「尚未查核」，不包裝成低風險。</p>
-          </article>
-        </div>
-        <button type="button" className="method-link" onClick={() => setMethodOpen(true)}>查看資料方法與下一步 →</button>
+        </article>
       </section>
 
       <footer>
-        <div className="footer-brand">
-          <span className="brand-mark">居</span>
-          <div><strong>居鑑</strong><p>讓每一次購屋判斷，都有資料可以回頭查。</p></div>
-        </div>
-        <div className="source-links">
-          <span>本版資料來源</span>
-          {dataset.sources.map((source) => (
-            <a href={source.url} target="_blank" rel="noreferrer" key={source.url}>{source.name}</a>
-          ))}
-        </div>
-        <p className="footer-note">林口＋A7 真實資料第一版 · 更新 {dataset.generatedAt} · 品質與生活機能仍在查核</p>
+        <div><span className="brand-mark small">居</span><p><strong>居鑑</strong><br />讓購屋判斷有資料可以回頭查。</p></div>
+        <p>林口＋A7 真實資料第一版 · 更新 {dataset.generatedAt}</p>
       </footer>
+
+      {compareIds.length > 0 && (
+        <div className="compare-dock" role="status">
+          <div className="compare-chips">
+            {compareProjects.map((project) => <button key={project.id} type="button" onClick={() => toggleCompare(project.id)}>{project.name}<span>×</span></button>)}
+          </div>
+          <span className="compare-count">{compareIds.length}／3</span>
+          <button type="button" className="open-compare" onClick={() => setCompareOpen(true)}>開始比較</button>
+          {notice && <span className="dock-notice">{notice}</span>}
+        </div>
+      )}
+
+      {compareOpen && (
+        <div className="modal-backdrop" role="presentation" onMouseDown={() => setCompareOpen(false)}>
+          <section className="compare-modal" role="dialog" aria-modal="true" aria-labelledby="compare-title" onMouseDown={(event) => event.stopPropagation()}>
+            <button type="button" className="modal-close" onClick={() => setCompareOpen(false)} aria-label="關閉">×</button>
+            <p className="eyebrow">PROJECT COMPARISON</p>
+            <h2 id="compare-title">建案並排比較</h2>
+            {compareProjects.length < 2 && <p className="modal-hint">再選一個建案，差異會更清楚。</p>}
+            <div className="compare-table-wrap">
+              <table>
+                <thead><tr><th>比較項目</th>{compareProjects.map((project) => <th key={project.id}>{project.name}<small>{project.region}</small></th>)}</tr></thead>
+                <tbody>
+                  <tr><th>中位單價</th>{compareProjects.map((p) => <td key={p.id}>{priceText(p)}</td>)}</tr>
+                  <tr><th>成交樣本</th>{compareProjects.map((p) => <td key={p.id}>{p.price ? `${p.price.count} 筆` : "待補"}</td>)}</tr>
+                  <tr><th>申報戶數</th>{compareProjects.map((p) => <td key={p.id}>{p.households} 戶</td>)}</tr>
+                  <tr><th>申報備查</th>{compareProjects.map((p) => <td key={p.id}>{formatDate(p.declaredDate)}</td>)}</tr>
+                  <tr><th>品質查核</th>{compareProjects.map((p) => <td key={p.id}>{p.qualityStatus}</td>)}</tr>
+                  <tr><th>生活機能</th>{compareProjects.map((p) => <td key={p.id}>{p.amenityStatus}</td>)}</tr>
+                  <tr><th>資料完整度</th>{compareProjects.map((p) => <td key={p.id}>{p.dataCompleteness}%</td>)}</tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      )}
 
       {methodOpen && (
         <div className="modal-backdrop" role="presentation" onMouseDown={() => setMethodOpen(false)}>
           <section className="method-modal" role="dialog" aria-modal="true" aria-labelledby="method-title" onMouseDown={(event) => event.stopPropagation()}>
-            <button className="modal-close" type="button" onClick={() => setMethodOpen(false)} aria-label="關閉">×</button>
-            <p className="eyebrow">DATA METHODOLOGY</p>
-            <h2 id="method-title">這一版先建立可追溯的真實底冊。</h2>
-            <p>目前的「資料完整度」只計算官方備查、成交與首次登記欄位，不是品質分數，也不是購屋推薦。</p>
+            <button type="button" className="modal-close" onClick={() => setMethodOpen(false)} aria-label="關閉">×</button>
+            <p className="eyebrow">DATA GUIDE</p>
+            <h2 id="method-title">先分清楚「已知」和「待查」。</h2>
             <div className="method-list">
-              <div><strong>已完成：建案底冊</strong><span>林口與 A7 共 40 案，含起造人、戶數、基地、建照與用途</span></div>
-              <div><strong>已完成：部分成交</strong><span>林口歷史資料與 A7 最新批次，共 21 案有可核對的成交樣本</span></div>
-              <div><strong>下一步：生活機能</strong><span>以實際步行／駕車路線計算便利商店、全聯、好市多、捷運與醫療</span></div>
-              <div><strong>下一步：品質證據</strong><span>裁判書、公開住戶證據、新聞與建商回應交叉驗證後才建立事件</span></div>
+              <div><span className="verified-label">官方</span><strong>可以核對的基本資料</strong><p>起造人、戶數、基地、建照與申報日期。</p></div>
+              <div><span className="verified-label coral">成交</span><strong>已成功配對的實價樣本</strong><p>呈現筆數、區間與中位數，不代表目前開價。</p></div>
+              <div><span className="pending-label">待查</span><strong>不能先做結論的資料</strong><p>漏水、施工、售後與生活機能尚未完成時直接標示。</p></div>
             </div>
-            <div className="method-warning">
-              <strong>必要護欄</strong>
-              <p>任何負面紀錄都必須保留來源、日期、建案配對方式與更正管道；單一匿名留言不直接構成漏水結論。</p>
-            </div>
+            <div className="source-list"><strong>本版官方來源</strong>{dataset.sources.map((source) => <a href={source.url} target="_blank" rel="noreferrer" key={source.url}>{source.name} ↗</a>)}</div>
           </section>
         </div>
       )}

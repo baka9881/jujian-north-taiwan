@@ -21,13 +21,13 @@ test("server-renders the verified Linkou and A7 catalogue", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>居鑑｜北台灣建案履歷<\/title>/);
-  assert.match(html, /40<!-- --> 筆官方建案/);
-  assert.match(html, /林口＋A7 官方建案第一版/);
-  assert.match(html, /品質尚未查核/);
-  assert.match(html, /內政部預售屋建案備查資料/);
-  assert.match(html, /Google 地圖/);
-  assert.match(html, /依官方道路文字定位，非基地界址/);
-  assert.doesNotMatch(html, /class="map-marker/);
+  assert.match(html, /官方資料 40 案/);
+  assert.match(html, /先找到建案，再看證據/);
+  assert.match(html, /點選一案查看完整資料/);
+  assert.match(html, /品質查核/);
+  assert.match(html, /只看有成交資料/);
+  assert.match(html, /用 Google 地圖查看/);
+  assert.doesNotMatch(html, /class="map-panel|class="map-marker/);
   assert.doesNotMatch(html, /匿名示範資料|綜合表現/);
 });
 
