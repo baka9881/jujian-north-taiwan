@@ -85,6 +85,17 @@ export default function Home() {
     .filter(Boolean) as Project[];
   const builders = new Set(projects.map((project) => project.builder)).size;
   const pricedProjects = projects.filter((project) => project.price).length;
+  const mapAddress = active.address
+    .replace("交岔路口", "交叉口")
+    .replace(/(?:附近|對面工地|對面|號旁|旁|等)$/u, "");
+  const mapQuery = `${active.city}${active.district}${mapAddress}`;
+  const mapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=16&output=embed`;
+  const mapOpenUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
+  const locationNote = /交叉|路口|與/u.test(active.address)
+    ? "依官方路口文字定位，非基地界址"
+    : /號/u.test(active.address)
+      ? "依官方門牌附近定位，非基地界址"
+      : "依官方道路文字定位，非基地界址";
 
   function selectProject(id: string) {
     setSelectedId(id);
@@ -235,31 +246,20 @@ export default function Home() {
             )}
           </div>
 
-          <div className="map-panel" aria-label="林口與 A7 建案分布示意">
-            <div className="map-label map-label-taipei">林口</div>
-            <div className="map-label map-label-taoyuan">A7</div>
-            <div className="river river-one" />
-            <div className="river river-two" />
-            <div className="road road-one" />
-            <div className="road road-two" />
-            <div className="road road-three" />
-            {filtered.map((project) => (
-              <button
-                key={project.id}
-                type="button"
-                className={`map-marker ${project.price ? "" : "unpriced"} ${selectedId === project.id ? "active" : ""}`}
-                style={{ left: `${project.mapX}%`, top: `${project.mapY}%` }}
-                onClick={() => selectProject(project.id)}
-                aria-label={`查看 ${project.name}`}
-                title={project.name}
-              >
-                <span>{project.price ? Math.round(project.price.median) : "·"}</span>
-              </button>
-            ))}
-            <div className="map-legend">
-              <span><i className="legend-dot good" />有成交資料</span>
-              <span><i className="legend-dot mid" />尚待補齊</span>
-              <span>數字為中位單價（萬／坪）</span>
+          <div className="map-panel real-map-panel" aria-label={`${active.name} 真實街道地圖`}>
+            <iframe
+              key={active.id}
+              src={mapEmbedUrl}
+              title={`${active.name} Google 地圖`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            <div className="real-map-card">
+              <span>{active.region} · 目前選取</span>
+              <strong>{active.name}</strong>
+              <small>{active.city}{active.district}{active.address}</small>
+              <p>{locationNote}</p>
+              <a href={mapOpenUrl} target="_blank" rel="noreferrer">在 Google 地圖開啟 ↗</a>
             </div>
           </div>
 

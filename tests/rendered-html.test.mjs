@@ -25,6 +25,9 @@ test("server-renders the verified Linkou and A7 catalogue", async () => {
   assert.match(html, /林口＋A7 官方建案第一版/);
   assert.match(html, /品質尚未查核/);
   assert.match(html, /內政部預售屋建案備查資料/);
+  assert.match(html, /Google 地圖/);
+  assert.match(html, /依官方道路文字定位，非基地界址/);
+  assert.doesNotMatch(html, /class="map-marker/);
   assert.doesNotMatch(html, /匿名示範資料|綜合表現/);
 });
 
