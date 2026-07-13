@@ -26,7 +26,8 @@ test("server-renders the verified Linkou and A7 catalogue", async () => {
   assert.match(html, /點選一案查看完整資料/);
   assert.match(html, /品質查核/);
   assert.match(html, /只看有成交資料/);
-  assert.match(html, /用 Google 地圖查看/);
+  assert.match(html, /站內查看地圖/);
+  assert.doesNotMatch(html, /maps\/search\/|target="_blank"[^>]*>[^<]*(?:地圖|放大)/);
   assert.doesNotMatch(html, /class="map-panel|class="map-marker/);
   assert.doesNotMatch(html, /匿名示範資料|綜合表現/);
 });

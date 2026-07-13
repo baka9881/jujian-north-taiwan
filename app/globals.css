@@ -182,7 +182,7 @@ a { color: inherit; }
 .address-block span, .address-block strong { display: block; }
 .address-block span { margin-bottom: 5px; color: var(--muted); font-size: 8px; }
 .address-block strong { max-width: 70%; font-size: 11px; }
-.address-block a { position: absolute; top: 18px; right: 18px; color: var(--teal); font-size: 9px; font-weight: 800; }
+.address-block button { position: absolute; top: 18px; right: 18px; padding: 0; border: 0; background: transparent; color: var(--teal); cursor: pointer; font-size: 9px; font-weight: 800; }
 .address-block small { display: block; margin-top: 14px; color: var(--muted); font-size: 8px; }
 .permit-details { margin-top: 12px; border: 1px solid var(--line); border-radius: 8px; background: white; }
 .permit-details summary { padding: 13px 15px; color: var(--teal); cursor: pointer; font-size: 10px; font-weight: 800; }
@@ -227,7 +227,7 @@ a { color: inherit; }
 .map-box strong, .map-box span { display: block; }
 .map-box strong { font-family: Georgia, "Noto Serif TC", serif; font-size: 16px; }
 .map-box span { margin-top: 4px; color: var(--muted); font-size: 8px; }
-.map-box a { position: absolute; top: 15px; right: 14px; color: var(--teal); font-size: 8px; font-weight: 800; }
+.map-box em { position: absolute; top: 13px; right: 14px; padding: 4px 7px; border-radius: 5px; background: var(--sage); color: var(--teal); font-size: 8px; font-style: normal; font-weight: 800; }
 .map-disclaimer { margin: 8px 0 0; color: var(--muted); font-size: 8px; }
 
 .no-results { min-height: 360px; display: grid; place-content: center; justify-items: center; padding: 20px; text-align: center; }
@@ -324,7 +324,7 @@ footer strong { color: white; font-family: Georgia, "Noto Serif TC", serif; font
   .detail-content { padding: 23px 18px 30px; }
   .fact-grid, .fact-grid.three, .amenity-grid { grid-template-columns: 1fr; }
   .address-block strong { max-width: 100%; }
-  .address-block a { position: static; display: inline-block; margin-top: 13px; }
+  .address-block button { position: static; display: inline-block; margin-top: 13px; }
   .price-hero { grid-template-columns: 1fr; gap: 12px; }
   .review-steps { grid-template-columns: 1fr; }
   .pending-hero { grid-template-columns: 1fr; }

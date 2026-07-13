@@ -63,7 +63,6 @@ function googleMapUrls(project: Project) {
   const query = `${project.city}${project.district}${address}`;
   return {
     embed: `https://www.google.com/maps?q=${encodeURIComponent(query)}&z=16&output=embed`,
-    open: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`,
   };
 }
 
@@ -141,6 +140,10 @@ export default function Home() {
     setRegion("全部");
     setPriceOnly(false);
     setSortBy("newest");
+  }
+
+  function showMap() {
+    setActiveTab("amenity");
   }
 
   return (
@@ -274,7 +277,7 @@ export default function Home() {
               <p>起造人：{active.builder}</p>
             </div>
             <div className="detail-actions">
-              <a href={mapUrls.open} target="_blank" rel="noreferrer" className="secondary-action">查看地圖 ↗</a>
+              <button type="button" className="secondary-action" onClick={showMap}>站內看地圖</button>
               <button
                 type="button"
                 className={compareIds.includes(active.id) ? "primary-action added" : "primary-action"}
@@ -321,7 +324,7 @@ export default function Home() {
                 <div className="address-block">
                   <div><span>官方坐落街道</span><strong>{active.city}{active.district}{active.address}</strong></div>
                   <div><span>坐落基地</span><strong>{active.buildingLand}</strong></div>
-                  <a href={mapUrls.open} target="_blank" rel="noreferrer">用 Google 地圖查看 ↗</a>
+                  <button type="button" onClick={showMap}>站內查看地圖 →</button>
                   <small>{locationPrecision(active)}，僅供位置參考，不代表精確基地界址。</small>
                 </div>
                 <details className="permit-details">
@@ -381,7 +384,7 @@ export default function Home() {
                 </div>
                 <div className="map-box">
                   <iframe key={active.id} src={mapUrls.embed} title={`${active.name} Google 地圖`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-                  <div><strong>{active.name}</strong><span>{active.city}{active.district}{active.address}</span><a href={mapUrls.open} target="_blank" rel="noreferrer">放大查看 ↗</a></div>
+                  <div><strong>{active.name}</strong><span>{active.city}{active.district}{active.address}</span><em>站內地圖</em></div>
                 </div>
                 <p className="map-disclaimer">地圖依官方街道／路口文字定位，並非精確基地界址。</p>
               </section>
