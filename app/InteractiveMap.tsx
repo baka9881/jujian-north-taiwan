@@ -160,7 +160,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
     if (!map || !active) return;
     const point = projectPoint(active);
     map.stop();
-    map.easeTo({ center: [point[1], point[0]], zoom: Math.max(map.getZoom(), compact ? 15 : 14), duration: 300 });
+    map.jumpTo({ center: [point[1], point[0]], zoom: Math.max(map.getZoom(), compact ? 15 : 14) });
     setMapMoved(false);
   }
 
