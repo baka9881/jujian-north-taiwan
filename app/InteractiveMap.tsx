@@ -81,7 +81,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
       maplibreRef.current = maplibre;
       mapRef.current = map;
       map.scrollZoom.enable();
-      map.on("dragstart", () => setMapMoved(true));
+      map.on("dragend", () => setMapMoved(true));
       map.once("load", () => {
         if (cancelled) return;
         const chineseName: import("maplibre-gl").ExpressionSpecification = [
