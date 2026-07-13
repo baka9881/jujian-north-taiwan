@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import dataset from "@/data/processed/projects.json";
 
 type PriceSummary = {
@@ -50,12 +50,12 @@ function priceText(project: Project) {
   return project.price ? `${project.price.median} 萬／坪` : "價格待補";
 }
 
-function mapEmbed(project: Project) {
+function mapEmbed(project: Project, zoom = 16) {
   const address = project.address
     .replace("交岔路口", "交叉口")
     .replace(/(?:附近|對面工地|對面|號旁|旁|等)$/u, "");
   const query = `${project.city}${project.district}${address}`;
-  return `https://www.google.com/maps?q=${encodeURIComponent(query)}&z=16&output=embed`;
+  return `https://www.google.com/maps?q=${encodeURIComponent(query)}&z=${Math.min(20, Math.max(11, zoom))}&output=embed`;
 }
 
 function locationLabel(project: Project) {
@@ -72,6 +72,7 @@ export default function Home() {
   const [sortBy, setSortBy] = useState<SortKey>("newest");
   const [viewMode, setViewMode] = useState<ViewMode>("map");
   const [selectedId, setSelectedId] = useState(projects[0].id);
+  const [mapZoom, setMapZoom] = useState(16);
   const [detailOpen, setDetailOpen] = useState(false);
   const [detailTab, setDetailTab] = useState<DetailTab>("summary");
   const [compareIds, setCompareIds] = useState<string[]>([]);
@@ -110,6 +111,10 @@ export default function Home() {
     .filter(Boolean) as Project[];
   const pricedCount = filtered.filter((project) => project.price).length;
   const hasFilters = query || region !== "全部" || priceOnly || minHouseholds > 0 || sortBy !== "newest";
+
+  useEffect(() => {
+    setMapZoom(16);
+  }, [active.id]);
 
   function selectProject(project: Project, openDetail = false) {
     setSelectedId(project.id);
@@ -202,8 +207,13 @@ export default function Home() {
           </aside>
 
           <section className="map-stage" aria-label={`${active.name} 站內地圖`}>
-            <iframe key={active.id} src={mapEmbed(active)} title={`${active.name} 地圖`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+            <iframe key={`${active.id}-${mapZoom}`} src={mapEmbed(active, mapZoom)} title={`${active.name} 地圖`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
             <div className="map-caption"><span>目前顯示所選建案位置</span><strong>{locationLabel(active)}</strong><small>官方資料可能只提供道路或路口，非精確基地界址</small></div>
+            <div className="map-zoom" aria-label="地圖縮放控制">
+              <button type="button" onClick={() => setMapZoom((zoom) => Math.min(20, zoom + 1))} disabled={mapZoom >= 20} aria-label="放大地圖">＋</button>
+              <span>縮放 {mapZoom}</span>
+              <button type="button" onClick={() => setMapZoom((zoom) => Math.max(11, zoom - 1))} disabled={mapZoom <= 11} aria-label="縮小地圖">−</button>
+            </div>
             <article className="map-project-card">
               <div className="map-card-heading"><span>{active.region}</span><div><h2>{active.name}</h2><p>{active.builder}</p></div></div>
               <div className="map-card-data"><div><span>中位單價</span><strong>{active.price ? active.price.median : "—"}</strong><small>{active.price ? "萬／坪" : "待補"}</small></div><div><span>申報戶數</span><strong>{active.households}</strong><small>戶</small></div><div><span>資料完整</span><strong>{active.dataCompleteness}</strong><small>%</small></div></div>

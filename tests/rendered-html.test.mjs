@@ -29,6 +29,8 @@ test("server-renders the verified Linkou and A7 catalogue", async () => {
   assert.match(html, /點選建案切換地圖/);
   assert.match(html, /目前顯示所選建案位置/);
   assert.match(html, /<iframe[^>]+title="[^"]+ 地圖"/);
+  assert.match(html, /aria-label="放大地圖"/);
+  assert.match(html, /aria-label="縮小地圖"/);
   assert.doesNotMatch(html, /maps\/search\/|target="_blank"[^>]*>[^<]*(?:地圖|放大)/);
   assert.doesNotMatch(html, /匿名示範資料|綜合表現/);
 });
