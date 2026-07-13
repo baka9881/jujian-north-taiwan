@@ -22,13 +22,14 @@ test("server-renders the verified Linkou and A7 catalogue", async () => {
   const html = await response.text();
   assert.match(html, /<title>居鑑｜北台灣建案履歷<\/title>/);
   assert.match(html, /官方資料 40 案/);
-  assert.match(html, /先找到建案，再看證據/);
-  assert.match(html, /點選一案查看完整資料/);
+  assert.match(html, /建案地圖/);
+  assert.match(html, /搜尋建案、建商、路段/);
   assert.match(html, /品質查核/);
-  assert.match(html, /只看有成交資料/);
-  assert.match(html, /站內查看地圖/);
+  assert.match(html, /有成交資料/);
+  assert.match(html, /點選建案切換地圖/);
+  assert.match(html, /目前顯示所選建案位置/);
+  assert.match(html, /<iframe[^>]+title="[^"]+ 地圖"/);
   assert.doesNotMatch(html, /maps\/search\/|target="_blank"[^>]*>[^<]*(?:地圖|放大)/);
-  assert.doesNotMatch(html, /class="map-panel|class="map-marker/);
   assert.doesNotMatch(html, /匿名示範資料|綜合表現/);
 });
 
