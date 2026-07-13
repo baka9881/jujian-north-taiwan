@@ -208,30 +208,13 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
     };
   }, [activeId, compact, projects, ready]);
 
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!ready || !map) return;
-    const active = projects.find((project) => project.id === activeId);
-    if (!active) return;
-
-    markersRef.current.forEach(({ element }, id) => {
-      const selected = id === activeId;
-      element?.classList.toggle("active", selected);
-    });
-    const point = projectPoint(active);
-    map.stop();
-    map.setView(point, Math.max(map.getZoom(), compact ? 15 : 14), { animate: false });
-    const resetFrame = requestAnimationFrame(() => setMapMoved(false));
-    return () => cancelAnimationFrame(resetFrame);
-  }, [activeId, compact, projects, ready]);
-
   function recenterActive() {
     const map = mapRef.current;
     const active = projects.find((project) => project.id === activeId);
     if (!map || !active) return;
     const point = projectPoint(active);
     map.stop();
-    map.setView(point, Math.max(map.getZoom(), compact ? 15 : 14), { animate: false });
+    map.panTo(point, { animate: true, duration: 0.28, easeLinearity: 0.35 });
     setMapMoved(false);
   }
 
