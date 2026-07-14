@@ -135,6 +135,14 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
 .list-heading p { margin:0 0 4px; color:var(--orange); font-size:8px; font-weight:800; letter-spacing:.14em; }
 .list-heading h1 { margin:0; font-size:26px; }
 .list-heading > span { color:var(--muted); font-size:10px; }
+.quality-overview { display:grid; grid-template-columns:repeat(3,140px) minmax(260px,1fr); align-items:stretch; gap:8px; margin:0 0 16px; }
+.quality-overview > div { padding:13px 14px; border:1px solid #cfddd7; border-radius:7px; background:#f8fbfa; }
+.quality-overview > div span { display:block; color:#5d6d72; font-size:10px; font-weight:750; }
+.quality-overview > div strong { display:inline-block; margin-top:6px; color:#1f584c; font-size:24px; line-height:1; }
+.quality-overview > div small { margin-left:4px; color:#6b797e; font-size:10px; }
+.quality-overview > div.attention { border-color:#efc7a7; background:#fff6ed; }
+.quality-overview > div.attention strong { color:#bd4b24; }
+.quality-overview > p { display:flex; align-items:center; margin:0; padding:12px 15px; border-radius:7px; background:#e8edef; color:#53636a; font-size:11px; line-height:1.65; }
 .project-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
 .project-grid-card { border:1px solid var(--line); border-radius:7px; background:white; box-shadow:0 4px 15px rgba(35,52,62,.06); overflow:hidden; }
 .grid-card-main { width:100%; padding:0; border:0; background:transparent; color:inherit; cursor:pointer; text-align:left; }
@@ -145,6 +153,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
 .grid-card-copy { padding:14px; }
 .grid-card-copy > div:first-child { display:flex; justify-content:space-between; color:var(--muted); font-size:8px; }
 .grid-card-copy i { padding:3px 5px; border-radius:3px; background:#eeeaf2; color:#6b6080; font-style:normal; }
+.grid-card-copy i.reviewed { background:#e9eef0; color:#53666e; }
+.grid-card-copy i.has-result { background:#dcefe5; color:#23624f; }
+.grid-card-copy i.attention { background:#fff0df; color:#a34826; }
 .grid-card-copy h2 { margin:9px 0 4px; font-size:18px; }
 .grid-card-copy p { margin:0; color:var(--muted); font-size:9px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .grid-card-copy dl { display:grid; grid-template-columns:repeat(3,1fr); margin:13px 0 0; padding-top:11px; border-top:1px solid var(--line); }
@@ -442,7 +453,8 @@ html,body { font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
 .quality-events header { display:flex; align-items:center; gap:6px; }
 .quality-events header span,.quality-events header b,.quality-events header i { padding:4px 6px; border-radius:4px; font-size:10px; font-style:normal; font-weight:800; }
 .quality-events header span { background:#e2eee9; color:#315f52; }
-.quality-events header b { background:#d7f0e4; color:#176046; }
+.quality-events header b,.quality-events header b.pass { background:#d7f0e4; color:#176046; }
+.quality-events header b.attention { background:#ffe4d4; color:#a23e1e; }
 .quality-events header i { margin-left:auto; background:#e9edf0; color:#53636c; }
 .quality-events h5 { margin:11px 0 6px; color:#20333a; font-size:15px; line-height:1.4; }
 .quality-events p { margin:0; color:#4f6068; font-size:12px; line-height:1.65; }
@@ -488,6 +500,8 @@ html,body { font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
   .map-workspace { height:calc(100vh - 185px); grid-template-columns:340px 1fr; }
   .detail-drawer { top:185px; height:calc(100vh - 185px); }
   .project-grid { grid-template-columns:repeat(2,1fr); }
+  .quality-overview { grid-template-columns:repeat(3,1fr); }
+  .quality-overview > p { grid-column:1/-1; }
 }
 
 @media (max-width:760px) {
@@ -523,6 +537,9 @@ html,body { font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
   .map-card-quick button { flex:1; }
   .list-workspace { padding:20px 12px 90px; }
   .project-grid { grid-template-columns:1fr; }
+  .quality-overview { grid-template-columns:repeat(3,1fr); }
+  .quality-overview > div { padding:11px 9px; }
+  .quality-overview > div strong { font-size:20px; }
   .detail-drawer { top:0; z-index:90; width:100%; height:100vh; }
   .drawer-content { padding:19px 17px 35px; }
   .compare-bar { bottom:8px; }

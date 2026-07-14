@@ -148,9 +148,10 @@ type Project = RawProject & {
 
 type ViewMode = "map" | "list";
 type DetailTab = "summary" | "builder" | "price" | "quality" | "amenity";
-type SortKey = "newest" | "priceLow" | "priceHigh" | "households";
+type SortKey = "newest" | "priceLow" | "priceHigh" | "households" | "quality";
 type StageFilter = "all" | "presale" | "completed";
 type AmenityFilter = "all" | "score80" | "convenience500" | "pxmart1000" | "station1200";
+type QualityFilter = "all" | "official-result" | "attention" | "no-event";
 
 type UpdateReport = {
   generatedAt: string;
@@ -212,6 +213,31 @@ function amenityFilterMatches(project: Project, filter: AmenityFilter) {
   return true;
 }
 
+function hasQualityAttention(project: Project) {
+  return project.quality.events.some((event) => event.outcome !== "符合");
+}
+
+function qualityFilterMatches(project: Project, filter: QualityFilter) {
+  if (filter === "all") return true;
+  if (filter === "official-result") return project.quality.events.length > 0;
+  if (filter === "attention") return hasQualityAttention(project);
+  if (filter === "no-event") return project.quality.status === "reviewed" && project.quality.events.length === 0;
+  return true;
+}
+
+function qualityRank(project: Project) {
+  if (hasQualityAttention(project)) return 3;
+  if (project.quality.events.length > 0) return 2;
+  if (project.quality.status === "reviewed") return 1;
+  return 0;
+}
+
+function qualityBadgeText(project: Project) {
+  if (hasQualityAttention(project)) return "契約查核需注意";
+  if (project.quality.events.length > 0) return `官方結果 ${project.quality.events.length} 件`;
+  return project.quality.status === "reviewed" ? "官方來源已查核" : "品質待查核";
+}
+
 function projectStage(project: Project) {
   return project.firstRegistrationDate ? "completed" : "presale";
 }
@@ -227,6 +253,7 @@ export default function Home() {
   const [priceOnly, setPriceOnly] = useState(false);
   const [minHouseholds, setMinHouseholds] = useState(0);
   const [amenityFilter, setAmenityFilter] = useState<AmenityFilter>("all");
+  const [qualityFilter, setQualityFilter] = useState<QualityFilter>("all");
   const [sortBy, setSortBy] = useState<SortKey>("newest");
   const [viewMode, setViewMode] = useState<ViewMode>("map");
   const [selectedId, setSelectedId] = useState(projects[0].id);
@@ -255,6 +282,7 @@ export default function Home() {
         (stageFilter === "all" || projectStage(project) === stageFilter) &&
         (!priceOnly || Boolean(project.price)) &&
         amenityFilterMatches(project, amenityFilter) &&
+        qualityFilterMatches(project, qualityFilter) &&
         project.households >= minHouseholds
       );
     });
@@ -263,15 +291,18 @@ export default function Home() {
       if (sortBy === "households") return b.households - a.households;
       if (sortBy === "priceLow") return (a.price?.median ?? Infinity) - (b.price?.median ?? Infinity);
       if (sortBy === "priceHigh") return (b.price?.median ?? -1) - (a.price?.median ?? -1);
+      if (sortBy === "quality") return qualityRank(b) - qualityRank(a) || (b.declaredDate || "").localeCompare(a.declaredDate || "");
       return (b.declaredDate || "").localeCompare(a.declaredDate || "");
     });
-  }, [amenityFilter, minHouseholds, priceOnly, query, region, sortBy, stageFilter]);
+  }, [amenityFilter, minHouseholds, priceOnly, qualityFilter, query, region, sortBy, stageFilter]);
 
   const active = filtered.find((project) => project.id === selectedId) || filtered[0] || projects[0];
   const compareProjects = compareIds
     .map((id) => projects.find((project) => project.id === id))
     .filter(Boolean) as Project[];
   const pricedCount = filtered.filter((project) => project.price).length;
+  const qualityResultCount = filtered.filter((project) => project.quality.events.length > 0).length;
+  const qualityAttentionCount = filtered.filter(hasQualityAttention).length;
   const completedCount = filtered.filter((project) => project.firstRegistrationDate).length;
   const presaleCount = filtered.length - completedCount;
   const builderProjects = useMemo(
@@ -282,8 +313,8 @@ export default function Home() {
   );
   const builderCompletedCount = builderProjects.filter((project) => project.firstRegistrationDate).length;
   const builderPricedCount = builderProjects.filter((project) => project.price).length;
-  const hasFilters = query || region !== "全部" || stageFilter !== "all" || amenityFilter !== "all" || priceOnly || minHouseholds > 0 || sortBy !== "newest";
-  const advancedFilterCount = Number(priceOnly) + Number(minHouseholds > 0) + Number(amenityFilter !== "all") + Number(sortBy !== "newest");
+  const hasFilters = query || region !== "全部" || stageFilter !== "all" || amenityFilter !== "all" || qualityFilter !== "all" || priceOnly || minHouseholds > 0 || sortBy !== "newest";
+  const advancedFilterCount = Number(priceOnly) + Number(minHouseholds > 0) + Number(amenityFilter !== "all") + Number(qualityFilter !== "all") + Number(sortBy !== "newest");
   const activeNearestPois = active.amenity.score === null
     ? []
     : amenityEntries
@@ -325,6 +356,7 @@ export default function Home() {
     setPriceOnly(false);
     setMinHouseholds(0);
     setAmenityFilter("all");
+    setQualityFilter("all");
     setSortBy("newest");
   }
 
@@ -335,6 +367,7 @@ export default function Home() {
     setPriceOnly(false);
     setMinHouseholds(0);
     setAmenityFilter("all");
+    setQualityFilter("all");
     setSelectedId(project.id);
     setDetailTab("builder");
   }
@@ -353,9 +386,9 @@ export default function Home() {
           <div><strong>居鑑</strong><small>建案履歷資料庫</small></div>
         </a>
         <nav aria-label="主要功能">
-          <button className="active" type="button" onClick={() => setViewMode("map")}>建案地圖</button>
-          <button type="button" onClick={() => { setViewMode("list"); setPriceOnly(true); }}>成交行情</button>
-          <button type="button" onClick={() => { setViewMode("list"); setDetailTab("quality"); }}>品質查核</button>
+          <button className={viewMode === "map" ? "active" : ""} type="button" onClick={() => setViewMode("map")}>建案地圖</button>
+          <button className={viewMode === "list" && sortBy !== "quality" && priceOnly ? "active" : ""} type="button" onClick={() => { setViewMode("list"); setPriceOnly(true); setQualityFilter("all"); setSortBy("priceHigh"); }}>成交行情</button>
+          <button className={viewMode === "list" && sortBy === "quality" ? "active" : ""} type="button" onClick={() => { setViewMode("list"); setPriceOnly(false); setQualityFilter("all"); setSortBy("quality"); setDetailTab("quality"); }}>品質查核</button>
         </nav>
         <div className="header-tools">
           <span><i />官方資料 {projects.length} 案</span>
@@ -377,8 +410,9 @@ export default function Home() {
           {advancedFiltersOpen && <section className="advanced-filter-panel" aria-label="進階篩選">
             <header><strong>進階篩選</strong><button type="button" onClick={() => setAdvancedFiltersOpen(false)}>完成</button></header>
             <label><span>生活機能</span><select value={amenityFilter} onChange={(event) => setAmenityFilter(event.target.value as AmenityFilter)}><option value="all">不限</option><option value="score80">機能 80 分以上</option><option value="convenience500">便利商店 500 公尺內</option><option value="pxmart1000">全聯 1 公里內</option><option value="station1200">車站 1.2 公里內</option></select></label>
+            <label><span>品質查核</span><select value={qualityFilter} onChange={(event) => setQualityFilter(event.target.value as QualityFilter)}><option value="all">不限</option><option value="official-result">有官方查核結果</option><option value="attention">有需注意事項</option><option value="no-event">已查核、無刊登事件</option></select></label>
             <label><span>社區戶數</span><select value={minHouseholds} onChange={(event) => setMinHouseholds(Number(event.target.value))}><option value="0">不限</option><option value="100">100 戶以上</option><option value="300">300 戶以上</option><option value="500">500 戶以上</option></select></label>
-            <label><span>排序方式</span><select value={sortBy} onChange={(event) => setSortBy(event.target.value as SortKey)}><option value="newest">最新備查</option><option value="priceLow">單價低到高</option><option value="priceHigh">單價高到低</option><option value="households">戶數多到少</option></select></label>
+            <label><span>排序方式</span><select value={sortBy} onChange={(event) => setSortBy(event.target.value as SortKey)}><option value="newest">最新備查</option><option value="priceLow">單價低到高</option><option value="priceHigh">單價高到低</option><option value="households">戶數多到少</option><option value="quality">品質查核結果</option></select></label>
             <button type="button" className={`price-toggle ${priceOnly ? "active" : ""}`} onClick={() => setPriceOnly((value) => !value)}><span>{priceOnly ? "✓" : ""}</span>只看有成交資料</button>
             {hasFilters && <button type="button" className="panel-clear" onClick={clearFilters}>清除全部條件</button>}
           </section>}
@@ -451,16 +485,17 @@ export default function Home() {
         </section>
       ) : (
         <section className="list-workspace">
-          <div className="list-heading"><div><p>PROJECT LIST</p><h1>建案列表</h1></div><span>共 {filtered.length} 案 · {pricedCount} 案有成交資料</span></div>
+          <div className="list-heading"><div><p>{sortBy === "quality" ? "QUALITY REVIEW" : "PROJECT LIST"}</p><h1>{sortBy === "quality" ? "品質查核" : "建案列表"}</h1></div><span>共 {filtered.length} 案 · {pricedCount} 案有成交資料</span></div>
+          {sortBy === "quality" && <section className="quality-overview"><div><span>完成查核</span><strong>{qualityData.summary.reviewedCount}</strong><small>／{qualityData.summary.projectCount} 案</small></div><div><span>有官方結果</span><strong>{qualityResultCount}</strong><small>案</small></div><div className={qualityAttentionCount ? "attention" : ""}><span>需注意</span><strong>{qualityAttentionCount}</strong><small>案</small></div><p>排序會先顯示需注意的契約查核，再顯示其他官方結果。沒有事件不代表沒有漏水或施工問題。</p></section>}
           {filtered.length === 0 ? (
             <div className="list-empty"><strong>沒有符合的建案</strong><button type="button" onClick={clearFilters}>清除全部條件</button></div>
           ) : (
             <div className="project-grid">
               {filtered.map((project) => (
                 <article className="project-grid-card" key={project.id}>
-                  <button type="button" className="grid-card-main" onClick={() => selectProject(project, true)}>
+                  <button type="button" className="grid-card-main" onClick={() => { selectProject(project, true); if (sortBy === "quality") setDetailTab("quality"); }}>
                     <div className="project-placeholder"><span>{project.region}</span><strong>{project.price ? `${project.price.median}` : project.priceEvidence.status === "official-no-match" ? "尚無" : "待補"}</strong><small>{project.price ? "萬／坪" : "官方成交"}</small></div>
-                    <div className="grid-card-copy"><div><span>{project.city} · {project.district}</span><i>{project.quality.status === "reviewed" ? "品質已查核" : "品質待查核"}</i></div><h2>{project.name}</h2><p>{project.builder}</p><dl><div><dt>戶數</dt><dd>{project.households} 戶</dd></div><div><dt>備查</dt><dd>{formatDate(project.declaredDate)}</dd></div><div><dt>機能</dt><dd>{amenityScoreText(project)}</dd></div></dl></div>
+                    <div className="grid-card-copy"><div><span>{project.city} · {project.district}</span><i className={hasQualityAttention(project) ? "attention" : project.quality.events.length ? "has-result" : "reviewed"}>{qualityBadgeText(project)}</i></div><h2>{project.name}</h2><p>{project.builder}</p><dl><div><dt>戶數</dt><dd>{project.households} 戶</dd></div><div><dt>備查</dt><dd>{formatDate(project.declaredDate)}</dd></div><div><dt>機能</dt><dd>{amenityScoreText(project)}</dd></div></dl></div>
                   </button>
                   <button type="button" className={`grid-compare ${compareIds.includes(project.id) ? "checked" : ""}`} onClick={() => toggleCompare(project.id)}>{compareIds.includes(project.id) ? "✓ 已加入比較" : "＋ 加入比較"}</button>
                 </article>
@@ -501,7 +536,7 @@ export default function Home() {
                     <div className="quality-events">
                       {active.quality.events.map((event) => (
                         <article key={event.id}>
-                          <header><span>{event.category}</span><b>{event.outcome}</b><i>證據 {event.level}</i></header>
+                          <header><span>{event.category}</span><b className={event.outcome === "符合" ? "pass" : "attention"}>{event.outcome}</b><i>證據 {event.level}</i></header>
                           <h5>{event.title}</h5>
                           <p>{event.summary}</p>
                           <aside><strong>判讀限制</strong>{event.limitation}</aside>
@@ -546,9 +581,9 @@ export default function Home() {
 
       {compareIds.length > 0 && <div className="compare-bar"><div>{compareProjects.map((project) => <button type="button" key={project.id} onClick={() => toggleCompare(project.id)}>{project.name}<span>×</span></button>)}</div><small>{compareIds.length}／3</small><button type="button" onClick={() => setCompareOpen(true)}>比較建案</button>{notice && <em>{notice}</em>}</div>}
 
-      {compareOpen && <div className="modal-layer" role="presentation" onMouseDown={() => setCompareOpen(false)}><section className="compare-modal" role="dialog" aria-modal="true" onMouseDown={(event) => event.stopPropagation()}><button className="modal-close" type="button" onClick={() => setCompareOpen(false)}>×</button><h2>建案比較</h2>{compareProjects.length < 2 && <p>再選一個建案，就能看出差異。</p>}<div className="table-scroll"><table><thead><tr><th>項目</th>{compareProjects.map((p) => <th key={p.id}>{p.name}<small>{p.region}</small></th>)}</tr></thead><tbody><tr><th>建案狀態</th>{compareProjects.map((p) => <td key={p.id}>{projectStageText(p)}</td>)}</tr><tr><th>中位單價</th>{compareProjects.map((p) => <td key={p.id}>{priceText(p)}</td>)}</tr><tr><th>成交樣本</th>{compareProjects.map((p) => <td key={p.id}>{p.price ? `${p.price.count} 筆` : "待補"}</td>)}</tr><tr><th>申報戶數</th>{compareProjects.map((p) => <td key={p.id}>{p.households} 戶</td>)}</tr><tr><th>備查日期</th>{compareProjects.map((p) => <td key={p.id}>{formatDate(p.declaredDate)}</td>)}</tr><tr><th>品質</th>{compareProjects.map((p) => <td key={p.id}>{p.quality.statusLabel}<small>{p.quality.publishedEventCount} 件通過門檻</small></td>)}</tr><tr><th>生活機能</th>{compareProjects.map((p) => <td key={p.id}><strong>{amenityScoreText(p)}</strong><small>{p.amenity.grade ?? "需先完成定位"}</small></td>)}</tr></tbody></table></div></section></div>}
+      {compareOpen && <div className="modal-layer" role="presentation" onMouseDown={() => setCompareOpen(false)}><section className="compare-modal" role="dialog" aria-modal="true" onMouseDown={(event) => event.stopPropagation()}><button className="modal-close" type="button" onClick={() => setCompareOpen(false)}>×</button><h2>建案比較</h2>{compareProjects.length < 2 && <p>再選一個建案，就能看出差異。</p>}<div className="table-scroll"><table><thead><tr><th>項目</th>{compareProjects.map((p) => <th key={p.id}>{p.name}<small>{p.region}</small></th>)}</tr></thead><tbody><tr><th>建案狀態</th>{compareProjects.map((p) => <td key={p.id}>{projectStageText(p)}</td>)}</tr><tr><th>中位單價</th>{compareProjects.map((p) => <td key={p.id}>{priceText(p)}</td>)}</tr><tr><th>成交樣本</th>{compareProjects.map((p) => <td key={p.id}>{p.price ? `${p.price.count} 筆` : "待補"}</td>)}</tr><tr><th>申報戶數</th>{compareProjects.map((p) => <td key={p.id}>{p.households} 戶</td>)}</tr><tr><th>備查日期</th>{compareProjects.map((p) => <td key={p.id}>{formatDate(p.declaredDate)}</td>)}</tr><tr><th>品質</th>{compareProjects.map((p) => <td key={p.id}>{qualityBadgeText(p)}<small>{p.quality.publishedEventCount ? `${p.quality.publishedEventCount} 件官方結果` : "未找到可刊登事件"}</small></td>)}</tr><tr><th>生活機能</th>{compareProjects.map((p) => <td key={p.id}><strong>{amenityScoreText(p)}</strong><small>{p.amenity.grade ?? "需先完成定位"}</small></td>)}</tr></tbody></table></div></section></div>}
 
-      {methodOpen && <div className="modal-layer" role="presentation" onMouseDown={() => setMethodOpen(false)}><section className="method-modal" role="dialog" aria-modal="true" onMouseDown={(event) => event.stopPropagation()}><button className="modal-close" type="button" onClick={() => setMethodOpen(false)}>×</button><h2>資料怎麼看？</h2><div><article><span>官方</span><strong>建案基本身分</strong><p>起造人、戶數、基地、建照與申報日期。</p></article><article><span className="coral">成交</span><strong>歷史季度＋本期實價樣本</strong><p>顯示筆數、區間與中位數；排除解約並去除重複，不代表目前開價。</p></article><article><span>機能</span><strong>六類設施距離評分</strong><p>使用 OpenStreetMap 直線距離；不是導航，也不代表實際步行品質。</p></article><article><span className="gray">品質</span><strong>證據達門檻才刊登</strong><p>A 級可核對文件或 B 級多來源互證；單一匿名說法不下結論。</p></article><article><span>維護</span><strong>安全更新已啟用</strong><p>更新於 {formatDate(updateReport.generatedAt)}。新案會自動加入；既有案不自動刪除，歧義資料不覆蓋。目前另保留 {updateReport.summary.historicalBacklogCount} 案歷史候選。</p></article></div><footer>{dataset.sources.map((source) => <a href={source.url} target="_blank" rel="noreferrer" key={source.url}>{source.name} ↗</a>)}<a href={amenityData.source.url} target="_blank" rel="noreferrer">OpenStreetMap ↗</a><a href="https://www.judicial.gov.tw/tw/cp-1729-81602-b94da-1.html" target="_blank" rel="noreferrer">司法院裁判查詢 ↗</a></footer></section></div>}
+      {methodOpen && <div className="modal-layer" role="presentation" onMouseDown={() => setMethodOpen(false)}><section className="method-modal" role="dialog" aria-modal="true" onMouseDown={(event) => event.stopPropagation()}><button className="modal-close" type="button" onClick={() => setMethodOpen(false)}>×</button><h2>資料怎麼看？</h2><div><article><span>官方</span><strong>建案基本身分</strong><p>起造人、戶數、基地、建照與申報日期。</p></article><article><span className="coral">成交</span><strong>歷史季度＋本期實價樣本</strong><p>顯示筆數、區間與中位數；排除解約並去除重複，不代表目前開價。</p></article><article><span>機能</span><strong>六類設施距離評分</strong><p>使用 OpenStreetMap 直線距離；不是導航，也不代表實際步行品質。</p></article><article><span className="gray">品質</span><strong>42 案完成首輪官方查核</strong><p>只有可核對文件或多來源互證才刊登；沒有事件不代表沒有漏水或施工問題。</p></article><article><span>維護</span><strong>安全更新已啟用</strong><p>更新於 {formatDate(updateReport.generatedAt)}。新案會自動加入；既有案不自動刪除，歧義資料不覆蓋。目前另保留 {updateReport.summary.historicalBacklogCount} 案歷史候選。</p></article></div><footer>{dataset.sources.map((source) => <a href={source.url} target="_blank" rel="noreferrer" key={source.url}>{source.name} ↗</a>)}<a href={amenityData.source.url} target="_blank" rel="noreferrer">OpenStreetMap ↗</a><a href="https://www.judicial.gov.tw/tw/cp-1729-81602-b94da-1.html" target="_blank" rel="noreferrer">司法院裁判查詢 ↗</a></footer></section></div>}
     </main>
   );
 }

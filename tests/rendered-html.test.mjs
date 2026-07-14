@@ -53,28 +53,27 @@ test("processed amenity data is scored and source-labelled", async () => {
   assert.equal(Object.values(dataset.projects).filter((project) => project.location.method === "nlsc-official-intersection").length, 16);
 });
 
-test("quality evidence records the first ten official-source reviews without overclaiming", async () => {
+test("quality evidence records all current official-source reviews without overclaiming", async () => {
   const raw = await readFile(new URL("../data/processed/quality-evidence.json", import.meta.url), "utf8");
   const dataset = JSON.parse(raw);
   const projects = Object.values(dataset.projects);
-  const reviewedIds = [
-    "林口-10-0d70e1", "林口-09-69e9f6", "林口-16-187dad", "林口-19-25afb7", "林口-20-1aa799",
-    "a7-01-cd4424", "a7-12-ae84ab", "a7-08-0362a4", "a7-18-78daaa", "a7-10-e86850",
-  ];
   const events = projects.flatMap((project) => project.events);
 
   assert.equal(projects.length, 42);
-  assert.equal(dataset.summary.queuedCount, 32);
-  assert.equal(dataset.summary.reviewedCount, 10);
-  assert.equal(dataset.summary.publishedEventCount, 4);
+  assert.equal(dataset.summary.queuedCount, 0);
+  assert.equal(dataset.summary.reviewedCount, 42);
+  assert.equal(dataset.summary.publishedEventCount, 7);
   assert.equal(dataset.summary.verifiedLocationCount, 17);
   assert.equal(dataset.summary.approximateLocationCount, 14);
   assert.equal(dataset.summary.awaitingParcelCount, 11);
-  assert.deepEqual(Object.entries(dataset.projects).filter(([, project]) => project.status === "reviewed").map(([id]) => id).sort(), reviewedIds.sort());
-  assert.equal(events.length, 4);
+  assert.ok(projects.every((project) => project.status === "reviewed"));
+  assert.equal(events.length, 7);
   assert.ok(events.every((event) => event.level === "A"));
   assert.ok(events.every((event) => event.category === "契約查核"));
-  assert.ok(events.every((event) => event.limitation.includes("不能判定實際施工品質") && event.limitation.includes("不能證明沒有漏水")));
+  assert.equal(events.filter((event) => event.outcome === "符合").length, 6);
+  assert.equal(events.filter((event) => event.outcome === "部分不符合").length, 1);
+  assert.ok(events.every((event) => /施工|漏水/.test(event.limitation)));
+  assert.match(dataset.projects["a7-06-08ce9d"].events[0].summary, /房地面積誤差及其價款找補/);
   assert.equal(dataset.projects["a7-12-ae84ab"].events.length, 0);
   assert.match(dataset.projects["a7-12-ae84ab"].sourceChecks.find((check) => check.sourceId === "judicial").note, /不是漏水或施工瑕疵/);
   assert.equal(dataset.projects["a7-10-e86850"].sourceChecks.find((check) => check.sourceId === "judicial").status, "ambiguous-query");
@@ -96,7 +95,6 @@ test("processed data has the intended scope and explicit unknown states", async 
   assert.equal(dataset.priceCoverage.historyFrom, "112S1");
   assert.ok(dataset.projects.filter((project) => project.price).every((project) => project.price.count > 0));
   assert.ok(dataset.projects.filter((project) => project.region === "A7" && project.price).every((project) => project.price.source.includes("歷史季度＋本期")));
-  assert.ok(dataset.projects.every((project) => project.qualityStatus === "尚未查核"));
   assert.ok(dataset.projects.every((project) => project.registryNumber));
   assert.equal(new Set(dataset.projects.map((project) => project.sourceKey)).size, dataset.projects.length);
 });

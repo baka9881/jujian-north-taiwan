@@ -53,18 +53,18 @@
   ],
   "summary": {
     "projectCount": 42,
-    "publishedEventCount": 4,
-    "queuedCount": 32,
-    "reviewedCount": 10,
+    "publishedEventCount": 7,
+    "queuedCount": 0,
+    "reviewedCount": 42,
     "verifiedLocationCount": 17,
     "approximateLocationCount": 14,
     "awaitingParcelCount": 11
   },
   "projects": {
     "林口-01-097315": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -76,21 +76,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "富浤一響"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -108,9 +119,9 @@
       "events": []
     },
     "林口-02-d292ac": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -122,21 +133,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "立陽頤興"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -154,9 +176,9 @@
       "events": []
     },
     "林口-03-217128": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -168,21 +190,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "立軒天蒔"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -200,9 +233,9 @@
       "events": []
     },
     "林口-04-65c21d": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -214,21 +247,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "易捷聿白"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -246,9 +290,9 @@
       "events": []
     },
     "林口-05-6701e3": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -260,21 +304,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "仁愛金鑽"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -292,9 +347,9 @@
       "events": []
     },
     "林口-06-d0c30b": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -306,21 +361,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "大新青慕"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -338,9 +404,9 @@
       "events": []
     },
     "林口-07-636c51": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -352,21 +418,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "證源富承"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -384,9 +461,9 @@
       "events": []
     },
     "林口-08-021d6c": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -398,21 +475,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "盛德誠"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -431,7 +519,7 @@
     },
     "林口-09-69e9f6": {
       "status": "reviewed",
-      "statusLabel": "首輪官方來源查核完成",
+      "statusLabel": "官方來源首輪查核完成",
       "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
@@ -488,7 +576,7 @@
     },
     "林口-10-0d70e1": {
       "status": "reviewed",
-      "statusLabel": "首輪官方來源查核完成",
+      "statusLabel": "官方來源首輪查核完成",
       "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 1,
       "evidenceCount": 1,
@@ -563,9 +651,9 @@
       ]
     },
     "林口-11-c4a9a4": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -577,21 +665,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "家睦中山"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -609,9 +708,9 @@
       "events": []
     },
     "林口-12-838c61": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -623,21 +722,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "宏樸曉霧"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -655,9 +765,9 @@
       "events": []
     },
     "林口-13-8bd55c": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -669,21 +779,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "頤昌松玥"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -701,11 +822,11 @@
       "events": []
     },
     "林口-14-4070bd": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
-      "publishedEventCount": 0,
-      "evidenceCount": 0,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
+      "publishedEventCount": 1,
+      "evidenceCount": 1,
       "searchTerms": [
         "九揚華樂",
         "九揚開發股份有限公司",
@@ -715,21 +836,33 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "九揚華樂"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 1,
+          "query": "九揚華樂",
+          "resultLabel": "找到官方查核結果",
+          "note": "新北市 114 年 1 至 6 月預售屋買賣定型化契約查核明細列有本案，表列項目均為符合。",
+          "url": "https://www-ws.land.ntpc.gov.tw/Download.ashx?icon=.pdf&n=5paw5YyX5biCMTE05LiK5Y2K5bm06aCQ5ZSu5bGL6LK36LOj5a6a5Z6L5YyW5aWR57SE5p%2Bl5qC457WQ5p6cLnBkZg%3D%3D&u=LzAwMS9VcGxvYWQvMzk5L3JlbGZpbGUvMC8xMzk0My9jNzA0MTM3Mi1hZGExLTRiNzItOTc5NC0xMzg0MGM2YmRmOGEucGRm"
         }
       ],
       "locationReview": {
@@ -744,12 +877,30 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046609550000"
         }
       },
-      "events": []
+      "events": [
+        {
+          "id": "ntpc-contract-2025-h1-jiuyang-huayue",
+          "title": "預售屋定型化契約查核表列全項符合",
+          "level": "A",
+          "category": "契約查核",
+          "outcome": "符合",
+          "publishedAt": "2026-07-14",
+          "sourceDate": "2025-07-03",
+          "summary": "新北市 114 年 1 至 6 月查核明細列有「九揚華樂」，表列契約項目均勾選符合。",
+          "limitation": "這只代表該次預售屋定型化契約查核結果，不能判定實際施工品質，也不能證明沒有漏水。",
+          "sources": [
+            {
+              "name": "新北市 114 年 1 至 6 月預售屋契約查核結果",
+              "url": "https://www-ws.land.ntpc.gov.tw/Download.ashx?icon=.pdf&n=5paw5YyX5biCMTE05LiK5Y2K5bm06aCQ5ZSu5bGL6LK36LOj5a6a5Z6L5YyW5aWR57SE5p%2Bl5qC457WQ5p6cLnBkZg%3D%3D&u=LzAwMS9VcGxvYWQvMzk5L3JlbGZpbGUvMC8xMzk0My9jNzA0MTM3Mi1hZGExLTRiNzItOTc5NC0xMzg0MGM2YmRmOGEucGRm"
+            }
+          ]
+        }
+      ]
     },
     "林口-15-d3eece": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -761,21 +912,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "源峰上境"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -794,7 +956,7 @@
     },
     "林口-16-187dad": {
       "status": "reviewed",
-      "statusLabel": "首輪官方來源查核完成",
+      "statusLabel": "官方來源首輪查核完成",
       "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 1,
       "evidenceCount": 1,
@@ -869,9 +1031,9 @@
       ]
     },
     "林口-17-2b7cd2": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -883,21 +1045,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "群和FUTURE LINK"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -915,9 +1088,9 @@
       "events": []
     },
     "林口-18-553cd8": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -929,21 +1102,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "聯虹珺玥"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -962,7 +1146,7 @@
     },
     "林口-19-25afb7": {
       "status": "reviewed",
-      "statusLabel": "首輪官方來源查核完成",
+      "statusLabel": "官方來源首輪查核完成",
       "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
@@ -1019,7 +1203,7 @@
     },
     "林口-20-1aa799": {
       "status": "reviewed",
-      "statusLabel": "首輪官方來源查核完成",
+      "statusLabel": "官方來源首輪查核完成",
       "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 1,
       "evidenceCount": 1,
@@ -1095,7 +1279,7 @@
     },
     "a7-01-cd4424": {
       "status": "reviewed",
-      "statusLabel": "首輪官方來源查核完成",
+      "statusLabel": "官方來源首輪查核完成",
       "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
@@ -1151,9 +1335,9 @@
       "events": []
     },
     "a7-02-234762": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -1165,21 +1349,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "鴻廣麴町"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -1197,9 +1392,9 @@
       "events": []
     },
     "a7-03-7b25a4": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -1211,21 +1406,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "詠勝欣文青"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -1243,9 +1449,9 @@
       "events": []
     },
     "a7-04-acfee0": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -1257,21 +1463,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "樂捷綻"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -1289,9 +1506,9 @@
       "events": []
     },
     "a7-05-4a513b": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -1303,21 +1520,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "英倫花都"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -1335,11 +1563,11 @@
       "events": []
     },
     "a7-06-08ce9d": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
-      "publishedEventCount": 0,
-      "evidenceCount": 0,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
+      "publishedEventCount": 1,
+      "evidenceCount": 1,
       "searchTerms": [
         "VILLA WOOD睦粼",
         "大亮建築股份有限公司 代理人：楊金和",
@@ -1349,21 +1577,33 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "VILLA WOOD睦粼"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 1,
+          "query": "VILLA WOOD睦粼",
+          "resultLabel": "找到 1 項不符合",
+          "note": "行政院消保處 114 年第 2 次查核附表列有本案，房地面積誤差及其價款找補項目標示不合格。",
+          "url": "https://cpc.ey.gov.tw/File/DBD789474F54F02?A=C"
         }
       ],
       "locationReview": {
@@ -1378,12 +1618,34 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144201500000"
         }
       },
-      "events": []
+      "events": [
+        {
+          "id": "cpc-contract-2025-h2-villa-wood",
+          "title": "預售屋契約查核有 1 項不符合",
+          "level": "A",
+          "category": "契約查核",
+          "outcome": "部分不符合",
+          "publishedAt": "2026-07-14",
+          "sourceDate": "2025-12-31",
+          "summary": "行政院消保處 114 年第 2 次查核附表列有「VILLA WOOD睦粼」，「房地面積誤差及其價款找補」項目標示不合格。",
+          "limitation": "這是契約條款的查核結果，不等於房屋已發生面積短少、施工瑕疵或漏水；簽約前仍應逐條核對最新版契約。",
+          "sources": [
+            {
+              "name": "行政院消保處 114 年第 2 次預售屋契約查核附表 1",
+              "url": "https://cpc.ey.gov.tw/File/DBD789474F54F02?A=C"
+            },
+            {
+              "name": "桃園市 114 年 7 至 12 月契約違規查核結果",
+              "url": "https://ws.tycg.gov.tw/Download.ashx?icon=.pdf&n=MTE05bm0N%2BaciOiHszEy5pyI6aCQ5ZSu5bGL5a6a5Z6L5YyW5aWR57SE6YGV6KaP5oOF5b2i5p%2Bl5qC457WQ5p6c5b2Z5pW06KGoLnBkZg%3D%3D&u=LzAwMS9VcGxvYWQvNjIvcmVsZmlsZS8xODkxNS8xNjAxMDE1LzgxMzdhOGU2LTg3OGYtNDNiNC04YWY4LTEwMjVmYzllMzZlMy5wZGY%3D"
+            }
+          ]
+        }
+      ]
     },
     "a7-07-cd952c": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -1395,21 +1657,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "竹城豐州"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -1428,7 +1701,7 @@
     },
     "a7-08-0362a4": {
       "status": "reviewed",
-      "statusLabel": "首輪官方來源查核完成",
+      "statusLabel": "官方來源首輪查核完成",
       "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 1,
       "evidenceCount": 1,
@@ -1507,11 +1780,11 @@
       ]
     },
     "a7-09-9e9aa8": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
-      "publishedEventCount": 0,
-      "evidenceCount": 0,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
+      "publishedEventCount": 1,
+      "evidenceCount": 1,
       "searchTerms": [
         "大華開朗",
         "寶國建築經理股份有限公司",
@@ -1521,21 +1794,33 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-unrelated",
+          "checkedAt": "2026-07-14",
+          "matchCount": 1,
+          "resultLabel": "1 筆非品質爭議",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "同名結果是廣告看板租賃相關勞動爭議中的證述，不是本案漏水或施工瑕疵爭議，故不刊登為品質事件。",
+          "query": "大華開朗"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 1,
+          "query": "大華開朗",
+          "resultLabel": "找到官方查核結果",
+          "note": "行政院消保處 113 年第 2 次預售屋定型化契約查核附表列有本案，表列 15 項均未標示不合格。",
+          "url": "https://cpc.ey.gov.tw/File/5E4190B14E1978FA?A=C"
         }
       ],
       "locationReview": {
@@ -1550,11 +1835,29 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144101240000"
         }
       },
-      "events": []
+      "events": [
+        {
+          "id": "cpc-contract-2024-h2-delpha-open",
+          "title": "預售屋契約 15 項查核未標示不合格",
+          "level": "A",
+          "category": "契約查核",
+          "outcome": "符合",
+          "publishedAt": "2026-07-14",
+          "sourceDate": "2024-12-31",
+          "summary": "行政院消保處 113 年第 2 次查核附表列有「大華開朗」，15 項均未標示不合格；附表註明空白代表合格。",
+          "limitation": "這只代表該次預售屋定型化契約查核結果，不能判定實際施工品質，也不能證明沒有漏水。",
+          "sources": [
+            {
+              "name": "行政院消保處 113 年第 2 次預售屋契約查核附表",
+              "url": "https://cpc.ey.gov.tw/File/5E4190B14E1978FA?A=C"
+            }
+          ]
+        }
+      ]
     },
     "a7-10-e86850": {
       "status": "reviewed",
-      "statusLabel": "首輪官方來源查核完成",
+      "statusLabel": "官方來源首輪查核完成",
       "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
@@ -1610,9 +1913,9 @@
       "events": []
     },
     "a7-11-7cbc96": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -1624,21 +1927,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "頤昌筑岳"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -1657,7 +1971,7 @@
     },
     "a7-12-ae84ab": {
       "status": "reviewed",
-      "statusLabel": "首輪官方來源查核完成",
+      "statusLabel": "官方來源首輪查核完成",
       "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
@@ -1713,9 +2027,9 @@
       "events": []
     },
     "a7-13-437eb6": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -1727,21 +2041,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "豐邑GREEN IN"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -1759,9 +2084,9 @@
       "events": []
     },
     "a7-14-0959e3": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -1773,21 +2098,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "鴻築玥"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -1805,9 +2141,9 @@
       "events": []
     },
     "a7-15-979ff3": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -1819,21 +2155,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "富宇天玥"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -1851,9 +2198,9 @@
       "events": []
     },
     "a7-16-694770": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -1865,21 +2212,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "允將大聚"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -1897,9 +2255,9 @@
       "events": []
     },
     "a7-17-803131": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -1911,21 +2269,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "大華昇耕"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -1944,7 +2313,7 @@
     },
     "a7-18-78daaa": {
       "status": "reviewed",
-      "statusLabel": "首輪官方來源查核完成",
+      "statusLabel": "官方來源首輪查核完成",
       "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
@@ -2000,9 +2369,9 @@
       "events": []
     },
     "a7-19-f52012": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -2014,21 +2383,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "竹城中州"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -2046,9 +2426,9 @@
       "events": []
     },
     "a7-20-e374fc": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -2060,21 +2440,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-unrelated",
+          "checkedAt": "2026-07-14",
+          "matchCount": 3,
+          "resultLabel": "3 筆皆非品質爭議",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "3 筆同名裁判均為工地電線竊盜案件，不是住戶漏水、施工瑕疵或建商履約爭議，故不刊登為品質事件。",
+          "query": "和境心見"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -2092,9 +2483,9 @@
       "events": []
     },
     "linkou-d3c468867c": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -2106,21 +2497,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "立軒慕玥"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {
@@ -2138,9 +2540,9 @@
       "events": []
     },
     "linkou-72c6eb54e3": {
-      "status": "queued",
-      "statusLabel": "已排入官方來源查核",
-      "lastReviewedAt": null,
+      "status": "reviewed",
+      "statusLabel": "官方來源首輪查核完成",
+      "lastReviewedAt": "2026-07-14",
       "publishedEventCount": 0,
       "evidenceCount": 0,
       "searchTerms": [
@@ -2152,21 +2554,32 @@
       "sourceChecks": [
         {
           "sourceId": "judicial",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。",
+          "query": "擎天賦域．恆匯經貿中心"
         },
         {
           "sourceId": "consumer-disputes",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "not-identifiable",
+          "checkedAt": "2026-07-14",
+          "matchCount": null,
+          "query": "建案全名",
+          "resultLabel": "資料無建案欄位",
+          "url": "https://data.gov.tw/dataset/7506",
+          "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
         },
         {
           "sourceId": "contract-inspection",
-          "status": "not-reviewed",
-          "checkedAt": null,
-          "matchCount": null
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "建案全名",
+          "resultLabel": "本輪未找到同名結果",
+          "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
         }
       ],
       "locationReview": {

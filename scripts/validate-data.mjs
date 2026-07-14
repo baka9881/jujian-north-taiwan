@@ -23,7 +23,9 @@ fail(JSON.stringify(Object.keys(quality.projects).sort()) === JSON.stringify(exp
 fail(report.summary.catalogueAfter === projects.projects.length, "更新報告的建案數不同步");
 fail(projects.priceCoverage.totalProjects === projects.projects.length, "價格涵蓋率的建案數不同步");
 fail(Object.keys(qualityAudits.projects).every((id) => ids.includes(id)), "人工品質查核包含不存在的建案 ID");
-fail(quality.summary.reviewedCount === Object.keys(qualityAudits.projects).length, "品質查核完成數與人工查核資料不同步");
+fail((qualityAudits.reviewedProjectIds || []).every((id) => ids.includes(id)), "品質查核範圍包含不存在的建案 ID");
+const expectedReviewedCount = qualityAudits.reviewedProjectIds?.length ?? Object.keys(qualityAudits.projects).length;
+fail(quality.summary.reviewedCount === expectedReviewedCount, "品質查核完成數與人工查核資料不同步");
 
 for (const project of projects.projects) {
   fail(Boolean(project.priceEvidence?.status), `${project.name} 缺少價格查核狀態`);

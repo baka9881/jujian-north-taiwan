@@ -1,12 +1,64 @@
 {
   "version": 1,
   "reviewedAt": "2026-07-14",
-  "selectionPolicy": "林口與 A7 各選 5 個已有成交資料且申報戶數最多的建案，優先完成首輪官方來源查核。",
+  "selectionPolicy": "完成目前資料庫全部 42 案的首輪官方來源查核；逐案以建案全名核對裁判書，再檢視中央與地方政府公開的預售屋定型化契約查核明細。",
+  "reviewedProjectIds": [
+    "林口-01-097315",
+    "林口-02-d292ac",
+    "林口-03-217128",
+    "林口-04-65c21d",
+    "林口-05-6701e3",
+    "林口-06-d0c30b",
+    "林口-07-636c51",
+    "林口-08-021d6c",
+    "林口-09-69e9f6",
+    "林口-10-0d70e1",
+    "林口-11-c4a9a4",
+    "林口-12-838c61",
+    "林口-13-8bd55c",
+    "林口-14-4070bd",
+    "林口-15-d3eece",
+    "林口-16-187dad",
+    "林口-17-2b7cd2",
+    "林口-18-553cd8",
+    "林口-19-25afb7",
+    "林口-20-1aa799",
+    "a7-01-cd4424",
+    "a7-02-234762",
+    "a7-03-7b25a4",
+    "a7-04-acfee0",
+    "a7-05-4a513b",
+    "a7-06-08ce9d",
+    "a7-07-cd952c",
+    "a7-08-0362a4",
+    "a7-09-9e9aa8",
+    "a7-10-e86850",
+    "a7-11-7cbc96",
+    "a7-12-ae84ab",
+    "a7-13-437eb6",
+    "a7-14-0959e3",
+    "a7-15-979ff3",
+    "a7-16-694770",
+    "a7-17-803131",
+    "a7-18-78daaa",
+    "a7-19-f52012",
+    "a7-20-e374fc",
+    "linkou-d3c468867c",
+    "linkou-72c6eb54e3"
+  ],
   "defaults": {
     "status": "reviewed",
-    "statusLabel": "首輪官方來源查核完成",
+    "statusLabel": "官方來源首輪查核完成",
     "lastReviewedAt": "2026-07-14",
     "sourceChecks": {
+      "judicial": {
+        "status": "reviewed-no-match",
+        "checkedAt": "2026-07-14",
+        "matchCount": 0,
+        "resultLabel": "全名查無裁判",
+        "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+        "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。"
+      },
       "consumer-disputes": {
         "status": "not-identifiable",
         "checkedAt": "2026-07-14",
@@ -270,6 +322,128 @@
           "resultLabel": "名稱歧義，未歸戶",
           "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
           "note": "「溫莎堡」是常見名稱，結果量大且多數無法確認為本建案，為避免誤判，本輪不將任何結果歸戶。"
+        }
+      }
+    },
+    "林口-14-4070bd": {
+      "sourceChecks": {
+        "contract-inspection": {
+          "status": "reviewed-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 1,
+          "query": "九揚華樂",
+          "resultLabel": "找到官方查核結果",
+          "url": "https://www-ws.land.ntpc.gov.tw/Download.ashx?icon=.pdf&n=5paw5YyX5biCMTE05LiK5Y2K5bm06aCQ5ZSu5bGL6LK36LOj5a6a5Z6L5YyW5aWR57SE5p%2Bl5qC457WQ5p6cLnBkZg%3D%3D&u=LzAwMS9VcGxvYWQvMzk5L3JlbGZpbGUvMC8xMzk0My9jNzA0MTM3Mi1hZGExLTRiNzItOTc5NC0xMzg0MGM2YmRmOGEucGRm",
+          "note": "新北市 114 年 1 至 6 月預售屋買賣定型化契約查核明細列有本案，表列項目均為符合。"
+        }
+      },
+      "events": [
+        {
+          "id": "ntpc-contract-2025-h1-jiuyang-huayue",
+          "title": "預售屋定型化契約查核表列全項符合",
+          "level": "A",
+          "category": "契約查核",
+          "outcome": "符合",
+          "publishedAt": "2026-07-14",
+          "sourceDate": "2025-07-03",
+          "summary": "新北市 114 年 1 至 6 月查核明細列有「九揚華樂」，表列契約項目均勾選符合。",
+          "limitation": "這只代表該次預售屋定型化契約查核結果，不能判定實際施工品質，也不能證明沒有漏水。",
+          "sources": [
+            {
+              "name": "新北市 114 年 1 至 6 月預售屋契約查核結果",
+              "url": "https://www-ws.land.ntpc.gov.tw/Download.ashx?icon=.pdf&n=5paw5YyX5biCMTE05LiK5Y2K5bm06aCQ5ZSu5bGL6LK36LOj5a6a5Z6L5YyW5aWR57SE5p%2Bl5qC457WQ5p6cLnBkZg%3D%3D&u=LzAwMS9VcGxvYWQvMzk5L3JlbGZpbGUvMC8xMzk0My9jNzA0MTM3Mi1hZGExLTRiNzItOTc5NC0xMzg0MGM2YmRmOGEucGRm"
+            }
+          ]
+        }
+      ]
+    },
+    "a7-09-9e9aa8": {
+      "sourceChecks": {
+        "judicial": {
+          "status": "reviewed-unrelated",
+          "checkedAt": "2026-07-14",
+          "matchCount": 1,
+          "query": "大華開朗",
+          "resultLabel": "1 筆非品質爭議",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "同名結果是廣告看板租賃相關勞動爭議中的證述，不是本案漏水或施工瑕疵爭議，故不刊登為品質事件。"
+        },
+        "contract-inspection": {
+          "status": "reviewed-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 1,
+          "query": "大華開朗",
+          "resultLabel": "找到官方查核結果",
+          "url": "https://cpc.ey.gov.tw/File/5E4190B14E1978FA?A=C",
+          "note": "行政院消保處 113 年第 2 次預售屋定型化契約查核附表列有本案，表列 15 項均未標示不合格。"
+        }
+      },
+      "events": [
+        {
+          "id": "cpc-contract-2024-h2-delpha-open",
+          "title": "預售屋契約 15 項查核未標示不合格",
+          "level": "A",
+          "category": "契約查核",
+          "outcome": "符合",
+          "publishedAt": "2026-07-14",
+          "sourceDate": "2024-12-31",
+          "summary": "行政院消保處 113 年第 2 次查核附表列有「大華開朗」，15 項均未標示不合格；附表註明空白代表合格。",
+          "limitation": "這只代表該次預售屋定型化契約查核結果，不能判定實際施工品質，也不能證明沒有漏水。",
+          "sources": [
+            {
+              "name": "行政院消保處 113 年第 2 次預售屋契約查核附表",
+              "url": "https://cpc.ey.gov.tw/File/5E4190B14E1978FA?A=C"
+            }
+          ]
+        }
+      ]
+    },
+    "a7-06-08ce9d": {
+      "sourceChecks": {
+        "contract-inspection": {
+          "status": "reviewed-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 1,
+          "query": "VILLA WOOD睦粼",
+          "resultLabel": "找到 1 項不符合",
+          "url": "https://cpc.ey.gov.tw/File/DBD789474F54F02?A=C",
+          "note": "行政院消保處 114 年第 2 次查核附表列有本案，房地面積誤差及其價款找補項目標示不合格。"
+        }
+      },
+      "events": [
+        {
+          "id": "cpc-contract-2025-h2-villa-wood",
+          "title": "預售屋契約查核有 1 項不符合",
+          "level": "A",
+          "category": "契約查核",
+          "outcome": "部分不符合",
+          "publishedAt": "2026-07-14",
+          "sourceDate": "2025-12-31",
+          "summary": "行政院消保處 114 年第 2 次查核附表列有「VILLA WOOD睦粼」，「房地面積誤差及其價款找補」項目標示不合格。",
+          "limitation": "這是契約條款的查核結果，不等於房屋已發生面積短少、施工瑕疵或漏水；簽約前仍應逐條核對最新版契約。",
+          "sources": [
+            {
+              "name": "行政院消保處 114 年第 2 次預售屋契約查核附表 1",
+              "url": "https://cpc.ey.gov.tw/File/DBD789474F54F02?A=C"
+            },
+            {
+              "name": "桃園市 114 年 7 至 12 月契約違規查核結果",
+              "url": "https://ws.tycg.gov.tw/Download.ashx?icon=.pdf&n=MTE05bm0N%2BaciOiHszEy5pyI6aCQ5ZSu5bGL5a6a5Z6L5YyW5aWR57SE6YGV6KaP5oOF5b2i5p%2Bl5qC457WQ5p6c5b2Z5pW06KGoLnBkZg%3D%3D&u=LzAwMS9VcGxvYWQvNjIvcmVsZmlsZS8xODkxNS8xNjAxMDE1LzgxMzdhOGU2LTg3OGYtNDNiNC04YWY4LTEwMjVmYzllMzZlMy5wZGY%3D"
+            }
+          ]
+        }
+      ]
+    },
+    "a7-20-e374fc": {
+      "sourceChecks": {
+        "judicial": {
+          "status": "reviewed-unrelated",
+          "checkedAt": "2026-07-14",
+          "matchCount": 3,
+          "query": "和境心見",
+          "resultLabel": "3 筆皆非品質爭議",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "3 筆同名裁判均為工地電線竊盜案件，不是住戶漏水、施工瑕疵或建商履約爭議，故不刊登為品質事件。"
         }
       }
     }

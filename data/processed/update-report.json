@@ -869,7 +869,7 @@
     "pricedProjects": 37,
     "totalProjects": 42,
     "verifiedOrApproximateLocations": 31,
-    "qualityQueuedCount": 32,
-    "qualityReviewedCount": 10
+    "qualityQueuedCount": 0,
+    "qualityReviewedCount": 42
   }
 }

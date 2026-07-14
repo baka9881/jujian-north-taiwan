@@ -66,7 +66,8 @@ async function main() {
   for (const project of projectDataset.projects) {
     const previous = previousDataset.projects?.[project.id] || {};
     const manualAudit = manualAudits.projects?.[project.id] || null;
-    const manualDefaults = manualAudit ? manualAudits.defaults || {} : {};
+    const isReviewedByCurrentAudit = Boolean(manualAudit || manualAudits.reviewedProjectIds?.includes(project.id));
+    const manualDefaults = isReviewedByCurrentAudit ? manualAudits.defaults || {} : {};
     const defaultChecks = [
       { sourceId: "judicial", status: "not-reviewed", checkedAt: null, matchCount: null },
       { sourceId: "consumer-disputes", status: "not-reviewed", checkedAt: null, matchCount: null },
@@ -75,7 +76,7 @@ async function main() {
     const previousChecks = new Map((previous.sourceChecks || []).map((check) => [check.sourceId, check]));
     const defaultManualChecks = manualDefaults.sourceChecks || {};
     const manualChecks = manualAudit?.sourceChecks || {};
-    const events = manualAudit?.events ?? previous.events ?? [];
+    const events = manualAudit?.events ?? (isReviewedByCurrentAudit ? [] : previous.events ?? []);
     projects[project.id] = {
       ...previous,
       ...manualDefaults,
@@ -86,12 +87,16 @@ async function main() {
       publishedEventCount: events.length,
       evidenceCount: events.length,
       searchTerms: [project.name, project.builder, project.permitNo, project.buildingLand],
-      sourceChecks: defaultChecks.map((check) => ({
-        ...check,
-        ...(previousChecks.get(check.sourceId) || {}),
-        ...(defaultManualChecks[check.sourceId] || {}),
-        ...(manualChecks[check.sourceId] || {}),
-      })),
+      sourceChecks: defaultChecks.map((check) => {
+        const merged = {
+          ...check,
+          ...(previousChecks.get(check.sourceId) || {}),
+          ...(defaultManualChecks[check.sourceId] || {}),
+          ...(manualChecks[check.sourceId] || {}),
+        };
+        if (check.sourceId === "judicial" && !merged.query) merged.query = project.name;
+        return merged;
+      }),
       locationReview: locationReview(amenityDataset.projects[project.id], project.buildingLand),
       events,
     };
@@ -134,7 +139,7 @@ async function main() {
   };
 
   await writeFile(outputPath, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
-  console.log(`完成 ${payload.summary.projectCount} 個建案的品質查核佇列`);
+  console.log(`完成 ${payload.summary.reviewedCount}／${payload.summary.projectCount} 個建案的品質查核，刊登 ${payload.summary.publishedEventCount} 筆官方結果`);
   console.log(`定位：可信 ${payload.summary.verifiedLocationCount}、道路估算 ${payload.summary.approximateLocationCount}、待地號核對 ${payload.summary.awaitingParcelCount}`);
 }
 
