@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const projectsPath = path.join(root, "data", "processed", "projects.json");
 const amenitiesPath = path.join(root, "data", "processed", "amenities.json");
+const manualAuditsPath = path.join(root, "data", "manual", "quality-audits.json");
 const outputPath = path.join(root, "data", "processed", "quality-evidence.json");
 const generatedAt = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Taipei" }).format(new Date());
 
@@ -53,6 +54,7 @@ function locationReview(amenity, buildingLand) {
 async function main() {
   const projectDataset = JSON.parse(await readFile(projectsPath, "utf8"));
   const amenityDataset = JSON.parse(await readFile(amenitiesPath, "utf8"));
+  const manualAudits = JSON.parse(await readFile(manualAuditsPath, "utf8"));
   let previousDataset = { projects: {} };
   try {
     previousDataset = JSON.parse(await readFile(outputPath, "utf8"));
@@ -63,23 +65,35 @@ async function main() {
 
   for (const project of projectDataset.projects) {
     const previous = previousDataset.projects?.[project.id] || {};
+    const manualAudit = manualAudits.projects?.[project.id] || null;
+    const manualDefaults = manualAudit ? manualAudits.defaults || {} : {};
     const defaultChecks = [
       { sourceId: "judicial", status: "not-reviewed", checkedAt: null, matchCount: null },
       { sourceId: "consumer-disputes", status: "not-reviewed", checkedAt: null, matchCount: null },
       { sourceId: "contract-inspection", status: "not-reviewed", checkedAt: null, matchCount: null },
     ];
     const previousChecks = new Map((previous.sourceChecks || []).map((check) => [check.sourceId, check]));
+    const defaultManualChecks = manualDefaults.sourceChecks || {};
+    const manualChecks = manualAudit?.sourceChecks || {};
+    const events = manualAudit?.events ?? previous.events ?? [];
     projects[project.id] = {
       ...previous,
-      status: previous.status || "queued",
-      statusLabel: previous.statusLabel || "已排入官方來源查核",
-      lastReviewedAt: previous.lastReviewedAt || null,
-      publishedEventCount: previous.publishedEventCount ?? 0,
-      evidenceCount: previous.evidenceCount ?? 0,
+      ...manualDefaults,
+      ...manualAudit,
+      status: manualAudit?.status ?? manualDefaults.status ?? previous.status ?? "queued",
+      statusLabel: manualAudit?.statusLabel ?? manualDefaults.statusLabel ?? previous.statusLabel ?? "已排入官方來源查核",
+      lastReviewedAt: manualAudit?.lastReviewedAt ?? manualDefaults.lastReviewedAt ?? previous.lastReviewedAt ?? null,
+      publishedEventCount: events.length,
+      evidenceCount: events.length,
       searchTerms: [project.name, project.builder, project.permitNo, project.buildingLand],
-      sourceChecks: defaultChecks.map((check) => ({ ...check, ...(previousChecks.get(check.sourceId) || {}) })),
+      sourceChecks: defaultChecks.map((check) => ({
+        ...check,
+        ...(previousChecks.get(check.sourceId) || {}),
+        ...(defaultManualChecks[check.sourceId] || {}),
+        ...(manualChecks[check.sourceId] || {}),
+      })),
       locationReview: locationReview(amenityDataset.projects[project.id], project.buildingLand),
-      events: previous.events || [],
+      events,
     };
   }
 
@@ -111,6 +125,7 @@ async function main() {
       projectCount: values.length,
       publishedEventCount: values.reduce((total, project) => total + project.publishedEventCount, 0),
       queuedCount: values.filter((project) => project.status === "queued").length,
+      reviewedCount: values.filter((project) => project.status === "reviewed").length,
       verifiedLocationCount: values.filter((project) => project.locationReview.status === "verified").length,
       approximateLocationCount: values.filter((project) => project.locationReview.status === "approximate").length,
       awaitingParcelCount: values.filter((project) => project.locationReview.status === "awaiting-parcel-check").length,

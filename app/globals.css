@@ -433,17 +433,40 @@ html,body { font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
 .drawer-amenities p { margin:5px 0 0; color:#617079; font-size:11px; line-height:1.45; }
 .drawer-map-note { line-height:1.6; }
 .amenity-source-link,.quality-source-link { display:block; margin-top:10px; color:#245e52; font-size:12px; font-weight:750; text-decoration:none; }
+.quality-pending.reviewed { border:1px solid #cce0d6; background:#edf7f2; }
+.quality-pending.reviewed > span { background:#d7ece2; color:#1f6653; }
+.quality-pending > small { display:block; margin-top:10px; color:#65756e; font-size:11px; }
 .quality-section-title { margin:18px 0 9px; color:#33434c; font-size:13px; }
+.quality-events { display:grid; gap:10px; }
+.quality-events > article { padding:14px; border:1px solid #c9ddd3; border-radius:7px; background:#f8fcfa; }
+.quality-events header { display:flex; align-items:center; gap:6px; }
+.quality-events header span,.quality-events header b,.quality-events header i { padding:4px 6px; border-radius:4px; font-size:10px; font-style:normal; font-weight:800; }
+.quality-events header span { background:#e2eee9; color:#315f52; }
+.quality-events header b { background:#d7f0e4; color:#176046; }
+.quality-events header i { margin-left:auto; background:#e9edf0; color:#53636c; }
+.quality-events h5 { margin:11px 0 6px; color:#20333a; font-size:15px; line-height:1.4; }
+.quality-events p { margin:0; color:#4f6068; font-size:12px; line-height:1.65; }
+.quality-events aside { margin-top:11px; padding:9px 10px; border-left:3px solid #e19a55; border-radius:0 4px 4px 0; background:#fff5e9; color:#665543; font-size:11px; line-height:1.6; }
+.quality-events aside strong { display:block; color:#8b5729; font-size:10px; }
+.quality-events footer { display:flex; align-items:flex-end; justify-content:space-between; gap:10px; margin-top:11px; }
+.quality-events footer small { color:#6c7a80; font-size:10px; }
+.quality-events footer div { display:grid; justify-items:end; gap:4px; }
+.quality-events footer a { color:#226452; font-size:11px; font-weight:750; text-align:right; text-decoration:none; }
 .quality-source-checks { display:grid; gap:7px; }
-.quality-source-checks > a { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:11px 12px; border:1px solid var(--line); border-radius:6px; color:inherit; text-decoration:none; }
+.quality-source-checks > a { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:12px; padding:11px 12px; border:1px solid var(--line); border-radius:6px; color:inherit; text-decoration:none; }
 .quality-source-checks > a:hover { border-color:#9cb5aa; background:#f7faf8; }
 .quality-source-checks strong,.quality-source-checks small { display:block; }
 .quality-source-checks strong { font-size:13px; }
-.quality-source-checks small { margin-top:3px; color:#65747c; font-size:11px; }
-.quality-source-checks > a > span { flex:none; padding:5px 7px; border-radius:4px; background:#f0edf3; color:#675c7b; font-size:10px; font-weight:800; }
+.quality-source-checks small { margin-top:4px; color:#65747c; font-size:11px; line-height:1.55; }
+.quality-source-checks > a > span { max-width:112px; padding:5px 7px; border-radius:4px; background:#f0edf3; color:#675c7b; font-size:10px; font-weight:800; line-height:1.35; text-align:center; }
+.quality-source-checks > a > span.reviewed-match { background:#dcefe5; color:#20624f; }
+.quality-source-checks > a > span.reviewed-no-match,.quality-source-checks > a > span.reviewed-unrelated { background:#e8eef0; color:#4e626b; }
+.quality-source-checks > a > span.ambiguous-query,.quality-source-checks > a > span.not-identifiable { background:#fff0df; color:#8a5725; }
 .quality-review-details { margin-top:9px; }
 .quality-review-details > div { display:flex; flex-wrap:wrap; gap:6px; margin-top:9px; }
 .quality-review-details > div > span { padding:6px 8px; border-radius:4px; background:#edf1f2; color:#4f6069; font-size:11px; }
+.quality-standard-details { margin-top:13px; }
+.quality-standard-details > summary,.quality-review-details > summary { color:#3f555f; font-size:12px; font-weight:750; cursor:pointer; }
 .quality-method-note { margin:10px 0 0; color:#5c6d75; font-size:12px; line-height:1.65; }
 .evidence-levels { display:grid; gap:8px; margin-top:10px; }
 .evidence-levels article { display:grid; grid-template-columns:34px 1fr; align-items:start; gap:10px; padding:12px; border:1px solid var(--line); border-radius:6px; }

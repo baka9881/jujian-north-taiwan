@@ -35,6 +35,7 @@ report.pipeline = {
   totalProjects: projects.projects.length,
   verifiedOrApproximateLocations: Object.values(amenities.projects).filter((project) => project.score !== null).length,
   qualityQueuedCount: quality.summary.queuedCount,
+  qualityReviewedCount: quality.summary.reviewedCount,
 };
 await writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
 console.log("\n安全更新完成；請查看 data/processed/update-report.json 的變更報告。");

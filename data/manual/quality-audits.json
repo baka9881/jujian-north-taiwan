@@ -1,0 +1,277 @@
+{
+  "version": 1,
+  "reviewedAt": "2026-07-14",
+  "selectionPolicy": "林口與 A7 各選 5 個已有成交資料且申報戶數最多的建案，優先完成首輪官方來源查核。",
+  "defaults": {
+    "status": "reviewed",
+    "statusLabel": "首輪官方來源查核完成",
+    "lastReviewedAt": "2026-07-14",
+    "sourceChecks": {
+      "consumer-disputes": {
+        "status": "not-identifiable",
+        "checkedAt": "2026-07-14",
+        "matchCount": null,
+        "query": "建案全名",
+        "resultLabel": "資料無建案欄位",
+        "url": "https://data.gov.tw/dataset/7506",
+        "note": "資料集只有糾紛原因、案情、辦理情形、來源與縣市，沒有建案或建商欄位，因此不能把案例安全歸戶到本案。"
+      },
+      "contract-inspection": {
+        "status": "reviewed-no-match",
+        "checkedAt": "2026-07-14",
+        "matchCount": 0,
+        "query": "建案全名",
+        "resultLabel": "本輪未找到同名結果",
+        "note": "已檢視本輪中央與地方政府公開的預售屋定型化契約查核明細，未找到可安全歸戶的同名結果；查核名單並非所有建案。"
+      }
+    }
+  },
+  "projects": {
+    "林口-10-0d70e1": {
+      "sourceChecks": {
+        "judicial": {
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "新潤世界都心",
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。"
+        },
+        "contract-inspection": {
+          "status": "reviewed-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 1,
+          "query": "新潤世界都心",
+          "resultLabel": "找到官方查核結果",
+          "url": "https://www-ws.land.ntpc.gov.tw/Download.ashx?icon=.pdf&n=5paw5YyX5biCMTE05LiK5Y2K5bm06aCQ5ZSu5bGL6LK36LOj5a6a5Z6L5YyW5aWR57SE5p%2Bl5qC457WQ5p6cLnBkZg%3D%3D&u=LzAwMS9VcGxvYWQvMzk5L3JlbGZpbGUvMC8xMzk0My9jNzA0MTM3Mi1hZGExLTRiNzItOTc5NC0xMzg0MGM2YmRmOGEucGRm",
+          "note": "新北市 114 年 1 至 6 月預售屋買賣定型化契約查核明細列有本案，表列項目均為符合。"
+        }
+      },
+      "events": [
+        {
+          "id": "ntpc-contract-2025-h1-newrun-world-core",
+          "title": "預售屋定型化契約查核表列全項符合",
+          "level": "A",
+          "category": "契約查核",
+          "outcome": "符合",
+          "publishedAt": "2026-07-14",
+          "sourceDate": "2025-07-03",
+          "summary": "新北市 114 年 1 至 6 月查核明細列有「新潤世界都心」，表列契約項目均勾選符合。",
+          "limitation": "這只代表該次預售屋定型化契約查核結果，不能判定實際施工品質，也不能證明沒有漏水。",
+          "sources": [
+            {
+              "name": "新北市 114 年 1 至 6 月預售屋契約查核結果",
+              "url": "https://www-ws.land.ntpc.gov.tw/Download.ashx?icon=.pdf&n=5paw5YyX5biCMTE05LiK5Y2K5bm06aCQ5ZSu5bGL6LK36LOj5a6a5Z6L5YyW5aWR57SE5p%2Bl5qC457WQ5p6cLnBkZg%3D%3D&u=LzAwMS9VcGxvYWQvMzk5L3JlbGZpbGUvMC8xMzk0My9jNzA0MTM3Mi1hZGExLTRiNzItOTc5NC0xMzg0MGM2YmRmOGEucGRm"
+            }
+          ]
+        }
+      ]
+    },
+    "林口-09-69e9f6": {
+      "sourceChecks": {
+        "judicial": {
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "長耀會",
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。"
+        }
+      }
+    },
+    "林口-16-187dad": {
+      "sourceChecks": {
+        "judicial": {
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "璽來登帝璽",
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。"
+        },
+        "contract-inspection": {
+          "status": "reviewed-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 1,
+          "query": "璽來登帝璽",
+          "resultLabel": "找到官方查核結果",
+          "url": "https://www-ws.land.ntpc.gov.tw/Download.ashx?n=5paw5YyX5biCMTE056ysMuasoeafpeaguOe1kOaenC5wZGY%3D&u=LzAwMS9VcGxvYWQvMzk5L3JlbGZpbGUvMC8xNDE3MC81ZmQ0M2M1My01NTkwLTQ2YzItYjFkYy1iYWJlNjYxNzllYmYucGRm",
+          "note": "新北市 114 年第 2 次查核明細列有本案，表列項目均為符合。"
+        }
+      },
+      "events": [
+        {
+          "id": "ntpc-contract-2025-h2-silai-imperial",
+          "title": "預售屋定型化契約查核表列全項符合",
+          "level": "A",
+          "category": "契約查核",
+          "outcome": "符合",
+          "publishedAt": "2026-07-14",
+          "sourceDate": "2025-12-29",
+          "summary": "新北市 114 年第 2 次查核明細列有「璽來登帝璽」，表列契約項目均勾選符合。",
+          "limitation": "這只代表該次預售屋定型化契約查核結果，不能判定實際施工品質，也不能證明沒有漏水。",
+          "sources": [
+            {
+              "name": "新北市 114 年第 2 次預售屋契約查核結果",
+              "url": "https://www-ws.land.ntpc.gov.tw/Download.ashx?n=5paw5YyX5biCMTE056ysMuasoeafpeaguOe1kOaenC5wZGY%3D&u=LzAwMS9VcGxvYWQvMzk5L3JlbGZpbGUvMC8xNDE3MC81ZmQ0M2M1My01NTkwLTQ2YzItYjFkYy1iYWJlNjYxNzllYmYucGRm"
+            }
+          ]
+        }
+      ]
+    },
+    "林口-19-25afb7": {
+      "sourceChecks": {
+        "judicial": {
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "竹城.日和",
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。"
+        }
+      }
+    },
+    "林口-20-1aa799": {
+      "sourceChecks": {
+        "judicial": {
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "築禾琢玥",
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。"
+        },
+        "contract-inspection": {
+          "status": "reviewed-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 1,
+          "query": "築禾琢玥",
+          "resultLabel": "找到官方查核結果",
+          "url": "https://www-ws.land.ntpc.gov.tw/Download.ashx?icon=.pdf&n=5paw5YyX5biCMTE05LiK5Y2K5bm06aCQ5ZSu5bGL6LK36LOj5a6a5Z6L5YyW5aWR57SE5p%2Bl5qC457WQ5p6cLnBkZg%3D%3D&u=LzAwMS9VcGxvYWQvMzk5L3JlbGZpbGUvMC8xMzk0My9jNzA0MTM3Mi1hZGExLTRiNzItOTc5NC0xMzg0MGM2YmRmOGEucGRm",
+          "note": "新北市 114 年 1 至 6 月預售屋買賣定型化契約查核明細列有本案，表列項目均為符合。"
+        }
+      },
+      "events": [
+        {
+          "id": "ntpc-contract-2025-h1-zhuhe-zhuoyue",
+          "title": "預售屋定型化契約查核表列全項符合",
+          "level": "A",
+          "category": "契約查核",
+          "outcome": "符合",
+          "publishedAt": "2026-07-14",
+          "sourceDate": "2025-07-03",
+          "summary": "新北市 114 年 1 至 6 月查核明細列有「築禾琢玥」，表列契約項目均勾選符合。",
+          "limitation": "這只代表該次預售屋定型化契約查核結果，不能判定實際施工品質，也不能證明沒有漏水。",
+          "sources": [
+            {
+              "name": "新北市 114 年 1 至 6 月預售屋契約查核結果",
+              "url": "https://www-ws.land.ntpc.gov.tw/Download.ashx?icon=.pdf&n=5paw5YyX5biCMTE05LiK5Y2K5bm06aCQ5ZSu5bGL6LK36LOj5a6a5Z6L5YyW5aWR57SE5p%2Bl5qC457WQ5p6cLnBkZg%3D%3D&u=LzAwMS9VcGxvYWQvMzk5L3JlbGZpbGUvMC8xMzk0My9jNzA0MTM3Mi1hZGExLTRiNzItOTc5NC0xMzg0MGM2YmRmOGEucGRm"
+            }
+          ]
+        }
+      ]
+    },
+    "a7-01-cd4424": {
+      "sourceChecks": {
+        "judicial": {
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "長耀辰",
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。"
+        }
+      }
+    },
+    "a7-12-ae84ab": {
+      "sourceChecks": {
+        "judicial": {
+          "status": "reviewed-unrelated",
+          "checkedAt": "2026-07-14",
+          "matchCount": 2,
+          "query": "富宇富御",
+          "resultLabel": "2 筆皆非品質爭議",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "同名結果為私人購屋出資損害賠償與冒用建案訂金的刑事詐騙案，均不是漏水或施工瑕疵爭議，故不刊登為品質事件。"
+        }
+      }
+    },
+    "a7-08-0362a4": {
+      "sourceChecks": {
+        "judicial": {
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "捷市閱",
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。"
+        },
+        "contract-inspection": {
+          "status": "reviewed-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 1,
+          "query": "捷市閱",
+          "resultLabel": "找到官方查核結果",
+          "url": "https://cpc.ey.gov.tw/File/BEAEE25EE2E9C365?A=C",
+          "note": "行政院消保處 114 年地方銷售排名查核附表列有本案，15 項均未標示不合格；附表說明空白表示合格。"
+        }
+      },
+      "events": [
+        {
+          "id": "cpc-contract-2025-jieshiyue",
+          "title": "預售屋契約 15 項查核未標示不合格",
+          "level": "A",
+          "category": "契約查核",
+          "outcome": "符合",
+          "publishedAt": "2026-07-14",
+          "sourceDate": "2025-08-25",
+          "summary": "行政院消保處 114 年地方銷售排名查核附表列有「捷市閱」，15 項均未標示不合格；附表註明空白代表合格。",
+          "limitation": "這只代表該次預售屋定型化契約查核結果，不能判定實際施工品質，也不能證明沒有漏水。",
+          "sources": [
+            {
+              "name": "行政院消保處 114 年預售屋契約查核附表 2",
+              "url": "https://cpc.ey.gov.tw/File/BEAEE25EE2E9C365?A=C"
+            },
+            {
+              "name": "行政院消保處查核新聞稿",
+              "url": "https://cpc.ey.gov.tw/Page/6C059838CA9744A8/b876668f-58c1-4e6f-80c3-846d4a317786"
+            }
+          ]
+        }
+      ]
+    },
+    "a7-18-78daaa": {
+      "sourceChecks": {
+        "judicial": {
+          "status": "reviewed-no-match",
+          "checkedAt": "2026-07-14",
+          "matchCount": 0,
+          "query": "丹佛花都",
+          "resultLabel": "全名查無裁判",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "以建案全名查詢未找到裁判結果；不代表沒有糾紛或問題。"
+        }
+      }
+    },
+    "a7-10-e86850": {
+      "sourceChecks": {
+        "judicial": {
+          "status": "ambiguous-query",
+          "checkedAt": "2026-07-14",
+          "matchCount": 562,
+          "query": "溫莎堡",
+          "resultLabel": "名稱歧義，未歸戶",
+          "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+          "note": "「溫莎堡」是常見名稱，結果量大且多數無法確認為本建案，為避免誤判，本輪不將任何結果歸戶。"
+        }
+      }
+    }
+  }
+}

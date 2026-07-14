@@ -74,21 +74,41 @@ type ProjectQuality = {
   publishedEventCount: number;
   evidenceCount: number;
   searchTerms: string[];
-  sourceChecks: Array<{ sourceId: string; status: string; checkedAt: string | null; matchCount: number | null }>;
+  sourceChecks: Array<{
+    sourceId: string;
+    status: string;
+    checkedAt: string | null;
+    matchCount: number | null;
+    query?: string;
+    resultLabel?: string;
+    note?: string;
+    url?: string;
+  }>;
   locationReview: {
     status: "verified" | "approximate" | "awaiting-parcel-check";
     label: string;
     method: string;
     parcel: { sectionName: string; sectionCode: string; parcelNumber: string; parcelCode: string; officialMapUrl: string } | null;
   };
-  events: Array<{ id: string; title: string; level: "A" | "B" | "C" }>;
+  events: Array<{
+    id: string;
+    title: string;
+    level: "A" | "B" | "C";
+    category: string;
+    outcome: string;
+    publishedAt: string;
+    sourceDate: string;
+    summary: string;
+    limitation: string;
+    sources: Array<{ name: string; url: string }>;
+  }>;
 };
 
 type QualityDataset = {
   generatedAt: string;
   methodology: { publishRule: string; noEventDisclaimer: string; reviewStates: Record<string, string>; evidenceLevels: Record<"A" | "B" | "C", string> };
   sources: Array<{ id: string; name: string; url: string; level: string; access: string }>;
-  summary: { projectCount: number; publishedEventCount: number; queuedCount: number; verifiedLocationCount: number; approximateLocationCount: number; awaitingParcelCount: number };
+  summary: { projectCount: number; publishedEventCount: number; queuedCount: number; reviewedCount: number; verifiedLocationCount: number; approximateLocationCount: number; awaitingParcelCount: number };
   projects: Record<string, ProjectQuality>;
 };
 
@@ -440,7 +460,7 @@ export default function Home() {
                 <article className="project-grid-card" key={project.id}>
                   <button type="button" className="grid-card-main" onClick={() => selectProject(project, true)}>
                     <div className="project-placeholder"><span>{project.region}</span><strong>{project.price ? `${project.price.median}` : project.priceEvidence.status === "official-no-match" ? "尚無" : "待補"}</strong><small>{project.price ? "萬／坪" : "官方成交"}</small></div>
-                    <div className="grid-card-copy"><div><span>{project.city} · {project.district}</span><i>品質已排程</i></div><h2>{project.name}</h2><p>{project.builder}</p><dl><div><dt>戶數</dt><dd>{project.households} 戶</dd></div><div><dt>備查</dt><dd>{formatDate(project.declaredDate)}</dd></div><div><dt>機能</dt><dd>{amenityScoreText(project)}</dd></div></dl></div>
+                    <div className="grid-card-copy"><div><span>{project.city} · {project.district}</span><i>{project.quality.status === "reviewed" ? "品質已查核" : "品質待查核"}</i></div><h2>{project.name}</h2><p>{project.builder}</p><dl><div><dt>戶數</dt><dd>{project.households} 戶</dd></div><div><dt>備查</dt><dd>{formatDate(project.declaredDate)}</dd></div><div><dt>機能</dt><dd>{amenityScoreText(project)}</dd></div></dl></div>
                   </button>
                   <button type="button" className={`grid-compare ${compareIds.includes(project.id) ? "checked" : ""}`} onClick={() => toggleCompare(project.id)}>{compareIds.includes(project.id) ? "✓ 已加入比較" : "＋ 加入比較"}</button>
                 </article>
@@ -459,7 +479,66 @@ export default function Home() {
             {detailTab === "summary" && <section><h3>官方基本資料</h3><div className={`stage-evidence ${projectStage(active)}`}><span>{projectStageText(active)}</span><strong>{active.firstRegistrationDate ? `已於 ${formatDate(active.firstRegistrationDate)} 首次登記` : "目前尚未有首次登記日期"}</strong><p>建案狀態依本資料庫收錄的首次登記日期判斷；官方資料更新後，狀態也會隨之調整。</p></div><div className="drawer-facts"><div><span>申報備查</span><strong>{formatDate(active.declaredDate)}</strong></div><div><span>建照日期</span><strong>{formatDate(active.permitDate)}</strong></div><div><span>首次登記</span><strong>{formatDate(active.firstRegistrationDate)}</strong></div><div><span>主要建材</span><strong>{active.material}</strong></div><div><span>主要用途</span><strong>{active.mainUse}</strong></div><div><span>使用分區</span><strong>{active.zoning}</strong></div></div><div className="drawer-address"><span>坐落街道</span><strong>{active.city}{active.district}{active.address}</strong><span>坐落基地</span><strong>{active.buildingLand}</strong><small>{locationLabel(active)}，非精確基地界址。</small>{active.quality.locationReview.parcel && <a className="parcel-map-link" href={active.quality.locationReview.parcel.officialMapUrl} target="_blank" rel="noreferrer">用國土測繪圖資服務雲核對地號 ↗</a>}</div><details><summary>建照與官方資料編號</summary><p>{active.permitNo}</p><p>{active.registryNumber}</p></details></section>}
             {detailTab === "builder" && <section><h3>建商履歷</h3><div className="builder-profile"><span>本資料庫辨識名稱</span><strong>{active.builder}</strong><p>目前以官方資料中的起造人名稱進行完全相同比對。</p></div><div className="builder-stats"><div><span>已收錄</span><strong>{builderProjects.length}</strong><small>個建案</small></div><div><span>成屋</span><strong>{builderCompletedCount}</strong><small>個建案</small></div><div><span>有成交</span><strong>{builderPricedCount}</strong><small>個建案</small></div></div><div className="builder-projects">{builderProjects.map((project) => <button type="button" className={project.id === active.id ? "active" : ""} onClick={() => selectBuilderProject(project)} key={project.id}><span className={projectStage(project)}>{projectStageText(project)}</span><div><strong>{project.name}</strong><small>{project.region} · 備查 {formatDate(project.declaredDate)}</small></div><b>{priceText(project)}</b></button>)}</div><p className="builder-disclaimer">目前僅統計本資料庫已收錄的林口與 A7 建案，不代表該建商的完整作品或品質排名。</p></section>}
             {detailTab === "price" && <section><h3>成交行情</h3>{active.price ? <><div className="drawer-price"><span>中位單價</span><strong>{active.price.median}</strong><small>萬／坪</small><p>{active.price.low}–{active.price.high} 萬／坪</p></div><div className="drawer-facts two"><div><span>有效樣本</span><strong>{active.price.count} 筆</strong></div><div><span>最新交易</span><strong>{formatDate(active.price.latestDate)}</strong></div></div><p className="drawer-note">來源：{active.price.source}。已排除解約資料並以官方編號去除重複；成交價不是目前開價，也不是估價結果。</p></> : <div className="drawer-empty price-unavailable"><span>{active.priceEvidence.statusLabel}</span><strong>{active.priceEvidence.status === "official-no-match" ? "目前沒有可安全歸戶的官方成交" : "成交資料尚待配對"}</strong><p>{active.priceEvidence.status === "official-no-match" ? "已核對官方已發布資料；這不代表建案沒有銷售，近期交易可能尚未申報或公開。" : "目前來源未成功配對，不代表沒有交易。"}</p><small>查核更新 {formatDate(active.priceEvidence.lastCheckedAt)} · {active.priceEvidence.matchMethod}</small><a href={active.priceEvidence.sourceUrl} target="_blank" rel="noreferrer">查看官方資料入口 ↗</a></div>}</section>}
-            {detailTab === "quality" && <section><h3>漏水與施工品質</h3><div className="quality-pending"><span>{active.quality.statusLabel}</span><strong>目前 {active.quality.publishedEventCount} 件事件通過刊登門檻</strong><p>{qualityData.methodology.noEventDisclaimer}</p></div><h4 className="quality-section-title">官方來源查核進度</h4><div className="quality-source-checks">{active.quality.sourceChecks.map((check) => { const source = qualityData.sources.find((item) => item.id === check.sourceId); if (!source) return null; return <a href={source.url} target="_blank" rel="noreferrer" key={check.sourceId}><div><strong>{source.name}</strong><small>{source.access} · 證據等級 {source.level}</small></div><span>{check.status === "not-reviewed" ? "待查核" : "已查核"}</span></a>; })}</div><details className="quality-review-details"><summary>查看這一案的查核關鍵字</summary><div>{active.quality.searchTerms.map((term) => <span key={term}>{term}</span>)}</div></details><h4 className="quality-section-title">證據刊登標準</h4><div className="evidence-levels">{(["A", "B", "C"] as const).map((level) => <article key={level}><b>{level}</b><div><strong>{{ A: "可直接核對", B: "多來源互證", C: "僅供追查" }[level]}</strong><p>{qualityData.methodology.evidenceLevels[level]}</p></div></article>)}</div><p className="quality-method-note">{qualityData.methodology.publishRule}</p></section>}
+            {detailTab === "quality" && (
+              <section>
+                <h3>漏水與施工品質</h3>
+                <div className={`quality-pending ${active.quality.status}`}>
+                  <span>{active.quality.statusLabel}</span>
+                  <strong>{active.quality.status === "reviewed"
+                    ? active.quality.publishedEventCount > 0
+                      ? `${active.quality.publishedEventCount} 件官方資料達刊登門檻`
+                      : "本輪未找到達刊登門檻資料"
+                    : "尚未完成逐案來源查核"}</strong>
+                  <p>{active.quality.publishedEventCount === 0
+                    ? qualityData.methodology.noEventDisclaimer
+                    : "下列結果可回到官方來源核對；每一筆都會另外標示能證明與不能證明的範圍。"}</p>
+                  {active.quality.lastReviewedAt && <small>查核日期 {formatDate(active.quality.lastReviewedAt)}</small>}
+                </div>
+
+                {active.quality.events.length > 0 && (
+                  <>
+                    <h4 className="quality-section-title">已刊登的官方結果</h4>
+                    <div className="quality-events">
+                      {active.quality.events.map((event) => (
+                        <article key={event.id}>
+                          <header><span>{event.category}</span><b>{event.outcome}</b><i>證據 {event.level}</i></header>
+                          <h5>{event.title}</h5>
+                          <p>{event.summary}</p>
+                          <aside><strong>判讀限制</strong>{event.limitation}</aside>
+                          <footer>
+                            <small>資料日期 {formatDate(event.sourceDate)}</small>
+                            <div>{event.sources.map((source) => <a href={source.url} target="_blank" rel="noreferrer" key={source.url}>{source.name} ↗</a>)}</div>
+                          </footer>
+                        </article>
+                      ))}
+                    </div>
+                  </>
+                )}
+
+                <h4 className="quality-section-title">官方來源查核</h4>
+                <div className="quality-source-checks">
+                  {active.quality.sourceChecks.map((check) => {
+                    const source = qualityData.sources.find((item) => item.id === check.sourceId);
+                    if (!source) return null;
+                    return (
+                      <a href={check.url || source.url} target="_blank" rel="noreferrer" key={check.sourceId}>
+                        <div>
+                          <strong>{source.name}</strong>
+                          <small>{check.note || `${source.access} · 證據等級 ${source.level}`}</small>
+                        </div>
+                        <span className={check.status}>{check.resultLabel || (check.status === "not-reviewed" ? "待查核" : "已查核")}</span>
+                      </a>
+                    );
+                  })}
+                </div>
+                <details className="quality-review-details"><summary>查看這一案的查核關鍵字</summary><div>{active.quality.searchTerms.map((term) => <span key={term}>{term}</span>)}</div></details>
+                <details className="quality-standard-details">
+                  <summary>證據刊登標準</summary>
+                  <div className="evidence-levels">{(["A", "B", "C"] as const).map((level) => <article key={level}><b>{level}</b><div><strong>{{ A: "可直接核對", B: "多來源互證", C: "僅供追查" }[level]}</strong><p>{qualityData.methodology.evidenceLevels[level]}</p></div></article>)}</div>
+                  <p className="quality-method-note">{qualityData.methodology.publishRule}</p>
+                </details>
+              </section>
+            )}
             {detailTab === "amenity" && <section><h3>生活機能</h3>{active.amenity.score === null ? <div className="amenity-unavailable"><span>等待地號核對</span><strong>暫不顯示精確機能分數</strong><p>{amenityData.methodology.scoreDisclaimer}</p><dl><div><dt>官方坐落街道</dt><dd>{active.city}{active.district}{active.address}</dd></div><div><dt>官方坐落基地</dt><dd>{active.buildingLand}</dd></div></dl>{active.quality.locationReview.parcel && <a href={active.quality.locationReview.parcel.officialMapUrl} target="_blank" rel="noreferrer">用國土測繪圖資服務雲核對地號 ↗</a>}</div> : <><div className="amenity-score-card"><div className="amenity-score-ring" style={{ "--amenity-score": `${active.amenity.score}%` } as CSSProperties}><strong>{active.amenity.score}</strong><span>分</span></div><div><span>{active.amenity.scoreReliability === "verified" ? "可信定位評估" : "道路位置估算"}</span><strong>{active.amenity.grade}</strong><p>{locationLabel(active)} · 資料更新 {formatDate(amenityData.generatedAt)}</p></div></div><div className="drawer-amenities">{amenityEntries.map(([category, meta]) => { const nearest = active.amenity.nearest[category]; return <div key={category}><i className={`poi-${category}`}>{meta.symbol}</i><span>{meta.label}</span>{nearest ? <><strong>{nearest.name}</strong><p>{formatDistance(nearest.distanceMeters)} · 約 {nearest.walkMinutes} 分鐘*</p></> : <><strong>附近資料不足</strong><p>不計入分數</p></>}</div>; })}</div><div className="drawer-map"><InteractiveMap projects={[active]} activeId={active.id} compact pois={activeNearestPois} visibleAmenityCategories={amenityEntries.map(([category]) => category)} /></div><small className="drawer-map-note">* 以每分鐘 80 公尺換算直線距離，不是實際步行路線。{amenityData.methodology.locationDisclaimer}</small></>}<a className="amenity-source-link" href={amenityData.source.url} target="_blank" rel="noreferrer">{amenityData.source.name} · {amenityData.source.license} ↗</a></section>}
           </div>
         </aside>
