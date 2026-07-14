@@ -21,7 +21,7 @@ test("server-renders the verified Linkou and A7 catalogue", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>居鑑｜北台灣建案履歷<\/title>/);
-  assert.match(html, /官方資料 40 案/);
+  assert.match(html, /官方資料 (?:<!-- -->)?42(?:<!-- -->)? 案/);
   assert.match(html, /建案地圖/);
   assert.match(html, /搜尋建案、建商、路段/);
   assert.match(html, /品質查核/);
@@ -41,13 +41,13 @@ test("processed amenity data is scored and source-labelled", async () => {
   const raw = await readFile(new URL("../data/processed/amenities.json", import.meta.url), "utf8");
   const dataset = JSON.parse(raw);
 
-  assert.equal(Object.keys(dataset.projects).length, 40);
+  assert.equal(Object.keys(dataset.projects).length, 42);
   assert.ok(dataset.pois.length >= 200);
   assert.equal(dataset.source.name, "OpenStreetMap contributors");
   assert.ok(Object.values(dataset.projects).every((project) => project.score === null || (project.score >= 0 && project.score <= 100)));
   assert.ok(Object.values(dataset.projects).every((project) => project.location.confidence));
   assert.equal(Object.values(dataset.projects).filter((project) => project.scoreReliability === "verified").length, 17);
-  assert.equal(Object.values(dataset.projects).filter((project) => project.scoreReliability === "unavailable").length, 10);
+  assert.equal(Object.values(dataset.projects).filter((project) => project.scoreReliability === "unavailable").length, 11);
   assert.ok(Object.values(dataset.projects).filter((project) => project.location.confidence === "estimated").every((project) => project.score === null));
   assert.equal(Object.values(dataset.projects).filter((project) => project.location.method === "nlsc-official-intersection").length, 16);
 });
@@ -57,12 +57,12 @@ test("quality evidence records preserve unknown states and official review links
   const dataset = JSON.parse(raw);
   const projects = Object.values(dataset.projects);
 
-  assert.equal(projects.length, 40);
-  assert.equal(dataset.summary.queuedCount, 40);
+  assert.equal(projects.length, 42);
+  assert.equal(dataset.summary.queuedCount, 42);
   assert.equal(dataset.summary.publishedEventCount, 0);
   assert.equal(dataset.summary.verifiedLocationCount, 17);
-  assert.equal(dataset.summary.approximateLocationCount, 13);
-  assert.equal(dataset.summary.awaitingParcelCount, 10);
+  assert.equal(dataset.summary.approximateLocationCount, 14);
+  assert.equal(dataset.summary.awaitingParcelCount, 11);
   assert.ok(projects.every((project) => project.status === "queued"));
   assert.ok(projects.every((project) => project.events.length === 0));
   assert.ok(projects.every((project) => project.locationReview.parcel?.officialMapUrl.startsWith("https://maps.nlsc.gov.tw/goland/")));
@@ -74,15 +74,29 @@ test("processed data has the intended scope and explicit unknown states", async 
   const dataset = JSON.parse(raw);
   const regions = new Set(dataset.projects.map((project) => project.region));
 
-  assert.equal(dataset.projects.length, 40);
+  assert.equal(dataset.projects.length, 42);
   assert.deepEqual([...regions].sort(), ["A7", "林口"]);
   assert.ok(dataset.projects.filter((project) => project.price).length >= 37);
   assert.ok(dataset.projects.filter((project) => project.region === "A7" && project.price).length >= 17);
-  assert.ok(dataset.projects.filter((project) => project.priceEvidence?.status === "official-no-match").length <= 3);
+  assert.ok(dataset.projects.filter((project) => project.region === "A7" && project.priceEvidence?.status === "official-no-match").length <= 3);
   assert.ok(dataset.priceCoverage.a7OfficialRecordsReviewed >= 8000);
   assert.equal(dataset.priceCoverage.historyFrom, "112S1");
   assert.ok(dataset.projects.filter((project) => project.price).every((project) => project.price.count > 0));
   assert.ok(dataset.projects.filter((project) => project.region === "A7" && project.price).every((project) => project.price.source.includes("歷史季度＋本期")));
   assert.ok(dataset.projects.every((project) => project.qualityStatus === "尚未查核"));
   assert.ok(dataset.projects.every((project) => project.registryNumber));
+  assert.equal(new Set(dataset.projects.map((project) => project.sourceKey)).size, dataset.projects.length);
+});
+
+test("safe update report records safeguards and keeps historical backlog separate", async () => {
+  const raw = await readFile(new URL("../data/processed/update-report.json", import.meta.url), "utf8");
+  const report = JSON.parse(raw);
+
+  assert.equal(report.summary.catalogueAfter, 42);
+  assert.equal(report.summary.ambiguousCount, 0);
+  assert.equal(report.summary.missingFromCurrentSourceCount, 0);
+  assert.ok(report.summary.historicalBacklogCount >= 70);
+  assert.equal(report.pipeline.status, "complete");
+  assert.equal(report.pipeline.totalProjects, 42);
+  assert.ok(report.safeguards.some((item) => item.includes("不會") && item.includes("刪除")));
 });

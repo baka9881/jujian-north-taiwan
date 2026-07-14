@@ -52,12 +52,12 @@
     }
   ],
   "summary": {
-    "projectCount": 40,
+    "projectCount": 42,
     "publishedEventCount": 0,
-    "queuedCount": 40,
+    "queuedCount": 42,
     "verifiedLocationCount": 17,
-    "approximateLocationCount": 13,
-    "awaitingParcelCount": 10
+    "approximateLocationCount": 14,
+    "awaitingParcelCount": 11
   },
   "projects": {
     "林口-01-097315": {
@@ -1896,6 +1896,98 @@
           "parcelNumber": "106",
           "parcelCode": "144201060000",
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144201060000"
+        }
+      },
+      "events": []
+    },
+    "linkou-d3c468867c": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "立軒慕玥",
+        "兆軒建設股份有限公司",
+        "115林建字第00020號",
+        "力行段749地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "approximate",
+        "label": "道路位置估算",
+        "method": "nominatim-road",
+        "parcel": {
+          "sectionName": "力行段",
+          "sectionCode": "0466",
+          "parcelNumber": "749",
+          "parcelCode": "046607490000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046607490000"
+        }
+      },
+      "events": []
+    },
+    "linkou-72c6eb54e3": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "擎天賦域．恆匯經貿中心",
+        "亞昕國際開發股份有限公司",
+        "115林建字第00034號",
+        "力行段77地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "awaiting-parcel-check",
+        "label": "等待地號核對",
+        "method": "catalogue-fallback",
+        "parcel": {
+          "sectionName": "力行段",
+          "sectionCode": "0466",
+          "parcelNumber": "77",
+          "parcelCode": "046600770000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046600770000"
         }
       },
       "events": []

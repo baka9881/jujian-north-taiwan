@@ -5142,6 +5142,158 @@
           "walkMinutes": 11
         }
       }
+    },
+    "linkou-d3c468867c": {
+      "location": {
+        "latitude": 25.0770136,
+        "longitude": 121.3731473,
+        "confidence": "low",
+        "method": "nominatim-road",
+        "label": "道路中心附近",
+        "queryAddress": "新北市林口區民有街"
+      },
+      "score": 80,
+      "rawScore": 80,
+      "grade": "非常便利",
+      "scoreReliability": "approximate",
+      "nearest": {
+        "convenience": {
+          "id": "node-9491209687",
+          "name": "蝦皮店到店",
+          "category": "convenience",
+          "latitude": 25.0765313,
+          "longitude": 121.3730747,
+          "address": "新北市林口區民有街88",
+          "distanceMeters": 54,
+          "walkMinutes": 1
+        },
+        "pxmart": {
+          "id": "way-1082654749",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0763269,
+          "longitude": 121.3726625,
+          "address": null,
+          "distanceMeters": 91,
+          "walkMinutes": 2
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 8278,
+          "walkMinutes": 104
+        },
+        "station": {
+          "id": "node-4456093778",
+          "name": "A9 林口站",
+          "category": "station",
+          "latitude": 25.0657846,
+          "longitude": 121.3614372,
+          "address": "新北市林口區八德路",
+          "distanceMeters": 1718,
+          "walkMinutes": 22
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 400,
+          "walkMinutes": 5
+        },
+        "medical": {
+          "id": "node-9955245396",
+          "name": "林口忠孝復健專科診所",
+          "category": "medical",
+          "latitude": 25.0761573,
+          "longitude": 121.3734333,
+          "address": null,
+          "distanceMeters": 99,
+          "walkMinutes": 2
+        }
+      }
+    },
+    "linkou-72c6eb54e3": {
+      "location": {
+        "latitude": 25.081264705882354,
+        "longitude": 121.38436894736843,
+        "confidence": "estimated",
+        "method": "catalogue-fallback",
+        "label": "區域估算位置",
+        "queryAddress": "新北市林口區文化二路二段5號旁"
+      },
+      "score": null,
+      "rawScore": 66,
+      "grade": null,
+      "scoreReliability": "unavailable",
+      "nearest": {
+        "convenience": {
+          "id": "node-7047292762",
+          "name": "rumahku marcys II",
+          "category": "convenience",
+          "latitude": 25.0793416,
+          "longitude": 121.3855822,
+          "address": "新北市林口區中山路253",
+          "distanceMeters": 246,
+          "walkMinutes": 4
+        },
+        "pxmart": {
+          "id": "way-259017529",
+          "name": "全聯福利中心",
+          "category": "pxmart",
+          "latitude": 25.0772212,
+          "longitude": 121.3871184,
+          "address": null,
+          "distanceMeters": 528,
+          "walkMinutes": 7
+        },
+        "costco": {
+          "id": "way-431645594",
+          "name": "好市多",
+          "category": "costco",
+          "latitude": 25.0269539,
+          "longitude": 121.4339712,
+          "address": "新北市新莊區建國一路138",
+          "distanceMeters": 7838,
+          "walkMinutes": 98
+        },
+        "station": {
+          "id": "node-4653352241",
+          "name": "A8 長庚醫院站",
+          "category": "station",
+          "latitude": 25.0604744,
+          "longitude": 121.3707965,
+          "address": "桃園市龜山區",
+          "distanceMeters": 2686,
+          "walkMinutes": 34
+        },
+        "school": {
+          "id": "way-183001662",
+          "name": "林口國中",
+          "category": "school",
+          "latitude": 25.0770334,
+          "longitude": 121.3771228,
+          "address": "新北市林口區民治路25號",
+          "distanceMeters": 868,
+          "walkMinutes": 11
+        },
+        "medical": {
+          "id": "node-2643730289",
+          "name": "勝康骨科",
+          "category": "medical",
+          "latitude": 25.0790189,
+          "longitude": 121.3874293,
+          "address": null,
+          "distanceMeters": 397,
+          "walkMinutes": 5
+        }
+      }
     }
   }
 }

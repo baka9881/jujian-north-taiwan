@@ -9,6 +9,7 @@ const cacheDirectory = path.join(root, "data", "cache");
 const geocodeCachePath = path.join(cacheDirectory, "nominatim-projects.json");
 const overpassCachePath = path.join(cacheDirectory, "overpass-pois.json");
 const intersectionCachePath = path.join(cacheDirectory, "nlsc-intersections.json");
+const locationOverridesPath = path.join(root, "data", "manual", "location-overrides.json");
 const userAgent = "JujianNorthTaiwan/1.0 (+https://jujian-north-taiwan.baka0406.chatgpt.site)";
 const generatedAt = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Taipei" }).format(new Date());
 
@@ -51,7 +52,8 @@ const scoreRules = [
 
 async function readJson(filePath, fallback) {
   try {
-    return JSON.parse(await readFile(filePath, "utf8"));
+    const raw = await readFile(filePath, "utf8");
+    return raw.trim() ? JSON.parse(raw) : fallback;
   } catch (error) {
     if (error?.code === "ENOENT") return fallback;
     throw error;
@@ -120,12 +122,16 @@ function locationConfidence(project, result) {
   return { confidence: "low", method: "nominatim-road", label: "道路中心附近" };
 }
 
-async function geocodeProjects(projects) {
+async function geocodeProjects(projects, previousProjects) {
   const cache = await readJson(geocodeCachePath, {});
   let changed = false;
 
   for (const [index, project] of projects.entries()) {
-    if (!Object.hasOwn(cache, project.id)) {
+    const queryAddress = `${project.city}${project.district}${project.address}`;
+    const previousLocation = previousProjects[project.id]?.location;
+    const canReusePrevious = previousLocation?.queryAddress === queryAddress;
+    const addressChanged = Boolean(previousLocation) && !canReusePrevious;
+    if ((!Object.hasOwn(cache, project.id) && !canReusePrevious) || addressChanged) {
       let matchedResult = null;
       for (const query of geocodeQueries(project)) {
       const params = new URLSearchParams({
@@ -158,11 +164,16 @@ async function geocodeProjects(projects) {
   if (changed) await writeFile(geocodeCachePath, `${JSON.stringify(cache, null, 2)}\n`, "utf8");
 
   return Object.fromEntries(projects.map((project) => {
+    const queryAddress = `${project.city}${project.district}${project.address}`;
+    const previousLocation = previousProjects[project.id]?.location;
+    if (!Object.hasOwn(cache, project.id) && previousLocation?.queryAddress === queryAddress) {
+      return [project.id, previousLocation];
+    }
     const result = cache[project.id];
     const fallback = fallbackPoint(project);
     const latitude = result ? Number(result.lat) : fallback.latitude;
     const longitude = result ? Number(result.lon) : fallback.longitude;
-    return [project.id, { latitude, longitude, ...locationConfidence(project, result), queryAddress: `${project.city}${project.district}${project.address}` }];
+    return [project.id, { latitude, longitude, ...locationConfidence(project, result), queryAddress }];
   }));
 }
 
@@ -194,6 +205,31 @@ async function refineOfficialIntersections(locations) {
       method: "nlsc-official-intersection",
       label: "官方路口定位",
       queryAddress: locations[projectId].queryAddress,
+    };
+  }
+  return locations;
+}
+
+async function applyManualOverrides(locations) {
+  const overrides = await readJson(locationOverridesPath, { projects: {} });
+  for (const [projectId, override] of Object.entries(overrides.projects || {})) {
+    if (!locations[projectId]) {
+      console.warn(`人工定位找不到建案：${projectId}`);
+      continue;
+    }
+    const latitude = Number(override.latitude);
+    const longitude = Number(override.longitude);
+    if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+      throw new Error(`人工定位座標無效：${projectId}`);
+    }
+    locations[projectId] = {
+      ...locations[projectId],
+      latitude,
+      longitude,
+      confidence: "high",
+      method: "manual-verified",
+      label: override.label || "人工核對定位",
+      note: override.note || null,
     };
   }
   return locations;
@@ -340,7 +376,9 @@ function gradeFor(score) {
 async function main() {
   await mkdir(cacheDirectory, { recursive: true });
   const projectDataset = await readJson(projectsPath, null);
-  const locations = await refineOfficialIntersections(await geocodeProjects(projectDataset.projects));
+  const previousDataset = await readJson(outputPath, { projects: {} });
+  const geocoded = await geocodeProjects(projectDataset.projects, previousDataset.projects || {});
+  const locations = await applyManualOverrides(await refineOfficialIntersections(geocoded));
   const pois = normalizePois(await loadOverpass());
   const projects = {};
 

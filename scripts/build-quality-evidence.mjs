@@ -53,23 +53,33 @@ function locationReview(amenity, buildingLand) {
 async function main() {
   const projectDataset = JSON.parse(await readFile(projectsPath, "utf8"));
   const amenityDataset = JSON.parse(await readFile(amenitiesPath, "utf8"));
+  let previousDataset = { projects: {} };
+  try {
+    previousDataset = JSON.parse(await readFile(outputPath, "utf8"));
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error;
+  }
   const projects = {};
 
   for (const project of projectDataset.projects) {
+    const previous = previousDataset.projects?.[project.id] || {};
+    const defaultChecks = [
+      { sourceId: "judicial", status: "not-reviewed", checkedAt: null, matchCount: null },
+      { sourceId: "consumer-disputes", status: "not-reviewed", checkedAt: null, matchCount: null },
+      { sourceId: "contract-inspection", status: "not-reviewed", checkedAt: null, matchCount: null },
+    ];
+    const previousChecks = new Map((previous.sourceChecks || []).map((check) => [check.sourceId, check]));
     projects[project.id] = {
-      status: "queued",
-      statusLabel: "已排入官方來源查核",
-      lastReviewedAt: null,
-      publishedEventCount: 0,
-      evidenceCount: 0,
+      ...previous,
+      status: previous.status || "queued",
+      statusLabel: previous.statusLabel || "已排入官方來源查核",
+      lastReviewedAt: previous.lastReviewedAt || null,
+      publishedEventCount: previous.publishedEventCount ?? 0,
+      evidenceCount: previous.evidenceCount ?? 0,
       searchTerms: [project.name, project.builder, project.permitNo, project.buildingLand],
-      sourceChecks: [
-        { sourceId: "judicial", status: "not-reviewed", checkedAt: null, matchCount: null },
-        { sourceId: "consumer-disputes", status: "not-reviewed", checkedAt: null, matchCount: null },
-        { sourceId: "contract-inspection", status: "not-reviewed", checkedAt: null, matchCount: null },
-      ],
+      sourceChecks: defaultChecks.map((check) => ({ ...check, ...(previousChecks.get(check.sourceId) || {}) })),
       locationReview: locationReview(amenityDataset.projects[project.id], project.buildingLand),
-      events: [],
+      events: previous.events || [],
     };
   }
 
@@ -99,7 +109,7 @@ async function main() {
     ],
     summary: {
       projectCount: values.length,
-      publishedEventCount: 0,
+      publishedEventCount: values.reduce((total, project) => total + project.publishedEventCount, 0),
       queuedCount: values.filter((project) => project.status === "queued").length,
       verifiedLocationCount: values.filter((project) => project.locationReview.status === "verified").length,
       approximateLocationCount: values.filter((project) => project.locationReview.status === "approximate").length,

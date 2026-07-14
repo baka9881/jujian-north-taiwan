@@ -1,7 +1,7 @@
 {
   "generatedAt": "2026-07-14",
   "scope": "林口＋A7 第一批",
-  "projectCount": 40,
+  "projectCount": 42,
   "projects": [
     {
       "id": "林口-01-097315",
@@ -24,10 +24,10 @@
       "price": {
         "median": 59.8,
         "low": 57.2,
-        "high": 82.0,
+        "high": 82,
         "count": 10,
         "latestDate": "2025-12-23",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -37,12 +37,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "中山路"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:permit:114林建字00239號"
     },
     {
       "id": "林口-02-d292ac",
@@ -64,11 +67,11 @@
       "registryNumber": "QPPNMLTLPHKGFBF56CG",
       "price": {
         "median": 56.7,
-        "low": 52.0,
+        "low": 52,
         "high": 66.1,
         "count": 88,
         "latestDate": "2026-02-09",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -78,12 +81,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "吉祥路"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:registry:QPPNMLTLPHKGFBF56CG"
     },
     {
       "id": "林口-03-217128",
@@ -106,10 +112,10 @@
       "price": {
         "median": 71.1,
         "low": 60.9,
-        "high": 95.0,
+        "high": 95,
         "count": 21,
         "latestDate": "2026-01-12",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -119,12 +125,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "文化二路二段與吉祥路"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:permit:114林建字第00100號"
     },
     {
       "id": "林口-04-65c21d",
@@ -150,7 +159,7 @@
         "high": 75.2,
         "count": 1,
         "latestDate": "2026-01-15",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -160,12 +169,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "惠民街30巷"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:permit:114林建字第00045號"
     },
     {
       "id": "林口-05-6701e3",
@@ -191,7 +203,7 @@
         "high": 57.2,
         "count": 24,
         "latestDate": "2025-12-31",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -201,12 +213,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "仁愛路一段與新生街路"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:registry:QPQNMLSJMHKGFBF78DG"
     },
     {
       "id": "林口-06-d0c30b",
@@ -227,12 +242,12 @@
       "firstRegistrationDate": null,
       "registryNumber": "未提供",
       "price": {
-        "median": 56.0,
-        "low": 56.0,
+        "median": 56,
+        "low": 56,
         "high": 64.1,
         "count": 4,
         "latestDate": "2025-12-19",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -242,12 +257,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "文化二路二段與中華路"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:permit:111林建字第00313號"
     },
     {
       "id": "林口-07-636c51",
@@ -273,7 +291,7 @@
         "high": 57.5,
         "count": 10,
         "latestDate": "2026-01-29",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -283,12 +301,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "林口路"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:permit:113林建字第00053號"
     },
     {
       "id": "林口-08-021d6c",
@@ -314,7 +335,7 @@
         "high": 81.5,
         "count": 47,
         "latestDate": "2026-02-10",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -324,12 +345,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "過崙街"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:registry:QPQNMLTJLHKGFBF68CG"
     },
     {
       "id": "林口-09-69e9f6",
@@ -355,7 +379,7 @@
         "high": 65.8,
         "count": 23,
         "latestDate": "2026-02-02",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -365,12 +389,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "文化三路二段與中山路"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:permit:111林建字第0031903號"
     },
     {
       "id": "林口-10-0d70e1",
@@ -396,7 +423,7 @@
         "high": 70.9,
         "count": 218,
         "latestDate": "2026-02-10",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -406,12 +433,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "文化三路"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:registry:QQPNMLRLKIJGFBF68DG"
     },
     {
       "id": "林口-11-c4a9a4",
@@ -434,10 +464,10 @@
       "price": {
         "median": 60.7,
         "low": 59.4,
-        "high": 63.0,
+        "high": 63,
         "count": 4,
         "latestDate": "2026-01-28",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -447,12 +477,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "中山路"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:registry:QPPNMLQLKIJGFBF38CG"
     },
     {
       "id": "林口-12-838c61",
@@ -474,11 +507,11 @@
       "registryNumber": "QPPNMLMJKIJGFBF87DG",
       "price": {
         "median": 72.8,
-        "low": 67.0,
+        "low": 67,
         "high": 78.8,
         "count": 12,
         "latestDate": "2026-02-09",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -488,12 +521,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "八德路500巷"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:registry:QPPNMLMJKIJGFBF87DG"
     },
     {
       "id": "林口-13-8bd55c",
@@ -514,12 +550,12 @@
       "firstRegistrationDate": null,
       "registryNumber": "未提供",
       "price": {
-        "median": 61.0,
+        "median": 60.7,
         "low": 52.6,
-        "high": 73.0,
-        "count": 43,
+        "high": 73,
+        "count": 33,
         "latestDate": "2026-02-02",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -529,12 +565,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "文化三路二段211巷"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:permit:113林建字第00292號"
     },
     {
       "id": "林口-14-4070bd",
@@ -556,11 +595,11 @@
       "registryNumber": "QPVNMLNJRHJGFBF09CG",
       "price": {
         "median": 70.1,
-        "low": 63.0,
+        "low": 63,
         "high": 96.3,
-        "count": 106,
+        "count": 100,
         "latestDate": "2026-01-26",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -570,12 +609,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "文化三路617巷"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:registry:QPVNMLNJRHJGFBF09CG"
     },
     {
       "id": "林口-15-d3eece",
@@ -596,12 +638,12 @@
       "firstRegistrationDate": "2026-06-15",
       "registryNumber": "QPUNMLNJRHJGFBF98CG",
       "price": {
-        "median": 54.0,
+        "median": 54,
         "low": 52.6,
         "high": 55.2,
         "count": 7,
         "latestDate": "2026-01-05",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -611,12 +653,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "松柏路"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:registry:QPUNMLNJRHJGFBF98CG"
     },
     {
       "id": "林口-16-187dad",
@@ -642,7 +687,7 @@
         "high": 88.5,
         "count": 81,
         "latestDate": "2026-01-27",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -652,12 +697,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "八德路與三民路"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:registry:SPSNMLMJRHJGFBF98DG"
     },
     {
       "id": "林口-17-2b7cd2",
@@ -681,9 +729,9 @@
         "median": 63.3,
         "low": 59.9,
         "high": 75.6,
-        "count": 68,
+        "count": 58,
         "latestDate": "2025-12-25",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -693,12 +741,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "民享路"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:permit:113林建字第00282號"
     },
     {
       "id": "林口-18-553cd8",
@@ -722,9 +773,9 @@
         "median": 54.4,
         "low": 50.3,
         "high": 56.8,
-        "count": 30,
+        "count": 26,
         "latestDate": "2025-08-19",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -734,12 +785,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "竹林一路與民享路路"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:permit:112林建字第00324號"
     },
     {
       "id": "林口-19-25afb7",
@@ -760,12 +814,12 @@
       "firstRegistrationDate": "2026-03-03",
       "registryNumber": "VPPNMLQKQHJGFBF66CG",
       "price": {
-        "median": 57.4,
+        "median": 57,
         "low": 51.2,
         "high": 61.9,
-        "count": 38,
+        "count": 28,
         "latestDate": "2025-07-03",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -775,12 +829,13 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
+        "matchMethod": "建案名稱正規化完全相符",
         "addressCorroborated": null,
         "addressTokens": [],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:registry:VPPNMLQKQHJGFBF66CG"
     },
     {
       "id": "林口-20-1aa799",
@@ -801,12 +856,12 @@
       "firstRegistrationDate": null,
       "registryNumber": "未提供",
       "price": {
-        "median": 52.0,
+        "median": 51.8,
         "low": 45.8,
         "high": 59.5,
-        "count": 95,
+        "count": 84,
         "latestDate": "2026-02-02",
-        "source": "新北市林口區預售屋實價登錄"
+        "source": "新北市政府預售屋實價登錄開放資料"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
@@ -816,12 +871,15 @@
       "priceEvidence": {
         "status": "matched",
         "statusLabel": "官方成交已配對",
-        "matchMethod": "新北市開放資料建案名稱配對",
-        "addressCorroborated": null,
-        "addressTokens": [],
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "南勢三街及南勢三街138巷交叉路"
+        ],
         "lastCheckedAt": "2026-07-14",
-        "sourceUrl": "https://data.gov.tw/dataset/146480"
-      }
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "sourceKey": "林口:permit:112林建字第00344號"
     },
     {
       "id": "a7-01-cd4424",
@@ -864,7 +922,8 @@
         ],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:permit:桃市都建執照字第會龜0132902號"
     },
     {
       "id": "a7-02-234762",
@@ -898,7 +957,8 @@
         "addressTokens": [],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:registry:QPPNMLPJOHLGFDH98CG"
     },
     {
       "id": "a7-03-7b25a4",
@@ -932,7 +992,8 @@
         "addressTokens": [],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:permit:114桃市都建執照字第會龜01088"
     },
     {
       "id": "a7-04-acfee0",
@@ -966,7 +1027,8 @@
         "addressTokens": [],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:permit:111桃市都建執照字第會龜00005號"
     },
     {
       "id": "a7-05-4a513b",
@@ -1009,7 +1071,8 @@
         ],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:permit:桃市都建執照字第會龜01011號"
     },
     {
       "id": "a7-06-08ce9d",
@@ -1046,11 +1109,12 @@
         "status": "matched",
         "statusLabel": "官方成交已配對",
         "matchMethod": "建案名稱正規化完全相符",
-        "addressCorroborated": false,
+        "addressCorroborated": null,
         "addressTokens": [],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:registry:WPRNMLLMKIJGFDH56CG"
     },
     {
       "id": "a7-07-cd952c",
@@ -1093,7 +1157,8 @@
         ],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:permit:111桃市都建執照字第會龜13821"
     },
     {
       "id": "a7-08-0362a4",
@@ -1136,7 +1201,8 @@
         ],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:permit:112桃市都建執照字第會龜01246"
     },
     {
       "id": "a7-09-9e9aa8",
@@ -1179,7 +1245,8 @@
         ],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:permit:111桃市都建執照字第會龜2271"
     },
     {
       "id": "a7-10-e86850",
@@ -1200,7 +1267,7 @@
       "firstRegistrationDate": null,
       "registryNumber": "未提供",
       "price": {
-        "median": 46.0,
+        "median": 46,
         "low": 38.9,
         "high": 73.3,
         "count": 461,
@@ -1222,7 +1289,8 @@
         ],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:permit:桃市都建執照字第會龜0112502號"
     },
     {
       "id": "a7-11-7cbc96",
@@ -1266,7 +1334,8 @@
         ],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:permit:112桃市都建執照字第會龜00733號"
     },
     {
       "id": "a7-12-ae84ab",
@@ -1288,7 +1357,7 @@
       "registryNumber": "QPPNMLPKJIIGFDH48DG",
       "price": {
         "median": 47.9,
-        "low": 42.0,
+        "low": 42,
         "high": 58.3,
         "count": 259,
         "latestDate": "2025-01-11",
@@ -1309,7 +1378,8 @@
         ],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:registry:QPPNMLPKJIIGFDH48DG"
     },
     {
       "id": "a7-13-437eb6",
@@ -1346,11 +1416,12 @@
         "status": "matched",
         "statusLabel": "官方成交已配對",
         "matchMethod": "建案名稱正規化完全相符",
-        "addressCorroborated": false,
+        "addressCorroborated": null,
         "addressTokens": [],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:permit:109桃市都建執照字第會龜00412號"
     },
     {
       "id": "a7-14-0959e3",
@@ -1371,7 +1442,7 @@
       "firstRegistrationDate": "2026-06-30",
       "registryNumber": "未提供",
       "price": {
-        "median": 38.0,
+        "median": 38,
         "low": 35.1,
         "high": 52.3,
         "count": 200,
@@ -1393,7 +1464,8 @@
         ],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:permit:111桃市都建執照字第會龜00956號"
     },
     {
       "id": "a7-15-979ff3",
@@ -1430,11 +1502,12 @@
         "status": "matched",
         "statusLabel": "官方成交已配對",
         "matchMethod": "建案名稱正規化完全相符",
-        "addressCorroborated": false,
+        "addressCorroborated": null,
         "addressTokens": [],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:permit:108桃市都建執照字第會龜00960"
     },
     {
       "id": "a7-16-694770",
@@ -1471,11 +1544,12 @@
         "status": "matched",
         "statusLabel": "官方成交已配對",
         "matchMethod": "建案名稱正規化完全相符",
-        "addressCorroborated": false,
+        "addressCorroborated": null,
         "addressTokens": [],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:permit:106桃市都建執照字第會龜001352"
     },
     {
       "id": "a7-17-803131",
@@ -1496,7 +1570,7 @@
       "firstRegistrationDate": "2025-07-03",
       "registryNumber": "未提供",
       "price": {
-        "median": 38.0,
+        "median": 38,
         "low": 33.6,
         "high": 51.6,
         "count": 207,
@@ -1518,7 +1592,8 @@
         ],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:permit:桃市都建執照字第會龜0049601號"
     },
     {
       "id": "a7-18-78daaa",
@@ -1539,7 +1614,7 @@
       "firstRegistrationDate": "2026-06-26",
       "registryNumber": "QPQNMLLMNHIGFDH58CG",
       "price": {
-        "median": 40.0,
+        "median": 40,
         "low": 37.5,
         "high": 62.6,
         "count": 546,
@@ -1562,7 +1637,8 @@
         ],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:registry:QPQNMLLMNHIGFDH58CG"
     },
     {
       "id": "a7-19-f52012",
@@ -1605,7 +1681,8 @@
         ],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:permit:110桃市都建執照字第會龜011901"
     },
     {
       "id": "a7-20-e374fc",
@@ -1627,7 +1704,7 @@
       "registryNumber": "未提供",
       "price": {
         "median": 34.9,
-        "low": 30.0,
+        "low": 30,
         "high": 52.1,
         "count": 216,
         "latestDate": "2024-09-22",
@@ -1642,11 +1719,82 @@
         "status": "matched",
         "statusLabel": "官方成交已配對",
         "matchMethod": "建案名稱正規化完全相符",
-        "addressCorroborated": false,
+        "addressCorroborated": null,
         "addressTokens": [],
         "lastCheckedAt": "2026-07-14",
         "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
-      }
+      },
+      "sourceKey": "A7:permit:桃市都建執照字第會龜0172702號"
+    },
+    {
+      "id": "linkou-d3c468867c",
+      "name": "立軒慕玥",
+      "region": "林口",
+      "city": "新北市",
+      "district": "林口區",
+      "builder": "兆軒建設股份有限公司",
+      "households": 146,
+      "zoning": "中心商業區",
+      "mainUse": "H2集合住宅、G3一般零售業、G2事務所及工商服務業",
+      "material": "鋼筋混凝土造",
+      "address": "民有街",
+      "buildingLand": "力行段749地號",
+      "declaredDate": "2026-02-03",
+      "permitDate": "2026-01-23",
+      "permitNo": "115林建字第00020號",
+      "firstRegistrationDate": null,
+      "registryNumber": "未提供",
+      "sourceKey": "林口:permit:115林建字第00020號",
+      "price": null,
+      "priceEvidence": {
+        "status": "official-no-match",
+        "statusLabel": "官方尚無已發布成交",
+        "matchMethod": "官方成交建案名稱未找到可安全歸戶紀錄；地號與地址不足以單獨判定同案",
+        "addressCorroborated": false,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "qualityStatus": "尚未查核",
+      "amenityStatus": "待定位",
+      "dataCompleteness": 70,
+      "mapX": 32,
+      "mapY": 63
+    },
+    {
+      "id": "linkou-72c6eb54e3",
+      "name": "擎天賦域．恆匯經貿中心",
+      "region": "林口",
+      "city": "新北市",
+      "district": "林口區",
+      "builder": "亞昕國際開發股份有限公司",
+      "households": 488,
+      "zoning": "中心商業區",
+      "mainUse": "G2事務所及工商服務業、G3日用品零售業、H2多戶住宅",
+      "material": "鋼筋混凝土構造",
+      "address": "文化二路二段5號旁",
+      "buildingLand": "力行段77地號",
+      "declaredDate": "2026-04-02",
+      "permitDate": "2026-02-10",
+      "permitNo": "115林建字第00034號",
+      "firstRegistrationDate": null,
+      "registryNumber": "QPPNMLMJMHLGFBF18DG",
+      "sourceKey": "林口:registry:QPPNMLMJMHLGFBF18DG",
+      "price": null,
+      "priceEvidence": {
+        "status": "official-no-match",
+        "statusLabel": "官方尚無已發布成交",
+        "matchMethod": "官方成交建案名稱未找到可安全歸戶紀錄；地號與地址不足以單獨判定同案",
+        "addressCorroborated": false,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.ntpc.gov.tw/datasets/D46D75A6-9888-44FF-BBF6-451D5279671A"
+      },
+      "qualityStatus": "尚未查核",
+      "amenityStatus": "待定位",
+      "dataCompleteness": 70,
+      "mapX": 42,
+      "mapY": 45
     }
   ],
   "sources": [
@@ -1668,11 +1816,24 @@
   ],
   "priceCoverage": {
     "pricedProjects": 37,
-    "totalProjects": 40,
+    "totalProjects": 42,
+    "linkouMatchedProjects": 20,
+    "linkouOfficialNoMatchProjects": 2,
+    "linkouOfficialRecordsReviewed": 5265,
     "a7MatchedProjects": 17,
     "a7OfficialNoMatchProjects": 3,
     "a7OfficialRecordsReviewed": 8204,
     "historyFrom": "112S1",
     "checkedAt": "2026-07-14"
+  },
+  "maintenance": {
+    "lastProjectScanAt": "2026-07-14",
+    "officialEligibleCount": 117,
+    "catalogueCount": 42,
+    "autoAddedCount": 0,
+    "updatedExistingCount": 0,
+    "historicalBacklogCount": 75,
+    "attentionCount": 0,
+    "policy": "只自動加入晚於各區目前最新申報日的新案；既有案不自動刪除，歧義資料不覆蓋。"
   }
 }
