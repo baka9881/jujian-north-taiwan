@@ -511,6 +511,9 @@ html,body { font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
 .quality-event-facts dt { color:#6b797e; font-size:9px; }
 .quality-event-facts dd { margin:3px 0 0; color:#31444c; font-size:11px; font-weight:750; }
 .contract-events > article { border-color:#d9dfe2; background:#fafbfb; }
+.quality-events .original-source-copy { margin-top:11px; border-color:#dfe4e6; background:white; }
+.quality-events .original-source-copy > summary { padding:9px 10px; color:#52656e; font-size:10px; font-weight:800; }
+.quality-events .original-source-copy > p { padding:9px 10px; color:#65757d; font-size:10px; line-height:1.55; }
 .quality-empty-note { margin:0; padding:12px; border-radius:6px; background:#eef2f3; color:#596a71; font-size:12px; line-height:1.65; }
 .quality-contract-details,.quality-advanced-details { margin-top:12px!important; }
 .quality-contract-details > summary { display:flex; align-items:center; justify-content:space-between; color:#3d5159; font-weight:800; }

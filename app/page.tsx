@@ -367,9 +367,35 @@ function dataConfidence(project: Project) {
 }
 
 function shortQualityText(project: Project) {
-  if (project.quality.defectEventCount > 0) return `${project.quality.defectEventCount} 件瑕疵紀錄`;
-  if (hasQualityAttention(project)) return "契約查核需注意";
-  return "尚無可歸戶瑕疵";
+  if (project.quality.defectEventCount > 0) return `找到 ${project.quality.defectEventCount} 筆房屋問題`;
+  if (hasQualityAttention(project)) return "合約有項目要注意";
+  return "目前沒找到明確問題";
+}
+
+function contractOutcomeText(event: ProjectQuality["events"][number]) {
+  return event.outcome === "符合" ? "沒有發現不合格" : "有項目要注意";
+}
+
+function contractPlainTitle(event: ProjectQuality["events"][number]) {
+  if (event.outcome === "符合") return "官方抽查合約，沒有發現不合格項目";
+  return "官方抽查合約，發現 1 個項目不符合規定";
+}
+
+function contractPlainSummary(event: ProjectQuality["events"][number]) {
+  if (event.outcome === "符合" && event.summary.includes("15 項")) {
+    return "政府抽查了這份預售屋合約的 15 個項目，沒有任何一項被列為不合格。表格中的空白代表符合規定。";
+  }
+  if (event.outcome === "符合") {
+    return "政府曾抽查這份預售屋合約，表格中的檢查項目都被列為符合規定。";
+  }
+  return "政府抽查時發現，「房地面積誤差與價款找補」這一項不符合規定，簽約前要特別核對這段內容。";
+}
+
+function contractPlainLimitation(event: ProjectQuality["events"][number]) {
+  if (event.outcome === "符合") {
+    return "這只表示合約內容通過當次抽查，不代表房屋施工一定沒問題，也不能證明不會漏水。";
+  }
+  return "這表示合約有一項需要注意，不代表房屋真的已經發生面積短少、施工問題或漏水。";
 }
 
 function budgetMatches(project: Project, budget: BudgetFilter) {
@@ -479,10 +505,10 @@ export default function Home() {
   const activeMoreAmenityEntries = amenityEntries.filter(([category]) => !priorityAmenityCategories.includes(category));
   const activeQualityAttention = hasQualityAttention(active);
   const activeQualityHeadline = activeDefectEvents.length
-    ? `${activeDefectEvents.length} 件實際瑕疵`
+    ? `找到 ${activeDefectEvents.length} 筆房屋問題`
     : activeQualityAttention
-      ? "契約查核需注意"
-      : "目前 0 件可歸戶瑕疵";
+      ? "合約有項目要注意"
+      : "目前沒找到明確的房屋問題";
   const activeConfidence = dataConfidence(active);
   const activeRegionMedian = regionMedian(active);
 
@@ -718,7 +744,7 @@ export default function Home() {
                     <span>價格合理性</span><strong>{priceText(active)}</strong><small>{priceComparison(active)} · {active.price ? `${active.price.count} 筆官方樣本` : active.priceEvidence.statusLabel}</small><b>看價格依據 →</b>
                   </button>
                   <button type="button" className={activeDefectEvents.length || activeQualityAttention ? "attention" : "clear"} onClick={() => setDetailTab("quality")}>
-                    <span>品質紀錄</span><strong>{activeQualityHeadline}</strong><small>{activeContractEvents.length ? `${activeContractEvents.length} 件契約查核資料` : "官方來源已完成首輪查核"}</small><b>看品質證據 →</b>
+                    <span>房屋與合約紀錄</span><strong>{activeQualityHeadline}</strong><small>{activeContractEvents.length ? `另有 ${activeContractEvents.length} 筆官方合約抽查` : "官方資料已查過一輪"}</small><b>看清楚查了什麼 →</b>
                   </button>
                   <button type="button" className={activeAmenityScore === null ? "unavailable" : "clear"} onClick={() => setDetailTab("amenity")}>
                     <span>生活機能</span><strong>{activeAmenityScore === null ? "等待定位" : `${activeAmenityScore} 分 · ${amenityGrade(activeAmenityScore)}`}</strong><small>{active.amenity.nearest.station?.routes.walking ? `最近車站步行 ${active.amenity.nearest.station.routes.walking.durationMinutes} 分` : locationLabel(active)}</small><b>看附近設施 →</b>
@@ -742,17 +768,17 @@ export default function Home() {
             {detailTab === "price" && <section><h3>成交行情</h3>{active.price ? <><div className="drawer-price"><span>中位單價</span><strong>{active.price.median}</strong><small>萬／坪</small><p>{active.price.low}–{active.price.high} 萬／坪</p></div><div className="region-benchmark"><span>{active.region}區域基準</span><strong>{activeRegionMedian ?? "待補"} 萬／坪</strong><b>{priceComparison(active)}</b></div><div className="drawer-facts two"><div><span>有效樣本</span><strong>{active.price.count} 筆</strong></div><div><span>最新交易</span><strong>{formatDate(active.price.latestDate)}</strong></div></div><p className="drawer-note">來源：{active.price.source}。區域基準取本資料庫同區有官方成交建案的中位數；成交價不是目前開價，也不是估價結果。</p></> : <div className="drawer-empty price-unavailable"><span>{active.priceEvidence.statusLabel}</span><strong>{active.priceEvidence.status === "official-no-match" ? "目前沒有可安全歸戶的官方成交" : "成交資料尚待配對"}</strong><p>{active.priceEvidence.status === "official-no-match" ? "已核對官方已發布資料；這不代表建案沒有銷售，近期交易可能尚未申報或公開。" : "目前來源未成功配對，不代表沒有交易。"}</p><small>查核更新 {formatDate(active.priceEvidence.lastCheckedAt)} · {active.priceEvidence.matchMethod}</small><a href={active.priceEvidence.sourceUrl} target="_blank" rel="noreferrer">查看官方資料入口 ↗</a></div>}</section>}
             {detailTab === "quality" && (
               <section>
-                <h3>實際瑕疵與契約查核</h3>
+                <h3>房屋問題與合約檢查</h3>
                 <div className={`defect-summary ${activeDefectEvents.length ? "attention" : "reviewed"}`}>
                   <div>
-                    <span>可歸戶的實際瑕疵</span>
-                    <strong>{activeDefectEvents.length ? `${activeDefectEvents.length} 件` : "目前 0 件"}</strong>
-                    <b>{active.quality.defectReview.label}</b>
+                    <span>目前找到的房屋問題</span>
+                    <strong>{activeDefectEvents.length ? `${activeDefectEvents.length} 筆` : "目前 0 筆"}</strong>
+                    <b>{activeDefectEvents.length ? "有資料可核對" : "目前沒有明確紀錄"}</b>
                   </div>
                   <p>{activeDefectEvents.length
-                    ? "每件紀錄都能確認建案、問題類型與發生事實；請連同修繕狀態與原始來源判讀。"
-                    : qualityData.methodology.noEventDisclaimer}</p>
-                  {active.quality.lastReviewedAt && <small>查核日期 {formatDate(active.quality.lastReviewedAt)}</small>}
+                    ? "這些紀錄可以確認是哪個建案、發生什麼問題。仍要一起看是否修好、後來有沒有再發生。"
+                    : "目前查過的官方資料裡，沒有找到能明確對上這個建案的漏水或施工問題。但沒有紀錄，不代表房屋一定沒有問題。"}</p>
+                  {active.quality.lastReviewedAt && <small>上次查資料：{formatDate(active.quality.lastReviewedAt)}</small>}
                 </div>
 
                 {activeDefectEvents.length > 0 && (
@@ -784,25 +810,26 @@ export default function Home() {
                 )}
 
                 <details className="quality-contract-details">
-                  <summary><span>契約與行政查核</span><b>{activeContractEvents.length} 件</b></summary>
+                  <summary><span>官方有沒有查到合約問題？</span><b>{activeContractEvents.length} 筆</b></summary>
                   {activeContractEvents.length > 0 ? (
                     <div className="quality-events contract-events">
                       {activeContractEvents.map((event) => (
                         <article key={event.id}>
-                          <header><span>{event.category}</span><b className={event.outcome === "符合" ? "pass" : "attention"}>{event.outcome}</b><i>證據 {event.level}</i></header>
-                          <h5>{event.title}</h5>
-                          <p>{event.summary}</p>
-                          <aside><strong>不能證明</strong>{event.limitation}</aside>
-                          <footer><small>資料日期 {formatDate(event.sourceDate)}</small><div>{event.sources.map((source) => <a href={source.url} target="_blank" rel="noreferrer" key={source.url}>{source.name} ↗</a>)}</div></footer>
+                          <header><span>官方抽查</span><b className={event.outcome === "符合" ? "pass" : "attention"}>{contractOutcomeText(event)}</b><i>官方資料</i></header>
+                          <h5>{contractPlainTitle(event)}</h5>
+                          <p>{contractPlainSummary(event)}</p>
+                          <aside><strong>這不能代表什麼？</strong>{contractPlainLimitation(event)}</aside>
+                          <details className="original-source-copy"><summary>查看政府原本怎麼寫</summary><p>{event.summary}</p><p>{event.limitation}</p></details>
+                          <footer><small>查核日期 {formatDate(event.sourceDate)}</small><div>{event.sources.map((source) => <a href={source.url} target="_blank" rel="noreferrer" key={source.url}>查看政府原始資料 ↗</a>)}</div></footer>
                         </article>
                       ))}
                     </div>
-                  ) : <p className="quality-empty-note">目前沒有可歸戶的契約或行政查核結果。</p>}
+                  ) : <p className="quality-empty-note">目前沒有找到能明確對上這個建案的官方合約抽查資料。</p>}
                 </details>
 
                 <details className="quality-advanced-details">
-                  <summary>查核來源與判讀方法</summary>
-                  <h4 className="quality-section-title">已核對來源</h4>
+                  <summary>我們查了哪些資料？</summary>
+                  <h4 className="quality-section-title">已經查過的官方來源</h4>
                   <div className="quality-source-checks">
                     {active.quality.sourceChecks.map((check) => {
                       const source = qualityData.sources.find((item) => item.id === check.sourceId);

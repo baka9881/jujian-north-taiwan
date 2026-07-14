@@ -160,7 +160,7 @@ test("detail interface separates defect evidence and supports route-based custom
   assert.match(source, /查看官方基本資料/);
   assert.match(source, /實際瑕疵與契約查核/);
   assert.match(source, /契約違規不會被當成漏水證據/);
-  assert.match(source, /查核來源與判讀方法/);
+  assert.match(source, /我們查了哪些資料？/);
   assert.match(source, /調整各項權重/);
   assert.match(source, /查看其餘 \{activeMoreAmenityEntries\.length\} 類設施/);
   assert.match(source, /查看設施地圖與計算方式/);
@@ -201,4 +201,16 @@ test("project details include traceable nearby street imagery without pretending
   assert.match(source, /預售屋可能是施工前或尚未更新的畫面/);
   assert.match(css, /\.project-visual iframe \{[^}]*pointer-events:none;/);
   assert.match(css, /\.project-visual\.interactive iframe \{ pointer-events:auto;/);
+});
+
+test("official contract checks are explained in plain Traditional Chinese before the original wording", async () => {
+  const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+
+  assert.match(source, /官方有沒有查到合約問題？/);
+  assert.match(source, /官方抽查合約，沒有發現不合格項目/);
+  assert.match(source, /政府抽查了這份預售屋合約的 15 個項目/);
+  assert.match(source, /這只表示合約內容通過當次抽查/);
+  assert.match(source, /不能證明不會漏水/);
+  assert.match(source, /查看政府原本怎麼寫/);
+  assert.match(source, /查看政府原始資料/);
 });
