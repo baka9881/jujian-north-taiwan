@@ -43,8 +43,29 @@ test("processed amenity data is scored and source-labelled", async () => {
   assert.equal(Object.keys(dataset.projects).length, 40);
   assert.ok(dataset.pois.length >= 200);
   assert.equal(dataset.source.name, "OpenStreetMap contributors");
-  assert.ok(Object.values(dataset.projects).every((project) => project.score >= 0 && project.score <= 100));
+  assert.ok(Object.values(dataset.projects).every((project) => project.score === null || (project.score >= 0 && project.score <= 100)));
   assert.ok(Object.values(dataset.projects).every((project) => project.location.confidence));
+  assert.equal(Object.values(dataset.projects).filter((project) => project.scoreReliability === "verified").length, 17);
+  assert.equal(Object.values(dataset.projects).filter((project) => project.scoreReliability === "unavailable").length, 10);
+  assert.ok(Object.values(dataset.projects).filter((project) => project.location.confidence === "estimated").every((project) => project.score === null));
+  assert.equal(Object.values(dataset.projects).filter((project) => project.location.method === "nlsc-official-intersection").length, 16);
+});
+
+test("quality evidence records preserve unknown states and official review links", async () => {
+  const raw = await readFile(new URL("../data/processed/quality-evidence.json", import.meta.url), "utf8");
+  const dataset = JSON.parse(raw);
+  const projects = Object.values(dataset.projects);
+
+  assert.equal(projects.length, 40);
+  assert.equal(dataset.summary.queuedCount, 40);
+  assert.equal(dataset.summary.publishedEventCount, 0);
+  assert.equal(dataset.summary.verifiedLocationCount, 17);
+  assert.equal(dataset.summary.approximateLocationCount, 13);
+  assert.equal(dataset.summary.awaitingParcelCount, 10);
+  assert.ok(projects.every((project) => project.status === "queued"));
+  assert.ok(projects.every((project) => project.events.length === 0));
+  assert.ok(projects.every((project) => project.locationReview.parcel?.officialMapUrl.startsWith("https://maps.nlsc.gov.tw/goland/")));
+  assert.ok(dataset.methodology.noEventDisclaimer.includes("不代表建案沒有漏水或施工問題"));
 });
 
 test("processed data has the intended scope and explicit unknown states", async () => {

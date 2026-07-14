@@ -1,0 +1,1904 @@
+{
+  "generatedAt": "2026-07-14",
+  "methodology": {
+    "publishRule": "僅刊登 A 級可直接核對資料，或至少兩個互相獨立來源構成的 B 級資料；C 級線索不形成品質結論。",
+    "noEventDisclaimer": "0 件已刊登事件只代表目前沒有資料通過刊登門檻，不代表建案沒有漏水或施工問題。",
+    "reviewStates": {
+      "queued": "已排入查核，尚未逐筆完成官方來源搜尋",
+      "reviewing": "正在核對事件、建案名稱、地址與當事人",
+      "reviewed": "本輪來源查核完成，但仍可能因資料更新而改變"
+    },
+    "evidenceLevels": {
+      "A": "裁判書、政府處分、建商正式公告、具體修繕或鑑定文件",
+      "B": "至少兩個互相獨立且能確認同一建案的公開來源",
+      "C": "單一匿名貼文、無法核對棟別時間或僅有轉述的待查線索"
+    }
+  },
+  "sources": [
+    {
+      "id": "judicial",
+      "name": "司法院裁判書查詢",
+      "url": "https://judgment.judicial.gov.tw/FJUD/default.aspx",
+      "level": "A",
+      "access": "公開查詢"
+    },
+    {
+      "id": "judicial-api",
+      "name": "司法院裁判書開放 API",
+      "url": "https://opendata.judicial.gov.tw/",
+      "level": "A",
+      "access": "需申請帳號與限時權杖"
+    },
+    {
+      "id": "consumer-disputes",
+      "name": "內政部房地產消費糾紛案例",
+      "url": "https://data.gov.tw/dataset/7506",
+      "level": "A",
+      "access": "開放資料"
+    },
+    {
+      "id": "contract-inspection",
+      "name": "行政院消保處預售屋契約查核",
+      "url": "https://cpc.ey.gov.tw/Page/6C059838CA9744A8/b876668f-58c1-4e6f-80c3-846d4a317786",
+      "level": "A",
+      "access": "公開資料"
+    },
+    {
+      "id": "nlsc",
+      "name": "國土測繪圖資服務雲",
+      "url": "https://maps.nlsc.gov.tw/",
+      "level": "A",
+      "access": "地號人工核對"
+    }
+  ],
+  "summary": {
+    "projectCount": 40,
+    "publishedEventCount": 0,
+    "queuedCount": 40,
+    "verifiedLocationCount": 17,
+    "approximateLocationCount": 13,
+    "awaitingParcelCount": 10
+  },
+  "projects": {
+    "林口-01-097315": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "富浤一響",
+        "富浤建設股份有限公司",
+        "114林建字00239號",
+        "新林段1176地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "approximate",
+        "label": "道路位置估算",
+        "method": "nominatim-road",
+        "parcel": {
+          "sectionName": "新林段",
+          "sectionCode": "0468",
+          "parcelNumber": "1176",
+          "parcelCode": "046811760000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046811760000"
+        }
+      },
+      "events": []
+    },
+    "林口-02-d292ac": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "立陽頤興",
+        "頤興建設有限公司",
+        "114林建字第00161號",
+        "力行段243地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "approximate",
+        "label": "道路位置估算",
+        "method": "nominatim-road",
+        "parcel": {
+          "sectionName": "力行段",
+          "sectionCode": "0466",
+          "parcelNumber": "243",
+          "parcelCode": "046602430000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046602430000"
+        }
+      },
+      "events": []
+    },
+    "林口-03-217128": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "立軒天蒔",
+        "兆軒建設股份有限公司",
+        "114林建字第00100號",
+        "力行段179地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "verified",
+        "label": "已有可信定位",
+        "method": "nlsc-official-intersection",
+        "parcel": {
+          "sectionName": "力行段",
+          "sectionCode": "0466",
+          "parcelNumber": "179",
+          "parcelCode": "046601790000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046601790000"
+        }
+      },
+      "events": []
+    },
+    "林口-04-65c21d": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "易捷聿白",
+        "易捷興業股份有限公司",
+        "114林建字第00045號",
+        "建林段610地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "approximate",
+        "label": "道路位置估算",
+        "method": "nominatim-road",
+        "parcel": {
+          "sectionName": "建林段",
+          "sectionCode": "0467",
+          "parcelNumber": "610",
+          "parcelCode": "046706100000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046706100000"
+        }
+      },
+      "events": []
+    },
+    "林口-05-6701e3": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "仁愛金鑽",
+        "金鑽號事業有限公司",
+        "114林建字第00065號",
+        "行政段203地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "verified",
+        "label": "已有可信定位",
+        "method": "nlsc-official-intersection",
+        "parcel": {
+          "sectionName": "行政段",
+          "sectionCode": "2212",
+          "parcelNumber": "203",
+          "parcelCode": "221202030000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/221202030000"
+        }
+      },
+      "events": []
+    },
+    "林口-06-d0c30b": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "大新青慕",
+        "大新田開發股份有限公司",
+        "111林建字第00313號",
+        "麗林段69地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "verified",
+        "label": "已有可信定位",
+        "method": "nlsc-official-intersection",
+        "parcel": {
+          "sectionName": "麗林段",
+          "sectionCode": "0465",
+          "parcelNumber": "69",
+          "parcelCode": "046500690000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046500690000"
+        }
+      },
+      "events": []
+    },
+    "林口-07-636c51": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "證源富承",
+        "證源建設股份有限公司",
+        "113林建字第00053號",
+        "林口段909地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "approximate",
+        "label": "道路位置估算",
+        "method": "nominatim-road",
+        "parcel": {
+          "sectionName": "林口段",
+          "sectionCode": "2211",
+          "parcelNumber": "909",
+          "parcelCode": "221109090000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/221109090000"
+        }
+      },
+      "events": []
+    },
+    "林口-08-021d6c": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "盛德誠",
+        "盛德建設股份有限公司",
+        "114林建字第00060號",
+        "建林段1087地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "awaiting-parcel-check",
+        "label": "等待地號核對",
+        "method": "catalogue-fallback",
+        "parcel": {
+          "sectionName": "建林段",
+          "sectionCode": "0467",
+          "parcelNumber": "1087",
+          "parcelCode": "046710870000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046710870000"
+        }
+      },
+      "events": []
+    },
+    "林口-09-69e9f6": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "長耀會",
+        "仕院建設股份有限公司",
+        "111林建字第00319-03號",
+        "力行段266地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "verified",
+        "label": "已有可信定位",
+        "method": "nlsc-official-intersection",
+        "parcel": {
+          "sectionName": "力行段",
+          "sectionCode": "0466",
+          "parcelNumber": "266",
+          "parcelCode": "046602660000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046602660000"
+        }
+      },
+      "events": []
+    },
+    "林口-10-0d70e1": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "新潤世界都心",
+        "新潤建設(股)/新潤興業(股)",
+        "113林建字第00416號",
+        "力行段105地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "approximate",
+        "label": "道路位置估算",
+        "method": "nominatim-road",
+        "parcel": {
+          "sectionName": "力行段",
+          "sectionCode": "0466",
+          "parcelNumber": "105",
+          "parcelCode": "046601050000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046601050000"
+        }
+      },
+      "events": []
+    },
+    "林口-11-c4a9a4": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "家睦中山",
+        "家睦建設股份有限公司",
+        "113林建字地00242號",
+        "佳林段723地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "approximate",
+        "label": "道路位置估算",
+        "method": "nominatim-road",
+        "parcel": {
+          "sectionName": "佳林段",
+          "sectionCode": "2216",
+          "parcelNumber": "723",
+          "parcelCode": "221607230000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/221607230000"
+        }
+      },
+      "events": []
+    },
+    "林口-12-838c61": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "宏樸曉霧",
+        "宏樸建設有限公司",
+        "111林建字第00494-01號",
+        "建林段683地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "awaiting-parcel-check",
+        "label": "等待地號核對",
+        "method": "catalogue-fallback",
+        "parcel": {
+          "sectionName": "建林段",
+          "sectionCode": "0467",
+          "parcelNumber": "683",
+          "parcelCode": "046706830000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046706830000"
+        }
+      },
+      "events": []
+    },
+    "林口-13-8bd55c": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "頤昌松玥",
+        "頤叡建設股份有限公司",
+        "113林 建字第00292號",
+        "力行段327地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "approximate",
+        "label": "道路位置估算",
+        "method": "nominatim-road",
+        "parcel": {
+          "sectionName": "力行段",
+          "sectionCode": "0466",
+          "parcelNumber": "327",
+          "parcelCode": "046603270000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046603270000"
+        }
+      },
+      "events": []
+    },
+    "林口-14-4070bd": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "九揚華樂",
+        "九揚開發股份有限公司",
+        "113林建字第00250號",
+        "力行段955地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "awaiting-parcel-check",
+        "label": "等待地號核對",
+        "method": "catalogue-fallback",
+        "parcel": {
+          "sectionName": "力行段",
+          "sectionCode": "0466",
+          "parcelNumber": "955",
+          "parcelCode": "046609550000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046609550000"
+        }
+      },
+      "events": []
+    },
+    "林口-15-d3eece": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "源峰上境",
+        "源峰建設股份有限公司",
+        "111林建字第00387號",
+        "麗林段549地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "awaiting-parcel-check",
+        "label": "等待地號核對",
+        "method": "catalogue-fallback",
+        "parcel": {
+          "sectionName": "麗林段",
+          "sectionCode": "0465",
+          "parcelNumber": "549",
+          "parcelCode": "046505490000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046505490000"
+        }
+      },
+      "events": []
+    },
+    "林口-16-187dad": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "璽來登帝璽",
+        "家?開發地產有限公司\\家聖建設開發股份有限公司",
+        "113林建字第00271號",
+        "建林段497地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "verified",
+        "label": "已有可信定位",
+        "method": "nlsc-official-intersection",
+        "parcel": {
+          "sectionName": "建林段",
+          "sectionCode": "0467",
+          "parcelNumber": "497",
+          "parcelCode": "046704970000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046704970000"
+        }
+      },
+      "events": []
+    },
+    "林口-17-2b7cd2": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "群和FUTURE LINK",
+        "群和建設股份有限公司",
+        "113林建字第00282 號",
+        "力行段11地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "awaiting-parcel-check",
+        "label": "等待地號核對",
+        "method": "catalogue-fallback",
+        "parcel": {
+          "sectionName": "力行段",
+          "sectionCode": "0466",
+          "parcelNumber": "11",
+          "parcelCode": "046600110000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046600110000"
+        }
+      },
+      "events": []
+    },
+    "林口-18-553cd8": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "聯虹珺玥",
+        "聯虹建設股份有限公司",
+        "112林建字第00324號",
+        "麗林段182地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "verified",
+        "label": "已有可信定位",
+        "method": "nlsc-official-intersection",
+        "parcel": {
+          "sectionName": "麗林段",
+          "sectionCode": "0465",
+          "parcelNumber": "182",
+          "parcelCode": "046501820000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046501820000"
+        }
+      },
+      "events": []
+    },
+    "林口-19-25afb7": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "竹城.日和",
+        "竹泰建設股份有限公司",
+        "112林建字第00200-01號",
+        "建林段1261地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "awaiting-parcel-check",
+        "label": "等待地號核對",
+        "method": "catalogue-fallback",
+        "parcel": {
+          "sectionName": "建林段",
+          "sectionCode": "0467",
+          "parcelNumber": "1261",
+          "parcelCode": "046712610000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046712610000"
+        }
+      },
+      "events": []
+    },
+    "林口-20-1aa799": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "築禾琢玥",
+        "築禾建設股份有限公司 起造人：黃劍輝",
+        "112林建字第00344號",
+        "建林段828地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "verified",
+        "label": "已有可信定位",
+        "method": "nlsc-official-intersection",
+        "parcel": {
+          "sectionName": "建林段",
+          "sectionCode": "0467",
+          "parcelNumber": "828",
+          "parcelCode": "046708280000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046708280000"
+        }
+      },
+      "events": []
+    },
+    "a7-01-cd4424": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "長耀辰",
+        "長耀國際興業有限公司",
+        "桃市都建執照字第會龜01329-02號",
+        "善捷段60地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "approximate",
+        "label": "道路位置估算",
+        "method": "nominatim-road",
+        "parcel": {
+          "sectionName": "善捷段",
+          "sectionCode": "1442",
+          "parcelNumber": "60",
+          "parcelCode": "144200600000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144200600000"
+        }
+      },
+      "events": []
+    },
+    "a7-02-234762": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "鴻廣麴町",
+        "鴻廣建設股份有限公司",
+        "114桃市都建執照字第會龜00418-1",
+        "樂捷段95地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "verified",
+        "label": "已有可信定位",
+        "method": "nlsc-official-intersection",
+        "parcel": {
+          "sectionName": "樂捷段",
+          "sectionCode": "1441",
+          "parcelNumber": "95",
+          "parcelCode": "144100950000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144100950000"
+        }
+      },
+      "events": []
+    },
+    "a7-03-7b25a4": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "詠勝欣文青",
+        "詠勝生美有限公司",
+        "(114)桃市都建執照字第會龜01088",
+        "善捷段136地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "awaiting-parcel-check",
+        "label": "等待地號核對",
+        "method": "catalogue-fallback",
+        "parcel": {
+          "sectionName": "善捷段",
+          "sectionCode": "1442",
+          "parcelNumber": "136",
+          "parcelCode": "144201360000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144201360000"
+        }
+      },
+      "events": []
+    },
+    "a7-04-acfee0": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "樂捷綻",
+        "佳峻建設股份有限公司",
+        "111桃市都建執照字第會龜00005號",
+        "樂捷段146地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "verified",
+        "label": "已有可信定位",
+        "method": "nlsc-official-intersection",
+        "parcel": {
+          "sectionName": "樂捷段",
+          "sectionCode": "1441",
+          "parcelNumber": "146",
+          "parcelCode": "144101460000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144101460000"
+        }
+      },
+      "events": []
+    },
+    "a7-05-4a513b": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "英倫花都",
+        "遠宏開發股份有限公司",
+        "桃市都建執照字第會龜01011號",
+        "樂捷段246地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "approximate",
+        "label": "道路位置估算",
+        "method": "nominatim-road",
+        "parcel": {
+          "sectionName": "樂捷段",
+          "sectionCode": "1441",
+          "parcelNumber": "246",
+          "parcelCode": "144102460000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144102460000"
+        }
+      },
+      "events": []
+    },
+    "a7-06-08ce9d": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "VILLA WOOD睦粼",
+        "大亮建築股份有限公司 代理人：楊金和",
+        "113桃市都建執照字第會龜01601號",
+        "善捷段150地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "approximate",
+        "label": "道路位置估算",
+        "method": "nominatim-road",
+        "parcel": {
+          "sectionName": "善捷段",
+          "sectionCode": "1442",
+          "parcelNumber": "150",
+          "parcelCode": "144201500000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144201500000"
+        }
+      },
+      "events": []
+    },
+    "a7-07-cd952c": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "竹城豐州",
+        "吉城開發股份有限公司",
+        "111桃市都建執照字第會龜1382-1",
+        "善捷段34地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "verified",
+        "label": "已有可信定位",
+        "method": "nlsc-official-intersection",
+        "parcel": {
+          "sectionName": "善捷段",
+          "sectionCode": "1442",
+          "parcelNumber": "34",
+          "parcelCode": "144200340000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144200340000"
+        }
+      },
+      "events": []
+    },
+    "a7-08-0362a4": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "捷市閱",
+        "鴻築建設股份有限公司",
+        "(112)桃市都建執照字第會龜01246",
+        "樂捷段133地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "verified",
+        "label": "已有可信定位",
+        "method": "nlsc-official-intersection",
+        "parcel": {
+          "sectionName": "樂捷段",
+          "sectionCode": "1441",
+          "parcelNumber": "133",
+          "parcelCode": "144101330000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144101330000"
+        }
+      },
+      "events": []
+    },
+    "a7-09-9e9aa8": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "大華開朗",
+        "寶國建築經理股份有限公司",
+        "(111)桃市都建執照字第會龜227-1",
+        "樂捷段124地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "verified",
+        "label": "已有可信定位",
+        "method": "nlsc-official-intersection",
+        "parcel": {
+          "sectionName": "樂捷段",
+          "sectionCode": "1441",
+          "parcelNumber": "124",
+          "parcelCode": "144101240000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144101240000"
+        }
+      },
+      "events": []
+    },
+    "a7-10-e86850": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "溫莎堡",
+        "潤隆建設股份有限公司",
+        "桃市都建執照字第會龜01125-02號",
+        "善捷段76地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "verified",
+        "label": "已有可信定位",
+        "method": "nlsc-official-intersection",
+        "parcel": {
+          "sectionName": "善捷段",
+          "sectionCode": "1442",
+          "parcelNumber": "76",
+          "parcelCode": "144200760000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144200760000"
+        }
+      },
+      "events": []
+    },
+    "a7-11-7cbc96": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "頤昌筑岳",
+        "頤叡建設股份有限公司",
+        "112桃市都建執照字第會龜00733號",
+        "善捷段127地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "verified",
+        "label": "已有可信定位",
+        "method": "nominatim-intersection",
+        "parcel": {
+          "sectionName": "善捷段",
+          "sectionCode": "1442",
+          "parcelNumber": "127",
+          "parcelCode": "144201270000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144201270000"
+        }
+      },
+      "events": []
+    },
+    "a7-12-ae84ab": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "富宇富御",
+        "富宇建設股份有限公司",
+        "桃市都建執照字第會龜00428-01",
+        "樂捷段61地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "approximate",
+        "label": "道路位置估算",
+        "method": "nominatim-road",
+        "parcel": {
+          "sectionName": "樂捷段",
+          "sectionCode": "1441",
+          "parcelNumber": "61",
+          "parcelCode": "144100610000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144100610000"
+        }
+      },
+      "events": []
+    },
+    "a7-13-437eb6": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "豐邑GREEN IN",
+        "豐邑建設股份有限公司",
+        "109桃市都建執照字第會龜00412號",
+        "樂捷段77地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "awaiting-parcel-check",
+        "label": "等待地號核對",
+        "method": "catalogue-fallback",
+        "parcel": {
+          "sectionName": "樂捷段",
+          "sectionCode": "1441",
+          "parcelNumber": "77",
+          "parcelCode": "144100770000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144100770000"
+        }
+      },
+      "events": []
+    },
+    "a7-14-0959e3": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "鴻築玥",
+        "鴻築建設股份有限公司",
+        "111桃市都建執照字第會龜00956號",
+        "樂捷段208地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "awaiting-parcel-check",
+        "label": "等待地號核對",
+        "method": "catalogue-fallback",
+        "parcel": {
+          "sectionName": "樂捷段",
+          "sectionCode": "1441",
+          "parcelNumber": "208",
+          "parcelCode": "144102080000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144102080000"
+        }
+      },
+      "events": []
+    },
+    "a7-15-979ff3": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "富宇天玥",
+        "富宇建設股份有限公司",
+        "(108)桃市都建執照字第會龜00960",
+        "樂捷段141地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "approximate",
+        "label": "道路位置估算",
+        "method": "nominatim-road",
+        "parcel": {
+          "sectionName": "樂捷段",
+          "sectionCode": "1441",
+          "parcelNumber": "141",
+          "parcelCode": "144101410000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144101410000"
+        }
+      },
+      "events": []
+    },
+    "a7-16-694770": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "允將大聚",
+        "允將建設股份有限公司",
+        "106桃市都建執照字第會龜00135-2",
+        "善捷段155地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "approximate",
+        "label": "道路位置估算",
+        "method": "nominatim-road",
+        "parcel": {
+          "sectionName": "善捷段",
+          "sectionCode": "1442",
+          "parcelNumber": "155",
+          "parcelCode": "144201550000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144201550000"
+        }
+      },
+      "events": []
+    },
+    "a7-17-803131": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "大華昇耕",
+        "大華建設股份有限公",
+        "桃市都建執照字第會龜00496-01號",
+        "善捷段32地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "verified",
+        "label": "已有可信定位",
+        "method": "nlsc-official-intersection",
+        "parcel": {
+          "sectionName": "善捷段",
+          "sectionCode": "1442",
+          "parcelNumber": "32",
+          "parcelCode": "144200320000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144200320000"
+        }
+      },
+      "events": []
+    },
+    "a7-18-78daaa": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "丹佛花都",
+        "聯宏開發股份有限公司",
+        "桃市都建執照字第會龜00528號",
+        "善捷段139地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "verified",
+        "label": "已有可信定位",
+        "method": "nlsc-official-intersection",
+        "parcel": {
+          "sectionName": "善捷段",
+          "sectionCode": "1442",
+          "parcelNumber": "139",
+          "parcelCode": "144201390000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144201390000"
+        }
+      },
+      "events": []
+    },
+    "a7-19-f52012": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "竹城中州",
+        "竹泰建設股份有限公司",
+        "110桃市都建執照字第會龜01190-1",
+        "善捷段29地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "verified",
+        "label": "已有可信定位",
+        "method": "nlsc-official-intersection",
+        "parcel": {
+          "sectionName": "善捷段",
+          "sectionCode": "1442",
+          "parcelNumber": "29",
+          "parcelCode": "144200290000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144200290000"
+        }
+      },
+      "events": []
+    },
+    "a7-20-e374fc": {
+      "status": "queued",
+      "statusLabel": "已排入官方來源查核",
+      "lastReviewedAt": null,
+      "publishedEventCount": 0,
+      "evidenceCount": 0,
+      "searchTerms": [
+        "和境心見",
+        "和境建設股份有限公司",
+        "桃市都建執照字第會龜01727-02號",
+        "善捷段106地號"
+      ],
+      "sourceChecks": [
+        {
+          "sourceId": "judicial",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "consumer-disputes",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        },
+        {
+          "sourceId": "contract-inspection",
+          "status": "not-reviewed",
+          "checkedAt": null,
+          "matchCount": null
+        }
+      ],
+      "locationReview": {
+        "status": "awaiting-parcel-check",
+        "label": "等待地號核對",
+        "method": "catalogue-fallback",
+        "parcel": {
+          "sectionName": "善捷段",
+          "sectionCode": "1442",
+          "parcelNumber": "106",
+          "parcelCode": "144201060000",
+          "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144201060000"
+        }
+      },
+      "events": []
+    }
+  }
+}

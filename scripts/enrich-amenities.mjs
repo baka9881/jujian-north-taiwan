@@ -8,8 +8,28 @@ const outputPath = path.join(root, "data", "processed", "amenities.json");
 const cacheDirectory = path.join(root, "data", "cache");
 const geocodeCachePath = path.join(cacheDirectory, "nominatim-projects.json");
 const overpassCachePath = path.join(cacheDirectory, "overpass-pois.json");
+const intersectionCachePath = path.join(cacheDirectory, "nlsc-intersections.json");
 const userAgent = "JujianNorthTaiwan/1.0 (+https://jujian-north-taiwan.baka0406.chatgpt.site)";
-const generatedAt = new Date().toISOString().slice(0, 10);
+const generatedAt = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Taipei" }).format(new Date());
+
+const officialIntersectionSpecs = {
+  "林口-03-217128": { county: "F", town: "F02", road: "文化二路二段", cross: "吉祥路" },
+  "林口-05-6701e3": { county: "F", town: "F02", road: "仁愛路一段", cross: "新生街" },
+  "林口-06-d0c30b": { county: "F", town: "F02", road: "文化二路二段", cross: "中華路" },
+  "林口-09-69e9f6": { county: "F", town: "F02", road: "文化三路二段", cross: "中山路" },
+  "林口-16-187dad": { county: "F", town: "F02", road: "八德路", cross: "三民路" },
+  "林口-18-553cd8": { county: "F", town: "F02", road: "竹林一路", cross: "民享路" },
+  "林口-20-1aa799": { county: "F", town: "F02", road: "南勢三街", cross: "南勢三街138巷" },
+  "a7-02-234762": { county: "H", town: "H07", road: "樂學路", cross: "長慶三街" },
+  "a7-04-acfee0": { county: "H", town: "H07", road: "樂學路", cross: "長慶一街" },
+  "a7-07-cd952c": { county: "H", town: "H07", road: "樂善二路", cross: "文化二路" },
+  "a7-08-0362a4": { county: "H", town: "H07", road: "樂善二路", cross: "牛角坡路" },
+  "a7-09-9e9aa8": { county: "H", town: "H07", road: "長慶一街", cross: "長慶二街" },
+  "a7-10-e86850": { county: "H", town: "H07", road: "文桃路", cross: "牛角坡路" },
+  "a7-17-803131": { county: "H", town: "H07", road: "樂善二路", cross: "文化二路" },
+  "a7-18-78daaa": { county: "H", town: "H07", road: "樂善一路", cross: "牛角坡路" },
+  "a7-19-f52012": { county: "H", town: "H07", road: "文化二路", cross: "樂善二路" },
+};
 
 const categories = {
   convenience: { label: "便利商店", symbol: "商" },
@@ -144,6 +164,39 @@ async function geocodeProjects(projects) {
     const longitude = result ? Number(result.lon) : fallback.longitude;
     return [project.id, { latitude, longitude, ...locationConfidence(project, result), queryAddress: `${project.city}${project.district}${project.address}` }];
   }));
+}
+
+function parseCrossRoads(xml) {
+  return [...xml.matchAll(/<crossRoad>\s*<name>([^<]+)<\/name>\s*<x>([^<]+)<\/x>\s*<y>([^<]+)<\/y>\s*<\/crossRoad>/gu)]
+    .map((match) => ({ name: match[1], longitude: Number(match[2]), latitude: Number(match[3]) }));
+}
+
+async function refineOfficialIntersections(locations) {
+  const cache = await readJson(intersectionCachePath, {});
+  for (const [projectId, spec] of Object.entries(officialIntersectionSpecs)) {
+    const cacheKey = `${spec.county}/${spec.town}/${spec.road}`;
+    if (!Object.hasOwn(cache, cacheKey)) {
+      const url = `https://api.nlsc.gov.tw/idc/ListRoadCross/${spec.county}/${spec.town}/${encodeURIComponent(spec.road)}`;
+      const response = await fetch(url, { headers: { "User-Agent": userAgent } });
+      if (!response.ok) throw new Error(`NLSC ${response.status}: ${spec.road}`);
+      cache[cacheKey] = parseCrossRoads(await response.text());
+      await writeFile(intersectionCachePath, `${JSON.stringify(cache, null, 2)}\n`, "utf8");
+    }
+    const match = cache[cacheKey].find((crossRoad) => crossRoad.name === spec.cross);
+    if (!match) {
+      console.warn(`官方路口尚未匹配：${spec.road} × ${spec.cross}`);
+      continue;
+    }
+    locations[projectId] = {
+      latitude: match.latitude,
+      longitude: match.longitude,
+      confidence: "high",
+      method: "nlsc-official-intersection",
+      label: "官方路口定位",
+      queryAddress: locations[projectId].queryAddress,
+    };
+  }
+  return locations;
 }
 
 const coreBounds = "25.025,121.335,25.110,121.420";
@@ -287,15 +340,27 @@ function gradeFor(score) {
 async function main() {
   await mkdir(cacheDirectory, { recursive: true });
   const projectDataset = await readJson(projectsPath, null);
-  const locations = await geocodeProjects(projectDataset.projects);
+  const locations = await refineOfficialIntersections(await geocodeProjects(projectDataset.projects));
   const pois = normalizePois(await loadOverpass());
   const projects = {};
 
   for (const project of projectDataset.projects) {
     const location = locations[project.id];
     const nearest = Object.fromEntries(Object.keys(categories).map((category) => [category, nearestPoi(location, pois, category)]));
-    const score = scoreRules.reduce((total, rule) => total + categoryScore(nearest[rule.category]?.distanceMeters, rule), 0);
-    projects[project.id] = { location, score, grade: gradeFor(score), nearest };
+    const rawScore = scoreRules.reduce((total, rule) => total + categoryScore(nearest[rule.category]?.distanceMeters, rule), 0);
+    const scoreReliability = location.confidence === "estimated"
+      ? "unavailable"
+      : location.confidence === "low"
+        ? "approximate"
+        : "verified";
+    projects[project.id] = {
+      location,
+      score: scoreReliability === "unavailable" ? null : rawScore,
+      rawScore,
+      grade: scoreReliability === "unavailable" ? null : gradeFor(rawScore),
+      scoreReliability,
+      nearest,
+    };
   }
 
   const payload = {
@@ -311,6 +376,7 @@ async function main() {
       walkingMetersPerMinute: 80,
       disclaimer: "距離與步行時間為直線距離換算，未考慮實際道路、坡度、圍牆、紅綠燈與出入口，不可當作導航時間。",
       locationDisclaimer: "建案位置依官方申報地址查找；地址僅到道路或路口時，位置會標示為估算，不代表精確基地界址。",
+      scoreDisclaimer: "只有官方路口、門牌或可辨識道路位置才顯示機能分數；區域估算位置不顯示分數。",
       scoreRules,
     },
     categories,
