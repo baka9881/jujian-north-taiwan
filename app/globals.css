@@ -79,7 +79,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
 .interactive-map .leaflet-control-attribution { color:#6d797e; font-size:8px; background:rgba(255,255,255,.82); }
 .project-map-marker-host { border:0!important; background:transparent!important; overflow:visible!important; }
 .project-map-marker-host { display:flex!important; align-items:flex-end; justify-content:center; }
-.project-map-marker { --marker-front:#1688b5; --marker-side:#0d5d82; --marker-roof:#63c2df; --marker-price:#205f7e; width:auto; height:auto; display:flex; flex-direction:column; align-items:center; padding:0; border:0; border-radius:0; background:transparent; color:white; cursor:pointer; filter:drop-shadow(0 5px 5px rgba(24,52,68,.3)); transition:filter .15s ease,transform .15s ease; }
+.marker-offset-line { --offset-length:0px; --offset-angle:0deg; --offset-opacity:0; position:absolute; z-index:0; left:37px; top:62px; width:var(--offset-length); height:1px; border-top:1px dashed #176b8e; opacity:var(--offset-opacity); transform:rotate(var(--offset-angle)); transform-origin:0 50%; pointer-events:none; }
+.marker-offset-line.stage-presale { border-color:#c8511f; }
+.project-map-marker { --marker-front:#1688b5; --marker-side:#0d5d82; --marker-roof:#63c2df; --marker-price:#205f7e; --marker-offset-x:0px; --marker-offset-y:0px; position:relative; z-index:1; width:auto; height:auto; display:flex; flex-direction:column; align-items:center; padding:0; border:0; border-radius:0; background:transparent; color:white; cursor:pointer; filter:drop-shadow(0 5px 5px rgba(24,52,68,.3)); transform:translate(var(--marker-offset-x),var(--marker-offset-y)); transition:filter .15s ease; }
 .project-map-marker.stage-presale { --marker-front:#f47a2e; --marker-side:#b84b18; --marker-roof:#ffb45d; --marker-price:#c8511f; }
 .project-map-marker.stage-completed { --marker-front:#1688b5; --marker-side:#0d5d82; --marker-roof:#63c2df; --marker-price:#205f7e; }
 .marker-building { position:relative; width:38px; height:48px; transform:translateX(4px); }
@@ -89,7 +91,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
 .marker-windows { position:absolute; inset:6px 5px 5px; background:repeating-linear-gradient(0deg,rgba(255,255,255,.82) 0 2px,transparent 2px 6px),repeating-linear-gradient(90deg,transparent 0 4px,rgba(5,66,93,.72) 4px 6px); }
 .marker-side-windows { position:absolute; inset:8px 3px 5px 2px; background:repeating-linear-gradient(0deg,rgba(255,255,255,.72) 0 2px,transparent 2px 7px); }
 .marker-price { position:relative; z-index:4; min-width:50px; margin-top:-4px; padding:4px 8px 5px; border:2px solid white; border-radius:13px; background:var(--marker-price); color:white; box-shadow:0 2px 4px rgba(20,45,58,.2); font-size:10px; font-weight:850; line-height:1; text-align:center; white-space:nowrap; }
-.project-map-marker.active { z-index:4; transform:translateY(-3px); filter:drop-shadow(0 7px 7px rgba(24,52,68,.38)); }
+.project-map-marker.active { z-index:4; filter:drop-shadow(0 7px 7px rgba(24,52,68,.38)); }
 .project-map-marker.active .marker-building-front { outline:3px solid #8bdd39; outline-offset:1px; }
 .project-map-marker.active .marker-price { box-shadow:0 0 0 3px #8bdd39,0 4px 8px rgba(20,45,58,.28); }
 .panel-toggle { position:absolute; z-index:520; top:12px; left:12px; min-width:112px; padding:10px 12px; border:1px solid rgba(36,58,70,.16); border-radius:5px; background:rgba(255,255,255,.96); color:var(--navy); cursor:pointer; box-shadow:0 5px 18px rgba(30,48,58,.16); font-size:10px; font-weight:850; }

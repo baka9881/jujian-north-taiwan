@@ -121,3 +121,11 @@ test("filter controls stay above Leaflet map layers", async () => {
   assert.ok(headerLayer > filterLayer);
   assert.match(css, /\.advanced-filter-panel \{[^}]*max-height:calc\(100dvh - 150px\)/);
 });
+
+test("map project markers keep fixed coordinates while zooming", async () => {
+  const source = await readFile(new URL("../app/InteractiveMap.tsx", import.meta.url), "utf8");
+
+  assert.doesNotMatch(source, /map\.on\("zoomend", renderMarkers\)/);
+  assert.doesNotMatch(source, /containerPointToLatLng/);
+  assert.match(source, /leaflet\.marker\(point,/);
+});

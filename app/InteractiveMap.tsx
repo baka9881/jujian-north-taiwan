@@ -73,7 +73,6 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
   const markersRef = useRef(
     new Map<string, { marker: import("leaflet").Marker; element: HTMLElement | null }>(),
   );
-  const offsetLinesRef = useRef(new Map<string, import("leaflet").Polyline>());
   const poiMarkersRef = useRef(new Map<string, import("leaflet").Marker>());
   const onSelectRef = useRef(onSelect);
   const initialProjectsRef = useRef(projects);
@@ -89,7 +88,6 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
     let cancelled = false;
     let resizeObserver: ResizeObserver | null = null;
     const markers = markersRef.current;
-    const offsetLines = offsetLinesRef.current;
     const poiMarkers = poiMarkersRef.current;
 
     void import("leaflet").then((leaflet) => {
@@ -140,7 +138,6 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
       cancelled = true;
       resizeObserver?.disconnect();
       markers.clear();
-      offsetLines.clear();
       poiMarkers.clear();
       mapRef.current?.remove();
       mapRef.current = null;
@@ -160,33 +157,35 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
 
       const placed: Array<{
         projects: Array<{ project: MapProject; point: [number, number] }>;
-        x: number;
-        y: number;
+        latitude: number;
+        longitude: number;
       }> = [];
       const nextMarkerIds = new Set<string>();
-      const nextOffsetLineIds = new Set<string>();
-      const overlapDistance = compact ? 42 : 66;
+      const overlapDistanceMeters = compact ? 180 : 340;
       const ordered = [...projects].sort((a, b) => a.id.localeCompare(b.id, "zh-Hant"));
 
       ordered.forEach((project) => {
         const point = projectPoint(project);
-        const screen = map.latLngToContainerPoint(point);
-        const nearby = placed.find((group) => Math.hypot(group.x - screen.x, group.y - screen.y) < overlapDistance);
+        const nearby = placed.find((group) => {
+          const latitudeMeters = (group.latitude - point[0]) * 111_320;
+          const longitudeMeters = (group.longitude - point[1]) * 100_900;
+          return Math.hypot(latitudeMeters, longitudeMeters) < overlapDistanceMeters;
+        });
 
         if (nearby) {
           const size = nearby.projects.length;
-          nearby.x = (nearby.x * size + screen.x) / (size + 1);
-          nearby.y = (nearby.y * size + screen.y) / (size + 1);
+          nearby.latitude = (nearby.latitude * size + point[0]) / (size + 1);
+          nearby.longitude = (nearby.longitude * size + point[1]) / (size + 1);
           nearby.projects.push({ project, point });
         } else {
-          placed.push({ projects: [{ project, point }], x: screen.x, y: screen.y });
+          placed.push({ projects: [{ project, point }], latitude: point[0], longitude: point[1] });
         }
       });
 
       const markerPositions = placed.flatMap((group) => {
         if (group.projects.length === 1) {
           const item = group.projects[0];
-          return [{ ...item, displayPoint: item.point, offset: false }];
+          return [{ ...item, offsetX: 0, offsetY: 0, offset: false }];
         }
 
         return group.projects.map((item, index) => {
@@ -195,47 +194,35 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
           const ringCount = Math.min(8, group.projects.length - ringStart);
           const angle = -Math.PI / 2 + ((index - ringStart) * Math.PI * 2) / ringCount;
           const radius = (compact ? 34 : 52) + ring * (compact ? 30 : 44);
-          const displayScreen = leaflet.point(
-            group.x + Math.cos(angle) * radius,
-            group.y + Math.sin(angle) * radius,
-          );
-          const display = map.containerPointToLatLng(displayScreen);
           return {
             ...item,
-            displayPoint: [display.lat, display.lng] as [number, number],
+            offsetX: Math.round(Math.cos(angle) * radius),
+            offsetY: Math.round(Math.sin(angle) * radius),
             offset: true,
           };
         });
       });
 
-      markerPositions.forEach(({ project, point, displayPoint, offset }) => {
+      markerPositions.forEach(({ project, point, offsetX, offsetY, offset }) => {
         const active = project.id === activeId;
         const stage = projectStage(project);
         const stageText = stage === "presale" ? "預售屋" : "成屋";
+        const offsetLength = Math.hypot(offsetX, offsetY);
+        const offsetAngle = Math.atan2(offsetY, offsetX) * 180 / Math.PI;
         nextMarkerIds.add(project.id);
-        if (offset) {
-          nextOffsetLineIds.add(project.id);
-          const existingLine = offsetLinesRef.current.get(project.id);
-          if (existingLine) {
-            existingLine.setLatLngs([point, displayPoint]);
-          } else {
-            const line = leaflet.polyline([point, displayPoint], {
-              color: stage === "presale" ? "#c8511f" : "#176b8e",
-              weight: 1.5,
-              opacity: 0.6,
-              dashArray: "3 4",
-              interactive: false,
-            }).addTo(map);
-            offsetLinesRef.current.set(project.id, line);
-          }
-        }
         const existing = markersRef.current.get(project.id);
         if (existing) {
-          existing.marker.setLatLng(displayPoint);
+          existing.marker.setLatLng(point);
           existing.marker.setZIndexOffset(active ? 1000 : 0);
           existing.element?.classList.toggle("active", active);
           existing.element?.classList.toggle("stage-presale", stage === "presale");
           existing.element?.classList.toggle("stage-completed", stage === "completed");
+          existing.element?.style.setProperty("--marker-offset-x", `${offsetX}px`);
+          existing.element?.style.setProperty("--marker-offset-y", `${offsetY}px`);
+          const connector = existing.marker.getElement()?.querySelector<HTMLElement>(".marker-offset-line");
+          connector?.style.setProperty("--offset-length", `${offsetLength}px`);
+          connector?.style.setProperty("--offset-angle", `${offsetAngle}deg`);
+          connector?.style.setProperty("--offset-opacity", offset ? "0.62" : "0");
           return;
         }
 
@@ -244,11 +231,11 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
         const description = `${project.name}｜${stageText}｜${project.price ? `${project.price.median} 萬／坪` : noOfficialPrice ? "官方尚無已發布成交" : "成交價待補"}`;
         const icon = leaflet.divIcon({
           className: "project-map-marker-host",
-          html: `<span class="project-map-marker stage-${stage} ${active ? "active" : ""} ${project.price ? "has-price" : "price-pending"}"><span class="marker-building" aria-hidden="true"><span class="marker-building-roof"></span><span class="marker-building-side"><span class="marker-side-windows"></span></span><span class="marker-building-front"><span class="marker-windows"></span></span></span><span class="marker-price">${priceText}</span></span>`,
+          html: `<span class="marker-offset-line stage-${stage}" style="--offset-length:${offsetLength}px;--offset-angle:${offsetAngle}deg;--offset-opacity:${offset ? "0.62" : "0"}"></span><span class="project-map-marker stage-${stage} ${active ? "active" : ""} ${project.price ? "has-price" : "price-pending"}" style="--marker-offset-x:${offsetX}px;--marker-offset-y:${offsetY}px"><span class="marker-building" aria-hidden="true"><span class="marker-building-roof"></span><span class="marker-building-side"><span class="marker-side-windows"></span></span><span class="marker-building-front"><span class="marker-windows"></span></span></span><span class="marker-price">${priceText}</span></span>`,
           iconSize: [74, 64],
           iconAnchor: [37, 62],
         });
-        const marker = leaflet.marker(displayPoint, {
+        const marker = leaflet.marker(point, {
           icon,
           keyboard: true,
           zIndexOffset: active ? 1000 : 0,
@@ -261,12 +248,6 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
         markersRef.current.set(project.id, { marker, element });
       });
 
-      offsetLinesRef.current.forEach((line, projectId) => {
-        if (nextOffsetLineIds.has(projectId)) return;
-        line.remove();
-        offsetLinesRef.current.delete(projectId);
-      });
-
       markersRef.current.forEach(({ marker }, markerId) => {
         if (nextMarkerIds.has(markerId)) return;
         marker.remove();
@@ -275,11 +256,9 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
     }
 
     renderMarkers();
-    map.on("zoomend", renderMarkers);
 
     return () => {
       disposed = true;
-      map.off("zoomend", renderMarkers);
     };
   }, [activeId, compact, projects, ready]);
 
