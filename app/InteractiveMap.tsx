@@ -73,6 +73,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
   const markersRef = useRef(
     new Map<string, { marker: import("leaflet").Marker; element: HTMLElement | null }>(),
   );
+  const offsetLinesRef = useRef(new Map<string, import("leaflet").Polyline>());
   const poiMarkersRef = useRef(new Map<string, import("leaflet").Marker>());
   const onSelectRef = useRef(onSelect);
   const initialProjectsRef = useRef(projects);
@@ -88,6 +89,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
     let cancelled = false;
     let resizeObserver: ResizeObserver | null = null;
     const markers = markersRef.current;
+    const offsetLines = offsetLinesRef.current;
     const poiMarkers = poiMarkersRef.current;
 
     void import("leaflet").then((leaflet) => {
@@ -138,6 +140,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
       cancelled = true;
       resizeObserver?.disconnect();
       markers.clear();
+      offsetLines.clear();
       poiMarkers.clear();
       mapRef.current?.remove();
       mapRef.current = null;
@@ -155,83 +158,80 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
     function renderMarkers() {
       if (disposed) return;
 
-      const placed: Array<{ projects: MapProject[]; x: number; y: number }> = [];
+      const placed: Array<{
+        projects: Array<{ project: MapProject; point: [number, number] }>;
+        x: number;
+        y: number;
+      }> = [];
       const nextMarkerIds = new Set<string>();
-      const clusterDistance = compact ? 34 : 62;
-      const ordered = [...projects].sort((project) => project.id === activeId ? -1 : 1);
+      const nextOffsetLineIds = new Set<string>();
+      const overlapDistance = compact ? 42 : 66;
+      const ordered = [...projects].sort((a, b) => a.id.localeCompare(b.id, "zh-Hant"));
 
       ordered.forEach((project) => {
         const point = projectPoint(project);
         const screen = map.latLngToContainerPoint(point);
-        const nearby = project.id === activeId
-          ? undefined
-          : placed.find((group) =>
-              !group.projects.some((item) => item.id === activeId) &&
-              Math.hypot(group.x - screen.x, group.y - screen.y) < clusterDistance,
-            );
+        const nearby = placed.find((group) => Math.hypot(group.x - screen.x, group.y - screen.y) < overlapDistance);
 
         if (nearby) {
           const size = nearby.projects.length;
           nearby.x = (nearby.x * size + screen.x) / (size + 1);
           nearby.y = (nearby.y * size + screen.y) / (size + 1);
-          nearby.projects.push(project);
+          nearby.projects.push({ project, point });
         } else {
-          placed.push({ projects: [project], x: screen.x, y: screen.y });
+          placed.push({ projects: [{ project, point }], x: screen.x, y: screen.y });
         }
       });
 
-      placed.forEach((group) => {
-        const latitude = group.projects.reduce((sum, project) => sum + projectPoint(project)[0], 0) / group.projects.length;
-        const longitude = group.projects.reduce((sum, project) => sum + projectPoint(project)[1], 0) / group.projects.length;
-
-        if (group.projects.length > 1) {
-          const markerId = `cluster-${group.projects.map((project) => project.id).sort().join("-")}`;
-          nextMarkerIds.add(markerId);
-          const existing = markersRef.current.get(markerId);
-          if (existing) {
-            existing.marker.setLatLng([latitude, longitude]);
-            return;
-          }
-
-          const label = `${group.projects.length} 個建案，點擊放大地圖`;
-          const presaleCount = group.projects.filter((project) => projectStage(project) === "presale").length;
-          const clusterStage = presaleCount === group.projects.length
-            ? "presale"
-            : presaleCount === 0
-              ? "completed"
-              : "mixed";
-          const icon = leaflet.divIcon({
-            className: "project-cluster-host",
-            html: `<span class="project-cluster-marker cluster-${clusterStage}">${group.projects.length}</span>`,
-            iconSize: [38, 38],
-            iconAnchor: [19, 19],
-          });
-          const marker = leaflet.marker([latitude, longitude], {
-            icon,
-            keyboard: true,
-            zIndexOffset: 200,
-          }).addTo(map);
-          marker.on("click", () => {
-            const bounds = leaflet.latLngBounds(group.projects.map((project) => projectPoint(project)));
-            const padding = compact ? 34 : 90;
-            map.fitBounds(bounds, { padding: [padding, padding], maxZoom: 17, animate: false });
-          });
-          const host = marker.getElement();
-          host?.setAttribute("aria-label", label);
-          host?.setAttribute("title", label);
-          const element = host?.querySelector<HTMLElement>(".project-cluster-marker") ?? null;
-          markersRef.current.set(markerId, { marker, element });
-          return;
+      const markerPositions = placed.flatMap((group) => {
+        if (group.projects.length === 1) {
+          const item = group.projects[0];
+          return [{ ...item, displayPoint: item.point, offset: false }];
         }
 
-        const project = group.projects[0];
+        return group.projects.map((item, index) => {
+          const ring = Math.floor(index / 8);
+          const ringStart = ring * 8;
+          const ringCount = Math.min(8, group.projects.length - ringStart);
+          const angle = -Math.PI / 2 + ((index - ringStart) * Math.PI * 2) / ringCount;
+          const radius = (compact ? 34 : 52) + ring * (compact ? 30 : 44);
+          const displayScreen = leaflet.point(
+            group.x + Math.cos(angle) * radius,
+            group.y + Math.sin(angle) * radius,
+          );
+          const display = map.containerPointToLatLng(displayScreen);
+          return {
+            ...item,
+            displayPoint: [display.lat, display.lng] as [number, number],
+            offset: true,
+          };
+        });
+      });
+
+      markerPositions.forEach(({ project, point, displayPoint, offset }) => {
         const active = project.id === activeId;
         const stage = projectStage(project);
         const stageText = stage === "presale" ? "預售屋" : "成屋";
         nextMarkerIds.add(project.id);
+        if (offset) {
+          nextOffsetLineIds.add(project.id);
+          const existingLine = offsetLinesRef.current.get(project.id);
+          if (existingLine) {
+            existingLine.setLatLngs([point, displayPoint]);
+          } else {
+            const line = leaflet.polyline([point, displayPoint], {
+              color: stage === "presale" ? "#c8511f" : "#176b8e",
+              weight: 1.5,
+              opacity: 0.6,
+              dashArray: "3 4",
+              interactive: false,
+            }).addTo(map);
+            offsetLinesRef.current.set(project.id, line);
+          }
+        }
         const existing = markersRef.current.get(project.id);
         if (existing) {
-          existing.marker.setLatLng([latitude, longitude]);
+          existing.marker.setLatLng(displayPoint);
           existing.marker.setZIndexOffset(active ? 1000 : 0);
           existing.element?.classList.toggle("active", active);
           existing.element?.classList.toggle("stage-presale", stage === "presale");
@@ -248,7 +248,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
           iconSize: [74, 64],
           iconAnchor: [37, 62],
         });
-        const marker = leaflet.marker([latitude, longitude], {
+        const marker = leaflet.marker(displayPoint, {
           icon,
           keyboard: true,
           zIndexOffset: active ? 1000 : 0,
@@ -259,6 +259,12 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
         host?.setAttribute("title", description);
         const element = host?.querySelector<HTMLElement>(".project-map-marker") ?? null;
         markersRef.current.set(project.id, { marker, element });
+      });
+
+      offsetLinesRef.current.forEach((line, projectId) => {
+        if (nextOffsetLineIds.has(projectId)) return;
+        line.remove();
+        offsetLinesRef.current.delete(projectId);
       });
 
       markersRef.current.forEach(({ marker }, markerId) => {

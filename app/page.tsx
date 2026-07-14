@@ -470,7 +470,7 @@ export default function Home() {
             />
             <details className="map-legend">
               <summary>圖例</summary>
-              <div><span title="尚未有首次登記日期"><i className="presale" /> 預售屋 <b>{presaleCount}</b></span><span title="已有首次登記日期"><i className="completed" /> 成屋 <b>{completedCount}</b></span><span><i className="cluster" /> 橘藍代表重疊</span></div>
+              <div><span title="尚未有首次登記日期"><i className="presale" /> 預售屋 <b>{presaleCount}</b></span><span title="已有首次登記日期"><i className="completed" /> 成屋 <b>{completedCount}</b></span></div>
             </details>
             <details className="amenity-layer-control">
               <summary>生活機能{amenityLayers.length ? ` ${amenityLayers.length}` : ""}</summary>
