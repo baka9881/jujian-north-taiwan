@@ -720,6 +720,18 @@ html,body { font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
 .table-scroll td strong { color:#263b44; font-size:13px; }
 .table-scroll td small { margin-top:4px; color:#718087; font-size:10px; line-height:1.4; }
 
+/* Real-world context is embedded only after a project is opened. */
+.project-visual { position:relative; height:230px; overflow:hidden; border-bottom:1px solid var(--line); background:linear-gradient(145deg,#dce6e3,#c7d5d1); }
+.project-visual iframe { width:100%; height:100%; display:block; border:0; pointer-events:none; filter:saturate(.88) contrast(.96); }
+.project-visual.interactive iframe { pointer-events:auto; filter:none; }
+.visual-source { position:absolute; z-index:3; right:10px; bottom:9px; padding:5px 8px; border-radius:5px; background:rgba(22,42,52,.82); color:white; font-size:9px; font-weight:800; pointer-events:none; }
+.visual-activate { position:absolute; z-index:2; inset:0; display:grid; place-content:center; justify-items:center; gap:4px; border:0; background:linear-gradient(rgba(21,43,52,.1),rgba(21,43,52,.34)); color:white; cursor:pointer; text-shadow:0 2px 10px rgba(0,0,0,.45); }
+.visual-activate::before { content:"360°"; width:52px; height:52px; display:grid; place-items:center; margin-bottom:4px; border:2px solid rgba(255,255,255,.9); border-radius:50%; background:rgba(23,57,53,.78); box-shadow:0 7px 18px rgba(15,35,42,.24); font-size:13px; font-weight:900; text-shadow:none; }
+.visual-activate strong { font-size:16px; }
+.visual-activate small { font-size:10px; font-weight:700; }
+.visual-activate:hover { background:linear-gradient(rgba(21,43,52,.04),rgba(21,43,52,.25)); }
+.project-visual-note { margin:0; padding:8px 14px; border-bottom:1px solid var(--line); background:#f5f7f6; color:#68777e; font-size:10px; line-height:1.5; }
+
 @media (max-width:1180px) {
   .budget-select { min-width:137px; }
   .filter-bar { gap:6px; padding-right:12px; padding-left:12px; }
@@ -739,4 +751,5 @@ html,body { font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
   .summary-decisions button { min-height:124px; }
   .builder-snapshot { grid-template-columns:78px minmax(0,1fr); }
   .builder-snapshot > b { grid-row:auto; grid-column:2; margin-top:4px; }
+  .project-visual { height:210px; }
 }

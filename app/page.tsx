@@ -380,6 +380,12 @@ function budgetMatches(project: Project, budget: BudgetFilter) {
   return project.price.median >= 60;
 }
 
+function streetViewEmbedUrl(project: Project) {
+  const latitude = project.latitude.toFixed(6);
+  const longitude = project.longitude.toFixed(6);
+  return `https://www.google.com/maps/embed?origin=mfe&pb=!6m6!1m5!2m2!1d${latitude}!2d${longitude}!4f-0!5f1`;
+}
+
 export default function Home() {
   const [query, setQuery] = useState("");
   const [region, setRegion] = useState("全部");
@@ -403,6 +409,7 @@ export default function Home() {
   const [advancedFiltersOpen, setAdvancedFiltersOpen] = useState(false);
   const [amenityLayers, setAmenityLayers] = useState<AmenityCategory[]>([]);
   const [mapScopeIds, setMapScopeIds] = useState<string[] | null>(null);
+  const [streetViewInteractive, setStreetViewInteractive] = useState(false);
   const [notice, setNotice] = useState("");
 
   const baseFiltered = useMemo(() => {
@@ -502,6 +509,7 @@ export default function Home() {
   function selectProject(project: Project, openDetail = false) {
     setSelectedId(project.id);
     setDetailTab("summary");
+    setStreetViewInteractive(false);
     if (openDetail) setDetailOpen(true);
   }
 
@@ -615,7 +623,7 @@ export default function Home() {
                     <div className="result-data"><div><strong>{priceText(project)}</strong><small>{priceComparison(project)}</small></div><span className={project.quality.defectEventCount || hasQualityAttention(project) ? "signal attention" : "signal"}>{shortQualityText(project)}</span><span className={`signal amenity-inline ${project.amenity.score === null ? "unavailable" : ""}`}>機能 {amenityScoreText(project, amenityWeights)}</span></div>
                   </button>
                   <div className="result-actions">
-                    <button type="button" onClick={() => selectProject(project, true)}>看結論</button>
+                    <button type="button" onClick={() => selectProject(project, true)}>看外觀</button>
                     <button type="button" className={compareIds.includes(project.id) ? "checked" : ""} onClick={() => toggleCompare(project.id)}>{compareIds.includes(project.id) ? "✓ 已選" : "＋ 比較"}</button>
                   </div>
                 </article>
@@ -657,7 +665,7 @@ export default function Home() {
             <div className="map-gesture-hint">滾輪縮放 · 拖曳移動</div>
             {!panelOpen && <article className="map-project-card">
               <div className="map-card-heading"><span>{active.region}</span><div><h2>{active.name}</h2><p>{active.builder}</p></div><b className={projectStage(active)}>{projectStageText(active)}</b></div>
-              <div className="map-card-quick"><div className="map-card-price"><strong>{priceText(active)}</strong><small>{priceComparison(active)}</small></div><span>{shortQualityText(active)}</span><span>機能 {amenityScoreText(active, amenityWeights)}</span><div><button type="button" onClick={() => setDetailOpen(true)}>看結論</button><button type="button" className={compareIds.includes(active.id) ? "added" : ""} onClick={() => toggleCompare(active.id)}>{compareIds.includes(active.id) ? "✓ 已選" : "＋ 比較"}</button></div></div>
+              <div className="map-card-quick"><div className="map-card-price"><strong>{priceText(active)}</strong><small>{priceComparison(active)}</small></div><span>{shortQualityText(active)}</span><span>機能 {amenityScoreText(active, amenityWeights)}</span><div><button type="button" onClick={() => { setStreetViewInteractive(false); setDetailOpen(true); }}>看外觀</button><button type="button" className={compareIds.includes(active.id) ? "added" : ""} onClick={() => toggleCompare(active.id)}>{compareIds.includes(active.id) ? "✓ 已選" : "＋ 比較"}</button></div></div>
             </article>}
           </section>
         </section>
@@ -686,6 +694,19 @@ export default function Home() {
       {detailOpen && (
         <aside className="detail-drawer" aria-label={`${active.name} 詳細資料`}>
           <header><button type="button" onClick={() => setDetailOpen(false)} aria-label="關閉">×</button><div className="drawer-header-meta"><span>{active.region} · {active.city}{active.district}</span><b className={projectStage(active)}>{projectStageText(active)}</b></div><h2>{active.name}</h2><p>起造人：{active.builder}</p></header>
+          <section className={`project-visual ${streetViewInteractive ? "interactive" : ""}`} aria-label={`${active.name} 附近街景`}>
+            <iframe
+              key={active.id}
+              title={`${active.name} 附近 Google Street View`}
+              src={streetViewEmbedUrl(active)}
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            <span className="visual-source">附近實景 · Google Street View</span>
+            {!streetViewInteractive && <button type="button" className="visual-activate" onClick={() => setStreetViewInteractive(true)}><strong>查看建案附近實景</strong><small>點擊後可轉動與沿街查看</small></button>}
+          </section>
+          <p className="project-visual-note">顯示現有定位附近最近可用街景，不一定正對建案入口；預售屋可能是施工前或尚未更新的畫面。</p>
           <div className="drawer-glance"><strong>{priceText(active)}</strong><span>{active.households} 戶</span><span>機能 {amenityScoreText(active, amenityWeights)}</span></div>
           <nav>{(["summary", "builder", "price", "quality", "amenity"] as DetailTab[]).map((tab) => <button key={tab} type="button" className={detailTab === tab ? "active" : ""} onClick={() => setDetailTab(tab)}>{{ summary: "總覽", builder: "建商", price: "價格", quality: "品質", amenity: "機能" }[tab]}</button>)}</nav>
           <div className="drawer-content">

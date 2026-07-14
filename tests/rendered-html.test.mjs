@@ -188,3 +188,17 @@ test("the product follows the six-step simplified research experience", async ()
   assert.match(css, /\.summary-decisions \{ grid-template-columns:1fr 1fr;/);
   assert.match(css, /\.area-summary-marker/);
 });
+
+test("project details include traceable nearby street imagery without pretending it is an official facade photo", async () => {
+  const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(source, /function streetViewEmbedUrl/);
+  assert.match(source, /https:\/\/www\.google\.com\/maps\/embed/);
+  assert.match(source, /附近實景 · Google Street View/);
+  assert.match(source, /查看建案附近實景/);
+  assert.match(source, /不一定正對建案入口/);
+  assert.match(source, /預售屋可能是施工前或尚未更新的畫面/);
+  assert.match(css, /\.project-visual iframe \{[^}]*pointer-events:none;/);
+  assert.match(css, /\.project-visual\.interactive iframe \{ pointer-events:auto;/);
+});
