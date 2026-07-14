@@ -29,6 +29,10 @@ type Props = {
   projects: MapProject[];
   activeId: string;
   onSelect?: (id: string) => void;
+  onSearchArea?: (ids: string[]) => void;
+  onClearArea?: () => void;
+  onRegionSelect?: (region: "林口" | "A7") => void;
+  scopeActive?: boolean;
   compact?: boolean;
   pois?: AmenityPoi[];
   visibleAmenityCategories?: AmenityCategory[];
@@ -57,6 +61,13 @@ function projectStage(project: MapProject) {
   return project.firstRegistrationDate ? "completed" : "presale";
 }
 
+function median(values: number[]) {
+  if (!values.length) return null;
+  const ordered = [...values].sort((a, b) => a - b);
+  const middle = Math.floor(ordered.length / 2);
+  return ordered.length % 2 ? ordered[middle] : Math.round((ordered[middle - 1] + ordered[middle]) * 5) / 10;
+}
+
 const amenitySymbols: Record<AmenityCategory, string> = {
   convenience: "商",
   pxmart: "全",
@@ -71,37 +82,51 @@ const amenitySymbols: Record<AmenityCategory, string> = {
 };
 
 const projectMarkerMinZoom = 14;
+const overviewCenter: [number, number] = [25.073, 121.377];
 
-export default function InteractiveMap({ projects, activeId, onSelect, compact = false, pois = [], visibleAmenityCategories = [] }: Props) {
+export default function InteractiveMap({
+  projects,
+  activeId,
+  onSelect,
+  onSearchArea,
+  onClearArea,
+  onRegionSelect,
+  scopeActive = false,
+  compact = false,
+  pois = [],
+  visibleAmenityCategories = [],
+}: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const leafletRef = useRef<typeof import("leaflet") | null>(null);
   const mapRef = useRef<import("leaflet").Map | null>(null);
-  const markersRef = useRef(
-    new Map<string, { marker: import("leaflet").Marker; element: HTMLElement | null }>(),
-  );
+  const markersRef = useRef(new Map<string, { marker: import("leaflet").Marker; element: HTMLElement | null }>());
+  const areaMarkersRef = useRef(new Map<string, import("leaflet").Marker>());
   const poiMarkersRef = useRef(new Map<string, import("leaflet").Marker>());
   const onSelectRef = useRef(onSelect);
+  const onRegionSelectRef = useRef(onRegionSelect);
   const initialProjectsRef = useRef(projects);
   const initialActiveIdRef = useRef(activeId);
   const [ready, setReady] = useState(false);
   const [mapMoved, setMapMoved] = useState(false);
-  const [projectMarkersVisible, setProjectMarkersVisible] = useState(true);
+  const [projectMarkersVisible, setProjectMarkersVisible] = useState(compact);
 
   useEffect(() => {
     onSelectRef.current = onSelect;
-  }, [onSelect]);
+    onRegionSelectRef.current = onRegionSelect;
+  }, [onRegionSelect, onSelect]);
 
   useEffect(() => {
     let cancelled = false;
     let resizeObserver: ResizeObserver | null = null;
     const markers = markersRef.current;
+    const areaMarkers = areaMarkersRef.current;
     const poiMarkers = poiMarkersRef.current;
 
     void import("leaflet").then((leaflet) => {
       if (cancelled || !containerRef.current) return;
       const initialProjects = initialProjectsRef.current;
       const initialActiveId = initialActiveIdRef.current;
-      const initial = projectPoint(initialProjects.find((project) => project.id === initialActiveId) || initialProjects[0]);
+      const compactPoint = projectPoint(initialProjects.find((project) => project.id === initialActiveId) || initialProjects[0]);
       const map = leaflet.map(containerRef.current, {
         zoomControl: false,
         attributionControl: false,
@@ -109,42 +134,49 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
         dragging: true,
         inertia: false,
         zoomAnimation: true,
-        fadeAnimation: true,
+        fadeAnimation: false,
         markerZoomAnimation: true,
         zoomAnimationThreshold: 4,
-        wheelDebounceTime: 80,
-        wheelPxPerZoomLevel: 140,
+        wheelDebounceTime: 70,
+        wheelPxPerZoomLevel: 130,
         minZoom: 11,
         maxZoom: 19,
       });
-      map.setView(initial, compact ? 15 : 14, { animate: false });
+      map.setView(compact ? compactPoint : overviewCenter, compact ? 15 : 12, { animate: false });
       leaflet.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         minZoom: 11,
         maxZoom: 19,
         updateWhenZooming: false,
         updateWhenIdle: true,
-        keepBuffer: 3,
+        keepBuffer: 6,
         attribution: "© OpenStreetMap contributors",
       }).addTo(map);
       leaflet.control.zoom({ position: "topright", zoomInTitle: "放大", zoomOutTitle: "縮小" }).addTo(map);
       leaflet.control.attribution({ position: "bottomright", prefix: false }).addTo(map);
 
-      const syncProjectMarkerVisibility = () => {
-        const visible = compact || map.getZoom() >= projectMarkerMinZoom;
-        containerRef.current?.classList.toggle("project-markers-hidden", !visible);
-        setProjectMarkersVisible((current) => current === visible ? current : visible);
+      const syncMapTier = () => {
+        const showProjects = compact || map.getZoom() >= projectMarkerMinZoom;
+        containerRef.current?.classList.toggle("map-tier-project", showProjects);
+        containerRef.current?.classList.toggle("map-tier-area", !showProjects);
+        setProjectMarkersVisible((current) => current === showProjects ? current : showProjects);
+      };
+      const markViewportChanged = () => {
+        if (!compact) setMapMoved(true);
       };
 
       leafletRef.current = leaflet;
       mapRef.current = map;
       resizeObserver = new ResizeObserver(() => map.invalidateSize({ animate: false, pan: false }));
       resizeObserver.observe(containerRef.current);
-      map.on("dragend", () => setMapMoved(true));
-      map.on("zoomend", syncProjectMarkerVisibility);
+      map.on("dragend", markViewportChanged);
+      map.on("zoomend", () => {
+        syncMapTier();
+        markViewportChanged();
+      });
       map.whenReady(() => {
         if (cancelled) return;
         map.invalidateSize({ animate: false, pan: false });
-        syncProjectMarkerVisibility();
+        syncMapTier();
         setReady(true);
       });
     });
@@ -153,6 +185,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
       cancelled = true;
       resizeObserver?.disconnect();
       markers.clear();
+      areaMarkers.clear();
       poiMarkers.clear();
       mapRef.current?.remove();
       mapRef.current = null;
@@ -165,117 +198,83 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
     const map = mapRef.current;
     if (!ready || !leaflet || !map) return;
 
-    let disposed = false;
-
-    function renderMarkers() {
-      if (disposed) return;
-
-      const placed: Array<{
-        projects: Array<{ project: MapProject; point: [number, number] }>;
-        latitude: number;
-        longitude: number;
-      }> = [];
-      const nextMarkerIds = new Set<string>();
-      const overlapDistanceMeters = compact ? 180 : 340;
-      const ordered = [...projects].sort((a, b) => a.id.localeCompare(b.id, "zh-Hant"));
-
-      ordered.forEach((project) => {
-        const point = projectPoint(project);
-        const nearby = placed.find((group) => {
-          const latitudeMeters = (group.latitude - point[0]) * 111_320;
-          const longitudeMeters = (group.longitude - point[1]) * 100_900;
-          return Math.hypot(latitudeMeters, longitudeMeters) < overlapDistanceMeters;
-        });
-
-        if (nearby) {
-          const size = nearby.projects.length;
-          nearby.latitude = (nearby.latitude * size + point[0]) / (size + 1);
-          nearby.longitude = (nearby.longitude * size + point[1]) / (size + 1);
-          nearby.projects.push({ project, point });
-        } else {
-          placed.push({ projects: [{ project, point }], latitude: point[0], longitude: point[1] });
-        }
+    const nextMarkerIds = new Set(projects.map((project) => project.id));
+    projects.forEach((project) => {
+      const point = projectPoint(project);
+      const active = project.id === activeId;
+      const stage = projectStage(project);
+      const stageText = stage === "presale" ? "預售屋" : "成屋";
+      const noOfficialPrice = project.priceEvidence?.status === "official-no-match";
+      const markerPrice = project.price ? `${project.price.median} 萬` : noOfficialPrice ? "尚無成交" : "價格待補";
+      const description = `${project.name}｜${stageText}｜${project.price ? `${project.price.median} 萬／坪` : markerPrice}`;
+      const icon = leaflet.divIcon({
+        className: "project-map-marker-host",
+        html: `<span class="project-map-marker stage-${stage} ${active ? "active" : ""} ${project.price ? "has-price" : "price-pending"}"><span class="marker-building" aria-hidden="true"><span class="marker-building-roof"></span><span class="marker-building-side"><span class="marker-side-windows"></span></span><span class="marker-building-front"><span class="marker-windows"></span></span></span><span class="marker-price">${markerPrice}</span></span>`,
+        iconSize: [74, 64],
+        iconAnchor: [37, 62],
       });
-
-      const markerPositions = placed.flatMap((group) => {
-        if (group.projects.length === 1) {
-          const item = group.projects[0];
-          return [{ ...item, offsetX: 0, offsetY: 0, offset: false }];
-        }
-
-        return group.projects.map((item, index) => {
-          const ring = Math.floor(index / 8);
-          const ringStart = ring * 8;
-          const ringCount = Math.min(8, group.projects.length - ringStart);
-          const angle = -Math.PI / 2 + ((index - ringStart) * Math.PI * 2) / ringCount;
-          const radius = (compact ? 34 : 52) + ring * (compact ? 30 : 44);
-          return {
-            ...item,
-            offsetX: Math.round(Math.cos(angle) * radius),
-            offsetY: Math.round(Math.sin(angle) * radius),
-            offset: true,
-          };
-        });
-      });
-
-      markerPositions.forEach(({ project, point, offsetX, offsetY, offset }) => {
-        const active = project.id === activeId;
-        const stage = projectStage(project);
-        const stageText = stage === "presale" ? "預售屋" : "成屋";
-        const offsetLength = Math.hypot(offsetX, offsetY);
-        const offsetAngle = Math.atan2(offsetY, offsetX) * 180 / Math.PI;
-        nextMarkerIds.add(project.id);
-        const existing = markersRef.current.get(project.id);
-        if (existing) {
-          existing.marker.setLatLng(point);
-          existing.marker.setZIndexOffset(active ? 1000 : 0);
-          existing.element?.classList.toggle("active", active);
-          existing.element?.classList.toggle("stage-presale", stage === "presale");
-          existing.element?.classList.toggle("stage-completed", stage === "completed");
-          existing.element?.style.setProperty("--marker-offset-x", `${offsetX}px`);
-          existing.element?.style.setProperty("--marker-offset-y", `${offsetY}px`);
-          const connector = existing.marker.getElement()?.querySelector<HTMLElement>(".marker-offset-line");
-          connector?.style.setProperty("--offset-length", `${offsetLength}px`);
-          connector?.style.setProperty("--offset-angle", `${offsetAngle}deg`);
-          connector?.style.setProperty("--offset-opacity", offset ? "0.62" : "0");
-          return;
-        }
-
-        const noOfficialPrice = project.priceEvidence?.status === "official-no-match";
-        const priceText = project.price ? `${project.price.median} 萬` : noOfficialPrice ? "尚無成交" : "價格待補";
-        const description = `${project.name}｜${stageText}｜${project.price ? `${project.price.median} 萬／坪` : noOfficialPrice ? "官方尚無已發布成交" : "成交價待補"}`;
-        const icon = leaflet.divIcon({
-          className: "project-map-marker-host",
-          html: `<span class="marker-offset-line stage-${stage}" style="--offset-length:${offsetLength}px;--offset-angle:${offsetAngle}deg;--offset-opacity:${offset ? "0.62" : "0"}"></span><span class="project-map-marker stage-${stage} ${active ? "active" : ""} ${project.price ? "has-price" : "price-pending"}" style="--marker-offset-x:${offsetX}px;--marker-offset-y:${offsetY}px"><span class="marker-building" aria-hidden="true"><span class="marker-building-roof"></span><span class="marker-building-side"><span class="marker-side-windows"></span></span><span class="marker-building-front"><span class="marker-windows"></span></span></span><span class="marker-price">${priceText}</span></span>`,
-          iconSize: [74, 64],
-          iconAnchor: [37, 62],
-        });
-        const marker = leaflet.marker(point, {
-          icon,
-          keyboard: true,
-          zIndexOffset: active ? 1000 : 0,
-        }).addTo(map);
-        marker.on("click", () => onSelectRef.current?.(project.id));
-        const host = marker.getElement();
+      const existing = markersRef.current.get(project.id);
+      if (existing) {
+        existing.marker.setLatLng(point);
+        existing.marker.setIcon(icon);
+        existing.marker.setZIndexOffset(active ? 1000 : 0);
+        const host = existing.marker.getElement();
         host?.setAttribute("aria-label", `查看 ${description}`);
         host?.setAttribute("title", description);
-        const element = host?.querySelector<HTMLElement>(".project-map-marker") ?? null;
-        markersRef.current.set(project.id, { marker, element });
+        existing.element = host?.querySelector<HTMLElement>(".project-map-marker") ?? null;
+        return;
+      }
+
+      const marker = leaflet.marker(point, { icon, keyboard: true, zIndexOffset: active ? 1000 : 0 }).addTo(map);
+      marker.on("click", () => onSelectRef.current?.(project.id));
+      const host = marker.getElement();
+      host?.setAttribute("aria-label", `查看 ${description}`);
+      host?.setAttribute("title", description);
+      markersRef.current.set(project.id, { marker, element: host?.querySelector<HTMLElement>(".project-map-marker") ?? null });
+    });
+
+    markersRef.current.forEach(({ marker }, markerId) => {
+      if (nextMarkerIds.has(markerId)) return;
+      marker.remove();
+      markersRef.current.delete(markerId);
+    });
+
+    const groups = new Map<"林口" | "A7", MapProject[]>();
+    projects.forEach((project) => groups.set(project.region, [...(groups.get(project.region) || []), project]));
+    const nextAreaIds = new Set<string>();
+    groups.forEach((items, region) => {
+      nextAreaIds.add(region);
+      const points = items.map(projectPoint);
+      const point: [number, number] = [
+        points.reduce((total, item) => total + item[0], 0) / points.length,
+        points.reduce((total, item) => total + item[1], 0) / points.length,
+      ];
+      const regionMedian = median(items.flatMap((project) => project.price ? [project.price.median] : []));
+      const icon = leaflet.divIcon({
+        className: "area-summary-host",
+        html: `<span class="area-summary-marker"><b>${region}</b><strong>${items.length} 案</strong><small>${regionMedian === null ? "成交資料待補" : `中位 ${regionMedian} 萬／坪`}</small><em>放大查看建案</em></span>`,
+        iconSize: [142, 80],
+        iconAnchor: [71, 40],
       });
-
-      markersRef.current.forEach(({ marker }, markerId) => {
-        if (nextMarkerIds.has(markerId)) return;
-        marker.remove();
-        markersRef.current.delete(markerId);
-      });
-    }
-
-    renderMarkers();
-
-    return () => {
-      disposed = true;
-    };
-  }, [activeId, compact, projects, ready]);
+      const existing = areaMarkersRef.current.get(region);
+      if (existing) {
+        existing.setLatLng(point);
+        existing.setIcon(icon);
+        existing.off("click");
+        existing.on("click", () => onRegionSelectRef.current?.(region));
+        return;
+      }
+      const marker = leaflet.marker(point, { icon, keyboard: true, zIndexOffset: -50 }).addTo(map);
+      marker.on("click", () => onRegionSelectRef.current?.(region));
+      marker.getElement()?.setAttribute("aria-label", `篩選 ${region} 的 ${items.length} 個建案`);
+      areaMarkersRef.current.set(region, marker);
+    });
+    areaMarkersRef.current.forEach((marker, region) => {
+      if (nextAreaIds.has(region)) return;
+      marker.remove();
+      areaMarkersRef.current.delete(region);
+    });
+  }, [activeId, projects, ready]);
 
   useEffect(() => {
     const leaflet = leafletRef.current;
@@ -311,26 +310,21 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
     });
   }, [pois, ready, visibleAmenityCategories]);
 
-  function recenterActive() {
+  function searchCurrentArea() {
     const map = mapRef.current;
-    const active = projects.find((project) => project.id === activeId);
-    if (!map || !active) return;
-    const point = projectPoint(active);
-    map.stop();
-    map.panTo(point, { animate: true, duration: 0.28, easeLinearity: 0.35 });
+    if (!map) return;
+    const bounds = map.getBounds();
+    const ids = projects.filter((project) => bounds.contains(projectPoint(project))).map((project) => project.id);
+    onSearchArea?.(ids);
     setMapMoved(false);
   }
 
   return (
     <div className={`interactive-map ${compact ? "compact" : ""}`} data-map-engine="leaflet" lang="zh-Hant-TW">
-      <div
-        className="interactive-map-canvas"
-        ref={containerRef}
-        role="application"
-        aria-label="可用滑鼠滾輪縮放、拖曳移動的建案地圖"
-      />
-      {!projectMarkersVisible && !compact && <div className="map-marker-zoom-hint">＋ 放大到街區層級查看建案</div>}
-      {mapMoved && !compact && <button className="map-recenter" type="button" onClick={recenterActive}>⌖ 回到所選建案</button>}
+      <div className="interactive-map-canvas" ref={containerRef} role="application" aria-label="可用滑鼠滾輪縮放、拖曳移動的建案地圖" />
+      {!projectMarkersVisible && !compact && <div className="map-marker-zoom-hint">目前顯示區域摘要 · 放大後顯示個別建案</div>}
+      {mapMoved && !compact && <button className="map-search-area" type="button" onClick={searchCurrentArea}>搜尋此地圖範圍</button>}
+      {scopeActive && !mapMoved && !compact && <button className="map-clear-area" type="button" onClick={onClearArea}>顯示全部範圍</button>}
     </div>
   );
 }

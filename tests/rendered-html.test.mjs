@@ -23,7 +23,7 @@ test("server-renders the verified Linkou and A7 catalogue", async () => {
   assert.match(html, /<title>居鑑｜北台灣建案履歷<\/title>/);
   assert.match(html, /官方資料 (?:<!-- -->)?42(?:<!-- -->)? 案/);
   assert.match(html, /建案地圖/);
-  assert.match(html, /搜尋建案、建商、路段/);
+  assert.match(html, /搜尋區域、捷運、建案或建商/);
   assert.match(html, /品質查核/);
   assert.match(html, /(?:3[7-9]|40)(?:<!-- -->)? 案有成交資料/);
   assert.match(html, /尚無成交/);
@@ -136,24 +136,27 @@ test("filter controls stay above Leaflet map layers", async () => {
   assert.match(css, /\.advanced-filter-panel \{[^}]*max-height:calc\(100dvh - 150px\)/);
 });
 
-test("map project markers keep fixed coordinates while zooming", async () => {
+test("map uses stable project coordinates and progressive zoom layers", async () => {
   const source = await readFile(new URL("../app/InteractiveMap.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
 
-  assert.doesNotMatch(source, /map\.on\("zoomend", renderMarkers\)/);
   assert.doesNotMatch(source, /containerPointToLatLng/);
+  assert.doesNotMatch(source, /offsetX|offsetY|marker-offset-line/);
   assert.match(source, /leaflet\.marker\(point,/);
   assert.match(source, /projectMarkerMinZoom = 14/);
-  assert.match(source, /map\.on\("zoomend", syncProjectMarkerVisibility\)/);
-  assert.match(source, /放大到街區層級查看建案/);
-  assert.match(css, /\.interactive-map-canvas\.project-markers-hidden \.project-map-marker-host \{ display:none!important; \}/);
+  assert.match(source, /map-tier-project/);
+  assert.match(source, /area-summary-marker/);
+  assert.match(source, /目前顯示區域摘要 · 放大後顯示個別建案/);
+  assert.match(source, /搜尋此地圖範圍/);
+  assert.match(css, /\.interactive-map-canvas\.map-tier-area \.project-map-marker-host \{ display:none!important; \}/);
+  assert.match(css, /\.project-map-marker \{[^}]*transform:none!important;/);
 });
 
 test("detail interface separates defect evidence and supports route-based custom amenity weights", async () => {
   const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
 
-  assert.match(source, /30 秒總覽/);
-  assert.match(source, /先看三個買房重點/);
+  assert.match(source, /30 秒掌握這個建案/);
+  assert.match(source, /第 3 步 · 看結論與證據/);
   assert.match(source, /查看官方基本資料/);
   assert.match(source, /實際瑕疵與契約查核/);
   assert.match(source, /契約違規不會被當成漏水證據/);
@@ -163,4 +166,25 @@ test("detail interface separates defect evidence and supports route-based custom
   assert.match(source, /查看設施地圖與計算方式/);
   assert.match(source, /routeTimeText\(nearest\)/);
   assert.match(source, /平日 8 時/);
+});
+
+test("the product follows the six-step simplified research experience", async () => {
+  const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(source, /type BudgetFilter/);
+  assert.match(source, /每坪成交預算/);
+  assert.match(source, /更多條件/);
+  assert.match(source, /1 找區域/);
+  assert.match(source, /2 挑建案/);
+  assert.match(source, /3 看證據/);
+  assert.match(source, /onSearchArea=\{\(ids\) => setMapScopeIds\(ids\)\}/);
+  assert.match(source, /priceComparison\(active\)/);
+  assert.match(source, /資料可信度/);
+  assert.match(source, /價格、品質、位置與機能共/);
+  assert.match(source, /售後處理資料不足，暫不評分/);
+  assert.match(source, /不以建案數量推測售後品質/);
+  assert.match(source, /價格、品質、生活與資料可信度分開比較/);
+  assert.match(css, /\.summary-decisions \{ grid-template-columns:1fr 1fr;/);
+  assert.match(css, /\.area-summary-marker/);
 });
