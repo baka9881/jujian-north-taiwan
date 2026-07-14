@@ -147,9 +147,15 @@ test("map project markers keep fixed coordinates while zooming", async () => {
 test("detail interface separates defect evidence and supports route-based custom amenity weights", async () => {
   const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
 
+  assert.match(source, /30 秒總覽/);
+  assert.match(source, /先看三個買房重點/);
+  assert.match(source, /查看官方基本資料/);
   assert.match(source, /實際瑕疵與契約查核/);
   assert.match(source, /契約違規不會被當成漏水證據/);
+  assert.match(source, /查核來源與判讀方法/);
   assert.match(source, /調整各項權重/);
+  assert.match(source, /查看其餘 \{activeMoreAmenityEntries\.length\} 類設施/);
+  assert.match(source, /查看設施地圖與計算方式/);
   assert.match(source, /routeTimeText\(nearest\)/);
   assert.match(source, /平日 8 時/);
 });
