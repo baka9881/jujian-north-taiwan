@@ -70,6 +70,8 @@ const amenitySymbols: Record<AmenityCategory, string> = {
   parking: "停",
 };
 
+const projectMarkerMinZoom = 14;
+
 export default function InteractiveMap({ projects, activeId, onSelect, compact = false, pois = [], visibleAmenityCategories = [] }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const leafletRef = useRef<typeof import("leaflet") | null>(null);
@@ -83,6 +85,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
   const initialActiveIdRef = useRef(activeId);
   const [ready, setReady] = useState(false);
   const [mapMoved, setMapMoved] = useState(false);
+  const [projectMarkersVisible, setProjectMarkersVisible] = useState(true);
 
   useEffect(() => {
     onSelectRef.current = onSelect;
@@ -126,14 +129,22 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
       leaflet.control.zoom({ position: "topright", zoomInTitle: "放大", zoomOutTitle: "縮小" }).addTo(map);
       leaflet.control.attribution({ position: "bottomright", prefix: false }).addTo(map);
 
+      const syncProjectMarkerVisibility = () => {
+        const visible = compact || map.getZoom() >= projectMarkerMinZoom;
+        containerRef.current?.classList.toggle("project-markers-hidden", !visible);
+        setProjectMarkersVisible((current) => current === visible ? current : visible);
+      };
+
       leafletRef.current = leaflet;
       mapRef.current = map;
       resizeObserver = new ResizeObserver(() => map.invalidateSize({ animate: false, pan: false }));
       resizeObserver.observe(containerRef.current);
       map.on("dragend", () => setMapMoved(true));
+      map.on("zoomend", syncProjectMarkerVisibility);
       map.whenReady(() => {
         if (cancelled) return;
         map.invalidateSize({ animate: false, pan: false });
+        syncProjectMarkerVisibility();
         setReady(true);
       });
     });
@@ -318,6 +329,7 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
         role="application"
         aria-label="可用滑鼠滾輪縮放、拖曳移動的建案地圖"
       />
+      {!projectMarkersVisible && !compact && <div className="map-marker-zoom-hint">＋ 放大到街區層級查看建案</div>}
       {mapMoved && !compact && <button className="map-recenter" type="button" onClick={recenterActive}>⌖ 回到所選建案</button>}
     </div>
   );

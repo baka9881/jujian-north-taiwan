@@ -79,6 +79,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
 .interactive-map .leaflet-control-attribution { color:#6d797e; font-size:8px; background:rgba(255,255,255,.82); }
 .project-map-marker-host { border:0!important; background:transparent!important; overflow:visible!important; }
 .project-map-marker-host { display:flex!important; align-items:flex-end; justify-content:center; }
+.interactive-map-canvas.project-markers-hidden .project-map-marker-host { display:none!important; }
+.map-marker-zoom-hint { position:absolute; z-index:520; top:14px; left:50%; transform:translateX(-50%); padding:8px 12px; border:1px solid rgba(255,255,255,.72); border-radius:999px; background:rgba(37,55,71,.88); color:white; box-shadow:0 5px 16px rgba(24,39,49,.22); font-size:12px; font-weight:800; white-space:nowrap; pointer-events:none; }
 .marker-offset-line { --offset-length:0px; --offset-angle:0deg; --offset-opacity:0; position:absolute; z-index:0; left:37px; top:62px; width:var(--offset-length); height:1px; border-top:1px dashed #176b8e; opacity:var(--offset-opacity); transform:rotate(var(--offset-angle)); transform-origin:0 50%; pointer-events:none; }
 .marker-offset-line.stage-presale { border-color:#c8511f; }
 .project-map-marker { --marker-front:#1688b5; --marker-side:#0d5d82; --marker-roof:#63c2df; --marker-price:#205f7e; --marker-offset-x:0px; --marker-offset-y:0px; position:relative; z-index:1; width:auto; height:auto; display:flex; flex-direction:column; align-items:center; padding:0; border:0; border-radius:0; background:transparent; color:white; cursor:pointer; filter:drop-shadow(0 5px 5px rgba(24,52,68,.3)); transform:translate(var(--marker-offset-x),var(--marker-offset-y)); transition:filter .15s ease; }

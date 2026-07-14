@@ -138,10 +138,15 @@ test("filter controls stay above Leaflet map layers", async () => {
 
 test("map project markers keep fixed coordinates while zooming", async () => {
   const source = await readFile(new URL("../app/InteractiveMap.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
 
   assert.doesNotMatch(source, /map\.on\("zoomend", renderMarkers\)/);
   assert.doesNotMatch(source, /containerPointToLatLng/);
   assert.match(source, /leaflet\.marker\(point,/);
+  assert.match(source, /projectMarkerMinZoom = 14/);
+  assert.match(source, /map\.on\("zoomend", syncProjectMarkerVisibility\)/);
+  assert.match(source, /放大到街區層級查看建案/);
+  assert.match(css, /\.interactive-map-canvas\.project-markers-hidden \.project-map-marker-host \{ display:none!important; \}/);
 });
 
 test("detail interface separates defect evidence and supports route-based custom amenity weights", async () => {
