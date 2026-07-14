@@ -100,3 +100,13 @@ test("safe update report records safeguards and keeps historical backlog separat
   assert.equal(report.pipeline.totalProjects, 42);
   assert.ok(report.safeguards.some((item) => item.includes("不會") && item.includes("刪除")));
 });
+
+test("filter controls stay above Leaflet map layers", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const filterLayer = Number(css.match(/\.filter-bar \{[^}]*z-index:(\d+)/)?.[1]);
+  const headerLayer = Number(css.match(/\.site-header \{[^}]*z-index:(\d+)/)?.[1]);
+
+  assert.ok(filterLayer > 1000);
+  assert.ok(headerLayer > filterLayer);
+  assert.match(css, /\.advanced-filter-panel \{[^}]*max-height:calc\(100dvh - 150px\)/);
+});
