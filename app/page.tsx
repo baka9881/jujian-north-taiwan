@@ -376,7 +376,6 @@ export default function Home() {
           <aside className="result-sidebar">
             <div className="result-summary">
               <div><strong>{filtered.length} 個建案</strong><span>{pricedCount} 案有成交資料</span></div>
-              <small>點選建案切換地圖</small>
             </div>
             <div className="result-list">
               {filtered.length === 0 ? (
@@ -385,12 +384,11 @@ export default function Home() {
                 <article className={`map-result-card ${active.id === project.id ? "selected" : ""}`} data-result-id={project.id} key={project.id}>
                   <button className="result-main" type="button" onClick={() => selectProject(project)}>
                     <div className="result-title"><span>{project.region}</span><h2>{project.name}</h2><span className={`result-stage ${projectStage(project)}`}>{projectStageText(project)}</span></div>
-                    <p>{project.builder}</p>
                     <div className="result-data"><strong>{priceText(project)}</strong><span>{project.households} 戶</span><span className={`amenity-inline ${project.amenity.score === null ? "unavailable" : ""}`}>機能 {amenityScoreText(project)}</span></div>
                   </button>
                   <div className="result-actions">
-                    <button type="button" onClick={() => selectProject(project, true)}>完整資料</button>
-                    <button type="button" className={compareIds.includes(project.id) ? "checked" : ""} onClick={() => toggleCompare(project.id)}>{compareIds.includes(project.id) ? "✓ 已比較" : "＋ 比較"}</button>
+                    <button type="button" onClick={() => selectProject(project, true)}>查看資料</button>
+                    <button type="button" className={compareIds.includes(project.id) ? "checked" : ""} onClick={() => toggleCompare(project.id)}>{compareIds.includes(project.id) ? "✓ 已選" : "＋ 比較"}</button>
                   </div>
                 </article>
               ))}
@@ -404,7 +402,7 @@ export default function Home() {
               aria-expanded={panelOpen}
               onClick={() => setPanelOpen((value) => !value)}
             >
-              {panelOpen ? "‹ 收合建案" : "☰ 展開建案"}
+              {panelOpen ? "‹ 隱藏清單" : "☰ 顯示清單"}
             </button>
             <InteractiveMap
               projects={filtered.length ? filtered : [active]}
@@ -425,11 +423,10 @@ export default function Home() {
               <div>{amenityEntries.map(([category, meta]) => <button type="button" key={category} className={amenityLayers.includes(category) ? "active" : ""} onClick={(event) => { event.preventDefault(); toggleAmenityLayer(category); }}><i className={`poi-${category}`}>{meta.symbol}</i>{meta.label}</button>)}</div>
             </details>
             <div className="map-gesture-hint">滾輪縮放 · 拖曳移動</div>
-            <article className="map-project-card">
+            {!panelOpen && <article className="map-project-card">
               <div className="map-card-heading"><span>{active.region}</span><div><h2>{active.name}</h2><p>{active.builder}</p></div><b className={projectStage(active)}>{projectStageText(active)}</b></div>
-              <div className="map-card-data"><div><span>中位單價</span><strong>{active.price ? active.price.median : "—"}</strong><small>{active.price ? "萬／坪" : active.priceEvidence.status === "official-no-match" ? "官方未發布" : "待配對"}</small></div><div><span>戶數</span><strong>{active.households}</strong><small>戶</small></div><div><span>機能</span><strong className={active.amenity.score === null ? "amenity-pending" : ""}>{active.amenity.score ?? "待定位"}</strong>{active.amenity.score !== null && <small>分</small>}</div><div><span>定位</span><strong className="location-value">{locationLabel(active)}</strong></div></div>
-              <div className="map-card-actions"><button type="button" onClick={() => setDetailOpen(true)}>查看建案完整資料</button><button type="button" className={compareIds.includes(active.id) ? "added" : ""} onClick={() => toggleCompare(active.id)}>{compareIds.includes(active.id) ? "✓ 已加入比較" : "＋ 加入比較"}</button></div>
-            </article>
+              <div className="map-card-quick"><strong>{priceText(active)}</strong><span>{active.households} 戶</span><span>機能 {amenityScoreText(active)}</span><div><button type="button" onClick={() => setDetailOpen(true)}>查看資料</button><button type="button" className={compareIds.includes(active.id) ? "added" : ""} onClick={() => toggleCompare(active.id)}>{compareIds.includes(active.id) ? "✓ 已選" : "＋ 比較"}</button></div></div>
+            </article>}
           </section>
         </section>
       ) : (

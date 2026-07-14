@@ -27,9 +27,10 @@ test("server-renders the verified Linkou and A7 catalogue", async () => {
   assert.match(html, /品質查核/);
   assert.match(html, /(?:3[7-9]|40)(?:<!-- -->)? 案有成交資料/);
   assert.match(html, /尚無成交/);
-  assert.match(html, /點選建案切換地圖/);
+  assert.match(html, /隱藏清單/);
   assert.match(html, /生活機能/);
   assert.match(html, /data-map-engine="leaflet"/);
+  assert.doesNotMatch(html, /class="map-project-card"/);
   assert.match(html, /lang="zh-Hant-TW"/);
   assert.match(html, /滾輪縮放 · 拖曳移動/);
   assert.doesNotMatch(html, /<iframe/);
