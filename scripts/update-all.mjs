@@ -8,6 +8,7 @@ const scripts = [
   ["scan-project-updates.mjs", "--download"],
   ["refresh-project-prices.mjs", "--download"],
   ["enrich-amenities.mjs"],
+  ["enrich-route-times.mjs"],
   ["build-quality-evidence.mjs"],
   ["validate-data.mjs"],
 ];

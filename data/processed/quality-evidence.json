@@ -3,6 +3,17 @@
   "methodology": {
     "publishRule": "僅刊登 A 級可直接核對資料，或至少兩個互相獨立來源構成的 B 級資料；C 級線索不形成品質結論。",
     "noEventDisclaimer": "0 件已刊登事件只代表目前沒有資料通過刊登門檻，不代表建案沒有漏水或施工問題。",
+    "defectPublishRule": "實際瑕疵必須同時能確認建案、問題類型與發生事實；只有建商名稱、相似社區或契約違規時，不歸入漏水或施工瑕疵。",
+    "normalizationDisclaimer": "事件件數會另外列出每 100 戶比例；屋齡、棟別與是否修復仍需與原始文件一起判讀，不能只用件數排名建商。",
+    "defectCategories": [
+      "漏水／滲水",
+      "壁癌／潮濕",
+      "磁磚脫落",
+      "地下室積水",
+      "電梯／機電",
+      "隔音",
+      "結構裂縫"
+    ],
     "reviewStates": {
       "queued": "已排入查核，尚未逐筆完成官方來源搜尋",
       "reviewing": "正在核對事件、建案名稱、地址與當事人",
@@ -54,6 +65,8 @@
   "summary": {
     "projectCount": 42,
     "publishedEventCount": 7,
+    "defectEventCount": 0,
+    "contractEventCount": 7,
     "queuedCount": 0,
     "reviewedCount": 42,
     "verifiedLocationCount": 17,
@@ -116,7 +129,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046811760000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "富浤一響 漏水",
+        "富浤一響 壁癌",
+        "富浤一響 磁磚脫落",
+        "富浤一響 地下室積水",
+        "富浤一響 電梯",
+        "富浤一響 隔音",
+        "富浤一響 結構裂縫"
+      ]
     },
     "林口-02-d292ac": {
       "status": "reviewed",
@@ -173,7 +210,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046602430000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "立陽頤興 漏水",
+        "立陽頤興 壁癌",
+        "立陽頤興 磁磚脫落",
+        "立陽頤興 地下室積水",
+        "立陽頤興 電梯",
+        "立陽頤興 隔音",
+        "立陽頤興 結構裂縫"
+      ]
     },
     "林口-03-217128": {
       "status": "reviewed",
@@ -230,7 +291,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046601790000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "立軒天蒔 漏水",
+        "立軒天蒔 壁癌",
+        "立軒天蒔 磁磚脫落",
+        "立軒天蒔 地下室積水",
+        "立軒天蒔 電梯",
+        "立軒天蒔 隔音",
+        "立軒天蒔 結構裂縫"
+      ]
     },
     "林口-04-65c21d": {
       "status": "reviewed",
@@ -287,7 +372,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046706100000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "易捷聿白 漏水",
+        "易捷聿白 壁癌",
+        "易捷聿白 磁磚脫落",
+        "易捷聿白 地下室積水",
+        "易捷聿白 電梯",
+        "易捷聿白 隔音",
+        "易捷聿白 結構裂縫"
+      ]
     },
     "林口-05-6701e3": {
       "status": "reviewed",
@@ -344,7 +453,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/221202030000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "仁愛金鑽 漏水",
+        "仁愛金鑽 壁癌",
+        "仁愛金鑽 磁磚脫落",
+        "仁愛金鑽 地下室積水",
+        "仁愛金鑽 電梯",
+        "仁愛金鑽 隔音",
+        "仁愛金鑽 結構裂縫"
+      ]
     },
     "林口-06-d0c30b": {
       "status": "reviewed",
@@ -401,7 +534,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046500690000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "大新青慕 漏水",
+        "大新青慕 壁癌",
+        "大新青慕 磁磚脫落",
+        "大新青慕 地下室積水",
+        "大新青慕 電梯",
+        "大新青慕 隔音",
+        "大新青慕 結構裂縫"
+      ]
     },
     "林口-07-636c51": {
       "status": "reviewed",
@@ -458,7 +615,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/221109090000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "證源富承 漏水",
+        "證源富承 壁癌",
+        "證源富承 磁磚脫落",
+        "證源富承 地下室積水",
+        "證源富承 電梯",
+        "證源富承 隔音",
+        "證源富承 結構裂縫"
+      ]
     },
     "林口-08-021d6c": {
       "status": "reviewed",
@@ -515,7 +696,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046710870000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "盛德誠 漏水",
+        "盛德誠 壁癌",
+        "盛德誠 磁磚脫落",
+        "盛德誠 地下室積水",
+        "盛德誠 電梯",
+        "盛德誠 隔音",
+        "盛德誠 結構裂縫"
+      ]
     },
     "林口-09-69e9f6": {
       "status": "reviewed",
@@ -572,7 +777,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046602660000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "長耀會 漏水",
+        "長耀會 壁癌",
+        "長耀會 磁磚脫落",
+        "長耀會 地下室積水",
+        "長耀會 電梯",
+        "長耀會 隔音",
+        "長耀會 結構裂縫"
+      ]
     },
     "林口-10-0d70e1": {
       "status": "reviewed",
@@ -646,8 +875,39 @@
               "name": "新北市 114 年 1 至 6 月預售屋契約查核結果",
               "url": "https://www-ws.land.ntpc.gov.tw/Download.ashx?icon=.pdf&n=5paw5YyX5biCMTE05LiK5Y2K5bm06aCQ5ZSu5bGL6LK36LOj5a6a5Z6L5YyW5aWR57SE5p%2Bl5qC457WQ5p6cLnBkZg%3D%3D&u=LzAwMS9VcGxvYWQvMzk5L3JlbGZpbGUvMC8xMzk0My9jNzA0MTM3Mi1hZGExLTRiNzItOTc5NC0xMzg0MGM2YmRmOGEucGRm"
             }
-          ]
+          ],
+          "eventType": "contract",
+          "defectCategory": null,
+          "affectedArea": null,
+          "repairStatus": null,
+          "recurrence": null,
+          "caseCount": null,
+          "casesPer100Households": null
         }
+      ],
+      "defectEventCount": 0,
+      "contractEventCount": 1,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "新潤世界都心 漏水",
+        "新潤世界都心 壁癌",
+        "新潤世界都心 磁磚脫落",
+        "新潤世界都心 地下室積水",
+        "新潤世界都心 電梯",
+        "新潤世界都心 隔音",
+        "新潤世界都心 結構裂縫"
       ]
     },
     "林口-11-c4a9a4": {
@@ -705,7 +965,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/221607230000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "家睦中山 漏水",
+        "家睦中山 壁癌",
+        "家睦中山 磁磚脫落",
+        "家睦中山 地下室積水",
+        "家睦中山 電梯",
+        "家睦中山 隔音",
+        "家睦中山 結構裂縫"
+      ]
     },
     "林口-12-838c61": {
       "status": "reviewed",
@@ -762,7 +1046,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046706830000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "宏樸曉霧 漏水",
+        "宏樸曉霧 壁癌",
+        "宏樸曉霧 磁磚脫落",
+        "宏樸曉霧 地下室積水",
+        "宏樸曉霧 電梯",
+        "宏樸曉霧 隔音",
+        "宏樸曉霧 結構裂縫"
+      ]
     },
     "林口-13-8bd55c": {
       "status": "reviewed",
@@ -819,7 +1127,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046603270000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "頤昌松玥 漏水",
+        "頤昌松玥 壁癌",
+        "頤昌松玥 磁磚脫落",
+        "頤昌松玥 地下室積水",
+        "頤昌松玥 電梯",
+        "頤昌松玥 隔音",
+        "頤昌松玥 結構裂縫"
+      ]
     },
     "林口-14-4070bd": {
       "status": "reviewed",
@@ -893,8 +1225,39 @@
               "name": "新北市 114 年 1 至 6 月預售屋契約查核結果",
               "url": "https://www-ws.land.ntpc.gov.tw/Download.ashx?icon=.pdf&n=5paw5YyX5biCMTE05LiK5Y2K5bm06aCQ5ZSu5bGL6LK36LOj5a6a5Z6L5YyW5aWR57SE5p%2Bl5qC457WQ5p6cLnBkZg%3D%3D&u=LzAwMS9VcGxvYWQvMzk5L3JlbGZpbGUvMC8xMzk0My9jNzA0MTM3Mi1hZGExLTRiNzItOTc5NC0xMzg0MGM2YmRmOGEucGRm"
             }
-          ]
+          ],
+          "eventType": "contract",
+          "defectCategory": null,
+          "affectedArea": null,
+          "repairStatus": null,
+          "recurrence": null,
+          "caseCount": null,
+          "casesPer100Households": null
         }
+      ],
+      "defectEventCount": 0,
+      "contractEventCount": 1,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "九揚華樂 漏水",
+        "九揚華樂 壁癌",
+        "九揚華樂 磁磚脫落",
+        "九揚華樂 地下室積水",
+        "九揚華樂 電梯",
+        "九揚華樂 隔音",
+        "九揚華樂 結構裂縫"
       ]
     },
     "林口-15-d3eece": {
@@ -952,7 +1315,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046505490000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "源峰上境 漏水",
+        "源峰上境 壁癌",
+        "源峰上境 磁磚脫落",
+        "源峰上境 地下室積水",
+        "源峰上境 電梯",
+        "源峰上境 隔音",
+        "源峰上境 結構裂縫"
+      ]
     },
     "林口-16-187dad": {
       "status": "reviewed",
@@ -1026,8 +1413,39 @@
               "name": "新北市 114 年第 2 次預售屋契約查核結果",
               "url": "https://www-ws.land.ntpc.gov.tw/Download.ashx?n=5paw5YyX5biCMTE056ysMuasoeafpeaguOe1kOaenC5wZGY%3D&u=LzAwMS9VcGxvYWQvMzk5L3JlbGZpbGUvMC8xNDE3MC81ZmQ0M2M1My01NTkwLTQ2YzItYjFkYy1iYWJlNjYxNzllYmYucGRm"
             }
-          ]
+          ],
+          "eventType": "contract",
+          "defectCategory": null,
+          "affectedArea": null,
+          "repairStatus": null,
+          "recurrence": null,
+          "caseCount": null,
+          "casesPer100Households": null
         }
+      ],
+      "defectEventCount": 0,
+      "contractEventCount": 1,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "璽來登帝璽 漏水",
+        "璽來登帝璽 壁癌",
+        "璽來登帝璽 磁磚脫落",
+        "璽來登帝璽 地下室積水",
+        "璽來登帝璽 電梯",
+        "璽來登帝璽 隔音",
+        "璽來登帝璽 結構裂縫"
       ]
     },
     "林口-17-2b7cd2": {
@@ -1085,7 +1503,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046600110000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "群和FUTURE LINK 漏水",
+        "群和FUTURE LINK 壁癌",
+        "群和FUTURE LINK 磁磚脫落",
+        "群和FUTURE LINK 地下室積水",
+        "群和FUTURE LINK 電梯",
+        "群和FUTURE LINK 隔音",
+        "群和FUTURE LINK 結構裂縫"
+      ]
     },
     "林口-18-553cd8": {
       "status": "reviewed",
@@ -1142,7 +1584,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046501820000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "聯虹珺玥 漏水",
+        "聯虹珺玥 壁癌",
+        "聯虹珺玥 磁磚脫落",
+        "聯虹珺玥 地下室積水",
+        "聯虹珺玥 電梯",
+        "聯虹珺玥 隔音",
+        "聯虹珺玥 結構裂縫"
+      ]
     },
     "林口-19-25afb7": {
       "status": "reviewed",
@@ -1199,7 +1665,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046712610000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "竹城.日和 漏水",
+        "竹城.日和 壁癌",
+        "竹城.日和 磁磚脫落",
+        "竹城.日和 地下室積水",
+        "竹城.日和 電梯",
+        "竹城.日和 隔音",
+        "竹城.日和 結構裂縫"
+      ]
     },
     "林口-20-1aa799": {
       "status": "reviewed",
@@ -1273,8 +1763,39 @@
               "name": "新北市 114 年 1 至 6 月預售屋契約查核結果",
               "url": "https://www-ws.land.ntpc.gov.tw/Download.ashx?icon=.pdf&n=5paw5YyX5biCMTE05LiK5Y2K5bm06aCQ5ZSu5bGL6LK36LOj5a6a5Z6L5YyW5aWR57SE5p%2Bl5qC457WQ5p6cLnBkZg%3D%3D&u=LzAwMS9VcGxvYWQvMzk5L3JlbGZpbGUvMC8xMzk0My9jNzA0MTM3Mi1hZGExLTRiNzItOTc5NC0xMzg0MGM2YmRmOGEucGRm"
             }
-          ]
+          ],
+          "eventType": "contract",
+          "defectCategory": null,
+          "affectedArea": null,
+          "repairStatus": null,
+          "recurrence": null,
+          "caseCount": null,
+          "casesPer100Households": null
         }
+      ],
+      "defectEventCount": 0,
+      "contractEventCount": 1,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "築禾琢玥 漏水",
+        "築禾琢玥 壁癌",
+        "築禾琢玥 磁磚脫落",
+        "築禾琢玥 地下室積水",
+        "築禾琢玥 電梯",
+        "築禾琢玥 隔音",
+        "築禾琢玥 結構裂縫"
       ]
     },
     "a7-01-cd4424": {
@@ -1332,7 +1853,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144200600000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "長耀辰 漏水",
+        "長耀辰 壁癌",
+        "長耀辰 磁磚脫落",
+        "長耀辰 地下室積水",
+        "長耀辰 電梯",
+        "長耀辰 隔音",
+        "長耀辰 結構裂縫"
+      ]
     },
     "a7-02-234762": {
       "status": "reviewed",
@@ -1389,7 +1934,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144100950000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "鴻廣麴町 漏水",
+        "鴻廣麴町 壁癌",
+        "鴻廣麴町 磁磚脫落",
+        "鴻廣麴町 地下室積水",
+        "鴻廣麴町 電梯",
+        "鴻廣麴町 隔音",
+        "鴻廣麴町 結構裂縫"
+      ]
     },
     "a7-03-7b25a4": {
       "status": "reviewed",
@@ -1446,7 +2015,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144201360000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "詠勝欣文青 漏水",
+        "詠勝欣文青 壁癌",
+        "詠勝欣文青 磁磚脫落",
+        "詠勝欣文青 地下室積水",
+        "詠勝欣文青 電梯",
+        "詠勝欣文青 隔音",
+        "詠勝欣文青 結構裂縫"
+      ]
     },
     "a7-04-acfee0": {
       "status": "reviewed",
@@ -1503,7 +2096,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144101460000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "樂捷綻 漏水",
+        "樂捷綻 壁癌",
+        "樂捷綻 磁磚脫落",
+        "樂捷綻 地下室積水",
+        "樂捷綻 電梯",
+        "樂捷綻 隔音",
+        "樂捷綻 結構裂縫"
+      ]
     },
     "a7-05-4a513b": {
       "status": "reviewed",
@@ -1560,7 +2177,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144102460000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "英倫花都 漏水",
+        "英倫花都 壁癌",
+        "英倫花都 磁磚脫落",
+        "英倫花都 地下室積水",
+        "英倫花都 電梯",
+        "英倫花都 隔音",
+        "英倫花都 結構裂縫"
+      ]
     },
     "a7-06-08ce9d": {
       "status": "reviewed",
@@ -1638,8 +2279,39 @@
               "name": "桃園市 114 年 7 至 12 月契約違規查核結果",
               "url": "https://ws.tycg.gov.tw/Download.ashx?icon=.pdf&n=MTE05bm0N%2BaciOiHszEy5pyI6aCQ5ZSu5bGL5a6a5Z6L5YyW5aWR57SE6YGV6KaP5oOF5b2i5p%2Bl5qC457WQ5p6c5b2Z5pW06KGoLnBkZg%3D%3D&u=LzAwMS9VcGxvYWQvNjIvcmVsZmlsZS8xODkxNS8xNjAxMDE1LzgxMzdhOGU2LTg3OGYtNDNiNC04YWY4LTEwMjVmYzllMzZlMy5wZGY%3D"
             }
-          ]
+          ],
+          "eventType": "contract",
+          "defectCategory": null,
+          "affectedArea": null,
+          "repairStatus": null,
+          "recurrence": null,
+          "caseCount": null,
+          "casesPer100Households": null
         }
+      ],
+      "defectEventCount": 0,
+      "contractEventCount": 1,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "VILLA WOOD睦粼 漏水",
+        "VILLA WOOD睦粼 壁癌",
+        "VILLA WOOD睦粼 磁磚脫落",
+        "VILLA WOOD睦粼 地下室積水",
+        "VILLA WOOD睦粼 電梯",
+        "VILLA WOOD睦粼 隔音",
+        "VILLA WOOD睦粼 結構裂縫"
       ]
     },
     "a7-07-cd952c": {
@@ -1697,7 +2369,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144200340000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "竹城豐州 漏水",
+        "竹城豐州 壁癌",
+        "竹城豐州 磁磚脫落",
+        "竹城豐州 地下室積水",
+        "竹城豐州 電梯",
+        "竹城豐州 隔音",
+        "竹城豐州 結構裂縫"
+      ]
     },
     "a7-08-0362a4": {
       "status": "reviewed",
@@ -1775,8 +2471,39 @@
               "name": "行政院消保處查核新聞稿",
               "url": "https://cpc.ey.gov.tw/Page/6C059838CA9744A8/b876668f-58c1-4e6f-80c3-846d4a317786"
             }
-          ]
+          ],
+          "eventType": "contract",
+          "defectCategory": null,
+          "affectedArea": null,
+          "repairStatus": null,
+          "recurrence": null,
+          "caseCount": null,
+          "casesPer100Households": null
         }
+      ],
+      "defectEventCount": 0,
+      "contractEventCount": 1,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "捷市閱 漏水",
+        "捷市閱 壁癌",
+        "捷市閱 磁磚脫落",
+        "捷市閱 地下室積水",
+        "捷市閱 電梯",
+        "捷市閱 隔音",
+        "捷市閱 結構裂縫"
       ]
     },
     "a7-09-9e9aa8": {
@@ -1851,8 +2578,39 @@
               "name": "行政院消保處 113 年第 2 次預售屋契約查核附表",
               "url": "https://cpc.ey.gov.tw/File/5E4190B14E1978FA?A=C"
             }
-          ]
+          ],
+          "eventType": "contract",
+          "defectCategory": null,
+          "affectedArea": null,
+          "repairStatus": null,
+          "recurrence": null,
+          "caseCount": null,
+          "casesPer100Households": null
         }
+      ],
+      "defectEventCount": 0,
+      "contractEventCount": 1,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "大華開朗 漏水",
+        "大華開朗 壁癌",
+        "大華開朗 磁磚脫落",
+        "大華開朗 地下室積水",
+        "大華開朗 電梯",
+        "大華開朗 隔音",
+        "大華開朗 結構裂縫"
       ]
     },
     "a7-10-e86850": {
@@ -1910,7 +2668,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144200760000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "溫莎堡 漏水",
+        "溫莎堡 壁癌",
+        "溫莎堡 磁磚脫落",
+        "溫莎堡 地下室積水",
+        "溫莎堡 電梯",
+        "溫莎堡 隔音",
+        "溫莎堡 結構裂縫"
+      ]
     },
     "a7-11-7cbc96": {
       "status": "reviewed",
@@ -1967,7 +2749,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144201270000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "頤昌筑岳 漏水",
+        "頤昌筑岳 壁癌",
+        "頤昌筑岳 磁磚脫落",
+        "頤昌筑岳 地下室積水",
+        "頤昌筑岳 電梯",
+        "頤昌筑岳 隔音",
+        "頤昌筑岳 結構裂縫"
+      ]
     },
     "a7-12-ae84ab": {
       "status": "reviewed",
@@ -2024,7 +2830,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144100610000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "富宇富御 漏水",
+        "富宇富御 壁癌",
+        "富宇富御 磁磚脫落",
+        "富宇富御 地下室積水",
+        "富宇富御 電梯",
+        "富宇富御 隔音",
+        "富宇富御 結構裂縫"
+      ]
     },
     "a7-13-437eb6": {
       "status": "reviewed",
@@ -2081,7 +2911,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144100770000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "豐邑GREEN IN 漏水",
+        "豐邑GREEN IN 壁癌",
+        "豐邑GREEN IN 磁磚脫落",
+        "豐邑GREEN IN 地下室積水",
+        "豐邑GREEN IN 電梯",
+        "豐邑GREEN IN 隔音",
+        "豐邑GREEN IN 結構裂縫"
+      ]
     },
     "a7-14-0959e3": {
       "status": "reviewed",
@@ -2138,7 +2992,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144102080000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "鴻築玥 漏水",
+        "鴻築玥 壁癌",
+        "鴻築玥 磁磚脫落",
+        "鴻築玥 地下室積水",
+        "鴻築玥 電梯",
+        "鴻築玥 隔音",
+        "鴻築玥 結構裂縫"
+      ]
     },
     "a7-15-979ff3": {
       "status": "reviewed",
@@ -2195,7 +3073,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144101410000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "富宇天玥 漏水",
+        "富宇天玥 壁癌",
+        "富宇天玥 磁磚脫落",
+        "富宇天玥 地下室積水",
+        "富宇天玥 電梯",
+        "富宇天玥 隔音",
+        "富宇天玥 結構裂縫"
+      ]
     },
     "a7-16-694770": {
       "status": "reviewed",
@@ -2252,7 +3154,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144201550000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "允將大聚 漏水",
+        "允將大聚 壁癌",
+        "允將大聚 磁磚脫落",
+        "允將大聚 地下室積水",
+        "允將大聚 電梯",
+        "允將大聚 隔音",
+        "允將大聚 結構裂縫"
+      ]
     },
     "a7-17-803131": {
       "status": "reviewed",
@@ -2309,7 +3235,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144200320000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "大華昇耕 漏水",
+        "大華昇耕 壁癌",
+        "大華昇耕 磁磚脫落",
+        "大華昇耕 地下室積水",
+        "大華昇耕 電梯",
+        "大華昇耕 隔音",
+        "大華昇耕 結構裂縫"
+      ]
     },
     "a7-18-78daaa": {
       "status": "reviewed",
@@ -2366,7 +3316,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144201390000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "丹佛花都 漏水",
+        "丹佛花都 壁癌",
+        "丹佛花都 磁磚脫落",
+        "丹佛花都 地下室積水",
+        "丹佛花都 電梯",
+        "丹佛花都 隔音",
+        "丹佛花都 結構裂縫"
+      ]
     },
     "a7-19-f52012": {
       "status": "reviewed",
@@ -2423,7 +3397,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144200290000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "竹城中州 漏水",
+        "竹城中州 壁癌",
+        "竹城中州 磁磚脫落",
+        "竹城中州 地下室積水",
+        "竹城中州 電梯",
+        "竹城中州 隔音",
+        "竹城中州 結構裂縫"
+      ]
     },
     "a7-20-e374fc": {
       "status": "reviewed",
@@ -2480,7 +3478,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/H/144201060000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "和境心見 漏水",
+        "和境心見 壁癌",
+        "和境心見 磁磚脫落",
+        "和境心見 地下室積水",
+        "和境心見 電梯",
+        "和境心見 隔音",
+        "和境心見 結構裂縫"
+      ]
     },
     "linkou-d3c468867c": {
       "status": "reviewed",
@@ -2537,7 +3559,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046607490000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "立軒慕玥 漏水",
+        "立軒慕玥 壁癌",
+        "立軒慕玥 磁磚脫落",
+        "立軒慕玥 地下室積水",
+        "立軒慕玥 電梯",
+        "立軒慕玥 隔音",
+        "立軒慕玥 結構裂縫"
+      ]
     },
     "linkou-72c6eb54e3": {
       "status": "reviewed",
@@ -2594,7 +3640,31 @@
           "officialMapUrl": "https://maps.nlsc.gov.tw/goland/F/046600770000"
         }
       },
-      "events": []
+      "events": [],
+      "defectEventCount": 0,
+      "contractEventCount": 0,
+      "defectReview": {
+        "status": "reviewed-no-publishable-event",
+        "label": "未找到可歸戶的實際瑕疵",
+        "categories": [
+          "漏水／滲水",
+          "壁癌／潮濕",
+          "磁磚脫落",
+          "地下室積水",
+          "電梯／機電",
+          "隔音",
+          "結構裂縫"
+        ]
+      },
+      "defectSearchTerms": [
+        "擎天賦域．恆匯經貿中心 漏水",
+        "擎天賦域．恆匯經貿中心 壁癌",
+        "擎天賦域．恆匯經貿中心 磁磚脫落",
+        "擎天賦域．恆匯經貿中心 地下室積水",
+        "擎天賦域．恆匯經貿中心 電梯",
+        "擎天賦域．恆匯經貿中心 隔音",
+        "擎天賦域．恆匯經貿中心 結構裂縫"
+      ]
     }
   }
 }

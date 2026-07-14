@@ -51,6 +51,25 @@ function locationReview(amenity, buildingLand) {
   };
 }
 
+const defectCategories = ["漏水／滲水", "壁癌／潮濕", "磁磚脫落", "地下室積水", "電梯／機電", "隔音", "結構裂縫"];
+
+function normalizeEvent(event, project) {
+  const eventType = event.eventType || (event.category === "契約查核" ? "contract" : "defect");
+  const caseCount = Number.isFinite(event.caseCount) ? event.caseCount : null;
+  return {
+    ...event,
+    eventType,
+    defectCategory: eventType === "defect" ? event.defectCategory || event.category : null,
+    affectedArea: eventType === "defect" ? event.affectedArea || "資料未載明" : null,
+    repairStatus: eventType === "defect" ? event.repairStatus || "資料未載明" : null,
+    recurrence: eventType === "defect" ? event.recurrence || "資料未載明" : null,
+    caseCount,
+    casesPer100Households: eventType === "defect" && caseCount !== null
+      ? Number((caseCount / project.households * 100).toFixed(2))
+      : null,
+  };
+}
+
 async function main() {
   const projectDataset = JSON.parse(await readFile(projectsPath, "utf8"));
   const amenityDataset = JSON.parse(await readFile(amenitiesPath, "utf8"));
@@ -76,7 +95,10 @@ async function main() {
     const previousChecks = new Map((previous.sourceChecks || []).map((check) => [check.sourceId, check]));
     const defaultManualChecks = manualDefaults.sourceChecks || {};
     const manualChecks = manualAudit?.sourceChecks || {};
-    const events = manualAudit?.events ?? (isReviewedByCurrentAudit ? [] : previous.events ?? []);
+    const events = (manualAudit?.events ?? (isReviewedByCurrentAudit ? [] : previous.events ?? []))
+      .map((event) => normalizeEvent(event, project));
+    const defectEvents = events.filter((event) => event.eventType === "defect");
+    const contractEvents = events.filter((event) => event.eventType === "contract");
     projects[project.id] = {
       ...previous,
       ...manualDefaults,
@@ -86,7 +108,15 @@ async function main() {
       lastReviewedAt: manualAudit?.lastReviewedAt ?? manualDefaults.lastReviewedAt ?? previous.lastReviewedAt ?? null,
       publishedEventCount: events.length,
       evidenceCount: events.length,
+      defectEventCount: defectEvents.length,
+      contractEventCount: contractEvents.length,
+      defectReview: {
+        status: defectEvents.length ? "identified" : isReviewedByCurrentAudit ? "reviewed-no-publishable-event" : "queued",
+        label: defectEvents.length ? `已確認 ${defectEvents.length} 件實際瑕疵` : isReviewedByCurrentAudit ? "未找到可歸戶的實際瑕疵" : "實際瑕疵待查核",
+        categories: defectCategories,
+      },
       searchTerms: [project.name, project.builder, project.permitNo, project.buildingLand],
+      defectSearchTerms: defectCategories.map((category) => `${project.name} ${category.split("／")[0]}`),
       sourceChecks: defaultChecks.map((check) => {
         const merged = {
           ...check,
@@ -108,6 +138,9 @@ async function main() {
     methodology: {
       publishRule: "僅刊登 A 級可直接核對資料，或至少兩個互相獨立來源構成的 B 級資料；C 級線索不形成品質結論。",
       noEventDisclaimer: "0 件已刊登事件只代表目前沒有資料通過刊登門檻，不代表建案沒有漏水或施工問題。",
+      defectPublishRule: "實際瑕疵必須同時能確認建案、問題類型與發生事實；只有建商名稱、相似社區或契約違規時，不歸入漏水或施工瑕疵。",
+      normalizationDisclaimer: "事件件數會另外列出每 100 戶比例；屋齡、棟別與是否修復仍需與原始文件一起判讀，不能只用件數排名建商。",
+      defectCategories,
       reviewStates: {
         queued: "已排入查核，尚未逐筆完成官方來源搜尋",
         reviewing: "正在核對事件、建案名稱、地址與當事人",
@@ -129,6 +162,8 @@ async function main() {
     summary: {
       projectCount: values.length,
       publishedEventCount: values.reduce((total, project) => total + project.publishedEventCount, 0),
+      defectEventCount: values.reduce((total, project) => total + project.defectEventCount, 0),
+      contractEventCount: values.reduce((total, project) => total + project.contractEventCount, 0),
       queuedCount: values.filter((project) => project.status === "queued").length,
       reviewedCount: values.filter((project) => project.status === "reviewed").length,
       verifiedLocationCount: values.filter((project) => project.locationReview.status === "verified").length,

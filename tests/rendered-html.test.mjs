@@ -43,14 +43,22 @@ test("processed amenity data is scored and source-labelled", async () => {
   const dataset = JSON.parse(raw);
 
   assert.equal(Object.keys(dataset.projects).length, 42);
-  assert.ok(dataset.pois.length >= 200);
+  assert.ok(dataset.pois.length >= 350);
   assert.equal(dataset.source.name, "OpenStreetMap contributors");
+  assert.equal(Object.keys(dataset.categories).length, 10);
+  assert.ok(["market", "park", "pharmacy", "parking"].every((category) => dataset.categories[category]));
+  assert.equal(dataset.routeCoverage.routedProjects, 31);
+  assert.equal(dataset.routeCoverage.unavailableLocationProjects, 11);
+  assert.deepEqual(Object.keys(dataset.methodology.profiles).sort(), ["balanced", "driver", "family", "student"]);
   assert.ok(Object.values(dataset.projects).every((project) => project.score === null || (project.score >= 0 && project.score <= 100)));
   assert.ok(Object.values(dataset.projects).every((project) => project.location.confidence));
   assert.equal(Object.values(dataset.projects).filter((project) => project.scoreReliability === "verified").length, 17);
   assert.equal(Object.values(dataset.projects).filter((project) => project.scoreReliability === "unavailable").length, 11);
   assert.ok(Object.values(dataset.projects).filter((project) => project.location.confidence === "estimated").every((project) => project.score === null));
   assert.equal(Object.values(dataset.projects).filter((project) => project.location.method === "nlsc-official-intersection").length, 16);
+  assert.ok(Object.values(dataset.projects).filter((project) => project.score !== null).every((project) => Object.keys(project.categoryScores).length === 10));
+  assert.ok(Object.values(dataset.projects).filter((project) => project.score !== null).every((project) => Object.values(project.nearest).every((nearest) => !nearest || nearest.routes.walking)));
+  assert.match(dataset.methodology.peakDisclaimer, /不是即時路況/);
 });
 
 test("quality evidence records all current official-source reviews without overclaiming", async () => {
@@ -63,6 +71,8 @@ test("quality evidence records all current official-source reviews without overc
   assert.equal(dataset.summary.queuedCount, 0);
   assert.equal(dataset.summary.reviewedCount, 42);
   assert.equal(dataset.summary.publishedEventCount, 7);
+  assert.equal(dataset.summary.defectEventCount, 0);
+  assert.equal(dataset.summary.contractEventCount, 7);
   assert.equal(dataset.summary.verifiedLocationCount, 17);
   assert.equal(dataset.summary.approximateLocationCount, 14);
   assert.equal(dataset.summary.awaitingParcelCount, 11);
@@ -70,6 +80,9 @@ test("quality evidence records all current official-source reviews without overc
   assert.equal(events.length, 7);
   assert.ok(events.every((event) => event.level === "A"));
   assert.ok(events.every((event) => event.category === "契約查核"));
+  assert.ok(events.every((event) => event.eventType === "contract"));
+  assert.ok(projects.every((project) => project.defectEventCount === 0));
+  assert.ok(projects.every((project) => project.defectReview.categories.length === 7));
   assert.equal(events.filter((event) => event.outcome === "符合").length, 6);
   assert.equal(events.filter((event) => event.outcome === "部分不符合").length, 1);
   assert.ok(events.every((event) => /施工|漏水/.test(event.limitation)));
@@ -79,6 +92,7 @@ test("quality evidence records all current official-source reviews without overc
   assert.equal(dataset.projects["a7-10-e86850"].sourceChecks.find((check) => check.sourceId === "judicial").status, "ambiguous-query");
   assert.ok(projects.every((project) => project.locationReview.parcel?.officialMapUrl.startsWith("https://maps.nlsc.gov.tw/goland/")));
   assert.ok(dataset.methodology.noEventDisclaimer.includes("不代表建案沒有漏水或施工問題"));
+  assert.match(dataset.methodology.defectPublishRule, /建案、問題類型與發生事實/);
 });
 
 test("processed data has the intended scope and explicit unknown states", async () => {
@@ -128,4 +142,14 @@ test("map project markers keep fixed coordinates while zooming", async () => {
   assert.doesNotMatch(source, /map\.on\("zoomend", renderMarkers\)/);
   assert.doesNotMatch(source, /containerPointToLatLng/);
   assert.match(source, /leaflet\.marker\(point,/);
+});
+
+test("detail interface separates defect evidence and supports route-based custom amenity weights", async () => {
+  const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+
+  assert.match(source, /實際瑕疵與契約查核/);
+  assert.match(source, /契約違規不會被當成漏水證據/);
+  assert.match(source, /調整各項權重/);
+  assert.match(source, /routeTimeText\(nearest\)/);
+  assert.match(source, /平日 8 時/);
 });

@@ -8,6 +8,7 @@ const outputPath = path.join(root, "data", "processed", "amenities.json");
 const cacheDirectory = path.join(root, "data", "cache");
 const geocodeCachePath = path.join(cacheDirectory, "nominatim-projects.json");
 const overpassCachePath = path.join(cacheDirectory, "overpass-pois.json");
+const nominatimAmenitiesCachePath = path.join(cacheDirectory, "nominatim-amenities.json");
 const intersectionCachePath = path.join(cacheDirectory, "nlsc-intersections.json");
 const locationOverridesPath = path.join(root, "data", "manual", "location-overrides.json");
 const userAgent = "JujianNorthTaiwan/1.0 (+https://jujian-north-taiwan.baka0406.chatgpt.site)";
@@ -39,6 +40,10 @@ const categories = {
   station: { label: "捷運／車站", symbol: "站" },
   school: { label: "學校", symbol: "學" },
   medical: { label: "醫療", symbol: "醫" },
+  market: { label: "市場／超市", symbol: "市" },
+  park: { label: "公園", symbol: "園" },
+  pharmacy: { label: "藥局", symbol: "藥" },
+  parking: { label: "停車場", symbol: "停" },
 };
 
 const scoreRules = [
@@ -242,14 +247,22 @@ const overpassQueries = {
   station: `[out:json][timeout:30];(node["railway"="station"](${coreBounds});node["railway"="halt"](${coreBounds}););out body;`,
   school: `[out:json][timeout:60];nwr["amenity"="school"](${coreBounds});out center tags;`,
   medical: `[out:json][timeout:60];nwr["amenity"~"hospital|clinic"](${coreBounds});out center tags;`,
+  market: `[out:json][timeout:60];nwr["amenity"="marketplace"](${coreBounds});out center tags;`,
   costco: `[out:json][timeout:60];nwr["name"~"好市多|Costco",i](24.85,121.15,25.30,121.65);out center tags;`,
+};
+
+const nominatimAmenityQueries = {
+  park: "[park]",
+  pharmacy: "[pharmacy]",
+  parking: "[parking]",
+  market: "[marketplace]",
 };
 
 async function loadOverpass() {
   const cached = await readJson(overpassCachePath, { elementsByQuery: {} });
-  const endpoints = ["https://overpass.private.coffee/api/interpreter", "https://overpass-api.de/api/interpreter"];
+  const endpoints = ["https://overpass.osm.ch/api/interpreter", "https://overpass.private.coffee/api/interpreter", "https://overpass-api.de/api/interpreter"];
   for (const [name, query] of Object.entries(overpassQueries)) {
-    if (cached.elementsByQuery[name]) continue;
+    if (cached.elementsByQuery[name]?.length) continue;
     if (name === "station") {
       cached.elementsByQuery[name] = [];
       await writeFile(overpassCachePath, `${JSON.stringify(cached, null, 2)}\n`, "utf8");
@@ -284,18 +297,58 @@ async function loadOverpass() {
   return { elements: Object.values(cached.elementsByQuery).flat() };
 }
 
+async function loadNominatimAmenities() {
+  const cache = await readJson(nominatimAmenitiesCachePath, {});
+  for (const [category, query] of Object.entries(nominatimAmenityQueries)) {
+    if (cache[category]?.length) continue;
+    const params = new URLSearchParams({
+      q: query,
+      format: "jsonv2",
+      limit: "50",
+      bounded: "1",
+      viewbox: "121.335,25.110,121.420,25.025",
+      "accept-language": "zh-TW,zh-Hant",
+    });
+    const response = await fetch(`https://nominatim.openstreetmap.org/search?${params}`, {
+      headers: { "User-Agent": userAgent, Referer: "https://jujian-north-taiwan.baka0406.chatgpt.site" },
+      signal: AbortSignal.timeout(30_000),
+    });
+    if (!response.ok) throw new Error(`Nominatim amenities ${response.status}: ${category}`);
+    cache[category] = await response.json();
+    await writeFile(nominatimAmenitiesCachePath, `${JSON.stringify(cache, null, 2)}\n`, "utf8");
+    await sleep(1100);
+  }
+
+  return Object.entries(cache).flatMap(([category, results]) => results.map((result) => ({
+    type: "nominatim",
+    id: result.place_id,
+    lat: Number(result.lat),
+    lon: Number(result.lon),
+    tags: {
+      name: result.name?.trim() || categories[category].label,
+      "addr:full": result.display_name || null,
+      ...(category === "park" ? { leisure: "park" } : { amenity: category === "market" ? "marketplace" : category }),
+    },
+  })));
+}
+
 function classifyPoi(tags = {}) {
   const identity = [tags.name, tags["name:zh"], tags.brand, tags.operator].filter(Boolean).join(" ");
-  if (/好市多|costco/iu.test(identity)) return "costco";
+  if (tags.amenity === "parking") return "parking";
+  if (/好市多|costco/iu.test(identity) && (tags.shop || tags.building)) return "costco";
   if (/全聯|px\s*mart|pxmart/iu.test(identity)) return "pxmart";
   if (tags.shop === "convenience") return "convenience";
   if (tags.railway === "station" || tags.railway === "halt") return "station";
   if (tags.amenity === "school") return "school";
   if (tags.amenity === "hospital" || tags.amenity === "clinic") return "medical";
+  if (tags.amenity === "marketplace" || tags.shop === "supermarket") return "market";
+  if (tags.leisure === "park") return "park";
+  if (tags.amenity === "pharmacy") return "pharmacy";
   return null;
 }
 
 function poiAddress(tags = {}) {
+  if (tags["addr:full"]) return tags["addr:full"];
   return [tags["addr:city"], tags["addr:district"], tags["addr:street"], tags["addr:housenumber"]]
     .filter(Boolean)
     .join("");
@@ -379,7 +432,8 @@ async function main() {
   const previousDataset = await readJson(outputPath, { projects: {} });
   const geocoded = await geocodeProjects(projectDataset.projects, previousDataset.projects || {});
   const locations = await applyManualOverrides(await refineOfficialIntersections(geocoded));
-  const pois = normalizePois(await loadOverpass());
+  const [overpass, nominatimAmenities] = await Promise.all([loadOverpass(), loadNominatimAmenities()]);
+  const pois = normalizePois({ elements: [...overpass.elements, ...nominatimAmenities] });
   const projects = {};
 
   for (const project of projectDataset.projects) {

@@ -15,7 +15,7 @@ type MapProject = {
   longitude?: number;
 };
 
-type AmenityCategory = "convenience" | "pxmart" | "costco" | "station" | "school" | "medical";
+type AmenityCategory = "convenience" | "pxmart" | "costco" | "station" | "school" | "medical" | "market" | "park" | "pharmacy" | "parking";
 
 type AmenityPoi = {
   id: string;
@@ -64,6 +64,10 @@ const amenitySymbols: Record<AmenityCategory, string> = {
   station: "站",
   school: "學",
   medical: "醫",
+  market: "市",
+  park: "園",
+  pharmacy: "藥",
+  parking: "停",
 };
 
 export default function InteractiveMap({ projects, activeId, onSelect, compact = false, pois = [], visibleAmenityCategories = [] }: Props) {
