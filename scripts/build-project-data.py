@@ -86,22 +86,32 @@ def load_linkou_prices() -> dict[str, dict[str, object]]:
 
 def load_a7_prices() -> dict[str, dict[str, object]]:
     grouped: dict[str, list[tuple[float, str | None]]] = defaultdict(list)
-    path = SOURCE / "lvr_landcsv" / "h_lvr_land_b.csv"
-    for row in read_csv(path):
-        if row.get("鄉鎮市區") != "龜山區" or (row.get("解約情形") or "").strip():
-            continue
+    paths = sorted((SOURCE / "a7-history").glob("*_H_lvr_land_B.csv"))
+    if not paths:
+        paths = [SOURCE / "lvr_landcsv" / "h_lvr_land_b.csv"]
+    unique_rows: dict[str, dict[str, str]] = {}
+    anonymous_index = 0
+    for path in paths:
+        for row in read_csv(path):
+            if row.get("鄉鎮市區") != "龜山區" or (row.get("解約情形") or "").strip():
+                continue
+            serial = (row.get("編號") or "").strip()
+            if not serial:
+                anonymous_index += 1
+                serial = f"anonymous-{path.name}-{anonymous_index}"
+            unique_rows[serial] = row
+    for row in unique_rows.values():
         name = normalize_name(row.get("建案名稱", ""))
         try:
             ntd_m2 = float(row.get("單價元平方公尺", ""))
         except (TypeError, ValueError):
             continue
-        if not name or ntd_m2 <= 0:
-            continue
-        grouped[name].append((ntd_m2 * 3.305785 / 10_000, roc_to_iso(row.get("交易年月日", ""))))
+        if name and ntd_m2 > 0:
+            grouped[name].append((ntd_m2 * 3.305785 / 10_000, roc_to_iso(row.get("交易年月日", ""))))
     return {
-        name: price_summary(values, "內政部本期預售屋實價登錄")
+        name: price_summary(values, "內政部預售屋實價登錄（歷史季度＋本期）")
         for name, values in grouped.items()
-        if price_summary(values, "內政部本期預售屋實價登錄")
+        if price_summary(values, "內政部預售屋實價登錄（歷史季度＋本期）")
     }
 
 
@@ -211,9 +221,9 @@ def main() -> None:
                 "role": "林口成交單價與交易筆數",
             },
             {
-                "name": "內政部預售屋實價登錄",
-                "url": "https://data.gov.tw/dataset/6215",
-                "role": "A7 本期成交單價",
+                "name": "內政部預售屋實價登錄（歷史季度＋本期）",
+                "url": "https://plvr.land.moi.gov.tw/DownloadOpenData",
+                "role": "A7 自 2023 年起歷史季度與本期成交單價",
             },
         ],
     }

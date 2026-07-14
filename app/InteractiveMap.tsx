@@ -9,6 +9,7 @@ type MapProject = {
   mapX: number;
   mapY: number;
   price: { median: number } | null;
+  priceEvidence?: { status: "matched" | "official-no-match" | "source-no-match"; statusLabel: string };
   firstRegistrationDate: string | null;
   latitude?: number;
   longitude?: number;
@@ -238,8 +239,9 @@ export default function InteractiveMap({ projects, activeId, onSelect, compact =
           return;
         }
 
-        const priceText = project.price ? `${project.price.median} 萬` : "價格待補";
-        const description = `${project.name}｜${stageText}｜${project.price ? `${project.price.median} 萬／坪` : "成交價待補"}`;
+        const noOfficialPrice = project.priceEvidence?.status === "official-no-match";
+        const priceText = project.price ? `${project.price.median} 萬` : noOfficialPrice ? "尚無成交" : "價格待補";
+        const description = `${project.name}｜${stageText}｜${project.price ? `${project.price.median} 萬／坪` : noOfficialPrice ? "官方尚無已發布成交" : "成交價待補"}`;
         const icon = leaflet.divIcon({
           className: "project-map-marker-host",
           html: `<span class="project-map-marker stage-${stage} ${active ? "active" : ""} ${project.price ? "has-price" : "price-pending"}"><span class="marker-building" aria-hidden="true"><span class="marker-building-roof"></span><span class="marker-building-side"><span class="marker-side-windows"></span></span><span class="marker-building-front"><span class="marker-windows"></span></span></span><span class="marker-price">${priceText}</span></span>`,

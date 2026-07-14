@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13",
+  "generatedAt": "2026-07-14",
   "scope": "林口＋A7 第一批",
   "projectCount": 40,
   "projects": [
@@ -33,7 +33,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 27,
-      "mapY": 48
+      "mapY": 48,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-02-d292ac",
@@ -65,7 +74,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 42,
-      "mapY": 67
+      "mapY": 67,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-03-217128",
@@ -97,7 +115,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 40,
-      "mapY": 60
+      "mapY": 60,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-04-65c21d",
@@ -129,7 +156,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 40,
-      "mapY": 33
+      "mapY": 33,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-05-6701e3",
@@ -161,7 +197,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 37,
-      "mapY": 58
+      "mapY": 58,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-06-d0c30b",
@@ -193,7 +238,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 42,
-      "mapY": 33
+      "mapY": 33,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-07-636c51",
@@ -225,7 +279,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 36,
-      "mapY": 49
+      "mapY": 49,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-08-021d6c",
@@ -257,7 +320,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 31,
-      "mapY": 47
+      "mapY": 47,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-09-69e9f6",
@@ -289,7 +361,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 40,
-      "mapY": 42
+      "mapY": 42,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-10-0d70e1",
@@ -321,7 +402,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 31,
-      "mapY": 38
+      "mapY": 38,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-11-c4a9a4",
@@ -353,7 +443,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 44,
-      "mapY": 33
+      "mapY": 33,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-12-838c61",
@@ -385,7 +484,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 34,
-      "mapY": 57
+      "mapY": 57,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-13-8bd55c",
@@ -417,7 +525,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 35,
-      "mapY": 64
+      "mapY": 64,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-14-4070bd",
@@ -449,7 +566,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 26,
-      "mapY": 58
+      "mapY": 58,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-15-d3eece",
@@ -481,7 +607,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 100,
       "mapX": 25,
-      "mapY": 65
+      "mapY": 65,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-16-187dad",
@@ -513,7 +648,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 43,
-      "mapY": 37
+      "mapY": 37,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-17-2b7cd2",
@@ -545,7 +689,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 41,
-      "mapY": 35
+      "mapY": 35,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-18-553cd8",
@@ -577,7 +730,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 44,
-      "mapY": 41
+      "mapY": 41,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-19-25afb7",
@@ -609,7 +771,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 100,
       "mapX": 36,
-      "mapY": 43
+      "mapY": 43,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "林口-20-1aa799",
@@ -641,7 +812,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 44,
-      "mapY": 57
+      "mapY": 57,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "新北市開放資料建案名稱配對",
+        "addressCorroborated": null,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://data.gov.tw/dataset/146480"
+      }
     },
     {
       "id": "a7-01-cd4424",
@@ -662,18 +842,29 @@
       "firstRegistrationDate": null,
       "registryNumber": "未提供",
       "price": {
-        "median": 50.0,
-        "low": 46.9,
-        "high": 51.6,
-        "count": 7,
+        "median": 49.6,
+        "low": 42.8,
+        "high": 54.1,
+        "count": 244,
         "latestDate": "2026-05-31",
-        "source": "內政部本期預售屋實價登錄"
+        "source": "內政部預售屋實價登錄（歷史季度＋本期）"
       },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 90,
       "mapX": 67,
-      "mapY": 43
+      "mapY": 43,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "文桃路"
+        ],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-02-234762",
@@ -698,7 +889,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 70,
       "mapX": 63,
-      "mapY": 72
+      "mapY": 72,
+      "priceEvidence": {
+        "status": "official-no-match",
+        "statusLabel": "官方尚無已發布成交",
+        "matchMethod": "官方成交建案名稱未找到可安全歸戶紀錄；地號與地址不足以單獨判定同案",
+        "addressCorroborated": false,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-03-7b25a4",
@@ -723,7 +923,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 70,
       "mapX": 70,
-      "mapY": 61
+      "mapY": 61,
+      "priceEvidence": {
+        "status": "official-no-match",
+        "statusLabel": "官方尚無已發布成交",
+        "matchMethod": "官方成交建案名稱未找到可安全歸戶紀錄；地號與地址不足以單獨判定同案",
+        "addressCorroborated": false,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-04-acfee0",
@@ -748,7 +957,16 @@
       "amenityStatus": "待串接地圖資料",
       "dataCompleteness": 70,
       "mapX": 57,
-      "mapY": 69
+      "mapY": 69,
+      "priceEvidence": {
+        "status": "official-no-match",
+        "statusLabel": "官方尚無已發布成交",
+        "matchMethod": "官方成交建案名稱未找到可安全歸戶紀錄；地號與地址不足以單獨判定同案",
+        "addressCorroborated": false,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-05-4a513b",
@@ -768,12 +986,30 @@
       "permitNo": "桃市都建執照字第會龜01011號",
       "firstRegistrationDate": null,
       "registryNumber": "未提供",
-      "price": null,
+      "price": {
+        "median": 54.2,
+        "low": 50.6,
+        "high": 70.3,
+        "count": 48,
+        "latestDate": "2026-05-10",
+        "source": "內政部預售屋實價登錄（歷史季度＋本期）"
+      },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
-      "dataCompleteness": 70,
+      "dataCompleteness": 90,
       "mapX": 58,
-      "mapY": 51
+      "mapY": 51,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "文桃路476巷"
+        ],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-06-08ce9d",
@@ -793,12 +1029,28 @@
       "permitNo": "113桃市都建執照字第會龜01601號",
       "firstRegistrationDate": null,
       "registryNumber": "WPRNMLLMKIJGFDH56CG",
-      "price": null,
+      "price": {
+        "median": 49.2,
+        "low": 36.9,
+        "high": 66.7,
+        "count": 222,
+        "latestDate": "2026-02-01",
+        "source": "內政部預售屋實價登錄（歷史季度＋本期）"
+      },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
-      "dataCompleteness": 70,
+      "dataCompleteness": 90,
       "mapX": 72,
-      "mapY": 68
+      "mapY": 68,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": false,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-07-cd952c",
@@ -818,12 +1070,30 @@
       "permitNo": "111桃市都建執照字第會龜1382-1",
       "firstRegistrationDate": "2025-10-14",
       "registryNumber": "未提供",
-      "price": null,
+      "price": {
+        "median": 47.2,
+        "low": 41.2,
+        "high": 50.3,
+        "count": 54,
+        "latestDate": "2025-09-21",
+        "source": "內政部預售屋實價登錄（歷史季度＋本期）"
+      },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
-      "dataCompleteness": 80,
+      "dataCompleteness": 90,
       "mapX": 63,
-      "mapY": 72
+      "mapY": 72,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "樂善二路與文化二路"
+        ],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-08-0362a4",
@@ -843,12 +1113,30 @@
       "permitNo": "(112)桃市都建執照字第會龜01246",
       "firstRegistrationDate": null,
       "registryNumber": "未提供",
-      "price": null,
+      "price": {
+        "median": 52.7,
+        "low": 46.2,
+        "high": 81.1,
+        "count": 228,
+        "latestDate": "2025-12-03",
+        "source": "內政部預售屋實價登錄（歷史季度＋本期）"
+      },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
-      "dataCompleteness": 70,
+      "dataCompleteness": 90,
       "mapX": 58,
-      "mapY": 45
+      "mapY": 45,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "樂善二路與牛角坡路"
+        ],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-09-9e9aa8",
@@ -868,12 +1156,30 @@
       "permitNo": "(111)桃市都建執照字第會龜227-1",
       "firstRegistrationDate": null,
       "registryNumber": "未提供",
-      "price": null,
+      "price": {
+        "median": 50.8,
+        "low": 44.1,
+        "high": 56.9,
+        "count": 55,
+        "latestDate": "2025-05-07",
+        "source": "內政部預售屋實價登錄（歷史季度＋本期）"
+      },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
-      "dataCompleteness": 70,
+      "dataCompleteness": 90,
       "mapX": 57,
-      "mapY": 65
+      "mapY": 65,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "長慶一街與長慶二街"
+        ],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-10-e86850",
@@ -893,12 +1199,30 @@
       "permitNo": "桃市都建執照字第會龜01125-02號",
       "firstRegistrationDate": null,
       "registryNumber": "未提供",
-      "price": null,
+      "price": {
+        "median": 46.0,
+        "low": 38.9,
+        "high": 73.3,
+        "count": 461,
+        "latestDate": "2025-10-30",
+        "source": "內政部預售屋實價登錄（歷史季度＋本期）"
+      },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
-      "dataCompleteness": 70,
+      "dataCompleteness": 90,
       "mapX": 57,
-      "mapY": 44
+      "mapY": 44,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "文桃路跟牛角坡路交叉路"
+        ],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-11-7cbc96",
@@ -918,12 +1242,31 @@
       "permitNo": "112桃市都建執照字第會龜00733號",
       "firstRegistrationDate": "2026-05-25",
       "registryNumber": "未提供",
-      "price": null,
+      "price": {
+        "median": 45.9,
+        "low": 42.1,
+        "high": 65.8,
+        "count": 140,
+        "latestDate": "2024-06-20",
+        "source": "內政部預售屋實價登錄（歷史季度＋本期）"
+      },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
-      "dataCompleteness": 80,
+      "dataCompleteness": 90,
       "mapX": 59,
-      "mapY": 42
+      "mapY": 42,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "樂善二路",
+          "牛角坡路"
+        ],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-12-ae84ab",
@@ -943,12 +1286,30 @@
       "permitNo": "桃市都建執照字第會龜00428-01",
       "firstRegistrationDate": "2025-03-31",
       "registryNumber": "QPPNMLPKJIIGFDH48DG",
-      "price": null,
+      "price": {
+        "median": 47.9,
+        "low": 42.0,
+        "high": 58.3,
+        "count": 259,
+        "latestDate": "2025-01-11",
+        "source": "內政部預售屋實價登錄（歷史季度＋本期）"
+      },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
-      "dataCompleteness": 80,
+      "dataCompleteness": 90,
       "mapX": 71,
-      "mapY": 60
+      "mapY": 60,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "文禾路"
+        ],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-13-437eb6",
@@ -968,12 +1329,28 @@
       "permitNo": "109桃市都建執照字第會龜00412號",
       "firstRegistrationDate": null,
       "registryNumber": "未提供",
-      "price": null,
+      "price": {
+        "median": 43.7,
+        "low": 39.6,
+        "high": 54.2,
+        "count": 70,
+        "latestDate": "2026-04-07",
+        "source": "內政部預售屋實價登錄（歷史季度＋本期）"
+      },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
-      "dataCompleteness": 70,
+      "dataCompleteness": 90,
       "mapX": 69,
-      "mapY": 51
+      "mapY": 51,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": false,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-14-0959e3",
@@ -993,12 +1370,30 @@
       "permitNo": "111桃市都建執照字第會龜00956號",
       "firstRegistrationDate": "2026-06-30",
       "registryNumber": "未提供",
-      "price": null,
+      "price": {
+        "median": 38.0,
+        "low": 35.1,
+        "high": 52.3,
+        "count": 200,
+        "latestDate": "2024-07-18",
+        "source": "內政部預售屋實價登錄（歷史季度＋本期）"
+      },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
-      "dataCompleteness": 80,
+      "dataCompleteness": 90,
       "mapX": 68,
-      "mapY": 44
+      "mapY": 44,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "文達路"
+        ],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-15-979ff3",
@@ -1018,12 +1413,28 @@
       "permitNo": "(108)桃市都建執照字第會龜00960",
       "firstRegistrationDate": "2025-10-15",
       "registryNumber": "未提供",
-      "price": null,
+      "price": {
+        "median": 45.3,
+        "low": 42.1,
+        "high": 48.9,
+        "count": 122,
+        "latestDate": "2024-06-21",
+        "source": "內政部預售屋實價登錄（歷史季度＋本期）"
+      },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
-      "dataCompleteness": 80,
+      "dataCompleteness": 90,
       "mapX": 64,
-      "mapY": 65
+      "mapY": 65,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": false,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-16-694770",
@@ -1043,12 +1454,28 @@
       "permitNo": "106桃市都建執照字第會龜00135-2",
       "firstRegistrationDate": null,
       "registryNumber": "未提供",
-      "price": null,
+      "price": {
+        "median": 41.1,
+        "low": 36.9,
+        "high": 56.9,
+        "count": 383,
+        "latestDate": "2024-04-24",
+        "source": "內政部預售屋實價登錄（歷史季度＋本期）"
+      },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
-      "dataCompleteness": 70,
+      "dataCompleteness": 90,
       "mapX": 72,
-      "mapY": 66
+      "mapY": 66,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": false,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-17-803131",
@@ -1068,12 +1495,30 @@
       "permitNo": "桃市都建執照字第會龜00496-01號",
       "firstRegistrationDate": "2025-07-03",
       "registryNumber": "未提供",
-      "price": null,
+      "price": {
+        "median": 38.0,
+        "low": 33.6,
+        "high": 51.6,
+        "count": 207,
+        "latestDate": "2025-03-09",
+        "source": "內政部預售屋實價登錄（歷史季度＋本期）"
+      },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
-      "dataCompleteness": 80,
+      "dataCompleteness": 90,
       "mapX": 59,
-      "mapY": 62
+      "mapY": 62,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "樂善二路與文化二路"
+        ],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-18-78daaa",
@@ -1093,12 +1538,31 @@
       "permitNo": "桃市都建執照字第會龜00528號",
       "firstRegistrationDate": "2026-06-26",
       "registryNumber": "QPQNMLLMNHIGFDH58CG",
-      "price": null,
+      "price": {
+        "median": 40.0,
+        "low": 37.5,
+        "high": 62.6,
+        "count": 546,
+        "latestDate": "2024-01-19",
+        "source": "內政部預售屋實價登錄（歷史季度＋本期）"
+      },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
-      "dataCompleteness": 80,
+      "dataCompleteness": 90,
       "mapX": 71,
-      "mapY": 48
+      "mapY": 48,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "樂善一路",
+          "牛角坡路"
+        ],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-19-f52012",
@@ -1118,12 +1582,30 @@
       "permitNo": "110桃市都建執照字第會龜01190-1",
       "firstRegistrationDate": "2024-06-19",
       "registryNumber": "未提供",
-      "price": null,
+      "price": {
+        "median": 37.9,
+        "low": 33.9,
+        "high": 45.2,
+        "count": 102,
+        "latestDate": "2024-06-16",
+        "source": "內政部預售屋實價登錄（歷史季度＋本期）"
+      },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
-      "dataCompleteness": 80,
+      "dataCompleteness": 90,
       "mapX": 71,
-      "mapY": 65
+      "mapY": 65,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": true,
+        "addressTokens": [
+          "文化二路與樂善二路"
+        ],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     },
     {
       "id": "a7-20-e374fc",
@@ -1143,12 +1625,28 @@
       "permitNo": "桃市都建執照字第會龜01727-02號",
       "firstRegistrationDate": "2025-04-10",
       "registryNumber": "未提供",
-      "price": null,
+      "price": {
+        "median": 34.9,
+        "low": 30.0,
+        "high": 52.1,
+        "count": 216,
+        "latestDate": "2024-09-22",
+        "source": "內政部預售屋實價登錄（歷史季度＋本期）"
+      },
       "qualityStatus": "尚未查核",
       "amenityStatus": "待串接地圖資料",
-      "dataCompleteness": 80,
+      "dataCompleteness": 90,
       "mapX": 72,
-      "mapY": 67
+      "mapY": 67,
+      "priceEvidence": {
+        "status": "matched",
+        "statusLabel": "官方成交已配對",
+        "matchMethod": "建案名稱正規化完全相符",
+        "addressCorroborated": false,
+        "addressTokens": [],
+        "lastCheckedAt": "2026-07-14",
+        "sourceUrl": "https://plvr.land.moi.gov.tw/DownloadOpenData"
+      }
     }
   ],
   "sources": [
@@ -1163,9 +1661,18 @@
       "role": "林口成交單價與交易筆數"
     },
     {
-      "name": "內政部預售屋實價登錄",
-      "url": "https://data.gov.tw/dataset/6215",
-      "role": "A7 本期成交單價"
+      "name": "內政部預售屋實價登錄（歷史季度＋本期）",
+      "url": "https://plvr.land.moi.gov.tw/DownloadOpenData",
+      "role": "A7 自 2023 年起歷史季度與本期成交單價、筆數及最新交易"
     }
-  ]
+  ],
+  "priceCoverage": {
+    "pricedProjects": 37,
+    "totalProjects": 40,
+    "a7MatchedProjects": 17,
+    "a7OfficialNoMatchProjects": 3,
+    "a7OfficialRecordsReviewed": 8204,
+    "historyFrom": "112S1",
+    "checkedAt": "2026-07-14"
+  }
 }

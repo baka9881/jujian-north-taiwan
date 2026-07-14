@@ -25,7 +25,8 @@ test("server-renders the verified Linkou and A7 catalogue", async () => {
   assert.match(html, /建案地圖/);
   assert.match(html, /搜尋建案、建商、路段/);
   assert.match(html, /品質查核/);
-  assert.match(html, /有成交資料/);
+  assert.match(html, /(?:3[7-9]|40)(?:<!-- -->)? 案有成交資料/);
+  assert.match(html, /尚無成交/);
   assert.match(html, /點選建案切換地圖/);
   assert.match(html, /生活機能/);
   assert.match(html, /data-map-engine="leaflet"/);
@@ -75,7 +76,13 @@ test("processed data has the intended scope and explicit unknown states", async 
 
   assert.equal(dataset.projects.length, 40);
   assert.deepEqual([...regions].sort(), ["A7", "林口"]);
-  assert.equal(dataset.projects.filter((project) => project.price).length, 21);
+  assert.ok(dataset.projects.filter((project) => project.price).length >= 37);
+  assert.ok(dataset.projects.filter((project) => project.region === "A7" && project.price).length >= 17);
+  assert.ok(dataset.projects.filter((project) => project.priceEvidence?.status === "official-no-match").length <= 3);
+  assert.ok(dataset.priceCoverage.a7OfficialRecordsReviewed >= 8000);
+  assert.equal(dataset.priceCoverage.historyFrom, "112S1");
+  assert.ok(dataset.projects.filter((project) => project.price).every((project) => project.price.count > 0));
+  assert.ok(dataset.projects.filter((project) => project.region === "A7" && project.price).every((project) => project.price.source.includes("歷史季度＋本期")));
   assert.ok(dataset.projects.every((project) => project.qualityStatus === "尚未查核"));
   assert.ok(dataset.projects.every((project) => project.registryNumber));
 });

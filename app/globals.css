@@ -208,6 +208,12 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
 .drawer-price + .drawer-facts { margin-top:9px; }
 .drawer-note { padding:12px; border-left:3px solid #e4aa55; background:#fff8eb; color:var(--muted); font-size:8px; line-height:1.6; }
 .drawer-empty { min-height:240px; display:grid; place-content:center; justify-items:center; text-align:center; }
+.drawer-empty.price-unavailable { min-height:0; justify-items:start; padding:18px; border:1px solid #e2d2bc; border-radius:7px; background:#fffaf4; text-align:left; }
+.drawer-empty.price-unavailable > span { padding:5px 8px; border-radius:4px; background:#f2e3ce; color:#825c2f; font-size:11px; font-weight:800; }
+.drawer-empty.price-unavailable > strong { margin-top:12px; color:#3f3327; font-size:17px; }
+.drawer-empty.price-unavailable > p { margin:7px 0 0; color:#635b52; font-size:13px; line-height:1.65; }
+.drawer-empty.price-unavailable > small { margin-top:11px; color:#756b62; font-size:11px; line-height:1.55; }
+.drawer-empty.price-unavailable > a { margin-top:13px; color:#245e52; font-size:12px; font-weight:800; text-decoration:none; }
 .drawer-empty p { color:var(--muted); font-size:9px; }
 .builder-profile { padding:15px; border-radius:6px; background:var(--navy); color:white; }
 .builder-profile span { color:#b9c7d0; font-size:9px; }
