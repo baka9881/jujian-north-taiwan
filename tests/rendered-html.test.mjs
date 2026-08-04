@@ -25,9 +25,8 @@ test("server-renders the verified Linkou and A7 catalogue", async () => {
   assert.match(html, /建案地圖/);
   assert.match(html, /搜尋區域、捷運、建案或建商/);
   assert.match(html, /品質查核/);
-  assert.match(html, /(?:3[7-9]|40)(?:<!-- -->)? 案有成交資料/);
-  assert.match(html, /尚無成交/);
-  assert.match(html, /隱藏清單/);
+  assert.doesNotMatch(html, /案有成交資料/);
+  assert.doesNotMatch(html, /隱藏清單|顯示清單/);
   assert.match(html, /生活機能/);
   assert.match(html, /data-map-engine="leaflet"/);
   assert.doesNotMatch(html, /class="map-project-card"/);
@@ -168,16 +167,15 @@ test("detail interface separates defect evidence and supports route-based custom
   assert.match(source, /平日 8 時/);
 });
 
-test("the product follows the six-step simplified research experience", async () => {
+test("the product keeps map mode focused and opens project evidence directly from markers", async () => {
   const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
 
   assert.match(source, /type BudgetFilter/);
   assert.match(source, /每坪成交預算/);
   assert.match(source, /更多條件/);
-  assert.match(source, /1 找區域/);
-  assert.match(source, /2 挑建案/);
-  assert.match(source, /3 看證據/);
+  assert.doesNotMatch(source, /result-sidebar|panelOpen|隱藏清單|顯示清單/);
+  assert.match(source, /if \(project\) selectProject\(project, true\)/);
   assert.match(source, /onSearchArea=\{\(ids\) => setMapScopeIds\(ids\)\}/);
   assert.match(source, /priceComparison\(active\)/);
   assert.match(source, /資料可信度/);
@@ -187,6 +185,7 @@ test("the product follows the six-step simplified research experience", async ()
   assert.match(source, /價格、品質、生活與資料可信度分開比較/);
   assert.match(css, /\.summary-decisions \{ grid-template-columns:1fr 1fr;/);
   assert.match(css, /\.area-summary-marker/);
+  assert.doesNotMatch(css, /\.panel-toggle|\.panel-collapsed|\.result-sidebar|\.map-project-card/);
 });
 
 test("project details include traceable nearby street imagery without pretending it is an official facade photo", async () => {
