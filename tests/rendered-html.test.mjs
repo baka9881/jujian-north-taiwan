@@ -143,12 +143,16 @@ test("map uses stable project coordinates and progressive zoom layers", async ()
   assert.doesNotMatch(source, /offsetX|offsetY|marker-offset-line/);
   assert.match(source, /leaflet\.marker\(point,/);
   assert.match(source, /projectMarkerMinZoom = 14/);
+  assert.match(source, /zoomControl: false/);
+  assert.doesNotMatch(source, /leaflet\.control\.zoom/);
   assert.match(source, /map-tier-project/);
   assert.match(source, /area-summary-marker/);
   assert.match(source, /目前顯示區域摘要 · 放大後顯示個別建案/);
   assert.match(source, /搜尋此地圖範圍/);
   assert.match(css, /\.interactive-map-canvas\.map-tier-area \.project-map-marker-host \{ display:none!important; \}/);
   assert.match(css, /\.project-map-marker \{[^}]*transform:none!important;/);
+  assert.match(css, /\.amenity-layer-control \{ top:12px; left:12px; \}/);
+  assert.doesNotMatch(css, /leaflet-control-zoom/);
 });
 
 test("detail interface separates defect evidence and supports route-based custom amenity weights", async () => {

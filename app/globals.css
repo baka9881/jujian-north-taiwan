@@ -48,8 +48,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
 .interactive-map-canvas:active { cursor:grabbing; }
 .interactive-map:active { cursor:grabbing; }
 .interactive-map .leaflet-top.leaflet-right { top:12px; right:12px; }
-.interactive-map .leaflet-control-zoom { margin:0; border:1px solid rgba(45,57,63,.18); box-shadow:0 5px 18px rgba(30,48,58,.16); }
-.interactive-map .leaflet-control-zoom a { width:40px; height:40px; color:var(--navy); font-size:20px; line-height:40px; }
 .interactive-map .leaflet-control-attribution { color:#6d797e; font-size:8px; background:rgba(255,255,255,.82); }
 .project-map-marker-host { border:0!important; background:transparent!important; overflow:visible!important; }
 .project-map-marker-host { display:flex!important; align-items:flex-end; justify-content:center; }
@@ -353,7 +351,7 @@ html,body { font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
 /* Map chrome is intentionally compact so the map remains the visual focus. */
 .map-legend,.amenity-layer-control { position:absolute; z-index:500; width:auto; display:block; padding:0; border:1px solid rgba(45,57,63,.14); border-radius:6px; background:rgba(255,255,255,.96); box-shadow:0 5px 18px rgba(30,48,58,.14); }
 .map-legend { top:108px; right:12px; }
-.amenity-layer-control { top:58px; left:12px; }
+.amenity-layer-control { top:12px; left:12px; }
 .map-legend summary,.amenity-layer-control summary { min-width:78px; padding:9px 11px; color:var(--navy); cursor:pointer; font-size:12px; font-weight:800; list-style:none; }
 .map-legend summary::-webkit-details-marker,.amenity-layer-control summary::-webkit-details-marker { display:none; }
 .map-legend summary::after,.amenity-layer-control summary::after { content:"＋"; float:right; margin-left:10px; color:#7a888f; }
@@ -537,7 +535,7 @@ html,body { font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
   .map-caption { top:56px; right:10px; left:10px; }
   .map-caption small { display:none; }
   .map-legend { display:none; }
-  .amenity-layer-control { top:56px; }
+  .amenity-layer-control { top:10px; left:10px; }
   .marker-building { margin-bottom:-4px; transform:translateX(4px) scale(.9); transform-origin:center bottom; }
   .marker-price { min-width:43px; padding:3px 6px 4px; font-size:11px; }
   .list-workspace { padding:20px 12px 90px; }

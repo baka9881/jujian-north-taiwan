@@ -151,7 +151,6 @@ export default function InteractiveMap({
         keepBuffer: 6,
         attribution: "© OpenStreetMap contributors",
       }).addTo(map);
-      leaflet.control.zoom({ position: "topright", zoomInTitle: "放大", zoomOutTitle: "縮小" }).addTo(map);
       leaflet.control.attribution({ position: "bottomright", prefix: false }).addTo(map);
 
       const syncMapTier = () => {
