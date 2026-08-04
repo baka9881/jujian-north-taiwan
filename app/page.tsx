@@ -184,7 +184,7 @@ type Project = RawProject & {
 };
 
 type ViewMode = "map" | "list";
-type DetailTab = "summary" | "builder" | "price" | "quality" | "amenity";
+type DetailTab = "summary" | "builder" | "price" | "cost" | "quality" | "amenity";
 type SortKey = "newest" | "priceLow" | "priceHigh" | "households" | "quality";
 type StageFilter = "all" | "presale" | "completed";
 type BudgetFilter = "all" | "under50" | "50to60" | "60plus";
@@ -225,6 +225,15 @@ const defaultAmenityWeights = { ...amenityData.methodology.profiles.balanced.wei
 
 function formatDate(value: string | null) {
   return value ? value.replaceAll("-", ".") : "尚未登錄";
+}
+
+function formatCurrency(value: number) {
+  return new Intl.NumberFormat("zh-TW", { maximumFractionDigits: 0 }).format(Math.round(value));
+}
+
+function clampNumber(value: number, minimum: number, maximum: number) {
+  if (!Number.isFinite(value)) return minimum;
+  return Math.min(maximum, Math.max(minimum, value));
 }
 
 function priceText(project: Project) {
@@ -437,6 +446,12 @@ export default function Home() {
   const [mapScopeIds, setMapScopeIds] = useState<string[] | null>(null);
   const [streetViewInteractive, setStreetViewInteractive] = useState(false);
   const [notice, setNotice] = useState("");
+  const [costArea, setCostArea] = useState(35);
+  const [publicRatio, setPublicRatio] = useState(34);
+  const [managementFeePerPing, setManagementFeePerPing] = useState(80);
+  const [parkingManagementFee, setParkingManagementFee] = useState(0);
+  const [houseTaxableValue, setHouseTaxableValue] = useState(0);
+  const [landTaxableValue, setLandTaxableValue] = useState(0);
 
   const baseFiltered = useMemo(() => {
     const needle = query.trim().toLowerCase();
@@ -511,6 +526,18 @@ export default function Home() {
       : "目前沒找到明確的房屋問題";
   const activeConfidence = dataConfidence(active);
   const activeRegionMedian = regionMedian(active);
+  const estimatedPrivateArea = Math.round(costArea * (1 - publicRatio / 100) * 10) / 10;
+  const estimatedPublicArea = Math.round(costArea * (publicRatio / 100) * 10) / 10;
+  const annualManagementFee = Math.round(costArea * managementFeePerPing * 12);
+  const annualParkingManagementFee = Math.round(parkingManagementFee * 12);
+  const annualHouseTax = Math.round(houseTaxableValue * 0.012);
+  const annualLandTax = Math.round(landTaxableValue * 0.002);
+  const taxesComplete = houseTaxableValue > 0 && landTaxableValue > 0;
+  const annualHoldingCost = annualManagementFee + annualParkingManagementFee + annualHouseTax + annualLandTax;
+  const monthlyHoldingCost = Math.round(annualHoldingCost / 12);
+  const effectivePrivateUnitPrice = active.price && estimatedPrivateArea > 0
+    ? Math.round((active.price.median / (1 - publicRatio / 100)) * 10) / 10
+    : null;
 
   function applyAmenityProfile(profile: Exclude<AmenityProfileKey, "custom">) {
     setAmenityProfile(profile);
@@ -734,7 +761,7 @@ export default function Home() {
           </section>
           <p className="project-visual-note">顯示現有定位附近最近可用街景，不一定正對建案入口；預售屋可能是施工前或尚未更新的畫面。</p>
           <div className="drawer-glance"><strong>{priceText(active)}</strong><span>{active.households} 戶</span><span>機能 {amenityScoreText(active, amenityWeights)}</span></div>
-          <nav>{(["summary", "builder", "price", "quality", "amenity"] as DetailTab[]).map((tab) => <button key={tab} type="button" className={detailTab === tab ? "active" : ""} onClick={() => setDetailTab(tab)}>{{ summary: "總覽", builder: "建商", price: "價格", quality: "品質", amenity: "機能" }[tab]}</button>)}</nav>
+          <nav>{(["summary", "builder", "price", "cost", "quality", "amenity"] as DetailTab[]).map((tab) => <button key={tab} type="button" className={detailTab === tab ? "active" : ""} onClick={() => setDetailTab(tab)}>{{ summary: "總覽", builder: "建商", price: "價格", cost: "持有", quality: "品質", amenity: "機能" }[tab]}</button>)}</nav>
           <div className="drawer-content">
             {detailTab === "summary" && (
               <section className="summary-dashboard">
@@ -753,6 +780,7 @@ export default function Home() {
                     <span>資料可信度</span><strong>{activeConfidence.label}</strong><small>價格、品質、位置與機能共 {activeConfidence.covered}／4 項可核對</small><b>看資料來源 →</b>
                   </button>
                 </div>
+                <button type="button" className="holding-cost-snapshot" onClick={() => setDetailTab("cost")}><span>自住持有成本</span><strong>買下後，每月還要付多少？</strong><small>房屋稅＋地價稅＋管理費＋車位管理費</small><b>開始試算 →</b></button>
                 <button type="button" className="builder-snapshot" onClick={() => setDetailTab("builder")}><span>建商履歷</span><strong>{active.builder}</strong><small>已收錄 {builderProjects.length} 案 · 售後處理資料不足，暫不評分</small><b>查看履歷 →</b></button>
                 <p className="summary-caution">沒有瑕疵紀錄不代表沒有問題；成交與路線時間也不是目前開價或即時導航。</p>
                 <details className="summary-official-details">
@@ -766,6 +794,51 @@ export default function Home() {
             )}
             {detailTab === "builder" && <section><h3>建商履歷</h3><div className="builder-profile"><span>本資料庫辨識名稱</span><strong>{active.builder}</strong><p>目前以官方資料中的起造人名稱進行完全相同比對。</p></div><div className="builder-service-status"><span>售後處理</span><strong>資料不足，暫不評分</strong><p>目前沒有足以核對處理速度、修繕結果與是否復發的完整紀錄；不以建案數量推測售後品質。</p></div><div className="builder-stats"><div><span>已收錄</span><strong>{builderProjects.length}</strong><small>個建案</small></div><div><span>成屋</span><strong>{builderCompletedCount}</strong><small>個建案</small></div><div><span>有成交</span><strong>{builderPricedCount}</strong><small>個建案</small></div></div><div className="builder-projects">{builderProjects.map((project) => <button type="button" className={project.id === active.id ? "active" : ""} onClick={() => selectBuilderProject(project)} key={project.id}><span className={projectStage(project)}>{projectStageText(project)}</span><div><strong>{project.name}</strong><small>{project.region} · 備查 {formatDate(project.declaredDate)}</small></div><b>{priceText(project)}</b></button>)}</div><p className="builder-disclaimer">目前僅統計本資料庫已收錄的林口與 A7 建案，不代表該建商的完整作品或品質排名。</p></section>}
             {detailTab === "price" && <section><h3>成交行情</h3>{active.price ? <><div className="drawer-price"><span>中位單價</span><strong>{active.price.median}</strong><small>萬／坪</small><p>{active.price.low}–{active.price.high} 萬／坪</p></div><div className="region-benchmark"><span>{active.region}區域基準</span><strong>{activeRegionMedian ?? "待補"} 萬／坪</strong><b>{priceComparison(active)}</b></div><div className="drawer-facts two"><div><span>有效樣本</span><strong>{active.price.count} 筆</strong></div><div><span>最新交易</span><strong>{formatDate(active.price.latestDate)}</strong></div></div><p className="drawer-note">來源：{active.price.source}。區域基準取本資料庫同區有官方成交建案的中位數；成交價不是目前開價，也不是估價結果。</p></> : <div className="drawer-empty price-unavailable"><span>{active.priceEvidence.statusLabel}</span><strong>{active.priceEvidence.status === "official-no-match" ? "目前沒有可安全歸戶的官方成交" : "成交資料尚待配對"}</strong><p>{active.priceEvidence.status === "official-no-match" ? "已核對官方已發布資料；這不代表建案沒有銷售，近期交易可能尚未申報或公開。" : "目前來源未成功配對，不代表沒有交易。"}</p><small>查核更新 {formatDate(active.priceEvidence.lastCheckedAt)} · {active.priceEvidence.matchMethod}</small><a href={active.priceEvidence.sourceUrl} target="_blank" rel="noreferrer">查看官方資料入口 ↗</a></div>}</section>}
+            {detailTab === "cost" && (
+              <section className="holding-cost-section">
+                <div className="holding-cost-heading"><span>只算自住</span><h3>買下後，每月還要付多少？</h3><p>先填你看的房型與社區費用，就能把固定支出換算成每月金額。</p></div>
+                <div className={`holding-cost-total ${taxesComplete ? "complete" : "partial"}`}>
+                  <span>{taxesComplete ? "自住固定支出" : "目前算得到的固定支出"}</span>
+                  <div><small>平均每月約</small><strong>NT$ {formatCurrency(monthlyHoldingCost)}</strong></div>
+                  <p>一年約 NT$ {formatCurrency(annualHoldingCost)}</p>
+                  {!taxesComplete && <b>尚未含完整稅金</b>}
+                </div>
+                <p className="holding-cost-alert">本站沒有每一戶的稅籍資料與社區收費。管理費先用示範值；房屋稅與地價稅要看稅單輸入，才不會拿買價亂算。</p>
+
+                <h4 className="holding-cost-subtitle">1. 填入你的房型與管理費</h4>
+                <div className="holding-cost-inputs">
+                  <label><span>權狀坪數</span><div><input type="number" min="1" max="300" step="0.1" value={costArea} onChange={(event) => setCostArea(clampNumber(Number(event.target.value), 1, 300))} /><small>坪</small></div></label>
+                  <label><span>公設比</span><div><input type="number" min="0" max="60" step="0.1" value={publicRatio} onChange={(event) => setPublicRatio(clampNumber(Number(event.target.value), 0, 60))} /><small>%</small></div></label>
+                  <label><span>管理費</span><div><input type="number" min="0" max="1000" step="1" value={managementFeePerPing} onChange={(event) => setManagementFeePerPing(clampNumber(Number(event.target.value), 0, 1000))} /><small>元／坪／月</small></div></label>
+                  <label><span>車位管理費</span><div><input type="number" min="0" max="20000" step="100" value={parkingManagementFee} onChange={(event) => setParkingManagementFee(clampNumber(Number(event.target.value), 0, 20000))} /><small>元／月</small></div></label>
+                </div>
+
+                <div className="public-ratio-result">
+                  <span>公設比換成白話</span>
+                  <strong>權狀 {costArea} 坪，公設約 {estimatedPublicArea} 坪</strong>
+                  <p>主建物＋附屬建物約 <b>{estimatedPrivateArea} 坪</b>。這不是室內淨坪，陽台等附屬空間仍算在裡面。</p>
+                  {effectivePrivateUnitPrice !== null && <small>依本案成交中位數粗估，換算到主建物＋附屬建物約 {effectivePrivateUnitPrice} 萬／坪。</small>}
+                </div>
+
+                <h4 className="holding-cost-subtitle">2. 從稅單填入課稅金額</h4>
+                <div className="holding-tax-inputs">
+                  <label><span>房屋課稅現值</span><input type="number" min="0" step="1000" value={houseTaxableValue || ""} placeholder="看房屋稅單，不是買價" onChange={(event) => setHouseTaxableValue(clampNumber(Number(event.target.value), 0, 1000000000))} /><small>本站用自住 1.2% 保守試算；符合全國單一自住房屋等條件時，可能適用 1.0%。</small></label>
+                  <label><span>土地課稅地價持分</span><input type="number" min="0" step="1000" value={landTaxableValue || ""} placeholder="看地價稅單上的持分" onChange={(event) => setLandTaxableValue(clampNumber(Number(event.target.value), 0, 1000000000))} /><small>本站用自用住宅用地 2‰ 試算，實際仍要符合資格並完成申請。</small></label>
+                </div>
+
+                <h4 className="holding-cost-subtitle">3. 一年固定支出拆開看</h4>
+                <div className="holding-cost-breakdown">
+                  <div><span>管理費</span><strong>NT$ {formatCurrency(annualManagementFee)}</strong><small>每年</small></div>
+                  <div><span>車位管理費</span><strong>NT$ {formatCurrency(annualParkingManagementFee)}</strong><small>每年</small></div>
+                  <div className={houseTaxableValue ? "" : "missing"}><span>房屋稅</span><strong>{houseTaxableValue ? `NT$ ${formatCurrency(annualHouseTax)}` : "待輸入"}</strong><small>每年</small></div>
+                  <div className={landTaxableValue ? "" : "missing"}><span>地價稅</span><strong>{landTaxableValue ? `NT$ ${formatCurrency(annualLandTax)}` : "待輸入"}</strong><small>每年</small></div>
+                </div>
+
+                <div className="holding-cost-notes"><strong>這裡沒有算進去</strong><p>房貸本息、水電瓦斯、火災地震險、修繕基金與臨時增加的社區費用，因為它們不是每個建案都相同的固定金額。</p></div>
+                <div className="holding-cost-sources"><a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-saving-manual/local/house-tax/5qYVKWW" target="_blank" rel="noreferrer">財政部房屋稅說明 ↗</a><a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-saving-secret/3A3RBO0" target="_blank" rel="noreferrer">財政部自用住宅地價稅說明 ↗</a></div>
+                <p className="holding-cost-disclaimer">這是自住情境的概算，不是稅額核定；實際金額以稅捐機關稅單、社區規約與管委會公告為準。</p>
+              </section>
+            )}
             {detailTab === "quality" && (
               <section>
                 <h3>房屋問題與合約檢查</h3>

@@ -214,3 +214,22 @@ test("official contract checks are explained in plain Traditional Chinese before
   assert.match(source, /查看政府原本怎麼寫/);
   assert.match(source, /查看政府原始資料/);
 });
+
+test("project details provide a self-use-only holding cost calculator without treating market price as taxable value", async () => {
+  const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(source, /只算自住/);
+  assert.match(source, /買下後，每月還要付多少？/);
+  assert.match(source, /房屋課稅現值/);
+  assert.match(source, /看房屋稅單，不是買價/);
+  assert.match(source, /土地課稅地價持分/);
+  assert.match(source, /自住 1\.2% 保守試算/);
+  assert.match(source, /自用住宅用地 2‰/);
+  assert.match(source, /主建物＋附屬建物約/);
+  assert.match(source, /這不是室內淨坪/);
+  assert.match(source, /實際金額以稅捐機關稅單、社區規約與管委會公告為準/);
+  assert.doesNotMatch(source, /出租情境|投資情境|非自住試算/);
+  assert.match(css, /\.holding-cost-total/);
+  assert.match(css, /\.holding-cost-breakdown/);
+});
