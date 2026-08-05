@@ -435,6 +435,7 @@ export default function Home() {
   const [sortBy, setSortBy] = useState<SortKey>("newest");
   const [viewMode, setViewMode] = useState<ViewMode>("map");
   const [selectedId, setSelectedId] = useState(projects[0].id);
+  const [mapPreviewId, setMapPreviewId] = useState<string | null>(null);
   const [detailOpen, setDetailOpen] = useState(false);
   const [detailTab, setDetailTab] = useState<DetailTab>("summary");
   const [compareIds, setCompareIds] = useState<string[]>([]);
@@ -524,6 +525,7 @@ export default function Home() {
       ? "合約有項目要注意"
       : "目前沒找到明確的房屋問題";
   const activeConfidence = dataConfidence(active);
+  const evidenceActive = (["builder", "price", "quality", "amenity"] as DetailTab[]).includes(detailTab);
   const activeRegionMedian = regionMedian(active);
   const estimatedPrivateArea = Math.round(costArea * (1 - publicRatio / 100) * 10) / 10;
   const estimatedPublicArea = Math.round(costArea * (publicRatio / 100) * 10) / 10;
@@ -552,7 +554,17 @@ export default function Home() {
     setSelectedId(project.id);
     setDetailTab("summary");
     setStreetViewInteractive(false);
-    if (openDetail) setDetailOpen(true);
+    if (openDetail) {
+      setMapPreviewId(null);
+      setDetailOpen(true);
+    }
+  }
+
+  function previewProject(project: Project) {
+    setSelectedId(project.id);
+    setDetailTab("summary");
+    setStreetViewInteractive(false);
+    setMapPreviewId(project.id);
   }
 
   function toggleCompare(id: string) {
@@ -644,7 +656,7 @@ export default function Home() {
 
         <div className="view-switch" aria-label="檢視模式">
           <button type="button" className={viewMode === "map" ? "active" : ""} onClick={() => setViewMode("map")}><span aria-hidden="true">⌖</span> 地圖</button>
-          <button type="button" className={viewMode === "list" ? "active" : ""} onClick={() => setViewMode("list")}><span aria-hidden="true">☷</span> 列表</button>
+          <button type="button" className={viewMode === "list" ? "active" : ""} onClick={() => { setViewMode("list"); setMapPreviewId(null); }}><span aria-hidden="true">☷</span> 列表</button>
         </div>
       </section>
 
@@ -656,11 +668,11 @@ export default function Home() {
               activeId={active.id}
               onSelect={(id) => {
                 const project = projects.find((item) => item.id === id);
-                if (project) selectProject(project, true);
+                if (project) previewProject(project);
               }}
               onSearchArea={(ids) => setMapScopeIds(ids)}
               onClearArea={() => setMapScopeIds(null)}
-              onRegionSelect={(nextRegion) => { setRegion(nextRegion); setMapScopeIds(null); }}
+              onRegionSelect={(nextRegion) => { setRegion(nextRegion); setMapScopeIds(null); setMapPreviewId(null); }}
               scopeActive={mapScopeIds !== null}
               pois={amenityData.pois}
               visibleAmenityCategories={amenityLayers}
@@ -673,6 +685,26 @@ export default function Home() {
               <summary>生活機能{amenityLayers.length ? ` ${amenityLayers.length}` : ""}</summary>
               <div>{amenityEntries.map(([category, meta]) => <button type="button" key={category} className={amenityLayers.includes(category) ? "active" : ""} onClick={(event) => { event.preventDefault(); toggleAmenityLayer(category); }}><i className={`poi-${category}`}>{meta.symbol}</i>{meta.label}</button>)}</div>
             </details>
+            {mapPreviewId && active.id === mapPreviewId && (
+              <article className="map-project-preview" aria-label={`${active.name} 快速資訊`}>
+                <button type="button" className="map-preview-close" aria-label="關閉快速資訊" onClick={() => setMapPreviewId(null)}>×</button>
+                <header>
+                  <div><span>{active.region}</span><b className={projectStage(active)}>{projectStageText(active)}</b></div>
+                  <h2>{active.name}</h2>
+                  <p>{active.builder}</p>
+                </header>
+                <div className="map-preview-summary">
+                  <div><span>成交價格</span><strong>{priceText(active)}</strong><small>{priceComparison(active)}</small></div>
+                  <div className={activeDefectEvents.length || activeQualityAttention ? "attention" : "clear"}><span>有沒有問題</span><strong>{activeQualityHeadline}</strong></div>
+                  <div className={activeAmenityScore === null ? "missing" : "clear"}><span>附近方便嗎</span><strong>{activeAmenityScore === null ? "資料待補" : `${activeAmenityScore} 分`}</strong></div>
+                  <div><span>每月固定支出</span><strong>依房型快速試算</strong></div>
+                </div>
+                <footer>
+                  <button type="button" className="map-preview-primary" onClick={() => { setMapPreviewId(null); setDetailOpen(true); }}>查看建案</button>
+                  <button type="button" onClick={() => toggleCompare(active.id)}>{compareIds.includes(active.id) ? "取消比較" : "＋ 加入比較"}</button>
+                </footer>
+              </article>
+            )}
             <div className="map-gesture-hint">滾輪縮放 · 拖曳移動</div>
           </section>
         </section>
@@ -701,41 +733,49 @@ export default function Home() {
       {detailOpen && (
         <aside className="detail-drawer" aria-label={`${active.name} 詳細資料`}>
           <header><button type="button" onClick={() => setDetailOpen(false)} aria-label="關閉">×</button><div className="drawer-header-meta"><span>{active.region} · {active.city}{active.district}</span><b className={projectStage(active)}>{projectStageText(active)}</b></div><h2>{active.name}</h2><p>起造人：{active.builder}</p></header>
-          <section className={`project-visual ${streetViewInteractive ? "interactive" : ""}`} aria-label={`${active.name} 附近街景`}>
-            <iframe
-              key={active.id}
-              title={`${active.name} 附近 Google Street View`}
-              src={streetViewEmbedUrl(active)}
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-            <span className="visual-source">附近實景 · Google Street View</span>
-            {!streetViewInteractive && <button type="button" className="visual-activate" onClick={() => setStreetViewInteractive(true)}><strong>查看建案附近實景</strong><small>點擊後可轉動與沿街查看</small></button>}
-          </section>
-          <p className="project-visual-note">顯示現有定位附近最近可用街景，不一定正對建案入口；預售屋可能是施工前或尚未更新的畫面。</p>
           <div className="drawer-glance"><strong>{priceText(active)}</strong><span>{active.households} 戶</span><span>機能 {amenityScoreText(active, amenityWeights)}</span></div>
-          <nav>{(["summary", "builder", "price", "cost", "quality", "amenity"] as DetailTab[]).map((tab) => <button key={tab} type="button" className={detailTab === tab ? "active" : ""} onClick={() => setDetailTab(tab)}>{{ summary: "總覽", builder: "建商", price: "價格", cost: "持有", quality: "品質", amenity: "機能" }[tab]}</button>)}</nav>
+          <nav className="detail-primary-nav">
+            <button type="button" className={detailTab === "summary" ? "active" : ""} onClick={() => setDetailTab("summary")}>懶人包</button>
+            <button type="button" className={detailTab === "cost" ? "active" : ""} onClick={() => setDetailTab("cost")}>費用</button>
+            <button type="button" className={evidenceActive ? "active" : ""} onClick={() => setDetailTab("quality")}>完整查核</button>
+          </nav>
           <div className="drawer-content">
+            {evidenceActive && (
+              <section className="evidence-navigation">
+                <span>完整查核</span>
+                <h3>一次只看一項</h3>
+                <p>想核對哪一件事，再點哪一項。</p>
+                <div>
+                  {([[
+                    "price", "價格"
+                  ], [
+                    "quality", "有沒有問題"
+                  ], [
+                    "amenity", "附近有什麼"
+                  ], [
+                    "builder", "建商"
+                  ]] as [DetailTab, string][]).map(([tab, label]) => <button type="button" key={tab} className={detailTab === tab ? "active" : ""} onClick={() => setDetailTab(tab)}>{label}</button>)}
+                </div>
+              </section>
+            )}
             {detailTab === "summary" && (
               <section className="summary-dashboard">
-                <div className="summary-heading"><span>第 3 步 · 看結論與證據</span><h3>30 秒掌握這個建案</h3><p>先看結論；需要時再展開來源與計算方式。</p></div>
+                <div className="summary-heading"><span>先看重點</span><h3>這個建案值得繼續看嗎？</h3><p>先看四個結論，需要證據時再進完整查核。</p></div>
                 <div className="summary-decisions">
                   <button type="button" onClick={() => setDetailTab("price")}>
-                    <span>價格合理性</span><strong>{priceText(active)}</strong><small>{priceComparison(active)} · {active.price ? `${active.price.count} 筆官方樣本` : active.priceEvidence.statusLabel}</small><b>看價格依據 →</b>
+                    <span>買貴了嗎</span><strong>{priceText(active)}</strong><small>{priceComparison(active)} · {active.price ? `${active.price.count} 筆官方樣本` : active.priceEvidence.statusLabel}</small><b>看依據 →</b>
                   </button>
                   <button type="button" className={activeDefectEvents.length || activeQualityAttention ? "attention" : "clear"} onClick={() => setDetailTab("quality")}>
-                    <span>房屋與合約紀錄</span><strong>{activeQualityHeadline}</strong><small>{activeContractEvents.length ? `另有 ${activeContractEvents.length} 筆官方合約抽查` : "官方資料已查過一輪"}</small><b>看清楚查了什麼 →</b>
+                    <span>有沒有問題</span><strong>{activeQualityHeadline}</strong><small>{activeContractEvents.length ? `另有 ${activeContractEvents.length} 筆官方合約抽查` : "官方資料已查過一輪"}</small><b>看查核 →</b>
                   </button>
                   <button type="button" className={activeAmenityScore === null ? "unavailable" : "clear"} onClick={() => setDetailTab("amenity")}>
-                    <span>生活機能</span><strong>{activeAmenityScore === null ? "等待定位" : `${activeAmenityScore} 分 · ${amenityGrade(activeAmenityScore)}`}</strong><small>{active.amenity.nearest.station?.routes.walking ? `最近車站步行 ${active.amenity.nearest.station.routes.walking.durationMinutes} 分` : locationLabel(active)}</small><b>看附近設施 →</b>
+                    <span>附近方便嗎</span><strong>{activeAmenityScore === null ? "等待定位" : `${activeAmenityScore} 分 · ${amenityGrade(activeAmenityScore)}`}</strong><small>{active.amenity.nearest.station?.routes.walking ? `最近車站步行 ${active.amenity.nearest.station.routes.walking.durationMinutes} 分` : locationLabel(active)}</small><b>看附近 →</b>
                   </button>
                   <button type="button" className={activeConfidence.covered >= 3 ? "clear" : "unavailable"} onClick={() => setMethodOpen(true)}>
-                    <span>資料可信度</span><strong>{activeConfidence.label}</strong><small>價格、品質、位置與機能共 {activeConfidence.covered}／4 項可核對</small><b>看資料來源 →</b>
+                    <span>資料夠不夠</span><strong>{activeConfidence.label}</strong><small>價格、品質、位置與機能共 {activeConfidence.covered}／4 項可核對</small><b>看來源 →</b>
                   </button>
                 </div>
-                <button type="button" className="holding-cost-snapshot" onClick={() => setDetailTab("cost")}><span>自住持有成本</span><strong>買下後，每月還要付多少？</strong><small>房屋稅＋地價稅＋管理費＋車位管理費</small><b>開始試算 →</b></button>
-                <button type="button" className="builder-snapshot" onClick={() => setDetailTab("builder")}><span>建商履歷</span><strong>{active.builder}</strong><small>已收錄 {builderProjects.length} 案 · 售後處理資料不足，暫不評分</small><b>查看履歷 →</b></button>
+                <button type="button" className="holding-cost-snapshot" onClick={() => setDetailTab("cost")}><span>每月要花多少</span><strong>用你的房型快速試算</strong><small>房屋稅＋地價稅＋管理費＋車位管理費</small><b>開始試算 →</b></button>
                 <p className="summary-caution">沒有瑕疵紀錄不代表沒有問題；成交與路線時間也不是目前開價或即時導航。</p>
                 <details className="summary-official-details">
                   <summary>查看官方基本資料</summary>
@@ -743,6 +783,22 @@ export default function Home() {
                   <div className="drawer-facts"><div><span>申報備查</span><strong>{formatDate(active.declaredDate)}</strong></div><div><span>建照日期</span><strong>{formatDate(active.permitDate)}</strong></div><div><span>首次登記</span><strong>{formatDate(active.firstRegistrationDate)}</strong></div><div><span>主要建材</span><strong>{active.material}</strong></div><div><span>主要用途</span><strong>{active.mainUse}</strong></div><div><span>使用分區</span><strong>{active.zoning}</strong></div></div>
                   <div className="drawer-address"><span>坐落街道</span><strong>{active.city}{active.district}{active.address}</strong><span>坐落基地</span><strong>{active.buildingLand}</strong><small>{locationLabel(active)}，非精確基地界址。</small>{active.quality.locationReview.parcel && <a className="parcel-map-link" href={active.quality.locationReview.parcel.officialMapUrl} target="_blank" rel="noreferrer">用國土測繪圖資服務雲核對地號 ↗</a>}</div>
                   <details><summary>建照與官方資料編號</summary><p>{active.permitNo}</p><p>{active.registryNumber}</p></details>
+                </details>
+                <details className="summary-visual-details">
+                  <summary>查看附近實景</summary>
+                  <section className={`project-visual ${streetViewInteractive ? "interactive" : ""}`} aria-label={`${active.name} 附近街景`}>
+                    <iframe
+                      key={active.id}
+                      title={`${active.name} 附近 Google Street View`}
+                      src={streetViewEmbedUrl(active)}
+                      loading="lazy"
+                      allowFullScreen
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                    <span className="visual-source">附近實景 · Google Street View</span>
+                    {!streetViewInteractive && <button type="button" className="visual-activate" onClick={() => setStreetViewInteractive(true)}><strong>查看建案附近實景</strong><small>點擊後可轉動與沿街查看</small></button>}
+                  </section>
+                  <p className="project-visual-note">顯示現有定位附近最近可用街景，不一定正對建案入口；預售屋可能是施工前或尚未更新的畫面。</p>
                 </details>
               </section>
             )}

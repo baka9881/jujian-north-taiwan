@@ -158,8 +158,10 @@ test("map uses stable project coordinates and progressive zoom layers", async ()
 test("detail interface separates defect evidence and supports route-based custom amenity weights", async () => {
   const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
 
-  assert.match(source, /30 秒掌握這個建案/);
-  assert.match(source, /第 3 步 · 看結論與證據/);
+  assert.match(source, /這個建案值得繼續看嗎？/);
+  assert.match(source, /先看重點/);
+  assert.match(source, /懶人包/);
+  assert.match(source, /一次只看一項/);
   assert.match(source, /查看官方基本資料/);
   assert.match(source, /實際瑕疵與契約查核/);
   assert.match(source, /契約違規不會被當成漏水證據/);
@@ -171,7 +173,7 @@ test("detail interface separates defect evidence and supports route-based custom
   assert.match(source, /平日 8 時/);
 });
 
-test("the product keeps map mode focused and opens project evidence directly from markers", async () => {
+test("the product keeps map mode focused and reveals information progressively", async () => {
   const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
 
@@ -179,15 +181,21 @@ test("the product keeps map mode focused and opens project evidence directly fro
   assert.match(source, /每坪成交預算/);
   assert.match(source, /更多條件/);
   assert.doesNotMatch(source, /result-sidebar|panelOpen|隱藏清單|顯示清單/);
-  assert.match(source, /if \(project\) selectProject\(project, true\)/);
+  assert.match(source, /if \(project\) previewProject\(project\)/);
+  assert.match(source, /className="map-project-preview"/);
+  assert.match(source, /查看建案/);
+  assert.match(source, /完整查核/);
   assert.match(source, /onSearchArea=\{\(ids\) => setMapScopeIds\(ids\)\}/);
   assert.match(source, /priceComparison\(active\)/);
   assert.match(source, /資料可信度/);
   assert.match(source, /價格、品質、位置與機能共/);
-  assert.match(source, /售後處理資料不足，暫不評分/);
+  assert.match(source, /資料不足，暫不評分/);
   assert.match(source, /不以建案數量推測售後品質/);
   assert.match(source, /價格、品質、生活與資料可信度分開比較/);
   assert.match(css, /\.summary-decisions \{ grid-template-columns:1fr 1fr;/);
+  assert.match(css, /\.detail-drawer > nav \{[^}]*grid-template-columns:repeat\(3,1fr\)/);
+  assert.match(css, /\.map-project-preview/);
+  assert.match(css, /\.evidence-navigation/);
   assert.match(css, /\.area-summary-marker/);
   assert.doesNotMatch(css, /\.panel-toggle|\.panel-collapsed|\.result-sidebar|\.map-project-card/);
 });
@@ -200,6 +208,7 @@ test("project details include traceable nearby street imagery without pretending
   assert.match(source, /https:\/\/www\.google\.com\/maps\/embed/);
   assert.match(source, /附近實景 · Google Street View/);
   assert.match(source, /查看建案附近實景/);
+  assert.match(source, /className="summary-visual-details"/);
   assert.match(source, /不一定正對建案入口/);
   assert.match(source, /預售屋可能是施工前或尚未更新的畫面/);
   assert.match(css, /\.project-visual iframe \{[^}]*pointer-events:none;/);
