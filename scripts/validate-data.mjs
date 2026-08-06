@@ -31,6 +31,8 @@ fail(amenityCategories.length === 10, "生活機能應包含 10 類設施");
 fail(["market", "park", "pharmacy", "parking"].every((category) => amenityCategories.includes(category)), "生活機能缺少市場、公園、藥局或停車場");
 fail(amenities.routeCoverage?.routedProjects === 31, "道路路線時間涵蓋數異常");
 fail(Object.keys(amenities.methodology?.profiles || {}).length === 4, "生活機能評分情境不完整");
+fail(amenities.methodology?.scoreFormula?.version === 2, "生活機能評分公式尚未升級");
+fail(Object.keys(amenities.methodology?.densityRules || {}).length === 10, "生活機能選擇數量規則不完整");
 fail(quality.summary.publishedEventCount === quality.summary.defectEventCount + quality.summary.contractEventCount, "品質事件分類計數不同步");
 
 for (const project of projects.projects) {
@@ -40,6 +42,10 @@ for (const project of projects.projects) {
   fail(Number.isFinite(amenity?.location?.latitude) && Number.isFinite(amenity?.location?.longitude), `${project.name} 缺少有效座標`);
   fail(amenity?.location?.confidence !== "estimated" || amenity.score === null, `${project.name} 的估算位置不應顯示機能分數`);
   fail(Object.keys(amenity?.categoryScores || {}).length === 10, `${project.name} 的生活機能分類分數不完整`);
+  fail(Object.keys(amenity?.routeScores || {}).length === 10, `${project.name} 的生活機能路線分數不完整`);
+  fail(Object.keys(amenity?.densityScores || {}).length === 10, `${project.name} 的生活機能數量分數不完整`);
+  fail(Object.keys(amenity?.nearbyCounts || {}).length === 10, `${project.name} 的附近設施數量不完整`);
+  fail(amenity?.scoreFormulaVersion === 2, `${project.name} 尚未使用新版生活機能公式`);
   if (amenity?.score !== null) {
     fail(amenityCategories.every((category) => !amenity.nearest[category] || amenity.nearest[category].routes?.walking), `${project.name} 缺少道路步行時間`);
     fail(amenityCategories.every((category) => !amenity.nearest[category] || amenity.nearest[category].routes?.driving), `${project.name} 缺少道路開車時間`);

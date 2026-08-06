@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14",
+  "generatedAt": "2026-08-06",
   "source": {
     "name": "OpenStreetMap contributors",
     "url": "https://www.openstreetmap.org/copyright",
@@ -120,7 +120,7 @@
         ]
       }
     ],
-    "peakDisclaimer": "尖峰時間採 2026-07-15 平日 08:00 的道路網時間估算，不是即時路況；正式通勤仍應在實際時段以導航服務複核。",
+    "peakDisclaimer": "尖峰時間採 2026-08-07 平日 08:00 的道路網時間估算，不是即時路況；正式通勤仍應在實際時段以導航服務複核。",
     "routing": {
       "provider": "Valhalla",
       "providerUrl": "https://valhalla.github.io/valhalla/api/matrix/api-reference/",
@@ -130,7 +130,7 @@
         "driving": "一般開車",
         "peakDriving": "平日 08:00"
       },
-      "peakDate": "2026-07-15"
+      "peakDate": "2026-08-07"
     },
     "defaultProfile": "balanced",
     "profiles": {
@@ -410,6 +410,66 @@
           ]
         ]
       }
+    },
+    "densityRules": {
+      "convenience": {
+        "radiusMeters": 800,
+        "targetCount": 6,
+        "densityWeight": 0.25
+      },
+      "pxmart": {
+        "radiusMeters": 1500,
+        "targetCount": 3,
+        "densityWeight": 0.25
+      },
+      "costco": {
+        "radiusMeters": 15000,
+        "targetCount": 1,
+        "densityWeight": 0
+      },
+      "station": {
+        "radiusMeters": 1500,
+        "targetCount": 2,
+        "densityWeight": 0.25
+      },
+      "school": {
+        "radiusMeters": 1500,
+        "targetCount": 4,
+        "densityWeight": 0.25
+      },
+      "medical": {
+        "radiusMeters": 1200,
+        "targetCount": 4,
+        "densityWeight": 0.25
+      },
+      "market": {
+        "radiusMeters": 1500,
+        "targetCount": 3,
+        "densityWeight": 0.25
+      },
+      "park": {
+        "radiusMeters": 1200,
+        "targetCount": 4,
+        "densityWeight": 0.25
+      },
+      "pharmacy": {
+        "radiusMeters": 1000,
+        "targetCount": 5,
+        "densityWeight": 0.25
+      },
+      "parking": {
+        "radiusMeters": 1000,
+        "targetCount": 5,
+        "densityWeight": 0.25
+      }
+    },
+    "scoreFormula": {
+      "version": 2,
+      "routeWeightPercent": 75,
+      "densityWeightPercent": 25,
+      "costcoRouteOnly": true,
+      "description": "各類先依最近設施的路線時間評分，再加入指定範圍內的選擇數量；一般設施為路線 75%、數量 25%，好市多只看開車時間。",
+      "densityDisclaimer": "設施數量依 OpenStreetMap 已收錄地點與直線範圍統計，可能受圖資完整度影響。營業時間、店家品質與即時路況目前不計分。"
     }
   },
   "categories": {
@@ -3507,8 +3567,8 @@
         "label": "道路中心附近",
         "queryAddress": "新北市林口區中山路"
       },
-      "score": 42,
-      "rawScore": 42,
+      "score": 41,
+      "rawScore": 41,
       "grade": "機能較少",
       "scoreReliability": "approximate",
       "nearest": {
@@ -3538,7 +3598,7 @@
               "durationMinutes": 1,
               "distanceMeters": 187,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -3568,7 +3628,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1179,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -3583,8 +3643,8 @@
           "walkMinutes": 85,
           "routes": {
             "walking": {
-              "durationMinutes": 110,
-              "distanceMeters": 9032,
+              "durationMinutes": 111,
+              "distanceMeters": 9031,
               "profile": "pedestrian",
               "departure": null
             },
@@ -3598,7 +3658,7 @@
               "durationMinutes": 27,
               "distanceMeters": 10986,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -3628,7 +3688,7 @@
               "durationMinutes": 13,
               "distanceMeters": 4367,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -3658,7 +3718,7 @@
               "durationMinutes": 9,
               "distanceMeters": 2725,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -3688,7 +3748,7 @@
               "durationMinutes": 3,
               "distanceMeters": 785,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -3718,7 +3778,7 @@
               "durationMinutes": 3,
               "distanceMeters": 659,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -3748,7 +3808,7 @@
               "durationMinutes": 8,
               "distanceMeters": 2670,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -3778,7 +3838,7 @@
               "durationMinutes": 4,
               "distanceMeters": 945,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -3808,12 +3868,25 @@
               "durationMinutes": 20,
               "distanceMeters": 6676,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 61,
+        "costco": 45,
+        "station": 0,
+        "school": 11,
+        "medical": 74,
+        "market": 100,
+        "park": 0,
+        "pharmacy": 35,
+        "parking": 0
+      },
+      "distanceScore": 42,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 70,
         "costco": 45,
@@ -3825,7 +3898,31 @@
         "pharmacy": 40,
         "parking": 0
       },
-      "distanceScore": 52
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 33,
+        "costco": 100,
+        "station": 0,
+        "school": 0,
+        "medical": 100,
+        "market": 100,
+        "park": 0,
+        "pharmacy": 20,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 11,
+        "pxmart": 1,
+        "costco": 4,
+        "station": 0,
+        "school": 0,
+        "medical": 8,
+        "market": 7,
+        "park": 0,
+        "pharmacy": 1,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-02-d292ac": {
       "location": {
@@ -3867,7 +3964,7 @@
               "durationMinutes": 2,
               "distanceMeters": 510,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -3897,7 +3994,7 @@
               "durationMinutes": 4,
               "distanceMeters": 903,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -3927,7 +4024,7 @@
               "durationMinutes": 32,
               "distanceMeters": 11941,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -3957,7 +4054,7 @@
               "durationMinutes": 8,
               "distanceMeters": 2574,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -3987,7 +4084,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1034,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4017,7 +4114,7 @@
               "durationMinutes": 2,
               "distanceMeters": 465,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4047,7 +4144,7 @@
               "durationMinutes": 2,
               "distanceMeters": 516,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4077,7 +4174,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1441,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4107,7 +4204,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1232,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4137,12 +4234,25 @@
               "durationMinutes": 15,
               "distanceMeters": 4718,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 45,
+        "station": 15,
+        "school": 55,
+        "medical": 100,
+        "market": 100,
+        "park": 55,
+        "pharmacy": 45,
+        "parking": 0
+      },
+      "distanceScore": 62,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 100,
         "costco": 45,
@@ -4154,7 +4264,31 @@
         "pharmacy": 40,
         "parking": 0
       },
-      "distanceScore": 70
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 0,
+        "school": 25,
+        "medical": 100,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 60,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 18,
+        "pxmart": 4,
+        "costco": 4,
+        "station": 0,
+        "school": 1,
+        "medical": 8,
+        "market": 12,
+        "park": 9,
+        "pharmacy": 3,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-03-217128": {
       "location": {
@@ -4196,7 +4330,7 @@
               "durationMinutes": 1,
               "distanceMeters": 299,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4226,7 +4360,7 @@
               "durationMinutes": 3,
               "distanceMeters": 692,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4256,7 +4390,7 @@
               "durationMinutes": 31,
               "distanceMeters": 11731,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4286,7 +4420,7 @@
               "durationMinutes": 8,
               "distanceMeters": 2363,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4316,7 +4450,7 @@
               "durationMinutes": 4,
               "distanceMeters": 823,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4346,7 +4480,7 @@
               "durationMinutes": 1,
               "distanceMeters": 254,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4376,7 +4510,7 @@
               "durationMinutes": 1,
               "distanceMeters": 305,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4406,7 +4540,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1230,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4436,7 +4570,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1021,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4466,12 +4600,25 @@
               "durationMinutes": 14,
               "distanceMeters": 4507,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 45,
+        "station": 15,
+        "school": 55,
+        "medical": 100,
+        "market": 100,
+        "park": 55,
+        "pharmacy": 55,
+        "parking": 0
+      },
+      "distanceScore": 62,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 100,
         "costco": 45,
@@ -4483,7 +4630,31 @@
         "pharmacy": 40,
         "parking": 0
       },
-      "distanceScore": 70
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 0,
+        "school": 25,
+        "medical": 100,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 100,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 19,
+        "pxmart": 4,
+        "costco": 4,
+        "station": 0,
+        "school": 1,
+        "medical": 12,
+        "market": 13,
+        "park": 9,
+        "pharmacy": 6,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-04-65c21d": {
       "location": {
@@ -4494,8 +4665,8 @@
         "label": "道路中心附近",
         "queryAddress": "新北市林口區惠民街30巷"
       },
-      "score": 77,
-      "rawScore": 77,
+      "score": 78,
+      "rawScore": 78,
       "grade": "便利",
       "scoreReliability": "approximate",
       "nearest": {
@@ -4525,7 +4696,7 @@
               "durationMinutes": 2,
               "distanceMeters": 368,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4555,7 +4726,7 @@
               "durationMinutes": 3,
               "distanceMeters": 652,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4585,7 +4756,7 @@
               "durationMinutes": 14,
               "distanceMeters": 9744,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4615,7 +4786,7 @@
               "durationMinutes": 7,
               "distanceMeters": 1934,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4645,7 +4816,7 @@
               "durationMinutes": 9,
               "distanceMeters": 2734,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4675,7 +4846,7 @@
               "durationMinutes": 4,
               "distanceMeters": 934,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4705,7 +4876,7 @@
               "durationMinutes": 6,
               "distanceMeters": 1553,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4735,7 +4906,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1038,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4765,7 +4936,7 @@
               "durationMinutes": 7,
               "distanceMeters": 1955,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4795,12 +4966,25 @@
               "durationMinutes": 11,
               "distanceMeters": 3722,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 100,
+        "school": 55,
+        "medical": 100,
+        "market": 78,
+        "park": 55,
+        "pharmacy": 40,
+        "parking": 0
+      },
+      "distanceScore": 77,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 100,
         "costco": 100,
@@ -4812,7 +4996,31 @@
         "pharmacy": 40,
         "parking": 0
       },
-      "distanceScore": 91
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 100,
+        "school": 25,
+        "medical": 100,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 40,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 12,
+        "pxmart": 6,
+        "costco": 3,
+        "station": 2,
+        "school": 1,
+        "medical": 5,
+        "market": 9,
+        "park": 7,
+        "pharmacy": 2,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-05-6701e3": {
       "location": {
@@ -4823,8 +5031,8 @@
         "label": "官方路口定位",
         "queryAddress": "新北市林口區仁愛路一段與新生街路口"
       },
-      "score": 53,
-      "rawScore": 53,
+      "score": 51,
+      "rawScore": 51,
       "grade": "基本足夠",
       "scoreReliability": "verified",
       "nearest": {
@@ -4854,7 +5062,7 @@
               "durationMinutes": 1,
               "distanceMeters": 64,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4884,7 +5092,7 @@
               "durationMinutes": 3,
               "distanceMeters": 929,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4900,7 +5108,7 @@
           "routes": {
             "walking": {
               "durationMinutes": 116,
-              "distanceMeters": 9511,
+              "distanceMeters": 9510,
               "profile": "pedestrian",
               "departure": null
             },
@@ -4914,7 +5122,7 @@
               "durationMinutes": 28,
               "distanceMeters": 11465,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4944,7 +5152,7 @@
               "durationMinutes": 11,
               "distanceMeters": 3790,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -4974,7 +5182,7 @@
               "durationMinutes": 8,
               "distanceMeters": 2148,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5004,7 +5212,7 @@
               "durationMinutes": 3,
               "distanceMeters": 681,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5034,7 +5242,7 @@
               "durationMinutes": 2,
               "distanceMeters": 426,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5064,7 +5272,7 @@
               "durationMinutes": 6,
               "distanceMeters": 2093,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5094,7 +5302,7 @@
               "durationMinutes": 2,
               "distanceMeters": 641,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5124,12 +5332,25 @@
               "durationMinutes": 19,
               "distanceMeters": 6099,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 83,
+        "costco": 45,
+        "station": 0,
+        "school": 26,
+        "medical": 100,
+        "market": 100,
+        "park": 0,
+        "pharmacy": 81,
+        "parking": 0
+      },
+      "distanceScore": 53,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 100,
         "costco": 45,
@@ -5141,7 +5362,31 @@
         "pharmacy": 75,
         "parking": 0
       },
-      "distanceScore": 60
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 33,
+        "costco": 100,
+        "station": 0,
+        "school": 0,
+        "medical": 100,
+        "market": 100,
+        "park": 0,
+        "pharmacy": 100,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 14,
+        "pxmart": 1,
+        "costco": 4,
+        "station": 0,
+        "school": 0,
+        "medical": 8,
+        "market": 8,
+        "park": 0,
+        "pharmacy": 6,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-06-d0c30b": {
       "location": {
@@ -5152,8 +5397,8 @@
         "label": "官方路口定位",
         "queryAddress": "新北市林口區文化二路二段與中華路交叉口"
       },
-      "score": 42,
-      "rawScore": 42,
+      "score": 34,
+      "rawScore": 34,
       "grade": "機能較少",
       "scoreReliability": "verified",
       "nearest": {
@@ -5183,7 +5428,7 @@
               "durationMinutes": 1,
               "distanceMeters": 115,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5213,7 +5458,7 @@
               "durationMinutes": 7,
               "distanceMeters": 2207,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5229,7 +5474,7 @@
           "routes": {
             "walking": {
               "durationMinutes": 140,
-              "distanceMeters": 11421,
+              "distanceMeters": 11420,
               "profile": "pedestrian",
               "departure": null
             },
@@ -5243,7 +5488,7 @@
               "durationMinutes": 34,
               "distanceMeters": 13416,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5273,7 +5518,7 @@
               "durationMinutes": 11,
               "distanceMeters": 3761,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5303,7 +5548,7 @@
               "durationMinutes": 8,
               "distanceMeters": 2221,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5333,7 +5578,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1590,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5363,7 +5608,7 @@
               "durationMinutes": 6,
               "distanceMeters": 1582,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5393,7 +5638,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1653,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5423,7 +5668,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1295,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5453,12 +5698,25 @@
               "durationMinutes": 18,
               "distanceMeters": 5935,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 83,
+        "pxmart": 30,
+        "costco": 45,
+        "station": 0,
+        "school": 26,
+        "medical": 49,
+        "market": 69,
+        "park": 30,
+        "pharmacy": 30,
+        "parking": 0
+      },
+      "distanceScore": 42,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 40,
         "costco": 45,
@@ -5470,7 +5728,31 @@
         "pharmacy": 40,
         "parking": 0
       },
-      "distanceScore": 42
+      "densityScores": {
+        "convenience": 33,
+        "pxmart": 0,
+        "costco": 100,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 67,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 2,
+        "pxmart": 0,
+        "costco": 4,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 2,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-07-636c51": {
       "location": {
@@ -5481,8 +5763,8 @@
         "label": "道路中心附近",
         "queryAddress": "新北市林口區林口路"
       },
-      "score": 57,
-      "rawScore": 57,
+      "score": 54,
+      "rawScore": 54,
       "grade": "基本足夠",
       "scoreReliability": "approximate",
       "nearest": {
@@ -5512,7 +5794,7 @@
               "durationMinutes": 1,
               "distanceMeters": 58,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5542,7 +5824,7 @@
               "durationMinutes": 2,
               "distanceMeters": 518,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5558,7 +5840,7 @@
           "routes": {
             "walking": {
               "durationMinutes": 123,
-              "distanceMeters": 10076,
+              "distanceMeters": 10075,
               "profile": "pedestrian",
               "departure": null
             },
@@ -5572,7 +5854,7 @@
               "durationMinutes": 30,
               "distanceMeters": 12031,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5602,7 +5884,7 @@
               "durationMinutes": 11,
               "distanceMeters": 3723,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5632,7 +5914,7 @@
               "durationMinutes": 8,
               "distanceMeters": 2081,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5662,7 +5944,7 @@
               "durationMinutes": 1,
               "distanceMeters": 207,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5692,7 +5974,7 @@
               "durationMinutes": 2,
               "distanceMeters": 479,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5722,7 +6004,7 @@
               "durationMinutes": 6,
               "distanceMeters": 1942,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5752,7 +6034,7 @@
               "durationMinutes": 2,
               "distanceMeters": 300,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -5782,12 +6064,25 @@
               "durationMinutes": 19,
               "distanceMeters": 6032,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 83,
+        "costco": 45,
+        "station": 0,
+        "school": 33,
+        "medical": 100,
+        "market": 100,
+        "park": 15,
+        "pharmacy": 100,
+        "parking": 0
+      },
+      "distanceScore": 57,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 100,
         "costco": 45,
@@ -5799,7 +6094,31 @@
         "pharmacy": 100,
         "parking": 0
       },
-      "distanceScore": 66
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 33,
+        "costco": 100,
+        "station": 0,
+        "school": 25,
+        "medical": 100,
+        "market": 100,
+        "park": 0,
+        "pharmacy": 100,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 16,
+        "pxmart": 1,
+        "costco": 4,
+        "station": 0,
+        "school": 1,
+        "medical": 9,
+        "market": 9,
+        "park": 0,
+        "pharmacy": 7,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-08-021d6c": {
       "location": {
@@ -5978,7 +6297,44 @@
         "pharmacy": 0,
         "parking": 0
       },
-      "distanceScore": null
+      "distanceScore": null,
+      "routeScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "densityScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-09-69e9f6": {
       "location": {
@@ -6020,7 +6376,7 @@
               "durationMinutes": 1,
               "distanceMeters": 52,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6050,7 +6406,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1350,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6065,8 +6421,8 @@
           "walkMinutes": 107,
           "routes": {
             "walking": {
-              "durationMinutes": 138,
-              "distanceMeters": 11244,
+              "durationMinutes": 139,
+              "distanceMeters": 11243,
               "profile": "pedestrian",
               "departure": null
             },
@@ -6080,7 +6436,7 @@
               "durationMinutes": 32,
               "distanceMeters": 12428,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6110,7 +6466,7 @@
               "durationMinutes": 9,
               "distanceMeters": 3021,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6140,7 +6496,7 @@
               "durationMinutes": 6,
               "distanceMeters": 1481,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6170,7 +6526,7 @@
               "durationMinutes": 3,
               "distanceMeters": 912,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6200,7 +6556,7 @@
               "durationMinutes": 3,
               "distanceMeters": 963,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6230,7 +6586,7 @@
               "durationMinutes": 2,
               "distanceMeters": 496,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6260,7 +6616,7 @@
               "durationMinutes": 3,
               "distanceMeters": 1025,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6290,12 +6646,25 @@
               "durationMinutes": 16,
               "distanceMeters": 5206,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 69,
+        "costco": 45,
+        "station": 15,
+        "school": 55,
+        "medical": 74,
+        "market": 78,
+        "park": 81,
+        "pharmacy": 40,
+        "parking": 0
+      },
+      "distanceScore": 56,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 70,
         "costco": 45,
@@ -6307,7 +6676,31 @@
         "pharmacy": 40,
         "parking": 0
       },
-      "distanceScore": 62
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 67,
+        "costco": 100,
+        "station": 0,
+        "school": 25,
+        "medical": 100,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 40,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 11,
+        "pxmart": 2,
+        "costco": 4,
+        "station": 0,
+        "school": 1,
+        "medical": 6,
+        "market": 7,
+        "park": 6,
+        "pharmacy": 2,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-10-0d70e1": {
       "location": {
@@ -6318,8 +6711,8 @@
         "label": "道路中心附近",
         "queryAddress": "新北市林口區文化三路"
       },
-      "score": 77,
-      "rawScore": 77,
+      "score": 79,
+      "rawScore": 79,
       "grade": "便利",
       "scoreReliability": "approximate",
       "nearest": {
@@ -6349,7 +6742,7 @@
               "durationMinutes": 4,
               "distanceMeters": 962,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6379,7 +6772,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1292,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6409,7 +6802,7 @@
               "durationMinutes": 14,
               "distanceMeters": 10000,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6439,7 +6832,7 @@
               "durationMinutes": 4,
               "distanceMeters": 961,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6469,7 +6862,7 @@
               "durationMinutes": 6,
               "distanceMeters": 1626,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6499,7 +6892,7 @@
               "durationMinutes": 2,
               "distanceMeters": 439,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6529,7 +6922,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1466,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6559,7 +6952,7 @@
               "durationMinutes": 4,
               "distanceMeters": 966,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6589,7 +6982,7 @@
               "durationMinutes": 4,
               "distanceMeters": 982,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6619,12 +7012,25 @@
               "durationMinutes": 9,
               "distanceMeters": 2658,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 78,
+        "costco": 100,
+        "station": 100,
+        "school": 55,
+        "medical": 74,
+        "market": 78,
+        "park": 81,
+        "pharmacy": 81,
+        "parking": 15
+      },
+      "distanceScore": 77,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 70,
         "costco": 100,
@@ -6636,7 +7042,31 @@
         "pharmacy": 75,
         "parking": 20
       },
-      "distanceScore": 91
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 100,
+        "school": 25,
+        "medical": 100,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 100,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 22,
+        "pxmart": 6,
+        "costco": 4,
+        "station": 2,
+        "school": 1,
+        "medical": 10,
+        "market": 11,
+        "park": 8,
+        "pharmacy": 9,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-11-c4a9a4": {
       "location": {
@@ -6647,8 +7077,8 @@
         "label": "道路中心附近",
         "queryAddress": "新北市林口區中山路"
       },
-      "score": 42,
-      "rawScore": 42,
+      "score": 41,
+      "rawScore": 41,
       "grade": "機能較少",
       "scoreReliability": "approximate",
       "nearest": {
@@ -6678,7 +7108,7 @@
               "durationMinutes": 1,
               "distanceMeters": 187,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6708,7 +7138,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1179,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6723,8 +7153,8 @@
           "walkMinutes": 85,
           "routes": {
             "walking": {
-              "durationMinutes": 110,
-              "distanceMeters": 9032,
+              "durationMinutes": 111,
+              "distanceMeters": 9031,
               "profile": "pedestrian",
               "departure": null
             },
@@ -6738,7 +7168,7 @@
               "durationMinutes": 27,
               "distanceMeters": 10986,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6768,7 +7198,7 @@
               "durationMinutes": 13,
               "distanceMeters": 4367,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6798,7 +7228,7 @@
               "durationMinutes": 9,
               "distanceMeters": 2725,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6828,7 +7258,7 @@
               "durationMinutes": 3,
               "distanceMeters": 785,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6858,7 +7288,7 @@
               "durationMinutes": 3,
               "distanceMeters": 659,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6888,7 +7318,7 @@
               "durationMinutes": 8,
               "distanceMeters": 2670,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6918,7 +7348,7 @@
               "durationMinutes": 4,
               "distanceMeters": 945,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -6948,12 +7378,25 @@
               "durationMinutes": 20,
               "distanceMeters": 6676,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 61,
+        "costco": 45,
+        "station": 0,
+        "school": 11,
+        "medical": 74,
+        "market": 100,
+        "park": 0,
+        "pharmacy": 35,
+        "parking": 0
+      },
+      "distanceScore": 42,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 70,
         "costco": 45,
@@ -6965,7 +7408,31 @@
         "pharmacy": 40,
         "parking": 0
       },
-      "distanceScore": 52
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 33,
+        "costco": 100,
+        "station": 0,
+        "school": 0,
+        "medical": 100,
+        "market": 100,
+        "park": 0,
+        "pharmacy": 20,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 11,
+        "pxmart": 1,
+        "costco": 4,
+        "station": 0,
+        "school": 0,
+        "medical": 8,
+        "market": 7,
+        "park": 0,
+        "pharmacy": 1,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-12-838c61": {
       "location": {
@@ -7144,7 +7611,44 @@
         "pharmacy": 0,
         "parking": 0
       },
-      "distanceScore": null
+      "distanceScore": null,
+      "routeScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "densityScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-13-8bd55c": {
       "location": {
@@ -7186,7 +7690,7 @@
               "durationMinutes": 2,
               "distanceMeters": 332,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -7216,7 +7720,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1124,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -7246,7 +7750,7 @@
               "durationMinutes": 33,
               "distanceMeters": 12306,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -7276,7 +7780,7 @@
               "durationMinutes": 9,
               "distanceMeters": 2940,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -7306,7 +7810,7 @@
               "durationMinutes": 6,
               "distanceMeters": 1446,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -7336,7 +7840,7 @@
               "durationMinutes": 3,
               "distanceMeters": 877,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -7366,7 +7870,7 @@
               "durationMinutes": 4,
               "distanceMeters": 928,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -7396,7 +7900,7 @@
               "durationMinutes": 1,
               "distanceMeters": 201,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -7426,7 +7930,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1305,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -7456,12 +7960,25 @@
               "durationMinutes": 16,
               "distanceMeters": 5084,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 78,
+        "costco": 45,
+        "station": 15,
+        "school": 55,
+        "medical": 74,
+        "market": 78,
+        "park": 100,
+        "pharmacy": 30,
+        "parking": 0
+      },
+      "distanceScore": 58,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 70,
         "costco": 45,
@@ -7473,7 +7990,31 @@
         "pharmacy": 40,
         "parking": 0
       },
-      "distanceScore": 62
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 0,
+        "school": 25,
+        "medical": 100,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 14,
+        "pxmart": 3,
+        "costco": 4,
+        "station": 0,
+        "school": 1,
+        "medical": 5,
+        "market": 7,
+        "park": 9,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-14-4070bd": {
       "location": {
@@ -7652,7 +8193,44 @@
         "pharmacy": 0,
         "parking": 0
       },
-      "distanceScore": null
+      "distanceScore": null,
+      "routeScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "densityScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-15-d3eece": {
       "location": {
@@ -7831,7 +8409,44 @@
         "pharmacy": 0,
         "parking": 0
       },
-      "distanceScore": null
+      "distanceScore": null,
+      "routeScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "densityScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-16-187dad": {
       "location": {
@@ -7842,8 +8457,8 @@
         "label": "官方路口定位",
         "queryAddress": "新北市林口區八德路與三民路口"
       },
-      "score": 77,
-      "rawScore": 77,
+      "score": 78,
+      "rawScore": 78,
       "grade": "便利",
       "scoreReliability": "verified",
       "nearest": {
@@ -7873,7 +8488,7 @@
               "durationMinutes": 4,
               "distanceMeters": 987,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -7903,7 +8518,7 @@
               "durationMinutes": 3,
               "distanceMeters": 933,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -7933,7 +8548,7 @@
               "durationMinutes": 13,
               "distanceMeters": 9660,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -7963,7 +8578,7 @@
               "durationMinutes": 6,
               "distanceMeters": 1850,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -7993,7 +8608,7 @@
               "durationMinutes": 8,
               "distanceMeters": 1915,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -8023,7 +8638,7 @@
               "durationMinutes": 1,
               "distanceMeters": 67,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -8053,7 +8668,7 @@
               "durationMinutes": 6,
               "distanceMeters": 1263,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -8083,7 +8698,7 @@
               "durationMinutes": 6,
               "distanceMeters": 1855,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -8113,7 +8728,7 @@
               "durationMinutes": 6,
               "distanceMeters": 1871,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -8143,12 +8758,25 @@
               "durationMinutes": 10,
               "distanceMeters": 3638,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 100,
+        "school": 55,
+        "medical": 100,
+        "market": 78,
+        "park": 55,
+        "pharmacy": 40,
+        "parking": 0
+      },
+      "distanceScore": 77,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 100,
         "costco": 100,
@@ -8160,7 +8788,31 @@
         "pharmacy": 40,
         "parking": 0
       },
-      "distanceScore": 91
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 100,
+        "school": 25,
+        "medical": 100,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 40,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 12,
+        "pxmart": 6,
+        "costco": 3,
+        "station": 2,
+        "school": 1,
+        "medical": 6,
+        "market": 9,
+        "park": 6,
+        "pharmacy": 2,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-17-2b7cd2": {
       "location": {
@@ -8339,7 +8991,44 @@
         "pharmacy": 0,
         "parking": 0
       },
-      "distanceScore": null
+      "distanceScore": null,
+      "routeScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "densityScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-18-553cd8": {
       "location": {
@@ -8350,8 +9039,8 @@
         "label": "官方路口定位",
         "queryAddress": "新北市林口區竹林一路與民享路路口"
       },
-      "score": 48,
-      "rawScore": 48,
+      "score": 47,
+      "rawScore": 47,
       "grade": "基本足夠",
       "scoreReliability": "verified",
       "nearest": {
@@ -8381,7 +9070,7 @@
               "durationMinutes": 2,
               "distanceMeters": 388,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -8411,7 +9100,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1628,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -8427,7 +9116,7 @@
           "routes": {
             "walking": {
               "durationMinutes": 134,
-              "distanceMeters": 10881,
+              "distanceMeters": 10880,
               "profile": "pedestrian",
               "departure": null
             },
@@ -8441,7 +9130,7 @@
               "durationMinutes": 32,
               "distanceMeters": 12837,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -8471,7 +9160,7 @@
               "durationMinutes": 11,
               "distanceMeters": 3742,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -8501,7 +9190,7 @@
               "durationMinutes": 8,
               "distanceMeters": 2100,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -8531,7 +9220,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1011,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -8561,7 +9250,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1003,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -8591,7 +9280,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1579,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -8621,7 +9310,7 @@
               "durationMinutes": 3,
               "distanceMeters": 716,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -8651,12 +9340,25 @@
               "durationMinutes": 16,
               "distanceMeters": 5356,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 61,
+        "costco": 45,
+        "station": 0,
+        "school": 33,
+        "medical": 74,
+        "market": 78,
+        "park": 36,
+        "pharmacy": 66,
+        "parking": 0
+      },
+      "distanceScore": 48,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 70,
         "costco": 45,
@@ -8668,7 +9370,31 @@
         "pharmacy": 75,
         "parking": 0
       },
-      "distanceScore": 58
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 33,
+        "costco": 100,
+        "station": 0,
+        "school": 25,
+        "medical": 100,
+        "market": 100,
+        "park": 25,
+        "pharmacy": 40,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 10,
+        "pxmart": 1,
+        "costco": 4,
+        "station": 0,
+        "school": 1,
+        "medical": 8,
+        "market": 9,
+        "park": 1,
+        "pharmacy": 2,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-19-25afb7": {
       "location": {
@@ -8847,7 +9573,44 @@
         "pharmacy": 0,
         "parking": 0
       },
-      "distanceScore": null
+      "distanceScore": null,
+      "routeScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "densityScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "林口-20-1aa799": {
       "location": {
@@ -8858,9 +9621,9 @@
         "label": "官方路口定位",
         "queryAddress": "新北市林口區南勢三街及南勢三街138巷交叉路口"
       },
-      "score": 65,
-      "rawScore": 65,
-      "grade": "便利",
+      "score": 64,
+      "rawScore": 64,
+      "grade": "基本足夠",
       "scoreReliability": "verified",
       "nearest": {
         "convenience": {
@@ -8889,7 +9652,7 @@
               "durationMinutes": 1,
               "distanceMeters": 244,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -8919,7 +9682,7 @@
               "durationMinutes": 3,
               "distanceMeters": 741,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -8949,7 +9712,7 @@
               "durationMinutes": 18,
               "distanceMeters": 11408,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -8979,7 +9742,7 @@
               "durationMinutes": 8,
               "distanceMeters": 2404,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9009,7 +9772,7 @@
               "durationMinutes": 6,
               "distanceMeters": 1932,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9039,7 +9802,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1137,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9069,7 +9832,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1314,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9099,7 +9862,7 @@
               "durationMinutes": 1,
               "distanceMeters": 178,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9129,7 +9892,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1408,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9159,12 +9922,25 @@
               "durationMinutes": 10,
               "distanceMeters": 4088,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 96,
+        "pxmart": 100,
+        "costco": 75,
+        "station": 46,
+        "school": 33,
+        "medical": 61,
+        "market": 78,
+        "park": 100,
+        "pharmacy": 30,
+        "parking": 0
+      },
+      "distanceScore": 65,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 100,
         "costco": 75,
@@ -9176,7 +9952,31 @@
         "pharmacy": 40,
         "parking": 0
       },
-      "distanceScore": 76
+      "densityScores": {
+        "convenience": 83,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 50,
+        "school": 25,
+        "medical": 50,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 5,
+        "pxmart": 5,
+        "costco": 3,
+        "station": 1,
+        "school": 1,
+        "medical": 2,
+        "market": 7,
+        "park": 10,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-01-cd4424": {
       "location": {
@@ -9218,7 +10018,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1568,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9248,7 +10048,7 @@
               "durationMinutes": 3,
               "distanceMeters": 1341,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9278,7 +10078,7 @@
               "durationMinutes": 17,
               "distanceMeters": 6716,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9308,7 +10108,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1320,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9338,7 +10138,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1462,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9368,7 +10168,7 @@
               "durationMinutes": 6,
               "distanceMeters": 1796,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9398,7 +10198,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1299,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9428,7 +10228,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1253,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9458,7 +10258,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1282,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9488,12 +10288,25 @@
               "durationMinutes": 3,
               "distanceMeters": 986,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 81,
+        "pxmart": 100,
+        "costco": 75,
+        "station": 73,
+        "school": 88,
+        "medical": 55,
+        "market": 78,
+        "park": 81,
+        "pharmacy": 50,
+        "parking": 100
+      },
+      "distanceScore": 79,
+      "routeScores": {
         "convenience": 75,
         "pxmart": 100,
         "costco": 75,
@@ -9505,7 +10318,31 @@
         "pharmacy": 40,
         "parking": 100
       },
-      "distanceScore": 95
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 50,
+        "school": 50,
+        "medical": 25,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 80,
+        "parking": 100
+      },
+      "nearbyCounts": {
+        "convenience": 20,
+        "pxmart": 4,
+        "costco": 4,
+        "station": 1,
+        "school": 2,
+        "medical": 1,
+        "market": 8,
+        "park": 12,
+        "pharmacy": 4,
+        "parking": 15
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-02-234762": {
       "location": {
@@ -9516,8 +10353,8 @@
         "label": "官方路口定位",
         "queryAddress": "桃園市龜山區樂學路與長慶三街交叉口附近"
       },
-      "score": 85,
-      "rawScore": 85,
+      "score": 82,
+      "rawScore": 82,
       "grade": "非常便利",
       "scoreReliability": "verified",
       "nearest": {
@@ -9547,7 +10384,7 @@
               "durationMinutes": 1,
               "distanceMeters": 110,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9577,7 +10414,7 @@
               "durationMinutes": 2,
               "distanceMeters": 268,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9607,7 +10444,7 @@
               "durationMinutes": 21,
               "distanceMeters": 7918,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9637,7 +10474,7 @@
               "durationMinutes": 7,
               "distanceMeters": 2134,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9667,7 +10504,7 @@
               "durationMinutes": 2,
               "distanceMeters": 388,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9697,7 +10534,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1156,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9727,7 +10564,7 @@
               "durationMinutes": 2,
               "distanceMeters": 268,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9757,7 +10594,7 @@
               "durationMinutes": 1,
               "distanceMeters": 163,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9787,7 +10624,7 @@
               "durationMinutes": 2,
               "distanceMeters": 353,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -9817,12 +10654,25 @@
               "durationMinutes": 1,
               "distanceMeters": 104,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 75,
+        "station": 46,
+        "school": 88,
+        "medical": 55,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 80,
+        "parking": 100
+      },
+      "distanceScore": 85,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 100,
         "costco": 75,
@@ -9834,7 +10684,31 @@
         "pharmacy": 100,
         "parking": 100
       },
-      "distanceScore": 80
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 50,
+        "school": 50,
+        "medical": 25,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 20,
+        "parking": 100
+      },
+      "nearbyCounts": {
+        "convenience": 20,
+        "pxmart": 5,
+        "costco": 4,
+        "station": 1,
+        "school": 2,
+        "medical": 1,
+        "market": 7,
+        "park": 13,
+        "pharmacy": 1,
+        "parking": 17
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-03-7b25a4": {
       "location": {
@@ -10013,7 +10887,44 @@
         "pharmacy": 0,
         "parking": 0
       },
-      "distanceScore": null
+      "distanceScore": null,
+      "routeScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "densityScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-04-acfee0": {
       "location": {
@@ -10024,8 +10935,8 @@
         "label": "官方路口定位",
         "queryAddress": "桃園市龜山區樂學路與長慶一街口"
       },
-      "score": 83,
-      "rawScore": 83,
+      "score": 80,
+      "rawScore": 80,
       "grade": "非常便利",
       "scoreReliability": "verified",
       "nearest": {
@@ -10055,7 +10966,7 @@
               "durationMinutes": 1,
               "distanceMeters": 18,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10085,7 +10996,7 @@
               "durationMinutes": 2,
               "distanceMeters": 452,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10115,7 +11026,7 @@
               "durationMinutes": 20,
               "distanceMeters": 7658,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10145,7 +11056,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1892,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10175,7 +11086,7 @@
               "durationMinutes": 1,
               "distanceMeters": 128,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10205,7 +11116,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1269,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10235,7 +11146,7 @@
               "durationMinutes": 3,
               "distanceMeters": 528,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10265,7 +11176,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1001,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10295,7 +11206,7 @@
               "durationMinutes": 3,
               "distanceMeters": 613,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10325,12 +11236,25 @@
               "durationMinutes": 4,
               "distanceMeters": 929,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 75,
+        "station": 46,
+        "school": 88,
+        "medical": 55,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 61,
+        "parking": 100
+      },
+      "distanceScore": 83,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 100,
         "costco": 75,
@@ -10342,7 +11266,31 @@
         "pharmacy": 75,
         "parking": 100
       },
-      "distanceScore": 80
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 50,
+        "school": 50,
+        "medical": 25,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 20,
+        "parking": 100
+      },
+      "nearbyCounts": {
+        "convenience": 23,
+        "pxmart": 5,
+        "costco": 4,
+        "station": 1,
+        "school": 2,
+        "medical": 1,
+        "market": 8,
+        "park": 15,
+        "pharmacy": 1,
+        "parking": 17
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-05-4a513b": {
       "location": {
@@ -10353,8 +11301,8 @@
         "label": "道路中心附近",
         "queryAddress": "桃園市龜山區文桃路476巷附近"
       },
-      "score": 65,
-      "rawScore": 65,
+      "score": 67,
+      "rawScore": 67,
       "grade": "便利",
       "scoreReliability": "approximate",
       "nearest": {
@@ -10384,7 +11332,7 @@
               "durationMinutes": 1,
               "distanceMeters": 208,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10400,7 +11348,7 @@
           "routes": {
             "walking": {
               "durationMinutes": 22,
-              "distanceMeters": 1679,
+              "distanceMeters": 1685,
               "profile": "pedestrian",
               "departure": null
             },
@@ -10414,7 +11362,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1916,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10444,7 +11392,7 @@
               "durationMinutes": 17,
               "distanceMeters": 6244,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10474,7 +11422,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1824,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10504,7 +11452,7 @@
               "durationMinutes": 1,
               "distanceMeters": 307,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10534,7 +11482,7 @@
               "durationMinutes": 6,
               "distanceMeters": 2300,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10564,7 +11512,7 @@
               "durationMinutes": 5,
               "distanceMeters": 2059,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10594,7 +11542,7 @@
               "durationMinutes": 2,
               "distanceMeters": 666,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10624,7 +11572,7 @@
               "durationMinutes": 5,
               "distanceMeters": 2051,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10654,12 +11602,25 @@
               "durationMinutes": 1,
               "distanceMeters": 109,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 55,
+        "costco": 75,
+        "station": 46,
+        "school": 88,
+        "medical": 33,
+        "market": 55,
+        "park": 100,
+        "pharmacy": 25,
+        "parking": 100
+      },
+      "distanceScore": 65,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 40,
         "costco": 75,
@@ -10671,7 +11632,31 @@
         "pharmacy": 20,
         "parking": 100
       },
-      "distanceScore": 85
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 50,
+        "school": 50,
+        "medical": 25,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 40,
+        "parking": 100
+      },
+      "nearbyCounts": {
+        "convenience": 8,
+        "pxmart": 4,
+        "costco": 4,
+        "station": 1,
+        "school": 2,
+        "medical": 1,
+        "market": 4,
+        "park": 8,
+        "pharmacy": 2,
+        "parking": 6
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-06-08ce9d": {
       "location": {
@@ -10682,9 +11667,9 @@
         "label": "道路中心附近",
         "queryAddress": "桃園市龜山區樂善一路旁"
       },
-      "score": 80,
-      "rawScore": 80,
-      "grade": "非常便利",
+      "score": 79,
+      "rawScore": 79,
+      "grade": "便利",
       "scoreReliability": "approximate",
       "nearest": {
         "convenience": {
@@ -10713,7 +11698,7 @@
               "durationMinutes": 2,
               "distanceMeters": 303,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10729,7 +11714,7 @@
           "routes": {
             "walking": {
               "durationMinutes": 13,
-              "distanceMeters": 1024,
+              "distanceMeters": 1030,
               "profile": "pedestrian",
               "departure": null
             },
@@ -10743,7 +11728,7 @@
               "durationMinutes": 3,
               "distanceMeters": 1106,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10773,7 +11758,7 @@
               "durationMinutes": 18,
               "distanceMeters": 6824,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10803,7 +11788,7 @@
               "durationMinutes": 3,
               "distanceMeters": 1014,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10833,7 +11818,7 @@
               "durationMinutes": 2,
               "distanceMeters": 561,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10863,7 +11848,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1490,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10893,7 +11878,7 @@
               "durationMinutes": 3,
               "distanceMeters": 993,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10923,7 +11908,7 @@
               "durationMinutes": 3,
               "distanceMeters": 736,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10953,7 +11938,7 @@
               "durationMinutes": 3,
               "distanceMeters": 976,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -10983,12 +11968,25 @@
               "durationMinutes": 2,
               "distanceMeters": 680,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 78,
+        "costco": 75,
+        "station": 88,
+        "school": 88,
+        "medical": 55,
+        "market": 78,
+        "park": 81,
+        "pharmacy": 50,
+        "parking": 78
+      },
+      "distanceScore": 80,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 70,
         "costco": 75,
@@ -11000,7 +11998,31 @@
         "pharmacy": 40,
         "parking": 70
       },
-      "distanceScore": 95
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 50,
+        "school": 50,
+        "medical": 25,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 80,
+        "parking": 100
+      },
+      "nearbyCounts": {
+        "convenience": 20,
+        "pxmart": 4,
+        "costco": 4,
+        "station": 1,
+        "school": 2,
+        "medical": 1,
+        "market": 8,
+        "park": 10,
+        "pharmacy": 4,
+        "parking": 14
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-07-cd952c": {
       "location": {
@@ -11011,8 +12033,8 @@
         "label": "官方路口定位",
         "queryAddress": "桃園市龜山區樂善二路與文化二路口附近"
       },
-      "score": 82,
-      "rawScore": 82,
+      "score": 81,
+      "rawScore": 81,
       "grade": "非常便利",
       "scoreReliability": "verified",
       "nearest": {
@@ -11042,7 +12064,7 @@
               "durationMinutes": 1,
               "distanceMeters": 195,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11072,7 +12094,7 @@
               "durationMinutes": 1,
               "distanceMeters": 221,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11102,7 +12124,7 @@
               "durationMinutes": 19,
               "distanceMeters": 7586,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11132,7 +12154,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1305,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11162,7 +12184,7 @@
               "durationMinutes": 3,
               "distanceMeters": 710,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11192,7 +12214,7 @@
               "durationMinutes": 3,
               "distanceMeters": 1241,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11222,7 +12244,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1108,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11252,7 +12274,7 @@
               "durationMinutes": 2,
               "distanceMeters": 446,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11282,7 +12304,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1129,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11312,12 +12334,25 @@
               "durationMinutes": 1,
               "distanceMeters": 199,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 75,
+        "station": 73,
+        "school": 88,
+        "medical": 61,
+        "market": 78,
+        "park": 81,
+        "pharmacy": 40,
+        "parking": 100
+      },
+      "distanceScore": 82,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 100,
         "costco": 75,
@@ -11329,7 +12364,31 @@
         "pharmacy": 40,
         "parking": 100
       },
-      "distanceScore": 88
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 50,
+        "school": 50,
+        "medical": 50,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 40,
+        "parking": 100
+      },
+      "nearbyCounts": {
+        "convenience": 17,
+        "pxmart": 5,
+        "costco": 4,
+        "station": 1,
+        "school": 2,
+        "medical": 2,
+        "market": 8,
+        "park": 12,
+        "pharmacy": 2,
+        "parking": 18
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-08-0362a4": {
       "location": {
@@ -11340,8 +12399,8 @@
         "label": "官方路口定位",
         "queryAddress": "桃園市龜山區樂善二路與牛角坡路交叉口附近"
       },
-      "score": 79,
-      "rawScore": 79,
+      "score": 78,
+      "rawScore": 78,
       "grade": "便利",
       "scoreReliability": "verified",
       "nearest": {
@@ -11371,7 +12430,7 @@
               "durationMinutes": 1,
               "distanceMeters": 22,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11387,7 +12446,7 @@
           "routes": {
             "walking": {
               "durationMinutes": 15,
-              "distanceMeters": 1195,
+              "distanceMeters": 1201,
               "profile": "pedestrian",
               "departure": null
             },
@@ -11401,7 +12460,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1305,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11431,7 +12490,7 @@
               "durationMinutes": 17,
               "distanceMeters": 6555,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11461,7 +12520,7 @@
               "durationMinutes": 3,
               "distanceMeters": 1213,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11491,7 +12550,7 @@
               "durationMinutes": 1,
               "distanceMeters": 328,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11521,7 +12580,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1689,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11551,7 +12610,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1448,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11581,7 +12640,7 @@
               "durationMinutes": 2,
               "distanceMeters": 503,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11611,7 +12670,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1440,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11641,12 +12700,25 @@
               "durationMinutes": 2,
               "distanceMeters": 417,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 78,
+        "costco": 75,
+        "station": 73,
+        "school": 88,
+        "medical": 55,
+        "market": 78,
+        "park": 81,
+        "pharmacy": 50,
+        "parking": 100
+      },
+      "distanceScore": 79,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 70,
         "costco": 75,
@@ -11658,7 +12730,31 @@
         "pharmacy": 40,
         "parking": 100
       },
-      "distanceScore": 100
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 50,
+        "school": 50,
+        "medical": 25,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 80,
+        "parking": 100
+      },
+      "nearbyCounts": {
+        "convenience": 18,
+        "pxmart": 4,
+        "costco": 4,
+        "station": 1,
+        "school": 2,
+        "medical": 1,
+        "market": 5,
+        "park": 8,
+        "pharmacy": 4,
+        "parking": 12
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-09-9e9aa8": {
       "location": {
@@ -11669,8 +12765,8 @@
         "label": "官方路口定位",
         "queryAddress": "桃園市龜山區長慶一街與長慶二街交叉口附近"
       },
-      "score": 78,
-      "rawScore": 78,
+      "score": 77,
+      "rawScore": 77,
       "grade": "便利",
       "scoreReliability": "verified",
       "nearest": {
@@ -11700,7 +12796,7 @@
               "durationMinutes": 3,
               "distanceMeters": 720,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11730,7 +12826,7 @@
               "durationMinutes": 3,
               "distanceMeters": 693,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11760,7 +12856,7 @@
               "durationMinutes": 21,
               "distanceMeters": 8022,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11790,7 +12886,7 @@
               "durationMinutes": 7,
               "distanceMeters": 2256,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11820,7 +12916,7 @@
               "durationMinutes": 2,
               "distanceMeters": 492,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11850,7 +12946,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1633,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11880,7 +12976,7 @@
               "durationMinutes": 4,
               "distanceMeters": 769,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11910,7 +13006,7 @@
               "durationMinutes": 1,
               "distanceMeters": 183,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11940,7 +13036,7 @@
               "durationMinutes": 4,
               "distanceMeters": 854,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -11970,12 +13066,25 @@
               "durationMinutes": 3,
               "distanceMeters": 605,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 81,
+        "pxmart": 100,
+        "costco": 75,
+        "station": 46,
+        "school": 88,
+        "medical": 55,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 61,
+        "parking": 78
+      },
+      "distanceScore": 78,
+      "routeScores": {
         "convenience": 75,
         "pxmart": 100,
         "costco": 75,
@@ -11987,7 +13096,31 @@
         "pharmacy": 75,
         "parking": 70
       },
-      "distanceScore": 80
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 50,
+        "school": 50,
+        "medical": 25,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 20,
+        "parking": 100
+      },
+      "nearbyCounts": {
+        "convenience": 18,
+        "pxmart": 4,
+        "costco": 4,
+        "station": 1,
+        "school": 2,
+        "medical": 1,
+        "market": 6,
+        "park": 14,
+        "pharmacy": 1,
+        "parking": 15
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-10-e86850": {
       "location": {
@@ -12029,7 +13162,7 @@
               "durationMinutes": 1,
               "distanceMeters": 191,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12045,7 +13178,7 @@
           "routes": {
             "walking": {
               "durationMinutes": 17,
-              "distanceMeters": 1364,
+              "distanceMeters": 1370,
               "profile": "pedestrian",
               "departure": null
             },
@@ -12059,7 +13192,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1584,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12089,7 +13222,7 @@
               "durationMinutes": 17,
               "distanceMeters": 6386,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12119,7 +13252,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1492,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12149,7 +13282,7 @@
               "durationMinutes": 2,
               "distanceMeters": 449,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12179,7 +13312,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1968,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12209,7 +13342,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1727,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12239,7 +13372,7 @@
               "durationMinutes": 2,
               "distanceMeters": 334,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12269,7 +13402,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1719,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12299,12 +13432,25 @@
               "durationMinutes": 2,
               "distanceMeters": 477,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 78,
+        "costco": 75,
+        "station": 73,
+        "school": 88,
+        "medical": 33,
+        "market": 78,
+        "park": 100,
+        "pharmacy": 50,
+        "parking": 78
+      },
+      "distanceScore": 76,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 70,
         "costco": 75,
@@ -12316,7 +13462,31 @@
         "pharmacy": 40,
         "parking": 70
       },
-      "distanceScore": 80
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 50,
+        "school": 50,
+        "medical": 25,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 80,
+        "parking": 100
+      },
+      "nearbyCounts": {
+        "convenience": 14,
+        "pxmart": 4,
+        "costco": 4,
+        "station": 1,
+        "school": 2,
+        "medical": 1,
+        "market": 8,
+        "park": 9,
+        "pharmacy": 4,
+        "parking": 10
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-11-7cbc96": {
       "location": {
@@ -12327,8 +13497,8 @@
         "label": "路口附近",
         "queryAddress": "桃園市龜山區樂善二路、牛角坡路交叉口附近"
       },
-      "score": 79,
-      "rawScore": 79,
+      "score": 78,
+      "rawScore": 78,
       "grade": "便利",
       "scoreReliability": "verified",
       "nearest": {
@@ -12358,7 +13528,7 @@
               "durationMinutes": 1,
               "distanceMeters": 38,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12373,8 +13543,8 @@
           "walkMinutes": 9,
           "routes": {
             "walking": {
-              "durationMinutes": 15,
-              "distanceMeters": 1208,
+              "durationMinutes": 16,
+              "distanceMeters": 1214,
               "profile": "pedestrian",
               "departure": null
             },
@@ -12388,7 +13558,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1321,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12418,7 +13588,7 @@
               "durationMinutes": 17,
               "distanceMeters": 6571,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12448,7 +13618,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1229,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12478,7 +13648,7 @@
               "durationMinutes": 1,
               "distanceMeters": 312,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12508,7 +13678,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1705,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12538,7 +13708,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1464,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12568,7 +13738,7 @@
               "durationMinutes": 2,
               "distanceMeters": 519,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12598,7 +13768,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1456,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12628,12 +13798,25 @@
               "durationMinutes": 2,
               "distanceMeters": 401,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 78,
+        "costco": 75,
+        "station": 73,
+        "school": 88,
+        "medical": 55,
+        "market": 78,
+        "park": 81,
+        "pharmacy": 50,
+        "parking": 100
+      },
+      "distanceScore": 79,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 70,
         "costco": 75,
@@ -12645,7 +13828,31 @@
         "pharmacy": 40,
         "parking": 100
       },
-      "distanceScore": 100
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 50,
+        "school": 50,
+        "medical": 25,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 80,
+        "parking": 100
+      },
+      "nearbyCounts": {
+        "convenience": 18,
+        "pxmart": 4,
+        "costco": 4,
+        "station": 1,
+        "school": 2,
+        "medical": 1,
+        "market": 5,
+        "park": 8,
+        "pharmacy": 4,
+        "parking": 12
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-12-ae84ab": {
       "location": {
@@ -12656,8 +13863,8 @@
         "label": "道路中心附近",
         "queryAddress": "桃園市龜山區文禾路等"
       },
-      "score": 76,
-      "rawScore": 76,
+      "score": 74,
+      "rawScore": 74,
       "grade": "便利",
       "scoreReliability": "approximate",
       "nearest": {
@@ -12687,7 +13894,7 @@
               "durationMinutes": 2,
               "distanceMeters": 274,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12717,7 +13924,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1344,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12747,7 +13954,7 @@
               "durationMinutes": 19,
               "distanceMeters": 7059,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12777,7 +13984,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1528,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12807,7 +14014,7 @@
               "durationMinutes": 3,
               "distanceMeters": 725,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12837,7 +14044,7 @@
               "durationMinutes": 6,
               "distanceMeters": 2004,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12867,7 +14074,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1566,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12897,7 +14104,7 @@
               "durationMinutes": 2,
               "distanceMeters": 545,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12927,7 +14134,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1587,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -12957,12 +14164,25 @@
               "durationMinutes": 1,
               "distanceMeters": 155,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 78,
+        "costco": 75,
+        "station": 73,
+        "school": 88,
+        "medical": 26,
+        "market": 78,
+        "park": 81,
+        "pharmacy": 35,
+        "parking": 100
+      },
+      "distanceScore": 76,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 70,
         "costco": 75,
@@ -12974,7 +14194,31 @@
         "pharmacy": 40,
         "parking": 100
       },
-      "distanceScore": 76
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 50,
+        "school": 50,
+        "medical": 0,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 20,
+        "parking": 100
+      },
+      "nearbyCounts": {
+        "convenience": 18,
+        "pxmart": 4,
+        "costco": 4,
+        "station": 1,
+        "school": 2,
+        "medical": 0,
+        "market": 8,
+        "park": 12,
+        "pharmacy": 1,
+        "parking": 13
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-13-437eb6": {
       "location": {
@@ -13153,7 +14397,44 @@
         "pharmacy": 0,
         "parking": 0
       },
-      "distanceScore": null
+      "distanceScore": null,
+      "routeScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "densityScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-14-0959e3": {
       "location": {
@@ -13332,7 +14613,44 @@
         "pharmacy": 0,
         "parking": 0
       },
-      "distanceScore": null
+      "distanceScore": null,
+      "routeScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "densityScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-15-979ff3": {
       "location": {
@@ -13343,8 +14661,8 @@
         "label": "道路中心附近",
         "queryAddress": "桃園市龜山區樂安街附近"
       },
-      "score": 85,
-      "rawScore": 85,
+      "score": 84,
+      "rawScore": 84,
       "grade": "非常便利",
       "scoreReliability": "approximate",
       "nearest": {
@@ -13374,7 +14692,7 @@
               "durationMinutes": 1,
               "distanceMeters": 64,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13404,7 +14722,7 @@
               "durationMinutes": 2,
               "distanceMeters": 363,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13434,7 +14752,7 @@
               "durationMinutes": 20,
               "distanceMeters": 7666,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13464,7 +14782,7 @@
               "durationMinutes": 5,
               "distanceMeters": 1900,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13494,7 +14812,7 @@
               "durationMinutes": 2,
               "distanceMeters": 373,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13524,7 +14842,7 @@
               "durationMinutes": 3,
               "distanceMeters": 864,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13554,7 +14872,7 @@
               "durationMinutes": 2,
               "distanceMeters": 363,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13584,7 +14902,7 @@
               "durationMinutes": 1,
               "distanceMeters": 124,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13614,7 +14932,7 @@
               "durationMinutes": 2,
               "distanceMeters": 384,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13644,12 +14962,25 @@
               "durationMinutes": 1,
               "distanceMeters": 156,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 75,
+        "station": 59,
+        "school": 88,
+        "medical": 55,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 80,
+        "parking": 100
+      },
+      "distanceScore": 85,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 100,
         "costco": 75,
@@ -13661,7 +14992,31 @@
         "pharmacy": 100,
         "parking": 100
       },
-      "distanceScore": 80
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 100,
+        "school": 50,
+        "medical": 25,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 20,
+        "parking": 100
+      },
+      "nearbyCounts": {
+        "convenience": 24,
+        "pxmart": 5,
+        "costco": 4,
+        "station": 2,
+        "school": 2,
+        "medical": 1,
+        "market": 9,
+        "park": 14,
+        "pharmacy": 1,
+        "parking": 17
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-16-694770": {
       "location": {
@@ -13672,8 +15027,8 @@
         "label": "道路中心附近",
         "queryAddress": "桃園市龜山區文化一路附近"
       },
-      "score": 88,
-      "rawScore": 88,
+      "score": 87,
+      "rawScore": 87,
       "grade": "非常便利",
       "scoreReliability": "approximate",
       "nearest": {
@@ -13703,7 +15058,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1117,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13733,7 +15088,7 @@
               "durationMinutes": 3,
               "distanceMeters": 745,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13763,7 +15118,7 @@
               "durationMinutes": 24,
               "distanceMeters": 9444,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13793,7 +15148,7 @@
               "durationMinutes": 2,
               "distanceMeters": 606,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13823,7 +15178,7 @@
               "durationMinutes": 8,
               "distanceMeters": 2568,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13853,7 +15208,7 @@
               "durationMinutes": 3,
               "distanceMeters": 809,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13883,7 +15238,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1096,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13913,7 +15268,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1198,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13943,7 +15298,7 @@
               "durationMinutes": 3,
               "distanceMeters": 783,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -13973,12 +15328,25 @@
               "durationMinutes": 6,
               "distanceMeters": 1830,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 75,
+        "station": 88,
+        "school": 61,
+        "medical": 100,
+        "market": 78,
+        "park": 81,
+        "pharmacy": 81,
+        "parking": 100
+      },
+      "distanceScore": 88,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 100,
         "costco": 75,
@@ -13990,7 +15358,31 @@
         "pharmacy": 75,
         "parking": 100
       },
-      "distanceScore": 91
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 50,
+        "school": 50,
+        "medical": 100,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 100,
+        "parking": 100
+      },
+      "nearbyCounts": {
+        "convenience": 19,
+        "pxmart": 7,
+        "costco": 4,
+        "station": 1,
+        "school": 2,
+        "medical": 7,
+        "market": 11,
+        "park": 15,
+        "pharmacy": 10,
+        "parking": 11
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-17-803131": {
       "location": {
@@ -14001,8 +15393,8 @@
         "label": "官方路口定位",
         "queryAddress": "桃園市龜山區樂善二路與文化二路交叉口"
       },
-      "score": 82,
-      "rawScore": 82,
+      "score": 81,
+      "rawScore": 81,
       "grade": "非常便利",
       "scoreReliability": "verified",
       "nearest": {
@@ -14032,7 +15424,7 @@
               "durationMinutes": 1,
               "distanceMeters": 195,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14062,7 +15454,7 @@
               "durationMinutes": 1,
               "distanceMeters": 221,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14092,7 +15484,7 @@
               "durationMinutes": 19,
               "distanceMeters": 7586,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14122,7 +15514,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1305,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14152,7 +15544,7 @@
               "durationMinutes": 3,
               "distanceMeters": 710,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14182,7 +15574,7 @@
               "durationMinutes": 3,
               "distanceMeters": 1241,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14212,7 +15604,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1108,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14242,7 +15634,7 @@
               "durationMinutes": 2,
               "distanceMeters": 446,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14272,7 +15664,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1129,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14302,12 +15694,25 @@
               "durationMinutes": 1,
               "distanceMeters": 199,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 75,
+        "station": 73,
+        "school": 88,
+        "medical": 61,
+        "market": 78,
+        "park": 81,
+        "pharmacy": 40,
+        "parking": 100
+      },
+      "distanceScore": 82,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 100,
         "costco": 75,
@@ -14319,7 +15724,31 @@
         "pharmacy": 40,
         "parking": 100
       },
-      "distanceScore": 88
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 50,
+        "school": 50,
+        "medical": 50,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 40,
+        "parking": 100
+      },
+      "nearbyCounts": {
+        "convenience": 17,
+        "pxmart": 5,
+        "costco": 4,
+        "station": 1,
+        "school": 2,
+        "medical": 2,
+        "market": 8,
+        "park": 12,
+        "pharmacy": 2,
+        "parking": 18
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-18-78daaa": {
       "location": {
@@ -14361,7 +15790,7 @@
               "durationMinutes": 1,
               "distanceMeters": 115,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14377,7 +15806,7 @@
           "routes": {
             "walking": {
               "durationMinutes": 11,
-              "distanceMeters": 839,
+              "distanceMeters": 845,
               "profile": "pedestrian",
               "departure": null
             },
@@ -14391,7 +15820,7 @@
               "durationMinutes": 3,
               "distanceMeters": 880,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14406,8 +15835,8 @@
           "walkMinutes": 64,
           "routes": {
             "walking": {
-              "durationMinutes": 83,
-              "distanceMeters": 7078,
+              "durationMinutes": 80,
+              "distanceMeters": 6629,
               "profile": "pedestrian",
               "departure": null
             },
@@ -14421,7 +15850,7 @@
               "durationMinutes": 18,
               "distanceMeters": 6903,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14451,7 +15880,7 @@
               "durationMinutes": 3,
               "distanceMeters": 788,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14481,7 +15910,7 @@
               "durationMinutes": 2,
               "distanceMeters": 676,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14511,7 +15940,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1264,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14541,7 +15970,7 @@
               "durationMinutes": 2,
               "distanceMeters": 767,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14571,7 +16000,7 @@
               "durationMinutes": 3,
               "distanceMeters": 851,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14601,7 +16030,7 @@
               "durationMinutes": 2,
               "distanceMeters": 750,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14631,12 +16060,25 @@
               "durationMinutes": 2,
               "distanceMeters": 552,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 78,
+        "costco": 75,
+        "station": 88,
+        "school": 88,
+        "medical": 55,
+        "market": 78,
+        "park": 55,
+        "pharmacy": 50,
+        "parking": 78
+      },
+      "distanceScore": 77,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 70,
         "costco": 75,
@@ -14648,7 +16090,31 @@
         "pharmacy": 40,
         "parking": 70
       },
-      "distanceScore": 95
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 50,
+        "school": 50,
+        "medical": 25,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 80,
+        "parking": 100
+      },
+      "nearbyCounts": {
+        "convenience": 19,
+        "pxmart": 4,
+        "costco": 4,
+        "station": 1,
+        "school": 2,
+        "medical": 1,
+        "market": 4,
+        "park": 9,
+        "pharmacy": 4,
+        "parking": 13
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-19-f52012": {
       "location": {
@@ -14659,8 +16125,8 @@
         "label": "官方路口定位",
         "queryAddress": "桃園市龜山區文化二路與樂善二路附近"
       },
-      "score": 82,
-      "rawScore": 82,
+      "score": 81,
+      "rawScore": 81,
       "grade": "非常便利",
       "scoreReliability": "verified",
       "nearest": {
@@ -14690,7 +16156,7 @@
               "durationMinutes": 1,
               "distanceMeters": 195,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14720,7 +16186,7 @@
               "durationMinutes": 1,
               "distanceMeters": 221,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14750,7 +16216,7 @@
               "durationMinutes": 19,
               "distanceMeters": 7586,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14780,7 +16246,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1305,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14810,7 +16276,7 @@
               "durationMinutes": 3,
               "distanceMeters": 710,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14840,7 +16306,7 @@
               "durationMinutes": 3,
               "distanceMeters": 1241,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14870,7 +16336,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1108,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14900,7 +16366,7 @@
               "durationMinutes": 2,
               "distanceMeters": 446,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14930,7 +16396,7 @@
               "durationMinutes": 4,
               "distanceMeters": 1129,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -14960,12 +16426,25 @@
               "durationMinutes": 1,
               "distanceMeters": 199,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 75,
+        "station": 73,
+        "school": 88,
+        "medical": 61,
+        "market": 78,
+        "park": 81,
+        "pharmacy": 40,
+        "parking": 100
+      },
+      "distanceScore": 82,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 100,
         "costco": 75,
@@ -14977,7 +16456,31 @@
         "pharmacy": 40,
         "parking": 100
       },
-      "distanceScore": 88
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 50,
+        "school": 50,
+        "medical": 50,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 40,
+        "parking": 100
+      },
+      "nearbyCounts": {
+        "convenience": 17,
+        "pxmart": 5,
+        "costco": 4,
+        "station": 1,
+        "school": 2,
+        "medical": 2,
+        "market": 8,
+        "park": 12,
+        "pharmacy": 2,
+        "parking": 18
+      },
+      "scoreFormulaVersion": 2
     },
     "a7-20-e374fc": {
       "location": {
@@ -15156,7 +16659,44 @@
         "pharmacy": 0,
         "parking": 0
       },
-      "distanceScore": null
+      "distanceScore": null,
+      "routeScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "densityScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "linkou-d3c468867c": {
       "location": {
@@ -15167,8 +16707,8 @@
         "label": "道路中心附近",
         "queryAddress": "新北市林口區民有街"
       },
-      "score": 76,
-      "rawScore": 76,
+      "score": 72,
+      "rawScore": 72,
       "grade": "便利",
       "scoreReliability": "approximate",
       "nearest": {
@@ -15198,7 +16738,7 @@
               "durationMinutes": 1,
               "distanceMeters": 89,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -15228,7 +16768,7 @@
               "durationMinutes": 1,
               "distanceMeters": 134,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -15258,7 +16798,7 @@
               "durationMinutes": 30,
               "distanceMeters": 11452,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -15288,7 +16828,7 @@
               "durationMinutes": 7,
               "distanceMeters": 1931,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -15318,7 +16858,7 @@
               "durationMinutes": 4,
               "distanceMeters": 661,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -15348,7 +16888,7 @@
               "durationMinutes": 1,
               "distanceMeters": 150,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -15378,7 +16918,7 @@
               "durationMinutes": 3,
               "distanceMeters": 640,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -15408,7 +16948,7 @@
               "durationMinutes": 3,
               "distanceMeters": 532,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -15438,7 +16978,7 @@
               "durationMinutes": 4,
               "distanceMeters": 935,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         },
@@ -15468,12 +17008,25 @@
               "durationMinutes": 12,
               "distanceMeters": 3838,
               "profile": "auto",
-              "departure": "2026-07-15T08:00"
+              "departure": "2026-08-07T08:00"
             }
           }
         }
       },
       "categoryScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 45,
+        "station": 34,
+        "school": 88,
+        "medical": 100,
+        "market": 100,
+        "park": 81,
+        "pharmacy": 66,
+        "parking": 0
+      },
+      "distanceScore": 76,
+      "routeScores": {
         "convenience": 100,
         "pxmart": 100,
         "costco": 45,
@@ -15485,7 +17038,31 @@
         "pharmacy": 75,
         "parking": 0
       },
-      "distanceScore": 80
+      "densityScores": {
+        "convenience": 100,
+        "pxmart": 100,
+        "costco": 100,
+        "station": 0,
+        "school": 50,
+        "medical": 100,
+        "market": 100,
+        "park": 100,
+        "pharmacy": 40,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 19,
+        "pxmart": 5,
+        "costco": 4,
+        "station": 0,
+        "school": 2,
+        "medical": 7,
+        "market": 12,
+        "park": 11,
+        "pharmacy": 2,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     },
     "linkou-72c6eb54e3": {
       "location": {
@@ -15664,7 +17241,44 @@
         "pharmacy": 0,
         "parking": 0
       },
-      "distanceScore": null
+      "distanceScore": null,
+      "routeScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "densityScores": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "nearbyCounts": {
+        "convenience": 0,
+        "pxmart": 0,
+        "costco": 0,
+        "station": 0,
+        "school": 0,
+        "medical": 0,
+        "market": 0,
+        "park": 0,
+        "pharmacy": 0,
+        "parking": 0
+      },
+      "scoreFormulaVersion": 2
     }
   },
   "routeCoverage": {

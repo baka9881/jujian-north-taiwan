@@ -390,6 +390,7 @@ html,body { font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
 .amenity-score-card > div:last-child > span { color:#5d7168; font-size:12px; }
 .amenity-score-card > div:last-child > strong { display:block; margin-top:4px; color:#174e42; font-size:19px; }
 .amenity-score-card p { margin:5px 0 0; color:#65756e; font-size:11px; }
+.amenity-score-plain { margin:-3px 0 10px; padding:10px 12px; border-left:3px solid #4c8d79; border-radius:4px; background:#f3f8f6; color:#4f655d; font-size:11px; line-height:1.55; }
 .amenity-profile-block { margin-bottom:10px; padding:13px; border:1px solid #d2dfda; border-radius:7px; background:#f8fbfa; }
 .amenity-profile-block > span { display:block; color:#53666d; font-size:11px; font-weight:800; }
 .amenity-profile-block > p { margin:8px 0 0; color:#617178; font-size:11px; line-height:1.55; }
@@ -403,6 +404,20 @@ html,body { font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
 .amenity-weight-editor label span { color:#53656d; font-size:11px; }
 .amenity-weight-editor input { width:100%; accent-color:var(--green); }
 .amenity-weight-editor label strong { color:#1f584c; font-size:11px; text-align:right; }
+.amenity-score-breakdown { margin:0 0 12px!important; background:white; }
+.amenity-score-breakdown > summary { color:#40535c; font-weight:800; }
+.amenity-score-formula { display:grid; grid-template-columns:1fr 1fr; gap:7px; padding:0 10px 10px; }
+.amenity-score-formula span { padding:9px; border-radius:6px; background:#edf5f2; color:#526a61; font-size:11px; text-align:center; }
+.amenity-score-formula b { color:#1c6653; font-size:15px; }
+.amenity-score-rows { margin:0 10px; border:1px solid #d7dfdc; border-radius:7px; overflow:hidden; }
+.amenity-score-rows > div { display:grid; grid-template-columns:82px minmax(0,1fr) auto; gap:2px 9px; align-items:center; padding:9px 10px; border-bottom:1px solid #e0e5e3; }
+.amenity-score-rows > div:last-child { border-bottom:0; }
+.amenity-score-rows strong { color:#30474f; font-size:11px; }
+.amenity-score-rows span { color:#53666d; font-size:11px; }
+.amenity-score-rows small { grid-column:2; color:#7a878c; font-size:9px; }
+.amenity-score-rows > div > b { grid-row:1/3; grid-column:3; color:#1c6653; font-size:12px; }
+.amenity-score-breakdown > p { margin:9px 10px 0!important; padding:0!important; border:0!important; color:#64737a!important; font-size:10px!important; line-height:1.55; }
+.amenity-score-breakdown > p:last-child { margin-bottom:10px!important; }
 .amenity-section-title { margin:15px 0 8px; color:#3c5058; font-size:12px; }
 .amenity-more-details,.amenity-advanced-details { margin-top:10px!important; }
 .amenity-more-details > summary,.amenity-advanced-details > summary { color:#40545c; font-weight:800; }

@@ -49,6 +49,11 @@ test("processed amenity data is scored and source-labelled", async () => {
   assert.equal(dataset.routeCoverage.routedProjects, 31);
   assert.equal(dataset.routeCoverage.unavailableLocationProjects, 11);
   assert.deepEqual(Object.keys(dataset.methodology.profiles).sort(), ["balanced", "driver", "family", "student"]);
+  assert.equal(dataset.methodology.scoreFormula.version, 2);
+  assert.equal(dataset.methodology.scoreFormula.routeWeightPercent, 75);
+  assert.equal(dataset.methodology.scoreFormula.densityWeightPercent, 25);
+  assert.match(dataset.methodology.scoreFormula.densityDisclaimer, /營業時間、店家品質與即時路況目前不計分/);
+  assert.equal(Object.keys(dataset.methodology.densityRules).length, 10);
   assert.ok(Object.values(dataset.projects).every((project) => project.score === null || (project.score >= 0 && project.score <= 100)));
   assert.ok(Object.values(dataset.projects).every((project) => project.location.confidence));
   assert.equal(Object.values(dataset.projects).filter((project) => project.scoreReliability === "verified").length, 17);
@@ -56,6 +61,11 @@ test("processed amenity data is scored and source-labelled", async () => {
   assert.ok(Object.values(dataset.projects).filter((project) => project.location.confidence === "estimated").every((project) => project.score === null));
   assert.equal(Object.values(dataset.projects).filter((project) => project.location.method === "nlsc-official-intersection").length, 16);
   assert.ok(Object.values(dataset.projects).filter((project) => project.score !== null).every((project) => Object.keys(project.categoryScores).length === 10));
+  assert.ok(Object.values(dataset.projects).every((project) => Object.keys(project.routeScores).length === 10));
+  assert.ok(Object.values(dataset.projects).every((project) => Object.keys(project.densityScores).length === 10));
+  assert.ok(Object.values(dataset.projects).every((project) => Object.keys(project.nearbyCounts).length === 10));
+  assert.equal(dataset.projects["林口-11-c4a9a4"].score, 41);
+  assert.equal(dataset.projects["林口-11-c4a9a4"].nearbyCounts.convenience, 11);
   assert.ok(Object.values(dataset.projects).filter((project) => project.score !== null).every((project) => Object.values(project.nearest).every((nearest) => !nearest || nearest.routes.walking)));
   assert.match(dataset.methodology.peakDisclaimer, /不是即時路況/);
 });
@@ -169,6 +179,9 @@ test("detail interface separates defect evidence and supports route-based custom
   assert.match(source, /調整各項權重/);
   assert.match(source, /查看其餘 \{activeMoreAmenityEntries\.length\} 類設施/);
   assert.match(source, /查看設施地圖與計算方式/);
+  assert.match(source, /不再只看最近一家/);
+  assert.match(source, /查看 \{activeAmenityScore\} 分怎麼算/);
+  assert.match(source, /amenityNearbyCountText/);
   assert.match(source, /routeTimeText\(nearest\)/);
   assert.match(source, /平日 8 時/);
 });

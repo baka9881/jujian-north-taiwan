@@ -72,6 +72,10 @@ type ProjectAmenity = {
   scoreReliability: "verified" | "approximate" | "unavailable";
   nearest: Record<AmenityCategory, NearestAmenity | null>;
   categoryScores: Record<AmenityCategory, number>;
+  routeScores: Record<AmenityCategory, number>;
+  densityScores: Record<AmenityCategory, number>;
+  nearbyCounts: Record<AmenityCategory, number>;
+  scoreFormulaVersion: number;
 };
 
 type AmenityDataset = {
@@ -87,6 +91,15 @@ type AmenityDataset = {
     defaultProfile: "balanced";
     profiles: Record<Exclude<AmenityProfileKey, "custom">, { label: string; description: string; weights: AmenityWeights }>;
     routing: { provider: string; providerUrl: string; data: string; profileLabels: Record<string, string>; peakDate: string };
+    densityRules: Record<AmenityCategory, { radiusMeters: number; targetCount: number; densityWeight: number }>;
+    scoreFormula: {
+      version: number;
+      routeWeightPercent: number;
+      densityWeightPercent: number;
+      costcoRouteOnly: boolean;
+      description: string;
+      densityDisclaimer: string;
+    };
   };
   categories: Record<AmenityCategory, { label: string; symbol: string }>;
   pois: AmenityPoi[];
@@ -268,6 +281,16 @@ function amenityGrade(score: number | null) {
 function amenityScoreText(project: Project, weights: AmenityWeights) {
   const score = amenityScoreFor(project, weights);
   return score === null ? "待定位" : `${score} 分`;
+}
+
+function amenityReliabilityText(project: Project) {
+  return project.amenity.scoreReliability === "verified" ? "位置已核對" : "位置為道路附近估算";
+}
+
+function amenityNearbyCountText(project: Project, category: AmenityCategory) {
+  if (category === "costco") return "好市多只看車程";
+  const rule = amenityData.methodology.densityRules[category];
+  return `${formatDistance(rule.radiusMeters)}內 ${project.amenity.nearbyCounts[category]} 個選擇`;
 }
 
 function amenityFilterMatches(project: Project, filter: AmenityFilter, weights: AmenityWeights) {
@@ -696,7 +719,7 @@ export default function Home() {
                 <div className="map-preview-summary">
                   <div><span>成交價格</span><strong>{priceText(active)}</strong><small>{priceComparison(active)}</small></div>
                   <div className={activeDefectEvents.length || activeQualityAttention ? "attention" : "clear"}><span>有沒有問題</span><strong>{activeQualityHeadline}</strong></div>
-                  <div className={activeAmenityScore === null ? "missing" : "clear"}><span>附近方便嗎</span><strong>{activeAmenityScore === null ? "資料待補" : `${activeAmenityScore} 分`}</strong></div>
+                  <div className={activeAmenityScore === null ? "missing" : "clear"}><span>附近方便嗎</span><strong>{activeAmenityScore === null ? "資料待補" : `${activeAmenityScore} 分`}</strong>{activeAmenityScore !== null && <small>{amenityReliabilityText(active)} · 距離＋數量</small>}</div>
                   <div><span>每月固定支出</span><strong>依房型快速試算</strong></div>
                 </div>
                 <footer>
@@ -769,7 +792,7 @@ export default function Home() {
                     <span>有沒有問題</span><strong>{activeQualityHeadline}</strong><small>{activeContractEvents.length ? `另有 ${activeContractEvents.length} 筆官方合約抽查` : "官方資料已查過一輪"}</small><b>看查核 →</b>
                   </button>
                   <button type="button" className={activeAmenityScore === null ? "unavailable" : "clear"} onClick={() => setDetailTab("amenity")}>
-                    <span>附近方便嗎</span><strong>{activeAmenityScore === null ? "等待定位" : `${activeAmenityScore} 分 · ${amenityGrade(activeAmenityScore)}`}</strong><small>{active.amenity.nearest.station?.routes.walking ? `最近車站步行 ${active.amenity.nearest.station.routes.walking.durationMinutes} 分` : locationLabel(active)}</small><b>看附近 →</b>
+                    <span>附近方便嗎</span><strong>{activeAmenityScore === null ? "等待定位" : `${activeAmenityScore} 分 · ${amenityGrade(activeAmenityScore)}`}</strong><small>{activeAmenityScore === null ? locationLabel(active) : `${amenityReliabilityText(active)} · ${active.amenity.nearest.station?.routes.walking ? `最近車站步行 ${active.amenity.nearest.station.routes.walking.durationMinutes} 分` : locationLabel(active)}`}</small><b>看附近 →</b>
                   </button>
                   <button type="button" className={activeConfidence.covered >= 3 ? "clear" : "unavailable"} onClick={() => setMethodOpen(true)}>
                     <span>資料夠不夠</span><strong>{activeConfidence.label}</strong><small>價格、品質、位置與機能共 {activeConfidence.covered}／4 項可核對</small><b>看來源 →</b>
@@ -946,6 +969,7 @@ export default function Home() {
                 ) : (
                   <>
                     <div className="amenity-score-card"><div className="amenity-score-ring" style={{ "--amenity-score": `${activeAmenityScore ?? 0}%` } as CSSProperties}><strong>{activeAmenityScore}</strong><span>分</span></div><div><span>{active.amenity.scoreReliability === "verified" ? "可信定位評估" : "道路位置估算"}</span><strong>{amenityGrade(activeAmenityScore)}</strong><p>{locationLabel(active)} · 資料更新 {formatDate(amenityData.generatedAt)}</p></div></div>
+                    <p className="amenity-score-plain">現在同時看「最近設施要多久」和「附近有多少選擇」，不再只看最近一家。</p>
                     <div className="amenity-profile-block">
                       <span>依你的生活方式評分</span>
                       <div className="amenity-profiles">
@@ -957,11 +981,23 @@ export default function Home() {
                       <summary>調整各項權重</summary>
                       <div>{amenityEntries.map(([category, meta]) => <label key={category}><span>{meta.label}</span><input type="range" min="0" max="30" step="1" value={amenityWeights[category]} onChange={(event) => updateAmenityWeight(category, Number(event.target.value))} /><strong>{amenityWeights[category]}</strong></label>)}</div>
                     </details>
+                    <details className="amenity-score-breakdown">
+                      <summary>查看 {activeAmenityScore} 分怎麼算</summary>
+                      <div className="amenity-score-formula"><span><b>{amenityData.methodology.scoreFormula.routeWeightPercent}%</b> 路線時間</span><span><b>{amenityData.methodology.scoreFormula.densityWeightPercent}%</b> 附近選擇</span></div>
+                      <div className="amenity-score-rows">
+                        {amenityEntries.map(([category, meta]) => {
+                          const nearest = active.amenity.nearest[category];
+                          return <div key={category}><strong>{meta.label}</strong><span>{nearest ? primaryRouteTimeText(category, nearest) : "附近資料不足"}</span><small>{amenityNearbyCountText(active, category)} · 權重 {amenityWeights[category]}</small><b>{active.amenity.categoryScores[category]} 分</b></div>;
+                        })}
+                      </div>
+                      <p>{amenityData.methodology.scoreFormula.description}</p>
+                      <p>{amenityData.methodology.scoreFormula.densityDisclaimer}</p>
+                    </details>
                     <h4 className="amenity-section-title">最常用的附近設施</h4>
-                    <div className="drawer-amenities amenity-priority">{activePriorityAmenityEntries.map(([category, meta]) => { const nearest = active.amenity.nearest[category]; return <div key={category}><i className={`poi-${category}`}>{meta.symbol}</i><span>{meta.label}</span>{nearest ? <><strong>{nearest.name}</strong><p>{primaryRouteTimeText(category, nearest)}</p></> : <><strong>附近資料不足</strong><p>不計入分數</p></>}</div>; })}</div>
+                    <div className="drawer-amenities amenity-priority">{activePriorityAmenityEntries.map(([category, meta]) => { const nearest = active.amenity.nearest[category]; return <div key={category}><i className={`poi-${category}`}>{meta.symbol}</i><span>{meta.label}</span>{nearest ? <><strong>{nearest.name}</strong><p>{primaryRouteTimeText(category, nearest)}</p><small>{amenityNearbyCountText(active, category)}</small></> : <><strong>附近資料不足</strong><p>不計入分數</p></>}</div>; })}</div>
                     <details className="amenity-more-details">
                       <summary>查看其餘 {activeMoreAmenityEntries.length} 類設施</summary>
-                      <div className="drawer-amenities">{activeMoreAmenityEntries.map(([category, meta]) => { const nearest = active.amenity.nearest[category]; return <div key={category}><i className={`poi-${category}`}>{meta.symbol}</i><span>{meta.label}</span>{nearest ? <><strong>{nearest.name}</strong><p>{routeTimeText(nearest)}</p></> : <><strong>附近資料不足</strong><p>不計入分數</p></>}</div>; })}</div>
+                      <div className="drawer-amenities">{activeMoreAmenityEntries.map(([category, meta]) => { const nearest = active.amenity.nearest[category]; return <div key={category}><i className={`poi-${category}`}>{meta.symbol}</i><span>{meta.label}</span>{nearest ? <><strong>{nearest.name}</strong><p>{routeTimeText(nearest)}</p><small>{amenityNearbyCountText(active, category)}</small></> : <><strong>附近資料不足</strong><p>不計入分數</p></>}</div>; })}</div>
                     </details>
                     <details className="amenity-advanced-details">
                       <summary>查看設施地圖與計算方式</summary>

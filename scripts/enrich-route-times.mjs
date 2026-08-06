@@ -23,6 +23,19 @@ const routeScoreRules = {
   parking: { mode: "walking", bands: [[5, 100], [10, 70], [15, 40], [25, 20]] },
 };
 
+const densityRules = {
+  convenience: { radiusMeters: 800, targetCount: 6, densityWeight: 0.25 },
+  pxmart: { radiusMeters: 1500, targetCount: 3, densityWeight: 0.25 },
+  costco: { radiusMeters: 15000, targetCount: 1, densityWeight: 0 },
+  station: { radiusMeters: 1500, targetCount: 2, densityWeight: 0.25 },
+  school: { radiusMeters: 1500, targetCount: 4, densityWeight: 0.25 },
+  medical: { radiusMeters: 1200, targetCount: 4, densityWeight: 0.25 },
+  market: { radiusMeters: 1500, targetCount: 3, densityWeight: 0.25 },
+  park: { radiusMeters: 1200, targetCount: 4, densityWeight: 0.25 },
+  pharmacy: { radiusMeters: 1000, targetCount: 5, densityWeight: 0.25 },
+  parking: { radiusMeters: 1000, targetCount: 5, densityWeight: 0.25 },
+};
+
 const profiles = {
   balanced: {
     label: "均衡生活",
@@ -146,6 +159,31 @@ function scoreForRoute(routes, rule) {
   return rule.bands.find(([limit]) => minutes <= limit)?.[1] || 0;
 }
 
+function haversineMeters(from, to) {
+  const radians = (degrees) => degrees * Math.PI / 180;
+  const earthRadius = 6_371_000;
+  const deltaLatitude = radians(to.latitude - from.latitude);
+  const deltaLongitude = radians(to.longitude - from.longitude);
+  const fromLatitude = radians(from.latitude);
+  const toLatitude = radians(to.latitude);
+  const value = Math.sin(deltaLatitude / 2) ** 2
+    + Math.cos(fromLatitude) * Math.cos(toLatitude) * Math.sin(deltaLongitude / 2) ** 2;
+  return earthRadius * 2 * Math.atan2(Math.sqrt(value), Math.sqrt(1 - value));
+}
+
+function nearbyCount(location, pois, category, radiusMeters) {
+  return pois.filter((poi) => poi.category === category && haversineMeters(location, poi) <= radiusMeters).length;
+}
+
+function scoreForDensity(count, rule) {
+  if (!rule.targetCount) return 0;
+  return Math.min(100, Math.round((count / rule.targetCount) * 100));
+}
+
+function combinedCategoryScore(routeScore, densityScore, rule) {
+  return Math.round(routeScore * (1 - rule.densityWeight) + densityScore * rule.densityWeight);
+}
+
 function weightedScore(categoryScores, weights) {
   const entries = Object.entries(weights);
   const totalWeight = entries.reduce((total, [, weight]) => total + weight, 0);
@@ -174,6 +212,10 @@ async function main() {
         if (project.nearest[category]) project.nearest[category].routes = { walking: null, driving: null, peakDriving: null };
       }
       project.categoryScores = Object.fromEntries(categories.map((category) => [category, 0]));
+      project.routeScores = Object.fromEntries(categories.map((category) => [category, 0]));
+      project.densityScores = Object.fromEntries(categories.map((category) => [category, 0]));
+      project.nearbyCounts = Object.fromEntries(categories.map((category) => [category, 0]));
+      project.scoreFormulaVersion = 2;
       project.distanceScore = project.score;
       project.score = null;
       project.rawScore = 0;
@@ -200,12 +242,28 @@ async function main() {
         project.nearest[category].routes = routes[category] || { walking: null, driving: null, peakDriving: null };
       }
     }
-    const categoryScores = Object.fromEntries(categories.map((category) => [
+    const routeScores = Object.fromEntries(categories.map((category) => [
       category,
       scoreForRoute(routes[category], routeScoreRules[category]),
     ]));
+    const nearbyCounts = Object.fromEntries(categories.map((category) => [
+      category,
+      nearbyCount(project.location, amenities.pois, category, densityRules[category].radiusMeters),
+    ]));
+    const densityScores = Object.fromEntries(categories.map((category) => [
+      category,
+      scoreForDensity(nearbyCounts[category], densityRules[category]),
+    ]));
+    const categoryScores = Object.fromEntries(categories.map((category) => [
+      category,
+      combinedCategoryScore(routeScores[category], densityScores[category], densityRules[category]),
+    ]));
     const score = weightedScore(categoryScores, profiles.balanced.weights);
     project.categoryScores = categoryScores;
+    project.routeScores = routeScores;
+    project.densityScores = densityScores;
+    project.nearbyCounts = nearbyCounts;
+    project.scoreFormulaVersion = 2;
     project.distanceScore = project.score;
     project.score = score;
     project.rawScore = score;
@@ -230,6 +288,15 @@ async function main() {
     defaultProfile: "balanced",
     profiles,
     routeScoreRules,
+    densityRules,
+    scoreFormula: {
+      version: 2,
+      routeWeightPercent: 75,
+      densityWeightPercent: 25,
+      costcoRouteOnly: true,
+      description: "各類先依最近設施的路線時間評分，再加入指定範圍內的選擇數量；一般設施為路線 75%、數量 25%，好市多只看開車時間。",
+      densityDisclaimer: "設施數量依 OpenStreetMap 已收錄地點與直線範圍統計，可能受圖資完整度影響。營業時間、店家品質與即時路況目前不計分。",
+    },
   };
   amenities.routeCoverage = {
     routedProjects,
