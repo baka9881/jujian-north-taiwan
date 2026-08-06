@@ -10,6 +10,7 @@ const scripts = [
   ["enrich-amenities.mjs"],
   ["enrich-route-times.mjs"],
   ["build-quality-evidence.mjs"],
+  ["build-regional-supply.mjs"],
   ["validate-data.mjs"],
 ];
 
@@ -24,11 +25,12 @@ for (const [script, ...arguments_] of scripts) {
 
 const processed = path.join(root, "data", "processed");
 const reportPath = path.join(processed, "update-report.json");
-const [report, projects, amenities, quality] = await Promise.all([
+const [report, projects, amenities, quality, regionalSupply] = await Promise.all([
   readFile(reportPath, "utf8").then(JSON.parse),
   readFile(path.join(processed, "projects.json"), "utf8").then(JSON.parse),
   readFile(path.join(processed, "amenities.json"), "utf8").then(JSON.parse),
   readFile(path.join(processed, "quality-evidence.json"), "utf8").then(JSON.parse),
+  readFile(path.join(processed, "regional-supply.json"), "utf8").then(JSON.parse),
 ]);
 report.pipeline = {
   status: "complete",
@@ -37,6 +39,7 @@ report.pipeline = {
   verifiedOrApproximateLocations: Object.values(amenities.projects).filter((project) => project.score !== null).length,
   qualityQueuedCount: quality.summary.queuedCount,
   qualityReviewedCount: quality.summary.reviewedCount,
+  regionalSupplyPeriod: regionalSupply.latestPeriod,
 };
 await writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
 console.log("\n安全更新完成；請查看 data/processed/update-report.json 的變更報告。");

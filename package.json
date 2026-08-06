@@ -12,6 +12,7 @@
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint app scripts tests --ignore-pattern dist --ignore-pattern .next",
     "data:update": "node scripts/update-all.mjs",
+    "data:supply": "node scripts/build-regional-supply.mjs",
     "data:check": "node scripts/validate-data.mjs",
     "db:generate": "drizzle-kit generate"
   },

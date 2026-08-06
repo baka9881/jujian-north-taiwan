@@ -1,0 +1,75 @@
+{
+  "latestPeriod": "114Q4",
+  "publishedAt": "2026-07-20",
+  "definition": "屋齡 5 年內、仍維持第一次登記，並以房屋稅籍與用電等資料判斷可能待售的住宅。",
+  "national": {
+    "units": 112501,
+    "previousQuarterUnits": 112451,
+    "yearAgoUnits": 111085
+  },
+  "counties": [
+    {
+      "county": "臺北市",
+      "units": 4710,
+      "previousQuarterUnits": 4584,
+      "yearAgoUnits": 4468
+    },
+    {
+      "county": "新北市",
+      "units": 19233,
+      "previousQuarterUnits": 20433,
+      "yearAgoUnits": 20542
+    },
+    {
+      "county": "桃園市",
+      "units": 19856,
+      "previousQuarterUnits": 19202,
+      "yearAgoUnits": 18873
+    },
+    {
+      "county": "新竹縣",
+      "units": 4403,
+      "previousQuarterUnits": 4860,
+      "yearAgoUnits": 5325
+    },
+    {
+      "county": "新竹市",
+      "units": 1518,
+      "previousQuarterUnits": 1630,
+      "yearAgoUnits": 1667
+    }
+  ],
+  "districts": [
+    {
+      "county": "桃園市",
+      "district": "龜山區",
+      "units": 4275,
+      "period": "114Q4",
+      "previousQuarterUnits": null,
+      "yearAgoUnits": null,
+      "note": "最新統計通報列出的待售新成屋超過 2,000 宅行政區。"
+    }
+  ],
+  "regionMapping": {
+    "林口": {
+      "county": "新北市",
+      "district": "林口區"
+    },
+    "A7": {
+      "county": "桃園市",
+      "district": "龜山區"
+    }
+  },
+  "sources": {
+    "bulletin": {
+      "name": "內政部 114 年第 4 季待售新成屋統計通報",
+      "url": "https://www.moi.gov.tw/News_Content.aspx?n=9&s=339707"
+    },
+    "machineReadable": {
+      "name": "內政部社會經濟資料服務平台－待售新成屋數",
+      "url": "https://segis.moi.gov.tw/STATCloud/QueryInterfaceView?COL=6BBA1E8FC44E1F9EE3B0AF86C3715376E07D9A9ADDD322C28704D315255843AE&MCOL=58950C1DA6767E6DD417B76E8B0342A62E0F8454B59BE86AE03E2F67B5BD1B7C",
+      "observedPeriod": "113Y2S",
+      "policy": "historical-only-until-period-catches-up"
+    }
+  }
+}

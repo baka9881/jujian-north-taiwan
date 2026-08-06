@@ -5,6 +5,7 @@ import dataset from "@/data/processed/projects.json";
 import amenityDataset from "@/data/processed/amenities.json";
 import qualityDataset from "@/data/processed/quality-evidence.json";
 import updateReportDataset from "@/data/processed/update-report.json";
+import regionalSupplyDataset from "@/data/processed/regional-supply.json";
 import InteractiveMap from "./InteractiveMap";
 
 type PriceSummary = {
@@ -216,9 +217,49 @@ type UpdateReport = {
   };
 };
 
+type SupplyChange = {
+  units: number;
+  percent: number;
+  direction: "up" | "down" | "stable";
+};
+
+type RegionalSupply = {
+  region: string;
+  requestedGeography: string;
+  geography: string;
+  sourceLevel: "district" | "county";
+  scopeLabel: string;
+  fallbackReason: string | null;
+  units: number;
+  period: string;
+  periodLabel: string;
+  quarterlyChange: SupplyChange | null;
+  annualChange: SupplyChange | null;
+  note: string | null;
+};
+
+type RegionalSupplyDataset = {
+  generatedAt: string;
+  latestPeriod: string;
+  latestPeriodLabel: string;
+  publishedAt: string;
+  definition: string;
+  methodology: {
+    displayRule: string;
+    interpretation: string;
+    updateGuide: string;
+  };
+  regions: Record<string, RegionalSupply>;
+  sources: {
+    bulletin: { name: string; url: string };
+    machineReadable: { name: string; url: string; observedPeriod: string; policy: string };
+  };
+};
+
 const amenityData = amenityDataset as unknown as AmenityDataset;
 const qualityData = qualityDataset as unknown as QualityDataset;
 const updateReport = updateReportDataset as unknown as UpdateReport;
+const regionalSupplyData = regionalSupplyDataset as unknown as RegionalSupplyDataset;
 const projects = (dataset.projects as RawProject[]).map((project) => {
   const amenity = amenityData.projects[project.id];
   const quality = qualityData.projects[project.id];
@@ -242,6 +283,12 @@ function formatDate(value: string | null) {
 
 function formatCurrency(value: number) {
   return new Intl.NumberFormat("zh-TW", { maximumFractionDigits: 0 }).format(Math.round(value));
+}
+
+function supplyTrendText(change: SupplyChange | null) {
+  if (!change) return "這期公開摘要沒有同層級的前季比較";
+  if (change.direction === "stable") return "與上季大致持平";
+  return `較上季${change.direction === "up" ? "增加" : "減少"} ${formatCurrency(Math.abs(change.units))} 宅（${Math.abs(change.percent)}%）`;
 }
 
 function clampNumber(value: number, minimum: number, maximum: number) {
@@ -548,6 +595,7 @@ export default function Home() {
       ? "合約有項目要注意"
       : "目前沒找到明確的房屋問題";
   const activeConfidence = dataConfidence(active);
+  const activeRegionalSupply = regionalSupplyData.regions[active.region];
   const evidenceActive = (["builder", "price", "quality", "amenity"] as DetailTab[]).includes(detailTab);
   const activeRegionMedian = regionMedian(active);
   const estimatedPrivateArea = Math.round(costArea * (1 - publicRatio / 100) * 10) / 10;
@@ -826,7 +874,32 @@ export default function Home() {
               </section>
             )}
             {detailTab === "builder" && <section><h3>建商履歷</h3><div className="builder-profile"><span>本資料庫辨識名稱</span><strong>{active.builder}</strong><p>目前以官方資料中的起造人名稱進行完全相同比對。</p></div><div className="builder-service-status"><span>售後處理</span><strong>資料不足，暫不評分</strong><p>目前沒有足以核對處理速度、修繕結果與是否復發的完整紀錄；不以建案數量推測售後品質。</p></div><div className="builder-stats"><div><span>已收錄</span><strong>{builderProjects.length}</strong><small>個建案</small></div><div><span>成屋</span><strong>{builderCompletedCount}</strong><small>個建案</small></div><div><span>有成交</span><strong>{builderPricedCount}</strong><small>個建案</small></div></div><div className="builder-projects">{builderProjects.map((project) => <button type="button" className={project.id === active.id ? "active" : ""} onClick={() => selectBuilderProject(project)} key={project.id}><span className={projectStage(project)}>{projectStageText(project)}</span><div><strong>{project.name}</strong><small>{project.region} · 備查 {formatDate(project.declaredDate)}</small></div><b>{priceText(project)}</b></button>)}</div><p className="builder-disclaimer">目前僅統計本資料庫已收錄的林口與 A7 建案，不代表該建商的完整作品或品質排名。</p></section>}
-            {detailTab === "price" && <section><h3>成交行情</h3>{active.price ? <><div className="drawer-price"><span>中位單價</span><strong>{active.price.median}</strong><small>萬／坪</small><p>{active.price.low}–{active.price.high} 萬／坪</p></div><div className="region-benchmark"><span>{active.region}區域基準</span><strong>{activeRegionMedian ?? "待補"} 萬／坪</strong><b>{priceComparison(active)}</b></div><div className="drawer-facts two"><div><span>有效樣本</span><strong>{active.price.count} 筆</strong></div><div><span>最新交易</span><strong>{formatDate(active.price.latestDate)}</strong></div></div><p className="drawer-note">來源：{active.price.source}。區域基準取本資料庫同區有官方成交建案的中位數；成交價不是目前開價，也不是估價結果。</p></> : <div className="drawer-empty price-unavailable"><span>{active.priceEvidence.statusLabel}</span><strong>{active.priceEvidence.status === "official-no-match" ? "目前沒有可安全歸戶的官方成交" : "成交資料尚待配對"}</strong><p>{active.priceEvidence.status === "official-no-match" ? "已核對官方已發布資料；這不代表建案沒有銷售，近期交易可能尚未申報或公開。" : "目前來源未成功配對，不代表沒有交易。"}</p><small>查核更新 {formatDate(active.priceEvidence.lastCheckedAt)} · {active.priceEvidence.matchMethod}</small><a href={active.priceEvidence.sourceUrl} target="_blank" rel="noreferrer">查看官方資料入口 ↗</a></div>}</section>}
+            {detailTab === "price" && (
+              <section>
+                <h3>成交行情</h3>
+                {active.price ? <>
+                  <div className="drawer-price"><span>中位單價</span><strong>{active.price.median}</strong><small>萬／坪</small><p>{active.price.low}–{active.price.high} 萬／坪</p></div>
+                  <div className="region-benchmark"><span>{active.region}區域基準</span><strong>{activeRegionMedian ?? "待補"} 萬／坪</strong><b>{priceComparison(active)}</b></div>
+                  <div className="drawer-facts two"><div><span>有效樣本</span><strong>{active.price.count} 筆</strong></div><div><span>最新交易</span><strong>{formatDate(active.price.latestDate)}</strong></div></div>
+                  <p className="drawer-note">來源：{active.price.source}。區域基準取本資料庫同區有官方成交建案的中位數；成交價不是目前開價，也不是估價結果。</p>
+                </> : <div className="drawer-empty price-unavailable"><span>{active.priceEvidence.statusLabel}</span><strong>{active.priceEvidence.status === "official-no-match" ? "目前沒有可安全歸戶的官方成交" : "成交資料尚待配對"}</strong><p>{active.priceEvidence.status === "official-no-match" ? "已核對官方已發布資料；這不代表建案沒有銷售，近期交易可能尚未申報或公開。" : "目前來源未成功配對，不代表沒有交易。"}</p><small>查核更新 {formatDate(active.priceEvidence.lastCheckedAt)} · {active.priceEvidence.matchMethod}</small><a href={active.priceEvidence.sourceUrl} target="_blank" rel="noreferrer">查看官方資料入口 ↗</a></div>}
+                {activeRegionalSupply && (
+                  <section className="regional-supply-card" aria-label="區域待售新成屋">
+                    <header><div><span>區域供給</span><h4>附近新屋多不多？</h4></div><b>{activeRegionalSupply.scopeLabel}</b></header>
+                    <div className="regional-supply-value"><strong>{formatCurrency(activeRegionalSupply.units)} 宅</strong><span>{activeRegionalSupply.geography} · {activeRegionalSupply.periodLabel}</span></div>
+                    <p className={`supply-trend ${activeRegionalSupply.quarterlyChange?.direction ?? "unavailable"}`}>{supplyTrendText(activeRegionalSupply.quarterlyChange)}</p>
+                    {activeRegionalSupply.fallbackReason && <p className="supply-scope-note">{activeRegionalSupply.fallbackReason}</p>}
+                    {activeRegionalSupply.note && <p className="supply-scope-note">{activeRegionalSupply.note}</p>}
+                    <aside>這是區域內可能待售的新成屋總量，不是本建案的剩餘戶數，也不能直接判斷本案賣得好不好。</aside>
+                    <details>
+                      <summary>這個數字怎麼看？</summary>
+                      <p>{regionalSupplyData.definition}{regionalSupplyData.methodology.interpretation}</p>
+                    </details>
+                    <a href={regionalSupplyData.sources.bulletin.url} target="_blank" rel="noreferrer">查看內政部統計來源 ↗</a>
+                  </section>
+                )}
+              </section>
+            )}
             {detailTab === "cost" && (
               <section className="holding-cost-section">
                 <div className="holding-cost-heading"><span>只算自住</span><h3>買下後，每月還要付多少？</h3><p>先填你看的房型與社區費用，就能把固定支出換算成每月金額。</p></div>

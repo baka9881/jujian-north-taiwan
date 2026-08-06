@@ -135,6 +135,24 @@ test("safe update report records safeguards and keeps historical backlog separat
   assert.ok(report.safeguards.some((item) => item.includes("不會") && item.includes("刪除")));
 });
 
+test("regional supply data is current, scoped, and never presented as project sales", async () => {
+  const raw = await readFile(new URL("../data/processed/regional-supply.json", import.meta.url), "utf8");
+  const dataset = JSON.parse(raw);
+
+  assert.equal(dataset.latestPeriod, "114Q4");
+  assert.equal(dataset.national.units, 112501);
+  assert.equal(dataset.regions.A7.sourceLevel, "district");
+  assert.equal(dataset.regions.A7.geography, "桃園市龜山區");
+  assert.equal(dataset.regions.A7.units, 4275);
+  assert.equal(dataset.regions.林口.sourceLevel, "county");
+  assert.equal(dataset.regions.林口.geography, "新北市");
+  assert.equal(dataset.regions.林口.units, 19233);
+  assert.equal(dataset.regions.林口.quarterlyChange.percent, -5.9);
+  assert.match(dataset.regions.林口.fallbackReason, /未公布林口區確切戶數/);
+  assert.match(dataset.methodology.interpretation, /不推論單一建案銷售率/);
+  assert.match(dataset.sources.bulletin.url, /^https:\/\/www\.moi\.gov\.tw\//);
+});
+
 test("filter controls stay above Leaflet map layers", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   const filterLayer = Number(css.match(/\.filter-bar \{[^}]*z-index:(\d+)/)?.[1]);

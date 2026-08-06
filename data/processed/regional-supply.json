@@ -1,0 +1,185 @@
+{
+  "generatedAt": "2026-08-06T18:01:07.570Z",
+  "latestPeriod": "114Q4",
+  "latestPeriodLabel": "114 年第 4 季",
+  "publishedAt": "2026-07-20",
+  "definition": "屋齡 5 年內、仍維持第一次登記，並以房屋稅籍與用電等資料判斷可能待售的住宅。",
+  "methodology": {
+    "displayRule": "優先顯示同一期行政區資料；未公布確切行政區戶數時，退回縣市層級並標明範圍。",
+    "interpretation": "只用來觀察區域新屋供給與增減，不推論單一建案銷售率、剩餘戶數或品質。",
+    "updateGuide": "更新 data/manual/regional-supply-source.json 後執行 npm run data:supply。"
+  },
+  "national": {
+    "units": 112501,
+    "previousQuarterUnits": 112451,
+    "yearAgoUnits": 111085,
+    "period": "114Q4",
+    "periodLabel": "114 年第 4 季",
+    "quarterlyChange": {
+      "units": 50,
+      "percent": 0,
+      "direction": "stable"
+    },
+    "annualChange": {
+      "units": 1416,
+      "percent": 1.3,
+      "direction": "up"
+    }
+  },
+  "counties": {
+    "臺北市": {
+      "county": "臺北市",
+      "units": 4710,
+      "previousQuarterUnits": 4584,
+      "yearAgoUnits": 4468,
+      "period": "114Q4",
+      "periodLabel": "114 年第 4 季",
+      "quarterlyChange": {
+        "units": 126,
+        "percent": 2.7,
+        "direction": "up"
+      },
+      "annualChange": {
+        "units": 242,
+        "percent": 5.4,
+        "direction": "up"
+      }
+    },
+    "新北市": {
+      "county": "新北市",
+      "units": 19233,
+      "previousQuarterUnits": 20433,
+      "yearAgoUnits": 20542,
+      "period": "114Q4",
+      "periodLabel": "114 年第 4 季",
+      "quarterlyChange": {
+        "units": -1200,
+        "percent": -5.9,
+        "direction": "down"
+      },
+      "annualChange": {
+        "units": -1309,
+        "percent": -6.4,
+        "direction": "down"
+      }
+    },
+    "桃園市": {
+      "county": "桃園市",
+      "units": 19856,
+      "previousQuarterUnits": 19202,
+      "yearAgoUnits": 18873,
+      "period": "114Q4",
+      "periodLabel": "114 年第 4 季",
+      "quarterlyChange": {
+        "units": 654,
+        "percent": 3.4,
+        "direction": "up"
+      },
+      "annualChange": {
+        "units": 983,
+        "percent": 5.2,
+        "direction": "up"
+      }
+    },
+    "新竹縣": {
+      "county": "新竹縣",
+      "units": 4403,
+      "previousQuarterUnits": 4860,
+      "yearAgoUnits": 5325,
+      "period": "114Q4",
+      "periodLabel": "114 年第 4 季",
+      "quarterlyChange": {
+        "units": -457,
+        "percent": -9.4,
+        "direction": "down"
+      },
+      "annualChange": {
+        "units": -922,
+        "percent": -17.3,
+        "direction": "down"
+      }
+    },
+    "新竹市": {
+      "county": "新竹市",
+      "units": 1518,
+      "previousQuarterUnits": 1630,
+      "yearAgoUnits": 1667,
+      "period": "114Q4",
+      "periodLabel": "114 年第 4 季",
+      "quarterlyChange": {
+        "units": -112,
+        "percent": -6.9,
+        "direction": "down"
+      },
+      "annualChange": {
+        "units": -149,
+        "percent": -8.9,
+        "direction": "down"
+      }
+    }
+  },
+  "districts": {
+    "桃園市龜山區": {
+      "county": "桃園市",
+      "district": "龜山區",
+      "units": 4275,
+      "period": "114Q4",
+      "previousQuarterUnits": null,
+      "yearAgoUnits": null,
+      "note": "最新統計通報列出的待售新成屋超過 2,000 宅行政區。",
+      "periodLabel": "114 年第 4 季",
+      "quarterlyChange": null,
+      "annualChange": null
+    }
+  },
+  "regions": {
+    "林口": {
+      "region": "林口",
+      "requestedGeography": "新北市林口區",
+      "geography": "新北市",
+      "sourceLevel": "county",
+      "scopeLabel": "縣市參考",
+      "fallbackReason": "最新官方摘要未公布林口區確切戶數，因此顯示新北市層級。",
+      "units": 19233,
+      "period": "114Q4",
+      "periodLabel": "114 年第 4 季",
+      "quarterlyChange": {
+        "units": -1200,
+        "percent": -5.9,
+        "direction": "down"
+      },
+      "annualChange": {
+        "units": -1309,
+        "percent": -6.4,
+        "direction": "down"
+      },
+      "note": null
+    },
+    "A7": {
+      "region": "A7",
+      "requestedGeography": "桃園市龜山區",
+      "geography": "桃園市龜山區",
+      "sourceLevel": "district",
+      "scopeLabel": "行政區資料",
+      "fallbackReason": null,
+      "units": 4275,
+      "period": "114Q4",
+      "periodLabel": "114 年第 4 季",
+      "quarterlyChange": null,
+      "annualChange": null,
+      "note": "最新統計通報列出的待售新成屋超過 2,000 宅行政區。"
+    }
+  },
+  "sources": {
+    "bulletin": {
+      "name": "內政部 114 年第 4 季待售新成屋統計通報",
+      "url": "https://www.moi.gov.tw/News_Content.aspx?n=9&s=339707"
+    },
+    "machineReadable": {
+      "name": "內政部社會經濟資料服務平台－待售新成屋數",
+      "url": "https://segis.moi.gov.tw/STATCloud/QueryInterfaceView?COL=6BBA1E8FC44E1F9EE3B0AF86C3715376E07D9A9ADDD322C28704D315255843AE&MCOL=58950C1DA6767E6DD417B76E8B0342A62E0F8454B59BE86AE03E2F67B5BD1B7C",
+      "observedPeriod": "113Y2S",
+      "policy": "historical-only-until-period-catches-up"
+    }
+  }
+}
