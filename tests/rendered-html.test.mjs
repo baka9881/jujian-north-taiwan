@@ -137,18 +137,19 @@ test("safe update report records safeguards and keeps historical backlog separat
 
 test("regional supply data is current, scoped, and never presented as project sales", async () => {
   const raw = await readFile(new URL("../data/processed/regional-supply.json", import.meta.url), "utf8");
+  const sourceRaw = await readFile(new URL("../data/manual/regional-supply-source.json", import.meta.url), "utf8");
   const dataset = JSON.parse(raw);
+  const source = JSON.parse(sourceRaw);
 
-  assert.equal(dataset.latestPeriod, "114Q4");
-  assert.equal(dataset.national.units, 112501);
-  assert.equal(dataset.regions.A7.sourceLevel, "district");
-  assert.equal(dataset.regions.A7.geography, "桃園市龜山區");
-  assert.equal(dataset.regions.A7.units, 4275);
-  assert.equal(dataset.regions.林口.sourceLevel, "county");
-  assert.equal(dataset.regions.林口.geography, "新北市");
-  assert.equal(dataset.regions.林口.units, 19233);
-  assert.equal(dataset.regions.林口.quarterlyChange.percent, -5.9);
-  assert.match(dataset.regions.林口.fallbackReason, /未公布林口區確切戶數/);
+  assert.equal(dataset.latestPeriod, source.latestPeriod);
+  assert.equal(dataset.national.units, source.national.units);
+  for (const [region, mapping] of Object.entries(source.regionMapping)) {
+    const district = source.districts.find((record) => record.county === mapping.county && record.district === mapping.district && record.period === source.latestPeriod);
+    const county = source.counties.find((record) => record.county === mapping.county);
+    assert.equal(dataset.regions[region].sourceLevel, district ? "district" : "county");
+    assert.equal(dataset.regions[region].units, (district || county).units);
+    if (!district) assert.match(dataset.regions[region].fallbackReason, /未公布.*確切戶數/);
+  }
   assert.match(dataset.methodology.interpretation, /不推論單一建案銷售率/);
   assert.match(dataset.sources.bulletin.url, /^https:\/\/www\.moi\.gov\.tw\//);
 });

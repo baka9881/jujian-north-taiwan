@@ -11,6 +11,7 @@ const quality = await readJson("quality-evidence.json");
 const report = await readJson("update-report.json");
 const regionalSupply = await readJson("regional-supply.json");
 const qualityAudits = await readManualJson("quality-audits.json");
+const regionalSupplySource = await readManualJson("regional-supply-source.json");
 const errors = [];
 const fail = (condition, message) => { if (!condition) errors.push(message); };
 
@@ -35,13 +36,19 @@ fail(Object.keys(amenities.methodology?.profiles || {}).length === 4, "生活機
 fail(amenities.methodology?.scoreFormula?.version === 2, "生活機能評分公式尚未升級");
 fail(Object.keys(amenities.methodology?.densityRules || {}).length === 10, "生活機能選擇數量規則不完整");
 fail(quality.summary.publishedEventCount === quality.summary.defectEventCount + quality.summary.contractEventCount, "品質事件分類計數不同步");
-fail(regionalSupply.latestPeriod === "114Q4", "區域供給資料期別不是目前採用的 114Q4");
-fail(regionalSupply.national?.units === 112501, "全台待售新成屋數與來源資料不一致");
-fail(regionalSupply.regions?.A7?.sourceLevel === "district" && regionalSupply.regions.A7.units === 4275, "A7 應使用同一期龜山區資料");
-fail(regionalSupply.regions?.林口?.sourceLevel === "county" && regionalSupply.regions.林口.units === 19233, "林口未公布確切值時應清楚退回新北市資料");
+fail(regionalSupply.latestPeriod === regionalSupplySource.latestPeriod, "區域供給資料期別與單一來源檔不同步");
+fail(regionalSupply.national?.units === regionalSupplySource.national.units, "全台待售新成屋數與來源資料不一致");
 fail(projects.projects.every((project) => regionalSupply.regions?.[project.region]), "每個建案區域都要有區域供給資料");
 fail(/不推論單一建案/.test(regionalSupply.methodology?.interpretation || ""), "區域供給資料必須禁止推論單一建案銷售狀況");
 fail(/^https:\/\/www\.moi\.gov\.tw\//.test(regionalSupply.sources?.bulletin?.url || ""), "區域供給資料必須連回內政部來源");
+for (const [region, mapping] of Object.entries(regionalSupplySource.regionMapping)) {
+  const district = regionalSupplySource.districts.find((record) => record.county === mapping.county && record.district === mapping.district && record.period === regionalSupplySource.latestPeriod);
+  const county = regionalSupplySource.counties.find((record) => record.county === mapping.county);
+  const expected = district || county;
+  fail(Boolean(expected), `${region} 在來源檔找不到可使用的行政區或縣市資料`);
+  fail(regionalSupply.regions?.[region]?.units === expected?.units, `${region} 的區域供給戶數沒有依來源檔產生`);
+  fail(regionalSupply.regions?.[region]?.sourceLevel === (district ? "district" : "county"), `${region} 的區域供給層級標示錯誤`);
+}
 
 for (const project of projects.projects) {
   fail(Boolean(project.priceEvidence?.status), `${project.name} 缺少價格查核狀態`);
