@@ -198,7 +198,7 @@ type Project = RawProject & {
 };
 
 type ViewMode = "map" | "list";
-type DetailTab = "summary" | "builder" | "price" | "cost" | "quality" | "amenity";
+type DetailTab = "summary" | "builder" | "price" | "supply" | "cost" | "quality" | "amenity";
 type SortKey = "newest" | "priceLow" | "priceHigh" | "households" | "quality";
 type StageFilter = "all" | "presale" | "completed";
 type BudgetFilter = "all" | "under50" | "50to60" | "60plus";
@@ -596,7 +596,7 @@ export default function Home() {
       : "目前沒找到明確的房屋問題";
   const activeConfidence = dataConfidence(active);
   const activeRegionalSupply = regionalSupplyData.regions[active.region];
-  const evidenceActive = (["builder", "price", "quality", "amenity"] as DetailTab[]).includes(detailTab);
+  const evidenceActive = (["builder", "price", "supply", "quality", "amenity"] as DetailTab[]).includes(detailTab);
   const activeRegionMedian = regionMedian(active);
   const estimatedPrivateArea = Math.round(costArea * (1 - publicRatio / 100) * 10) / 10;
   const estimatedPublicArea = Math.round(costArea * (publicRatio / 100) * 10) / 10;
@@ -806,47 +806,50 @@ export default function Home() {
           <header><button type="button" onClick={() => setDetailOpen(false)} aria-label="關閉">×</button><div className="drawer-header-meta"><span>{active.region} · {active.city}{active.district}</span><b className={projectStage(active)}>{projectStageText(active)}</b></div><h2>{active.name}</h2><p>起造人：{active.builder}</p></header>
           <div className="drawer-glance"><strong>{priceText(active)}</strong><span>{active.households} 戶</span><span>機能 {amenityScoreText(active, amenityWeights)}</span></div>
           <nav className="detail-primary-nav">
-            <button type="button" className={detailTab === "summary" ? "active" : ""} onClick={() => setDetailTab("summary")}>懶人包</button>
-            <button type="button" className={detailTab === "cost" ? "active" : ""} onClick={() => setDetailTab("cost")}>費用</button>
-            <button type="button" className={evidenceActive ? "active" : ""} onClick={() => setDetailTab("quality")}>完整查核</button>
+            <button type="button" className={detailTab === "summary" ? "active" : ""} onClick={() => setDetailTab("summary")}>先看重點</button>
+            <button type="button" className={detailTab === "cost" ? "active" : ""} onClick={() => setDetailTab("cost")}>固定支出</button>
+            <button type="button" className={evidenceActive ? "active" : ""} onClick={() => setDetailTab("price")}>更多資料</button>
           </nav>
           <div className="drawer-content">
             {evidenceActive && (
               <section className="evidence-navigation">
-                <span>完整查核</span>
-                <h3>一次只看一項</h3>
-                <p>想核對哪一件事，再點哪一項。</p>
+                <span>快速前往</span>
+                <h3>你想看哪一項？</h3>
+                <p>選一項就直接顯示，不用在長頁面裡找。</p>
                 <div>
                   {([[
-                    "price", "價格"
+                    "price", "成交價格"
                   ], [
-                    "quality", "有沒有問題"
+                    "supply", "區域新屋供給"
                   ], [
-                    "amenity", "附近有什麼"
+                    "quality", "房屋問題"
                   ], [
-                    "builder", "建商"
+                    "amenity", "生活機能"
+                  ], [
+                    "builder", "建商履歷"
                   ]] as [DetailTab, string][]).map(([tab, label]) => <button type="button" key={tab} className={detailTab === tab ? "active" : ""} onClick={() => setDetailTab(tab)}>{label}</button>)}
                 </div>
               </section>
             )}
             {detailTab === "summary" && (
               <section className="summary-dashboard">
-                <div className="summary-heading"><span>先看重點</span><h3>這個建案值得繼續看嗎？</h3><p>先看四個結論，需要證據時再進完整查核。</p></div>
+                <div className="summary-heading"><span>30 秒看懂</span><h3>先回答你最在意的四件事</h3><p>每一格都能直接點進去看資料來源，不用自己找。</p></div>
                 <div className="summary-decisions">
                   <button type="button" onClick={() => setDetailTab("price")}>
-                    <span>買貴了嗎</span><strong>{priceText(active)}</strong><small>{priceComparison(active)} · {active.price ? `${active.price.count} 筆官方樣本` : active.priceEvidence.statusLabel}</small><b>看依據 →</b>
+                    <span>成交價格</span><strong>{priceText(active)}</strong><small>{priceComparison(active)} · {active.price ? `${active.price.count} 筆官方樣本` : active.priceEvidence.statusLabel}</small><b>看價格 →</b>
+                  </button>
+                  <button type="button" className="supply" onClick={() => setDetailTab("supply")}>
+                    <span>區域新屋供給</span><strong>{activeRegionalSupply ? `${activeRegionalSupply.geography} ${formatCurrency(activeRegionalSupply.units)} 宅` : "資料待補"}</strong><small>{activeRegionalSupply ? `${supplyTrendText(activeRegionalSupply.quarterlyChange)} · ${activeRegionalSupply.scopeLabel}` : "尚未取得官方區域資料"}</small><b>看供給 →</b>
                   </button>
                   <button type="button" className={activeDefectEvents.length || activeQualityAttention ? "attention" : "clear"} onClick={() => setDetailTab("quality")}>
-                    <span>有沒有問題</span><strong>{activeQualityHeadline}</strong><small>{activeContractEvents.length ? `另有 ${activeContractEvents.length} 筆官方合約抽查` : "官方資料已查過一輪"}</small><b>看查核 →</b>
+                    <span>房屋有沒有問題</span><strong>{activeQualityHeadline}</strong><small>{activeContractEvents.length ? `另有 ${activeContractEvents.length} 筆官方合約抽查` : "官方資料已查過一輪"}</small><b>看查核 →</b>
                   </button>
                   <button type="button" className={activeAmenityScore === null ? "unavailable" : "clear"} onClick={() => setDetailTab("amenity")}>
-                    <span>附近方便嗎</span><strong>{activeAmenityScore === null ? "等待定位" : `${activeAmenityScore} 分 · ${amenityGrade(activeAmenityScore)}`}</strong><small>{activeAmenityScore === null ? locationLabel(active) : `${amenityReliabilityText(active)} · ${active.amenity.nearest.station?.routes.walking ? `最近車站步行 ${active.amenity.nearest.station.routes.walking.durationMinutes} 分` : locationLabel(active)}`}</small><b>看附近 →</b>
-                  </button>
-                  <button type="button" className={activeConfidence.covered >= 3 ? "clear" : "unavailable"} onClick={() => setMethodOpen(true)}>
-                    <span>資料夠不夠</span><strong>{activeConfidence.label}</strong><small>價格、品質、位置與機能共 {activeConfidence.covered}／4 項可核對</small><b>看來源 →</b>
+                    <span>生活方便嗎</span><strong>{activeAmenityScore === null ? "等待定位" : `${activeAmenityScore} 分 · ${amenityGrade(activeAmenityScore)}`}</strong><small>{activeAmenityScore === null ? locationLabel(active) : `${amenityReliabilityText(active)} · ${active.amenity.nearest.station?.routes.walking ? `最近車站步行 ${active.amenity.nearest.station.routes.walking.durationMinutes} 分` : locationLabel(active)}`}</small><b>看附近 →</b>
                   </button>
                 </div>
                 <button type="button" className="holding-cost-snapshot" onClick={() => setDetailTab("cost")}><span>每月要花多少</span><strong>用你的房型快速試算</strong><small>房屋稅＋地價稅＋管理費＋車位管理費</small><b>開始試算 →</b></button>
+                <button type="button" className="summary-data-confidence" onClick={() => setMethodOpen(true)}><span>資料完整度</span><strong>{activeConfidence.label}</strong><small>{activeConfidence.covered}／4 項可核對</small><b>查看資料說明 →</b></button>
                 <p className="summary-caution">沒有瑕疵紀錄不代表沒有問題；成交與路線時間也不是目前開價或即時導航。</p>
                 <details className="summary-official-details">
                   <summary>查看官方基本資料</summary>
@@ -883,21 +886,24 @@ export default function Home() {
                   <div className="drawer-facts two"><div><span>有效樣本</span><strong>{active.price.count} 筆</strong></div><div><span>最新交易</span><strong>{formatDate(active.price.latestDate)}</strong></div></div>
                   <p className="drawer-note">來源：{active.price.source}。區域基準取本資料庫同區有官方成交建案的中位數；成交價不是目前開價，也不是估價結果。</p>
                 </> : <div className="drawer-empty price-unavailable"><span>{active.priceEvidence.statusLabel}</span><strong>{active.priceEvidence.status === "official-no-match" ? "目前沒有可安全歸戶的官方成交" : "成交資料尚待配對"}</strong><p>{active.priceEvidence.status === "official-no-match" ? "已核對官方已發布資料；這不代表建案沒有銷售，近期交易可能尚未申報或公開。" : "目前來源未成功配對，不代表沒有交易。"}</p><small>查核更新 {formatDate(active.priceEvidence.lastCheckedAt)} · {active.priceEvidence.matchMethod}</small><a href={active.priceEvidence.sourceUrl} target="_blank" rel="noreferrer">查看官方資料入口 ↗</a></div>}
-                {activeRegionalSupply && (
-                  <section className="regional-supply-card" aria-label="區域待售新成屋">
-                    <header><div><span>區域供給</span><h4>附近新屋多不多？</h4></div><b>{activeRegionalSupply.scopeLabel}</b></header>
-                    <div className="regional-supply-value"><strong>{formatCurrency(activeRegionalSupply.units)} 宅</strong><span>{activeRegionalSupply.geography} · {activeRegionalSupply.periodLabel}</span></div>
-                    <p className={`supply-trend ${activeRegionalSupply.quarterlyChange?.direction ?? "unavailable"}`}>{supplyTrendText(activeRegionalSupply.quarterlyChange)}</p>
-                    {activeRegionalSupply.fallbackReason && <p className="supply-scope-note">{activeRegionalSupply.fallbackReason}</p>}
-                    {activeRegionalSupply.note && <p className="supply-scope-note">{activeRegionalSupply.note}</p>}
-                    <aside>這是區域內可能待售的新成屋總量，不是本建案的剩餘戶數，也不能直接判斷本案賣得好不好。</aside>
-                    <details>
-                      <summary>這個數字怎麼看？</summary>
-                      <p>{regionalSupplyData.definition}{regionalSupplyData.methodology.interpretation}</p>
-                    </details>
-                    <a href={regionalSupplyData.sources.bulletin.url} target="_blank" rel="noreferrer">查看內政部統計來源 ↗</a>
-                  </section>
-                )}
+              </section>
+            )}
+            {detailTab === "supply" && activeRegionalSupply && (
+              <section>
+                <h3>區域新屋供給</h3>
+                <section className="regional-supply-card" aria-label="區域待售新成屋">
+                  <header><div><span>附近新屋多不多？</span><h4>{activeRegionalSupply.geography}</h4></div><b>{activeRegionalSupply.scopeLabel}</b></header>
+                  <div className="regional-supply-value"><strong>{formatCurrency(activeRegionalSupply.units)} 宅</strong><span>{activeRegionalSupply.periodLabel}</span></div>
+                  <p className={`supply-trend ${activeRegionalSupply.quarterlyChange?.direction ?? "unavailable"}`}>{supplyTrendText(activeRegionalSupply.quarterlyChange)}</p>
+                  {activeRegionalSupply.fallbackReason && <p className="supply-scope-note">{activeRegionalSupply.fallbackReason}</p>}
+                  {activeRegionalSupply.note && <p className="supply-scope-note">{activeRegionalSupply.note}</p>}
+                  <aside>這是區域內可能待售的新成屋總量，不是本建案的剩餘戶數，也不能直接判斷本案賣得好不好。</aside>
+                  <details>
+                    <summary>這個數字怎麼算？</summary>
+                    <p>{regionalSupplyData.definition}{regionalSupplyData.methodology.interpretation}</p>
+                  </details>
+                  <a href={regionalSupplyData.sources.bulletin.url} target="_blank" rel="noreferrer">查看內政部統計來源 ↗</a>
+                </section>
               </section>
             )}
             {detailTab === "cost" && (

@@ -187,10 +187,10 @@ test("map uses stable project coordinates and progressive zoom layers", async ()
 test("detail interface separates defect evidence and supports route-based custom amenity weights", async () => {
   const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
 
-  assert.match(source, /這個建案值得繼續看嗎？/);
+  assert.match(source, /先回答你最在意的四件事/);
   assert.match(source, /先看重點/);
-  assert.match(source, /懶人包/);
-  assert.match(source, /一次只看一項/);
+  assert.match(source, /固定支出/);
+  assert.match(source, /你想看哪一項？/);
   assert.match(source, /查看官方基本資料/);
   assert.match(source, /實際瑕疵與契約查核/);
   assert.match(source, /契約違規不會被當成漏水證據/);
@@ -216,15 +216,23 @@ test("the product keeps map mode focused and reveals information progressively",
   assert.match(source, /if \(project\) previewProject\(project\)/);
   assert.match(source, /className="map-project-preview"/);
   assert.match(source, /查看建案/);
-  assert.match(source, /完整查核/);
+  assert.match(source, /先看重點/);
+  assert.match(source, /更多資料/);
   assert.match(source, /onSearchArea=\{\(ids\) => setMapScopeIds\(ids\)\}/);
   assert.match(source, /priceComparison\(active\)/);
+  assert.match(source, /"supply", "區域新屋供給"/);
+  assert.match(source, /onClick=\{\(\) => setDetailTab\("supply"\)\}/);
+  assert.match(source, /先回答你最在意的四件事/);
+  assert.match(source, /選一項就直接顯示，不用在長頁面裡找/);
+  assert.match(source, /className="summary-data-confidence"/);
   assert.match(source, /資料可信度/);
-  assert.match(source, /價格、品質、位置與機能共/);
+  assert.match(source, /\{activeConfidence\.covered\}／4 項可核對/);
   assert.match(source, /資料不足，暫不評分/);
   assert.match(source, /不以建案數量推測售後品質/);
   assert.match(source, /價格、品質、生活與資料可信度分開比較/);
   assert.match(css, /\.summary-decisions \{ grid-template-columns:1fr 1fr;/);
+  assert.match(css, /\.summary-decisions button\.supply/);
+  assert.match(css, /\.summary-data-confidence/);
   assert.match(css, /\.detail-drawer > nav \{[^}]*grid-template-columns:repeat\(3,1fr\)/);
   assert.match(css, /\.map-project-preview/);
   assert.match(css, /\.evidence-navigation/);

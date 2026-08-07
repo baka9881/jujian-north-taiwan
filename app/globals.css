@@ -174,10 +174,17 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
 .summary-decisions button > small { grid-column:1; color:#6b797f; font-size:11px; line-height:1.5; }
 .summary-decisions button > b { grid-row:1/4; grid-column:2; align-self:center; color:#286555; font-size:11px; white-space:nowrap; }
 .summary-decisions button.clear { border-left:4px solid #489478; }
+.summary-decisions button.supply { border-left:4px solid #3180a0; background:#f7fbfd; }
+.summary-decisions button.supply > b { color:#236a86; }
 .summary-decisions button.attention { border-left:4px solid var(--orange); background:#fffaf7; }
 .summary-decisions button.attention > b { color:var(--orange-dark); }
 .summary-decisions button.unavailable { border-left:4px solid #9aa7ac; background:#f7f8f8; }
 .summary-caution { margin:12px 0 0; padding:10px 12px; border-radius:6px; background:#eef2f3; color:#596970; font-size:11px; line-height:1.6; }
+.summary-data-confidence { display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:4px 8px; width:100%; margin-top:9px; padding:10px 12px; border:0; border-radius:7px; background:#f1f4f4; color:inherit; cursor:pointer; text-align:left; }
+.summary-data-confidence > span { grid-row:1/3; color:#64747a; font-size:10px; font-weight:800; }
+.summary-data-confidence > strong { color:#364b52; font-size:12px; }
+.summary-data-confidence > small { color:#748188; font-size:10px; }
+.summary-data-confidence > b { grid-row:1/3; grid-column:3; color:#35665b; font-size:10px; }
 .summary-official-details { margin-top:12px!important; }
 .summary-official-details > summary { color:#3b5059; font-weight:800; }
 .summary-official-details > .stage-evidence,.summary-official-details > .drawer-facts,.summary-official-details > .drawer-address,.summary-official-details > details { margin-right:12px; margin-left:12px; }
@@ -740,6 +747,7 @@ html,body { font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
 .evidence-navigation > div { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
 .evidence-navigation button { padding:9px 8px; border:1px solid #cfdad6; border-radius:6px; background:white; color:#4d6269; cursor:pointer; font-size:11px; font-weight:800; }
 .evidence-navigation button.active { border-color:#286f5c; background:#286f5c; color:white; }
+.evidence-navigation button:last-child:nth-child(odd) { grid-column:1/-1; }
 
 /* Real-world context is embedded only after a project is opened. */
 .project-visual { position:relative; height:230px; overflow:hidden; border-bottom:1px solid var(--line); background:linear-gradient(145deg,#dce6e3,#c7d5d1); }
