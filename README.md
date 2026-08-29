@@ -1,47 +1,134 @@
-# 居鑑｜北台灣建案履歷
+# JuJian — Northern Taiwan Housing Project Explorer
 
-這個專案整理林口與 A7 建案的官方基本資料、成交行情、生活機能與品質查核狀態。
+JuJian is a map-based housing research platform for new residential projects in Northern Taiwan. The current catalogue focuses on Linkou and the Airport MRT A7 area, combining official project records, registered transaction prices, regional housing supply, nearby amenities, quality evidence, and estimated owner-occupier holding costs.
 
-## 平常怎麼更新
+**Live site:** [jujian-north-taiwan.baka0406.chatgpt.site](https://jujian-north-taiwan.baka0406.chatgpt.site)
 
-在 Windows 直接雙擊根目錄的 `更新建案資料.cmd`。它會依序：
+## What the Project Does
 
-1. 下載內政部最新建案備查資料，辨識新案與既有案變更。
-2. 更新林口與 A7 的官方成交行情。
-3. 補齊新案定位與生活機能。
-4. 更新品質查核佇列，但保留人工確認過的事件與進度。
-5. 檢查建案、價格、定位與品質資料是否同步。
+- Browses housing projects on an interactive map with progressive zoom levels.
+- Separates presale projects and completed homes with distinct map markers.
+- Shows official registered transaction prices and regional price comparisons.
+- Presents Ministry of the Interior unsold-new-home statistics as regional supply context.
+- Reviews traceable quality evidence without treating missing records as proof that no problem exists.
+- Scores nearby amenities using route time and the number of nearby choices.
+- Estimates recurring owner-occupier costs, including management fees, house tax, and land value tax.
+- Supports side-by-side project comparison.
 
-完成後請先看 `data/processed/update-report.json`，再請 Codex「發布居鑑網站」。本機更新不會自行發布正式網站。
+## Product Principles
 
-## 更新保護規則
+- Every negative claim should be traceable to a source.
+- Missing data means **insufficient information**, not **no problem**.
+- Contract inspections are not presented as evidence of construction quality.
+- Regional unsold-home figures are not interpreted as the sales rate of an individual project.
+- Estimated project locations are clearly distinguished from verified locations.
+- Price, quality, convenience, recurring cost, and data confidence remain separate instead of being collapsed into one misleading score.
 
-- 新案只在晚於該區目前最新申報日，而且官方身分可唯一辨識時自動加入。
-- 官方來源某期暫時找不到的既有建案不會被刪除。
-- 多重匹配、改名或身分歧義會列入報告，不會直接覆蓋。
-- `data/manual/location-overrides.json` 內的人工定位優先於自動定位。
-- `quality-evidence.json` 內已查核的事件、來源進度與日期會被保留。
-- 首批目錄以外的較舊建案會列在 `historicalBacklog`，不會一次全部塞進網站。
+## Data Sources
 
-## 報告怎麼看
+The project currently uses or references data from:
 
-- `changes.added`：這次安全加入的新案。
-- `changes.updated`：官方欄位有變動的既有案。
-- `changes.ambiguous`：同時符合多個建案，需人工判斷。
-- `changes.missing`：目前官方檔暫時找不到，但網站仍保留的案。
-- `historicalBacklog`：首批目錄以外的歷史候選案。
-- `pipeline`：價格、定位與品質資料是否完成同步。
+- Ministry of the Interior real-estate transaction and presale-project datasets
+- Ministry of the Interior regional unsold-new-home statistics
+- New Taipei City open data
+- National Land Surveying and Mapping Center services
+- OpenStreetMap contributors
+- Official administrative inspection records and source links
 
-## 開發與檢查
+Source coverage and publication schedules vary. The interface displays the relevant scope, date, confidence, and limitations wherever possible.
 
-需要 Node.js 22.13 以上。
+## Updating the Data
+
+On Windows, double-click `更新建案資料.cmd` in the project root. The update pipeline will:
+
+1. Download the latest official presale-project records and detect new or changed projects.
+2. Refresh official transaction prices for Linkou and A7.
+3. Update project locations, nearby amenities, and route-time enrichment.
+4. Rebuild quality evidence while preserving manually reviewed records.
+5. Rebuild regional housing-supply data.
+6. Validate that project, price, location, amenity, quality, and supply datasets remain synchronized.
+
+After an update, review `data/processed/update-report.json` before publishing. Running the local update does not automatically deploy the production site.
+
+### Safe Update Rules
+
+- A new project is added automatically only when its official identity can be matched unambiguously.
+- Existing projects are not deleted just because they are temporarily absent from a new source release.
+- Renames, multiple matches, and identity conflicts are reported for manual review instead of being overwritten.
+- Manual location overrides in `data/manual/location-overrides.json` take priority over automated geocoding.
+- Reviewed quality events, source progress, and review dates are preserved.
+- Older candidates outside the initial catalogue are kept in `historicalBacklog` instead of being inserted all at once.
+
+### Updating Regional Housing Supply
+
+Regional supply has a single maintainable source file:
+
+```text
+data/manual/regional-supply-source.json
+```
+
+After updating the official quarterly values and source metadata, run:
+
+```bash
+npm run data:supply
+```
+
+The generator chooses current district-level data when available and falls back to county or city data with an explicit scope label when the official release does not publish an exact district value.
+
+## Development
+
+### Requirements
+
+- Node.js 22.13 or later
+- npm
+
+### Setup
 
 ```bash
 npm install
-npm run data:update
+npm run dev
+```
+
+### Validation
+
+```bash
 npm run data:check
-npm run build
+npm run lint
 npm test
 ```
 
-主要資料來源為內政部不動產成交案件實際資訊資料供應系統、新北市政府資料開放平臺、國土測繪圖資服務雲與 OpenStreetMap。網站上的「資料說明」會顯示資料範圍與限制。
+`npm test` builds the production application and runs the rendered-output and data-integrity tests.
+
+### Main Scripts
+
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the local development server |
+| `npm run build` | Create a production build |
+| `npm run data:update` | Run the complete safe data-update pipeline |
+| `npm run data:supply` | Rebuild regional housing-supply data |
+| `npm run data:check` | Validate processed datasets and cross-file consistency |
+| `npm run lint` | Run ESLint |
+| `npm test` | Build and run the automated test suite |
+
+## Project Structure
+
+```text
+app/                 Application UI and interactive map
+data/manual/         Human-reviewed inputs and overrides
+data/processed/      Generated datasets consumed by the site
+scripts/             Data ingestion, enrichment, generation, and validation
+tests/               Rendered-output and data-integrity tests
+.openai/hosting.json Site hosting metadata
+```
+
+## Current Scope and Limitations
+
+- The current catalogue covers Linkou and A7; it is not yet a complete Northern Taiwan database.
+- Some locations are approximate when an exact parcel or official address cannot be safely matched.
+- Amenity scores depend on available OpenStreetMap data and stored route results.
+- Quality evidence is limited to records that can be traced and responsibly attributed.
+- The holding-cost calculator is an estimate for owner-occupiers, not a tax assessment.
+- Transaction prices are historical registered transactions, not current asking prices or appraisals.
+
+JuJian is a research and comparison tool. It does not replace a professional building inspection, legal review, tax assessment, appraisal, or on-site investigation.
